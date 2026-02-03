@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 
 from pathlib import Path
 from decouple import config
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -42,8 +45,16 @@ INSTALLED_APPS = [
     'mainapp',
     'tailwind',
     'theme',
-    'django_browser_reload'
+    'django_browser_reload',
+    'cloudinary',
 ]
+
+# Cloudinary configs
+cloudinary.config(
+    cloud_name = 'CLOUDINARY_CLOUD_NAME',
+    api_key = 'CLOUDINARY_API_KEY',
+    api_secret = 'CLOUDINARY_API_SECRET'
+)
 
 # Tailwind css configs
 
