@@ -129,6 +129,7 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 AUTHENTICATION_BACKENDS = [
-    'myapp.backends.CustomAuthBackend',
+    'userapp.backends.CustomAuthBackend',
     'django.contrib.auth.backends.ModelBackend',  # Default authentication backend
 ]
+AUTH_USER_MODEL = 'userapp.CustomUser'
