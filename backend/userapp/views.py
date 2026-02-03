@@ -13,4 +13,4 @@ def login_view(request):
             error_message = "Invalid credentials"
     else:
         error_message = None
-    return render(request, 'userapp/login.html', {'error_message': error_message})
+    return render(request, 'login.html', {'error_message': error_message})

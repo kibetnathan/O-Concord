@@ -39,8 +39,16 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'userapp',
-    'mainapp'
+    'mainapp',
+    'tailwind',
+    'theme',
+    'django_browser_reload'
 ]
+
+# Tailwind css configs
+
+TAILWIND_APP_NAME = 'theme'
+INTERNAL_IPS = ["127.0.0.1"]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
