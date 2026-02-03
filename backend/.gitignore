@@ -1,0 +1,8 @@
+.env
+*.env
+
+__pycache__
+church/__pycache__
+
+db.sqlite3
+*.sqlite3
