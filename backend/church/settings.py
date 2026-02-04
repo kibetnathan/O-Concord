@@ -50,12 +50,6 @@ INSTALLED_APPS = [
     'rest_framework'
 ]
 
-# Cloudinary configs
-cloudinary.config(
-    cloud_name = 'CLOUDINARY_CLOUD_NAME',
-    api_key = 'CLOUDINARY_API_KEY',
-    api_secret = 'CLOUDINARY_API_SECRET'
-)
 
 # Tailwind css configs
 
@@ -103,6 +97,12 @@ WSGI_APPLICATION = 'church.wsgi.application'
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
+# Cloudinary configs
+cloudinary.config(
+    cloud_name = config('CLOUDINARY_CLOUD_NAME'),
+    api_key = config('CLOUDINARY_API_KEY'),
+    api_secret = config('CLOUDINARY_API_SECRET')
+)
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',

@@ -21,6 +21,7 @@ from userapp.forms import CustomUserRegistrationForm
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/', include("userapp.urls")),
     path('', include("userapp.urls")),
     path('', include("mainapp.urls")),
     path(

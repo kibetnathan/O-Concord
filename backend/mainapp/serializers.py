@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from models import LeadershipTeam, AgeGroup, DiscipleshipGroup, RopesClass, ServingTeam, MinistryData
+from .models import LeadershipTeam, AgeGroup, DiscipleshipGroup, RopesClass, ServingTeam, MinistryData
 from django.conf import settings
 from userapp.models import CustomUser
 
@@ -11,6 +11,7 @@ class UserSerializer(serializers.ModelSerializer):
 
 class LeadershipTeamSerializer(serializers.ModelSerializer):
     members = serializers.PrimaryKeyRelatedField(
+        queryset=CustomUser.objects.all(),
         many=True
     )
 
@@ -21,6 +22,7 @@ class LeadershipTeamSerializer(serializers.ModelSerializer):
 
 class AgeGroupSerializer(serializers.ModelSerializer):
     members = serializers.PrimaryKeyRelatedField(
+        queryset=CustomUser.objects.all(),
         many=True
     )
     pastor = serializers.PrimaryKeyRelatedField(
@@ -33,6 +35,7 @@ class AgeGroupSerializer(serializers.ModelSerializer):
 
 class RopesClassSerializer(serializers.ModelSerializer):
     members = serializers.PrimaryKeyRelatedField(
+        queryset=CustomUser.objects.all(),
         many=True
     )
     leader = serializers.PrimaryKeyRelatedField(
@@ -47,6 +50,7 @@ class RopesClassSerializer(serializers.ModelSerializer):
 
 class DiscipleshipGroupSerializer(serializers.ModelSerializer):
     members = serializers.PrimaryKeyRelatedField(
+        queryset=CustomUser.objects.all(),
         many=True
     )
     leader = serializers.PrimaryKeyRelatedField(
@@ -61,6 +65,7 @@ class DiscipleshipGroupSerializer(serializers.ModelSerializer):
 
 class ServingTeamSerializer(serializers.ModelSerializer):
     members = serializers.PrimaryKeyRelatedField(
+        queryset=CustomUser.objects.all(),
         many=True
     )
     leader = serializers.PrimaryKeyRelatedField(
@@ -72,7 +77,7 @@ class ServingTeamSerializer(serializers.ModelSerializer):
         model = ServingTeam
         fields = ['id', 'name', 'description', 'leader' ,'members']
 
-        
+
 class MinistryDataSerializer(serializers.ModelSerializer):
     # Nested user info
     user = UserSerializer(read_only=True)

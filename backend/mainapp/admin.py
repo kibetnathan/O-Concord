@@ -1,5 +1,5 @@
 from django.contrib import admin
-from models import LeadershipTeam, AgeGroup, DiscipleshipGroup, RopesClass, ServingTeam, MinistryData
+from .models import LeadershipTeam, AgeGroup, DiscipleshipGroup, RopesClass, ServingTeam, MinistryData
 # Register your models here.
 admin.site.register(LeadershipTeam)
 admin.site.register(AgeGroup)
