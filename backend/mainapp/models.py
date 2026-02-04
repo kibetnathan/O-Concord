@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from userapp.models import Profile
 
 # Create your models here.
 class LeadershipTeam(models.Model):
@@ -88,3 +89,31 @@ class ServingTeam(models.Model):
     )
 
 # No campus trend model yet as the group structure is unknown
+
+# Data collection models
+
+class MinistryData(models.Model):
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        related_name="ministry_data",
+        on_delete=models.CASCADE,
+    )
+    @property
+    def name(self):
+        return f"{self.user.first_name} {self.user.last_name}"
+    @property
+    def campus(self):
+        if hasattr(self.user, "profile") and self.user.profile:
+            return self.user.profile.campus
+        return None
+    dg = models.ForeignKey(
+        DiscipleshipGroup,
+        on_delete=models.SET_NULL,
+        null=True,
+        related_name="dg"
+    )
+    department = models.ManyToManyField(
+        ServingTeam,
+        blank=True,
+        related_name="department"
+    )
