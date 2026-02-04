@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'theme',
     'django_browser_reload',
     'cloudinary',
+    'rest_framework'
 ]
 
 # Cloudinary configs
