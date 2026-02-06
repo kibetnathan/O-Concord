@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.forms import AdminUserCreationForm, UserChangeForm
 from django_registration.forms import RegistrationForm
 from .models import CustomUser, Profile
+from django.contrib.auth.models import Group
 
 class CustomUserCreationForm(AdminUserCreationForm):
 
@@ -51,5 +52,8 @@ class CustomRegistrationForm(RegistrationForm):
 
         profile.save()
 
+        member_group = Group.objects.get(name="Member")
+        user.groups.add(member_group)
         return user
+    
     

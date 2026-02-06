@@ -5,6 +5,8 @@ from .serializers import UserSerializer, ProfileSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status, viewsets
+from .forms import CustomRegistrationForm
+from rest_framework_simplejwt.tokens import RefreshToken
 
 def login_view(request):
     if request.method == 'POST':
@@ -61,3 +63,27 @@ class ProfileView(APIView):
 class ProfileViewSet(viewsets.ModelViewSet):
     queryset = Profile.objects.all().order_by('id')
     serializer_class = ProfileSerializer
+
+def get_tokens_for_user(user):
+    refresh = RefreshToken.for_user(user)
+    return {
+        "refresh": str(refresh),
+        "access": str(refresh.access_token),
+    }
+
+class RegistrationAPIView(APIView):
+    def post(self, request):
+        form = CustomRegistrationForm(request.data)
+        if form.is_valid():
+            user = form.save()
+            tokens = get_tokens_for_user(user)
+            return Response({
+                "message": "User created successfully",
+                "user": {
+                    "id": user.id,
+                    "username": user.username,
+                    "email": user.email
+                },
+                "tokens": tokens
+            }, status=status.HTTP_201_CREATED)
+        return Response(form.errors, status=status.HTTP_400_BAD_REQUEST)
