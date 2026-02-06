@@ -48,7 +48,8 @@ INSTALLED_APPS = [
     'django_browser_reload',
     'cloudinary',
     'rest_framework',
-    'communication'
+    'communication',
+    'taggit'
 ]
 
 
