@@ -26,6 +26,18 @@
     This is a simple django project made for Mavuno Young and Fearless and any other churches that might need a data management system. 
     This base version can be tweaked to fit any church structures
 
+### Features:
+##### 1. Role Based Access:
+Using role based access members of the church can use the application based on their views with pastors and leaders being able to manage the data of the members
+##### 2. Member Groups:
+Members are organised into groups such as serving teams, discipleship groups and age groups and have linked data
+##### 3. Robust Dashboards
+Robust Dashboards for data visualisation and control for every role
+
+##### 4. Messaging Board
+A simple messaging board/forum for important communication
+
+
 #### Running the project
 
 You can:
@@ -51,6 +63,11 @@ Some of the tools and technologies used include:
 - cloudinary
 - psycopg2
 - python-decouple
+- django-tailwind
+- django_browser_reload
+- markdown
+- djangorestframework
+- django-filter
 
 
 
