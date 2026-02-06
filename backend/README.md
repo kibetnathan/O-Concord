@@ -44,7 +44,7 @@ You can:
     a. clone the project and compile it yourself (Most up to date)
 
 [project location](https://github.com/kibetnathan/Church-Management-System)
-
+[find more info](https://github.com/kibetnathan/Church-Management-System/tree/main/docs)
 ## Technical
 
 ### Technologies used
