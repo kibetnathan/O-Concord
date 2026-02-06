@@ -46,3 +46,40 @@ class LeadershipTeamView(APIView):
         return Response({"status": "success", "data": "team deleted"}, status=status.HTTP_200_OK)
     
     
+class AgeGroupView(APIView):
+
+    def get(self, request, *args, **kwargs):
+        result = AgeGroup.objects.all()
+        serializers = AgeGroupSerializer(result, many=True)
+        return Response({'status': 'success', "age group": serializers.data}, status=200)
+    
+    def post(self, request):
+        serializer = AgeGroupSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({"status": "success", "data": serializer.data}, status=status.HTTP_200_OK)
+        else:
+            return Response({"status": "error", "data": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
+        
+    def put(self, request, *args, **kwargs):
+        try:
+            group = AgeGroup.objects.get(id=kwargs['id'])
+        except AgeGroup.DoesNotExist:
+            return Response({"status": "error", "data": "Age Group not found"}, status=status.HTTP_404_NOT_FOUND)
+        
+        serializer = AgeGroupSerializer(group, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({"status": "success", "data": serializer.data}, status=status.HTTP_200_OK)
+        else:
+            return Response({"status": "error", "data": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
+        
+    def delete(self, request, *args, **kwargs):
+        try:
+            group = AgeGroup.objects.get(id=kwargs['id'])
+        except AgeGroup.DoesNotExist:
+            return Response({"status": "error", "data": "group not found"}, status=status.HTTP_404_NOT_FOUND)
+        
+        group.delete()
+        return Response({"status": "success", "data": "group deleted"}, status=status.HTTP_200_OK)
+    
