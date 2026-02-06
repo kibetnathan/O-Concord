@@ -1,27 +1,28 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from cloudinary.models import CloudinaryField
+from datetime import date
 
 # Create your models here.
 class CustomUser(AbstractUser):
-    class Roles(models.TextChoices):
-        PASTOR = "PASTOR", "Pastor"
-        LEADER = "LEADER", "Leader"
-        DG_LEADER = "DG_LEADER", "DG_Leader"
-        MEMBER = "MEMBER", "Member"
+    # class Roles(models.TextChoices):
+    #     PASTOR = "PASTOR", "Pastor"
+    #     LEADER = "LEADER", "Leader"
+    #     DG_LEADER = "DG_LEADER", "DG_Leader"
+    #     MEMBER = "MEMBER", "Member"
 
-    role = models.CharField(
-        max_length=20,
-        choices=Roles.choices,
-        default=Roles.MEMBER
-    )
+    # role = models.CharField(
+    #     max_length=20,
+    #     choices=Roles.choices,
+    #     default=Roles.MEMBER
+    # )
+    email = models.EmailField(unique=True)
 
     def __str__(self):
         return self.username
     
 class Profile(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name="profile")
-    age = models.IntegerField()
     DoB = models.DateField()
     school = models.TextField(blank=True)
     workplace = models.TextField(blank=True)
@@ -31,3 +32,10 @@ class Profile(models.Model):
     
     def __str__(self):
         return f"{self.user.username}'s Profile"
+    
+    @property
+    def age(self):
+        today = date.today()
+        return today.year - self.DoB.year - (
+            (today.month, today.day) < (self.DoB.month, self.DoB.day)
+        )

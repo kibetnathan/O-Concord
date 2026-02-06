@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django_registration.backends.one_step.views import RegistrationView
-from userapp.forms import CustomUserRegistrationForm
+from userapp.forms import CustomRegistrationForm
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,7 +28,7 @@ urlpatterns = [
     path(
         'accounts/register/',
         RegistrationView.as_view(
-            form_class=CustomUserRegistrationForm,  # important
+            form_class=CustomRegistrationForm,  # important
             success_url='/'
         ),
         name='django_registration_register'
