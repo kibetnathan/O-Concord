@@ -4,7 +4,7 @@ from .models import CustomUser, Profile
 from .serializers import UserSerializer, ProfileSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import status
+from rest_framework import status, viewsets
 
 def login_view(request):
     if request.method == 'POST':
@@ -26,6 +26,7 @@ class ProfileView(APIView):
         result = Profile.objects.all()
         serializers = ProfileSerializer(result, many=True)
         return Response({'status': 'success', "profile": serializers.data}, status=200)
+    
     
     def post(self, request):
         serializer = ProfileSerializer(data=request.data)
@@ -56,3 +57,7 @@ class ProfileView(APIView):
         
         profile.delete()
         return Response({"status": "success", "data": "profile deleted"}, status=status.HTTP_200_OK)
+    
+class ProfileViewSet(viewsets.ModelViewSet):
+    queryset = Profile.objects.all().order_by('id')
+    serializer_class = ProfileSerializer

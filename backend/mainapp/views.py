@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import status
+from rest_framework import status, viewsets
 from .models import LeadershipTeam, AgeGroup, DiscipleshipGroup, RopesClass, ServingTeam, MinistryData
 from .serializers import LeadershipTeamSerializer, AgeGroupSerializer,DiscipleshipGroupSerializer,RopesClassSerializer,ServingTeamSerializer,MinistryDataSerializer
 # Create your views here.
@@ -236,3 +236,26 @@ class MinistryDataView(APIView):
         return Response({"status": "success", "data": "data deleted"}, status=status.HTTP_200_OK)
     
     
+class LeadershipTeamViewSet(viewsets.ModelViewSet):
+    queryset = LeadershipTeam.objects.all().order_by('id')
+    serializer_class = LeadershipTeamSerializer
+
+class AgeGroupViewSet(viewsets.ModelViewSet):
+    queryset = AgeGroup.objects.all().order_by('id')
+    serializer_class = AgeGroupSerializer
+
+class DiscipleshipGroupViewSet(viewsets.ModelViewSet):
+    queryset = DiscipleshipGroup.objects.all().order_by('id')
+    serializer_class = DiscipleshipGroupSerializer
+
+class RopesClassViewSet(viewsets.ModelViewSet):
+    queryset = RopesClass.objects.all().order_by('id')
+    serializer_class = RopesClassSerializer
+
+class ServingTeamViewSet(viewsets.ModelViewSet):
+    queryset = ServingTeam.objects.all().order_by('id')
+    serializer_class = ServingTeamSerializer
+
+class MinistryDataViewSet(viewsets.ModelViewSet):
+    queryset = MinistryData.objects.all().order_by('id')
+    serializer_class = MinistryDataSerializer
