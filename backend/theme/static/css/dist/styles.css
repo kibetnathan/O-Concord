@@ -22,7 +22,6 @@
     --color-gray-500: oklch(55.1% 0.027 264.364);
     --color-gray-600: oklch(44.6% 0.03 256.802);
     --color-gray-700: oklch(37.3% 0.034 259.733);
-    --color-gray-800: oklch(27.8% 0.033 256.848);
     --color-gray-900: oklch(21% 0.034 264.665);
     --color-neutral-100: oklch(97% 0 0);
     --color-black: #000;
@@ -45,8 +44,6 @@
     --text-4xl--line-height: calc(2.5 / 2.25);
     --text-5xl: 3rem;
     --text-5xl--line-height: 1;
-    --text-6xl: 3.75rem;
-    --text-6xl--line-height: 1;
     --font-weight-medium: 500;
     --font-weight-semibold: 600;
     --font-weight-bold: 700;
@@ -246,9 +243,6 @@
   .bottom-0 {
     bottom: calc(var(--spacing) * 0);
   }
-  .left-1\.5 {
-    left: calc(var(--spacing) * 1.5);
-  }
   .left-15 {
     left: calc(var(--spacing) * 15);
   }
@@ -269,12 +263,6 @@
     @media (width >= 96rem) {
       max-width: 96rem;
     }
-  }
-  .m-5 {
-    margin: calc(var(--spacing) * 5);
-  }
-  .m-15 {
-    margin: calc(var(--spacing) * 15);
   }
   .mx-auto {
     margin-inline: auto;
@@ -332,23 +320,8 @@
   .h-16 {
     height: calc(var(--spacing) * 16);
   }
-  .h-\[80\%\] {
-    height: 80%;
-  }
-  .h-\[80\] {
-    height: 80;
-  }
-  .h-\[90\%\] {
-    height: 90%;
-  }
   .h-\[90vh\] {
     height: 90vh;
-  }
-  .h-\[95vh\] {
-    height: 95vh;
-  }
-  .h-full {
-    height: 100%;
   }
   .h-screen {
     height: 100vh;
@@ -358,12 +331,6 @@
   }
   .w-\[20vw\] {
     width: 20vw;
-  }
-  .w-\[23vw\] {
-    width: 23vw;
-  }
-  .w-\[33vw\] {
-    width: 33vw;
   }
   .w-full {
     width: 100%;
@@ -454,10 +421,6 @@
     border-style: var(--tw-border-style);
     border-width: 1px;
   }
-  .border-e {
-    border-inline-end-style: var(--tw-border-style);
-    border-inline-end-width: 1px;
-  }
   .border-t {
     border-top-style: var(--tw-border-style);
     border-top-width: 1px;
@@ -541,8 +504,8 @@
   .py-16 {
     padding-block: calc(var(--spacing) * 16);
   }
-  .\[text-align\:_inherit\] {
-    text-align:  inherit;
+  .\[text-align\:inherit\] {
+    text-align: inherit;
   }
   .text-center {
     text-align: center;

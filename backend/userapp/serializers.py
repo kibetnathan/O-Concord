@@ -5,7 +5,7 @@ from datetime import date
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
-        fields = ['id', 'username', 'first_name', 'last_name', 'role', 'email']
+        fields = ['id', 'username', 'first_name', 'last_name', 'email']
 
 class ProfileSerializer(serializers.ModelSerializer):
     user = UserSerializer(read_only=True)  # nested user info
@@ -14,6 +14,7 @@ class ProfileSerializer(serializers.ModelSerializer):
         source='user',
         write_only=True
     )
+    profile_pic = serializers.ImageField(required=False)
 
     class Meta:
         model = Profile
@@ -29,6 +30,7 @@ class ProfileSerializer(serializers.ModelSerializer):
             'campus',
             'profile_pic'
         ]
+        read_only_fields = ["user"]
     # Field-level validator for age
     def validate_age(self, value):
         if value < 0:
