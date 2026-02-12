@@ -1,11 +1,13 @@
-{% extends "base.html" %} {% block content %}
-<div class="h-screen w-full flex flex-col justify-center items-center">
+{% extends "base.html" %} 
+{% block content %}
+<section class="h-screen w-full flex flex-col justify-center items-center">
   <!-- mainbody -->
-  <div class="flex w-full flex-row items-center">
+  <div class="flex w-[100%] flex-row items-center">
     <!-- grid -->
     <div
       class="absolute left-15 flex h-[90vh] w-[20vw] flex-col justify-between border border-gray-100 bg-white"
     >
+    <!-- Sidebar -->
       <div class="px-4 py-6">
         <span
           class="grid h-10 w-32 place-content-center rounded-lg bg-gray-100 text-xs text-gray-600"
@@ -162,8 +164,12 @@
         </a>
       </div>
     </div>
+
+  <div class="self-center justify-self-center h-[300px] w-[300px] rounded-2xl bg-gray-500">
+    
+  </div>
   </div>
 
-</div>
+</section>
 
 {% endblock content %}

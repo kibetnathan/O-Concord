@@ -8,7 +8,7 @@ from .serializers import LeadershipTeamSerializer, AgeGroupSerializer,Disciplesh
 def index(request):
     return render(request, 'index.html')
 def pastors(request):
-    return render(request, 'dashboards/pastor.html')
+    return render(request, 'pastor.html')
 
 class LeadershipTeamView(APIView):
 

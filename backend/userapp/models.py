@@ -23,7 +23,7 @@ class CustomUser(AbstractUser):
     
 class Profile(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name="profile")
-    DoB = models.DateField()
+    DoB = models.DateField(blank=True, null=True)
     school = models.TextField(blank=True)
     workplace = models.TextField(blank=True)
     phone_number = models.CharField(max_length=20, blank=True)

@@ -19,7 +19,6 @@ class CustomUserChangeForm(UserChangeForm):
 class CustomRegistrationForm(RegistrationForm):
 
     # Profile fields
-    age = forms.IntegerField(required=True)
     DoB = forms.DateField(
     widget=forms.DateInput(attrs={'type': 'date'}),
     required=True
