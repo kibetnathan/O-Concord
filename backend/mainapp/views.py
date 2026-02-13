@@ -9,6 +9,8 @@ def index(request):
     return render(request, 'index.html')
 def pastors(request):
     return render(request, 'pastor.html')
+def general(request):
+    return render(request, 'dashboards/pastors/general.html')
 
 class LeadershipTeamView(APIView):
 
