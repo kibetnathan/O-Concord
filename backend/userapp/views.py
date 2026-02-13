@@ -87,3 +87,4 @@ class RegistrationAPIView(APIView):
                 "tokens": tokens
             }, status=status.HTTP_201_CREATED)
         return Response(form.errors, status=status.HTTP_400_BAD_REQUEST)
+
