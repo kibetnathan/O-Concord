@@ -1,16 +1,32 @@
-{% extends "base.html" %}
-{% block content %}
-{% if error_message %}
+{% extends "base.html" %} {% block content %} {% if error_message %} 
+{% load static %}
 <p>{{ error_message }}</p>
 {% endif %}
-<form method="post" action="{% url 'login' %}">
-  {% csrf_token %}
-  <label for="email">Email:</label>
-  <input type="email" name="email" id="email">
-  <br>
-  <label for="password">Password:</label>
-  <input type="password" name="password" id="password">
-  <br>
-  <input type="submit" value="Login">
-</form>
+<section class="h-screen w-screen bg-[#cce9e6] flex">
+  <div class="flex flex-row h-[80%] w-[80%] m-auto bg-white rounded-2xl">
+    <img
+      src="{% static 'login.jpg' %}"
+      alt="login-img"
+      class="bg-black h-full w-[50%] rounded-l-2xl object-cover"
+    />
+    <form
+      class="outline-1 outline-gray-200 p-20 h-fit w-fit self-center justify-self-center mx-auto"
+      method="post"
+      action="{% url 'login' %}"
+    >
+  <h3 class="text-2xl font-bold">Welcome Back</h3> 
+  <span>Enter your email and password to log in</span>
+
+      {% csrf_token %}
+      <label for="email">Email:</label>
+      <input type="email" name="email" id="email" />
+      <br />
+      <label for="password">Password:</label>
+      <input type="password" name="password" id="password" />
+      <br />
+      <input type="submit" value="Login" />
+    </form>
+  </div>
+</section>
+
 {% endblock content %}
