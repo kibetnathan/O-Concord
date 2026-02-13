@@ -150,15 +150,15 @@
         >
           <img
             alt="pfp"
-            src=""
+            src="{{profile.profile_pic.build_url}}"
             class="size-10 rounded-full object-cover"
           />
 
           <div>
             <p class="text-xs">
-              <strong class="block font-medium">Username</strong>
+              <strong class="block font-medium">{{ user.username }}</strong>
 
-              <span> email </span>
+              <span> {{user.email}} </span>
             </p>
           </div>
         </a>

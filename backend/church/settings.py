@@ -176,3 +176,6 @@ SIMPLE_JWT = {
     "AUTH_HEADER_TYPES": ("Bearer",),
 }
 
+# media configs
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
