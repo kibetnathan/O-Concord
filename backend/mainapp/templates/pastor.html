@@ -2,10 +2,10 @@
 {% block content %}
 <section class="h-screen w-full flex flex-col justify-center items-center">
   <!-- mainbody -->
-  <div class="flex w-[100%] flex-row items-center">
+  <div class="flex w-full flex-row items-center">
     <!-- grid -->
     <div
-      class="absolute left-15 flex h-[90vh] w-[20vw] flex-col justify-between border border-gray-100 bg-white"
+      class="relative left-15 flex h-[90vh] w-[20vw] flex-col justify-between border border-gray-100 bg-white"
     >
     <!-- Sidebar -->
       <div class="px-4 py-6">
@@ -165,8 +165,12 @@
       </div>
     </div>
 
-  <div class="self-center justify-self-center h-[300px] w-[300px] rounded-2xl bg-gray-500">
-    
+  <div class="flex relative self-center justify-self-center h-[85vh] w-[70vw] rounded-2xl bg-gray-100 m-auto">
+    {% block dashboard %}
+      <div class="text-center m-auto text-4xl text-teal-950">
+        No dashboard views yet
+      </div>
+    {% endblock dashboard %}
   </div>
   </div>
 
