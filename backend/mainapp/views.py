@@ -8,8 +8,7 @@ from .serializers import LeadershipTeamSerializer, AgeGroupSerializer,Disciplesh
 def index(request):
     return render(request, 'index.html')
 def pastors(request):
-    profile = request.user.profile
-    return render(request, 'pastor.html', {'profile':profile})
+    return render(request, 'pastor.html')
 def general(request):
     return render(request, 'dashboards/pastors/general.html')
 
