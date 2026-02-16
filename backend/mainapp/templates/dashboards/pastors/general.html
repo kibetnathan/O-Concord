@@ -2,7 +2,22 @@
 {% block dashboard %}
     <div class="flex flex-row flex-wrap w-full h-full justify-center items-center">
         <div class="bg-white rounded-2xl h-70 w-70 m-5 grid grid-cols-2 grid-rows-2">
-            div
+            <div class="col-span-1 row-span-1 border-b border-r flex flex-col justify-center items-center">
+                <p class="text-xl font-bold text-teal-600">DGs:</p>
+                <p>{{total_dgs}}</p>
+            </div>
+            <div class="col-span-1 row-span-1 border-b flex flex-col justify-center items-center">
+                <p class="text-xl font-bold text-teal-600">Age Groups:</p>
+                <p>{{age_groups}}</p>
+            </div>
+            <div class="col-span-1 row-span-1 border-r flex flex-col justify-center items-center">
+                <p class="text-xl font-bold text-teal-600">Departments:</p>
+                <p>{{departments}}</p>
+            </div>
+            <div class="col-span-1 row-span-1 flex flex-col justify-center items-center">
+                <p class="text-xl text-center font-bold text-teal-600">Ropes Classes:</p>
+                <p>{{ropes_classes}}</p>
+            </div>
         </div>
         <div class="bg-white rounded-2xl h-70 w-70 m-5">
             <!-- Events -->

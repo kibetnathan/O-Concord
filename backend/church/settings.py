@@ -83,7 +83,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'mainapp.context.profile_processor'
+                'mainapp.context.profile_processor',
+                'mainapp.context.global_stats'
             ],
         },
     },
@@ -180,3 +181,7 @@ SIMPLE_JWT = {
 # media configs
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+# logout config
+
+LOGOUT_REDIRECT_URL = "/accounts/login/"
