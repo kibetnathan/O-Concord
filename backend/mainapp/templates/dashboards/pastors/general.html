@@ -19,17 +19,25 @@
                 <p>{{ropes_classes}}</p>
             </div>
         </div>
-        <div class="bg-white rounded-2xl h-70 w-70 m-5">
-            <!-- Events -->
+        <div class="bg-white rounded-2xl h-70 w-70 m-5 p-10 flex flex-col">
+            <h3 class="text-2xl font-bold text-teal-600 underline">Events:</h3>
         </div>
-        <div class="bg-white rounded-2xl h-70 w-70 m-5">
-            <!-- Notifs -->
+        <div class="bg-white rounded-2xl h-70 w-70 m-5 p-10 flex flex-col">
+            <h3 class="text-2xl font-bold text-teal-600 underline">Notifications:</h3>
         </div>
-        <div class="bg-white rounded-2xl h-70 w-70 m-5">
-            <!-- Leaders -->
+        <div class="bg-white rounded-2xl h-70 w-70 m-5 p-10 flex flex-col">
+            <h3 class="text-2xl font-bold text-teal-600 underline">Leaders:</h3>
         </div>
-        <div class="bg-white rounded-2xl h-70 w-140 m-5">
-            <!-- Feed -->
+        <div class="bg-white rounded-2xl h-70 w-140 m-5 p-5 flex flex-col">
+            <h3 class="text-2xl font-bold text-teal-600 underline">Feed:</h3>
+            <div class="flex flex-row overflow-scroll">
+                <!-- Posts go here -->
+                <div class="flex flex-col text-center items-center justify-center outline-1 outline-gray-100 rounded m-2">
+                    <!-- default post -->
+                    <img class="h-35 w-35 bg-gray-200 rounded m-2" src="" alt="post image">
+                    <p>Title</p>
+                </div>
+            </div>
         </div>
     </div>
 {% endblock dashboard %}
