@@ -49,6 +49,7 @@
 
           <div class="flex items-center gap-4">
             <div class="sm:flex sm:gap-4">
+              {% if not user.is_authenticated %}
               <a
                 class="block rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-teal-700"
                 href={% url "login" %}
@@ -62,6 +63,17 @@
               >
                 Register
               </a>
+              {% else %}
+              <div class="flex flex-row justify-center items-center">
+                <img
+            alt="pfp"
+            src="{{profile.profile_pic.build_url}}"
+            class="size-10 rounded-full object-cover mx-5"
+          />
+                <span class="text-xl font-light">{{user.username}}</span>
+
+              </div>
+              {% endif %}
             </div>
 
             <button
