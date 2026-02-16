@@ -1,4 +1,9 @@
 from .models import DiscipleshipGroup, AgeGroup, ServingTeam, RopesClass
+from django.conf import settings
+from communication.models import Post
+from userapp.models import CustomUser
+
+leaders = CustomUser.objects.filter(groups__name__in=["Pastors", "Admins"]).distinct()
 def profile_processor(request):
     """Adds the logged-in user's profile to every template context."""
     profile = None
@@ -15,5 +20,6 @@ def global_stats(request):
         "age_groups" : AgeGroup.objects.count(),
         "departments" : ServingTeam.objects.count(),
         "ropes_classes" : RopesClass.objects.count(),
+        "posts": Post.objects.all()
     }
 

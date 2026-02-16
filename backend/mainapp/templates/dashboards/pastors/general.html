@@ -1,43 +1,73 @@
-{% extends "pastor.html" %}
-{% block dashboard %}
-    <div class="flex flex-row flex-wrap w-full h-full justify-center items-center">
-        <div class="bg-white rounded-2xl h-70 w-70 m-5 grid grid-cols-2 grid-rows-2">
-            <div class="col-span-1 row-span-1 border-b border-r flex flex-col justify-center items-center">
-                <p class="text-xl font-bold text-teal-600">DGs:</p>
-                <p>{{total_dgs}}</p>
-            </div>
-            <div class="col-span-1 row-span-1 border-b flex flex-col justify-center items-center">
-                <p class="text-xl font-bold text-teal-600">Age Groups:</p>
-                <p>{{age_groups}}</p>
-            </div>
-            <div class="col-span-1 row-span-1 border-r flex flex-col justify-center items-center">
-                <p class="text-xl font-bold text-teal-600">Departments:</p>
-                <p>{{departments}}</p>
-            </div>
-            <div class="col-span-1 row-span-1 flex flex-col justify-center items-center">
-                <p class="text-xl text-center font-bold text-teal-600">Ropes Classes:</p>
-                <p>{{ropes_classes}}</p>
-            </div>
-        </div>
-        <div class="bg-white rounded-2xl h-70 w-70 m-5 p-10 flex flex-col">
-            <h3 class="text-2xl font-bold text-teal-600 underline">Events:</h3>
-        </div>
-        <div class="bg-white rounded-2xl h-70 w-70 m-5 p-10 flex flex-col">
-            <h3 class="text-2xl font-bold text-teal-600 underline">Notifications:</h3>
-        </div>
-        <div class="bg-white rounded-2xl h-70 w-70 m-5 p-10 flex flex-col">
-            <h3 class="text-2xl font-bold text-teal-600 underline">Leaders:</h3>
-        </div>
-        <div class="bg-white rounded-2xl h-70 w-140 m-5 p-5 flex flex-col">
-            <h3 class="text-2xl font-bold text-teal-600 underline">Feed:</h3>
-            <div class="flex flex-row overflow-scroll">
-                <!-- Posts go here -->
-                <div class="flex flex-col text-center items-center justify-center outline-1 outline-gray-100 rounded m-2">
-                    <!-- default post -->
-                    <img class="h-35 w-35 bg-gray-200 rounded m-2" src="" alt="post image">
-                    <p>Title</p>
-                </div>
-            </div>
-        </div>
+{% extends "pastor.html" %} {% block dashboard %}
+<div class="flex flex-row flex-wrap w-full h-full justify-center items-center">
+  <div class="bg-white rounded-2xl h-70 w-70 m-5 grid grid-cols-2 grid-rows-2">
+    <div
+      class="col-span-1 row-span-1 border-b border-r flex flex-col justify-center items-center"
+    >
+      <p class="text-xl font-bold text-teal-600">DGs:</p>
+      <p>{{total_dgs}}</p>
     </div>
+    <div
+      class="col-span-1 row-span-1 border-b flex flex-col justify-center items-center"
+    >
+      <p class="text-xl font-bold text-teal-600">Age Groups:</p>
+      <p>{{age_groups}}</p>
+    </div>
+    <div
+      class="col-span-1 row-span-1 border-r flex flex-col justify-center items-center"
+    >
+      <p class="text-xl font-bold text-teal-600">Departments:</p>
+      <p>{{departments}}</p>
+    </div>
+    <div
+      class="col-span-1 row-span-1 flex flex-col justify-center items-center"
+    >
+      <p class="text-xl text-center font-bold text-teal-600">Ropes Classes:</p>
+      <p>{{ropes_classes}}</p>
+    </div>
+  </div>
+  <div class="bg-white rounded-2xl h-70 w-70 m-5 p-10 flex flex-col">
+    <h3 class="text-2xl font-bold text-teal-600 underline">Events:</h3>
+  </div>
+  <div class="bg-white rounded-2xl h-70 w-70 m-5 p-10 flex flex-col">
+    <h3 class="text-2xl font-bold text-teal-600 underline">Notifications:</h3>
+  </div>
+  <div class="bg-white rounded-2xl h-70 w-70 m-5 p-10 flex flex-col">
+    <h3 class="text-2xl font-bold text-teal-600 underline">Leaders:</h3>
+    {% for user in pastors %}
+    <div class="flex items-center gap-2">
+      <p>{{ user.username }}</p>
+      <p>{{ user.email }}</p>
+    </div>
+    {% empty %}
+    <p>No pastors found.</p>
+    {% endfor %}
+  </div>
+  <div class="bg-white rounded-2xl h-70 w-140 m-5 p-5 flex flex-col">
+    <h3 class="text-2xl font-bold text-teal-600 underline">Feed:</h3>
+    <div class="flex flex-row overflow-scroll">
+      <!-- Posts go here -->
+      <!-- <div class="flex flex-col text-center items-center justify-center outline-1 outline-gray-100 rounded m-2"> -->
+      <!-- default post -->
+      <!-- <img class="h-35 w-35 bg-gray-200 rounded m-2" src="" alt="post image">
+                    <p>Title</p>
+                </div> -->
+      {% for post in posts %}
+      <div
+        class="flex flex-col text-center items-center justify-center outline-1 outline-gray-100 rounded m-2"
+      >
+        <!-- post image -->
+        <img
+          class="h-35 w-35 bg-gray-200 rounded m-2"
+          src="{{ post.image.url }}"
+          alt="{{ post.title }}"
+        />
+        <p>{{ post.title }}</p>
+      </div>
+      {% empty %}
+      <p>No posts available.</p>
+      {% endfor %}
+    </div>
+  </div>
+</div>
 {% endblock dashboard %}
