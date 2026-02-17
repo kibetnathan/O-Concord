@@ -17,7 +17,7 @@ urlpatterns= [
     path('home', views.home, name='home'),
     path('pastor', views.pastors, name='pastors'),
     path('pastor/general', views.general, name='pastors_general'),
-    path('', include(router.urls)),
+    path('api/', include(router.urls)),
     path('not-authorized/', views.not_authorized, name='not_authorized'),
     # path('leadership-teams', LeadershipTeamView.as_view()),
     # path('age-groups', AgeGroupView.as_view()),
