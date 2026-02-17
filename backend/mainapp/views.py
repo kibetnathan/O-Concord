@@ -19,6 +19,8 @@ def index(request):
 def pastors(request):
     return render(request, 'pastor.html')
 
+@login_required
+@user_passes_test(is_pastor, login_url="/not-authorized/")
 def general(request):
     posts = Post.objects.all()[:3]
     context = {'posts': posts}
