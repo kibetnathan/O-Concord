@@ -18,6 +18,6 @@ class PastorContextMixin:
         context = super().get_context_data(**kwargs)
         context.update({
             "posts": Post.objects.all()[:3],
-            "leaders": CustomUser.objects.filter(groups__name__in=["Pastors", "Leaders", "DG Leaders"]).distinct(),
+            "leaders": CustomUser.objects.filter(groups__name__in=["Pastor", "Leader", "DG Leader"]).distinct(),
         })
         return context
