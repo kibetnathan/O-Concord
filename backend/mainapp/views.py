@@ -24,6 +24,10 @@ def general(request):
 def not_authorized(request):
     return render(request, 'unauthorized.html')
 
+@login_required
+def home(request):
+    return render(request, 'home.html')
+
 class LeadershipTeamView(APIView):
 
     def get(self, request, *args, **kwargs):

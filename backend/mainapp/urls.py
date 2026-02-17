@@ -14,6 +14,7 @@ router.register(r"ministry-data", MinistryDataViewSet)
 
 urlpatterns= [
     path('', views.index, name='index'),
+    path('home', views.home, name='home'),
     path('pastor', views.pastors, name='pastors'),
     path('pastor/general', views.general, name='pastors_general'),
     path('', include(router.urls)),
