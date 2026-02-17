@@ -6,6 +6,9 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from .models import LeadershipTeam, AgeGroup, DiscipleshipGroup, RopesClass, ServingTeam, MinistryData
 from .serializers import LeadershipTeamSerializer, AgeGroupSerializer,DiscipleshipGroupSerializer,RopesClassSerializer,ServingTeamSerializer,MinistryDataSerializer
 from communication.models import Post
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import TemplateView
+from .mixins import PastorRequiredMixin, PastorContextMixin
 # Create your views here.
 
 def is_pastor(user):
@@ -14,17 +17,18 @@ def is_pastor(user):
 def index(request):
     return render(request, 'index.html')
 
-@login_required
-@user_passes_test(is_pastor, login_url="/not-authorized/")
-def pastors(request):
-    return render(request, 'pastor.html')
 
-@login_required
-@user_passes_test(is_pastor, login_url="/not-authorized/")
-def general(request):
-    posts = Post.objects.all()[:3]
-    context = {'posts': posts}
-    return render(request, 'dashboards/pastors/general.html', context)
+class PastorDashboardView(LoginRequiredMixin, PastorRequiredMixin, PastorContextMixin, TemplateView):
+    template_name = "pastor.html"  # default template
+
+    def get_template_names(self):
+        """
+        Switch template based on URL or query param.
+        """
+        view_type = self.kwargs.get("view_type", "home")  # default to 'home'
+        if view_type == "general":
+            return ["dashboards/pastors/general.html"]
+        return ["pastor.html"]
 
 def not_authorized(request):
     return render(request, 'unauthorized.html')

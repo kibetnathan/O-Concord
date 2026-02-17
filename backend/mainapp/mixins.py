@@ -1,11 +1,12 @@
 # mainapp/mixins.py
 from django.contrib.auth.mixins import UserPassesTestMixin
 from communication.models import Post
+from userapp.models import CustomUser, Profile
 from mainapp.models import DiscipleshipGroup, AgeGroup, ServingTeam, RopesClass
 
 class PastorRequiredMixin(UserPassesTestMixin):
     def test_func(self):
-        return self.request.user.groups.filter(name="Pastors").exists()
+        return self.request.user.groups.filter(name="Pastor").exists()
 
     def handle_no_permission(self):
         from django.shortcuts import redirect
@@ -16,10 +17,7 @@ class PastorContextMixin:
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context.update({
-            "post_instances": Post.objects.all()[:5],  # latest 5 posts
-            "total_dgs": DiscipleshipGroup.objects.count(),
-            "age_groups": AgeGroup.objects.count(),
-            "departments": ServingTeam.objects.count(),
-            "ropes_classes": RopesClass.objects.count(),
+            "posts": Post.objects.all()[:3],
+            "leaders": CustomUser.objects.filter(groups__name__in=["Pastors", "Leaders", "DG Leaders"]).distinct(),
         })
         return context

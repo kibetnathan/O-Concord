@@ -15,8 +15,8 @@ router.register(r"ministry-data", MinistryDataViewSet)
 urlpatterns= [
     path('', views.index, name='index'),
     path('home', views.home, name='home'),
-    path('pastor', views.pastors, name='pastors'),
-    path('pastor/general', views.general, name='pastors_general'),
+    path("pastor/", views.PastorDashboardView.as_view(), name="pastor"),
+    path("pastor/<str:view_type>/", views.PastorDashboardView.as_view(), name="pastor_view"),
     path('api/', include(router.urls)),
     path('not-authorized/', views.not_authorized, name='not_authorized'),
     # path('leadership-teams', LeadershipTeamView.as_view()),
