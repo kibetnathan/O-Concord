@@ -2,15 +2,27 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status, viewsets
+from django.contrib.auth.decorators import login_required, user_passes_test
 from .models import LeadershipTeam, AgeGroup, DiscipleshipGroup, RopesClass, ServingTeam, MinistryData
 from .serializers import LeadershipTeamSerializer, AgeGroupSerializer,DiscipleshipGroupSerializer,RopesClassSerializer,ServingTeamSerializer,MinistryDataSerializer
 # Create your views here.
+
+def is_pastor(user):
+    return user.groups.filter(name='Pastors').exists()
+
 def index(request):
     return render(request, 'index.html')
+
+@login_required
+@user_passes_test(is_pastor, login_url="/not-authorized/")
 def pastors(request):
     return render(request, 'pastor.html')
+
 def general(request):
     return render(request, 'dashboards/pastors/general.html')
+
+def not_authorized(request):
+    return render(request, 'unauthorized.html')
 
 class LeadershipTeamView(APIView):
 

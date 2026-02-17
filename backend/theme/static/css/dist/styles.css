@@ -794,6 +794,9 @@
   .text-teal-600 {
     color: var(--color-teal-600);
   }
+  .text-teal-700 {
+    color: var(--color-teal-700);
+  }
   .text-teal-800 {
     color: var(--color-teal-800);
   }
