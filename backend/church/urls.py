@@ -32,6 +32,7 @@ urlpatterns = [
     path('api/', include("mainapp.urls")),
     path('', include("userapp.urls")),
     path('', include("mainapp.urls")),
+    path('', include("communication.urls")),
     path(
         'accounts/register/',
         RegistrationView.as_view(

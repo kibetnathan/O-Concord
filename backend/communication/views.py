@@ -18,3 +18,9 @@ class CommentViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
+
+def posts(request):
+    return render(request, 'posts.html')
+
+def posts_form(request):
+    return render(request, 'postform.html')
