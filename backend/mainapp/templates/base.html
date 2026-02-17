@@ -65,11 +65,19 @@
               </a>
               {% else %}
               <div class="flex flex-row justify-center items-center">
-                <img
+                {% if profile.profile_pic %}
+          <img
             alt="pfp"
             src="{{profile.profile_pic.build_url}}"
-            class="size-10 rounded-full object-cover mx-5"
+            class="size-10 rounded-full object-cover"
           />
+          {% else %}
+          <img
+            alt="pfp"
+            src={% static 'defaultavatar.jpg' %}
+            class="size-10 rounded-full object-cover"
+          />
+        {% endif %}
                 <span class="text-xl font-light">{{user.username}}</span>
                 <form method="post" action="{% url 'logout' %}">
                 {% csrf_token %}
