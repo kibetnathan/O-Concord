@@ -20,6 +20,6 @@ def global_stats(request):
         "age_groups" : AgeGroup.objects.count(),
         "departments" : ServingTeam.objects.count(),
         "ropes_classes" : RopesClass.objects.count(),
-        "posts": Post.objects.all()
+        "global_posts": Post.objects.all() 
     }
 

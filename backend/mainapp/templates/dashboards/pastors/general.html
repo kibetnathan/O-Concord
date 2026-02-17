@@ -45,20 +45,14 @@
   </div>
   <div class="bg-white rounded-2xl h-70 w-140 m-5 p-5 flex flex-col">
     <h3 class="text-2xl font-bold text-teal-600 underline">Feed:</h3>
-    <div class="flex flex-row overflow-scroll">
-      <!-- Posts go here -->
-      <!-- <div class="flex flex-col text-center items-center justify-center outline-1 outline-gray-100 rounded m-2"> -->
-      <!-- default post -->
-      <!-- <img class="h-35 w-35 bg-gray-200 rounded m-2" src="" alt="post image">
-                    <p>Title</p>
-                </div> -->
+    <div class="flex flex-row w-full overflow-x-auto">
       {% for post in posts %}
       <div
-        class="flex flex-col text-center items-center justify-center outline-1 outline-gray-100 rounded m-2"
+        class="flex flex-col w-100 text-center items-center justify-center outline-1 outline-gray-100 rounded m-2"
       >
         <!-- post image -->
         <img
-          class="h-35 w-35 bg-gray-200 rounded m-2"
+          class="h-45 w-45 bg-gray-200 rounded m-2"
           src="{{ post.image.url }}"
           alt="{{ post.title }}"
         />

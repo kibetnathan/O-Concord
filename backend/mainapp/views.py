@@ -5,6 +5,7 @@ from rest_framework import status, viewsets
 from django.contrib.auth.decorators import login_required, user_passes_test
 from .models import LeadershipTeam, AgeGroup, DiscipleshipGroup, RopesClass, ServingTeam, MinistryData
 from .serializers import LeadershipTeamSerializer, AgeGroupSerializer,DiscipleshipGroupSerializer,RopesClassSerializer,ServingTeamSerializer,MinistryDataSerializer
+from communication.models import Post
 # Create your views here.
 
 def is_pastor(user):
@@ -19,7 +20,9 @@ def pastors(request):
     return render(request, 'pastor.html')
 
 def general(request):
-    return render(request, 'dashboards/pastors/general.html')
+    posts = Post.objects.all()[:3]
+    context = {'posts': posts}
+    return render(request, 'dashboards/pastors/general.html', context)
 
 def not_authorized(request):
     return render(request, 'unauthorized.html')

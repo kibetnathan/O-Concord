@@ -385,6 +385,9 @@
   .h-35 {
     height: calc(var(--spacing) * 35);
   }
+  .h-45 {
+    height: calc(var(--spacing) * 45);
+  }
   .h-64 {
     height: calc(var(--spacing) * 64);
   }
@@ -426,6 +429,9 @@
   }
   .w-35 {
     width: calc(var(--spacing) * 35);
+  }
+  .w-45 {
+    width: calc(var(--spacing) * 45);
   }
   .w-50 {
     width: calc(var(--spacing) * 50);
@@ -573,6 +579,9 @@
   }
   .overflow-scroll {
     overflow: scroll;
+  }
+  .overflow-x-auto {
+    overflow-x: auto;
   }
   .rounded {
     border-radius: 0.25rem;
