@@ -1,28 +1,29 @@
 {% extends "pastor.html" %} {% block dashboard %}
+{% load static %}
 <div class="flex flex-row flex-wrap w-full h-full justify-center items-center">
   <div class="bg-white rounded-2xl h-70 w-70 m-5 grid grid-cols-2 grid-rows-2">
     <div
       class="col-span-1 row-span-1 border-b border-r flex flex-col justify-center items-center"
     >
-      <p class="text-xl font-bold text-teal-600">DGs:</p>
+      <p class="text-xl font-bold text-teal-600 text-center">Fellowship Groups:</p>
       <p>{{total_dgs}}</p>
     </div>
     <div
       class="col-span-1 row-span-1 border-b flex flex-col justify-center items-center"
     >
-      <p class="text-xl font-bold text-teal-600">Age Groups:</p>
+      <p class="text-xl font-bold text-teal-600 text-center">Youth Age Groups:</p>
       <p>{{age_groups}}</p>
     </div>
     <div
       class="col-span-1 row-span-1 border-r flex flex-col justify-center items-center"
     >
-      <p class="text-xl font-bold text-teal-600">Departments:</p>
+      <p class="text-xl font-bold text-teal-600 text-center">Serving Departments:</p>
       <p>{{departments}}</p>
     </div>
     <div
       class="col-span-1 row-span-1 flex flex-col justify-center items-center"
     >
-      <p class="text-xl text-center font-bold text-teal-600">Ropes Classes:</p>
+      <p class="text-xl text-center font-bold text-teal-600">Youth Transition Classes:</p>
       <p>{{ropes_classes}}</p>
     </div>
   </div>
@@ -31,16 +32,23 @@
   </div>
   <div class="bg-white rounded-2xl h-70 w-70 m-5 p-10 flex flex-col">
     <h3 class="text-2xl font-bold text-teal-600 underline">Notifications:</h3>
+    <p class="text-2xl font-light ">WIP</p>
   </div>
-  <div class="bg-white rounded-2xl h-70 w-70 m-5 p-10 flex flex-col">
+  <div class="bg-white rounded-2xl h-70 w-70 m-5 p-4 flex flex-col">
     <h3 class="text-2xl font-bold text-teal-600 underline">Leaders:</h3>
     {% for user in leaders %}
     <div class="flex items-center gap-2">
+      {% if user.profile.profile_pic %}
+      <img src="{{user.profile.profile_pic.build_url}}"
+            class="size-10 rounded-full object-cover" alt="profile_pic">
+      {% else %}
+      <img src={% static 'defaultavatar.jpg' %}
+            class="size-10 rounded-full object-cover" alt="default_profile">
+      {% endif %}
       <p>{{ user.username }}</p>
-      <p>{{ user.email }}</p>
     </div>
     {% empty %}
-    <p>No pastors found.</p>
+    <p>No leaders found.</p>
     {% endfor %}
   </div>
   <div class="bg-white rounded-2xl h-70 w-140 m-5 p-5 flex flex-col">
