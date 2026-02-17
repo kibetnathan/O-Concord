@@ -10,7 +10,20 @@ This is a simple django project made for Mavuno Young and Fearless and any other
 - Suggestions
 
 ## About
+### Target denominations
+This tool is aimed at churches with less rigid church structures and few leadership hierarchies.
+Our references were:
+1. Non Denominational churches
+2. Baptist
+3. Pentecostal
 
+#### Organisational Structures
+ 1. Congregationalism
+ 2. Elder Led
+ 3. Moses Models
+
+Future versions may include support for higher church and more rigid church structures like Orthodoxy and Catholic churches
+More about the organisation structures --> [Church Structures](church_structures.md)
 ### Features:
 ##### 1. Role Based Access:
 Using role based access members of the church can use the application based on their views with pastors and leaders being able to manage the data of the members
@@ -18,7 +31,6 @@ Using role based access members of the church can use the application based on t
 Members are organised into groups such as serving teams, discipleship groups and age groups and have linked data
 ##### 3. Robust Dashboards
 Robust Dashboards for data visualisation and control for every role
-
 ##### 4. Messaging Board
 A simple messaging board/forum for important communication
 
@@ -35,6 +47,25 @@ A simple messaging board/forum for important communication
 4. Ropes Classes
 5. Campus Trend
 6. Serving teams
+
+### Messaging board:
+The messaging board works similarly to a forum page, with posts, and comments.
+
+### Dashboards:
+#### 1. Pastor Dashboard
+From the pastor dashboard, pastors can view and edit almost all data, similarly to the admin panel and create posts .
+**Editable data includes**:
+1. Ropes classes:
+	- Members
+	- Leaders
+2. Age groups:
+	- Name
+	- Desc
+	- Pastor
+	- Members
+3. DGs:
+	- Name
+
 
 ### Collectable Data & Forms:
 [Reference Form](https://docs.google.com/forms/d/e/1FAIpQLSeXuBle7_VJ3Gn9nuyRfnZ03McRMGoN37Nxpc_J0BiL5aRXtw/viewform)
@@ -84,6 +115,9 @@ Some of the tools and technologies used include:
 - markdown
 - djangorestframework
 - django-filter
+- django-taggit
+- djangorestframework-simplejwt
+
 
 
 
@@ -116,24 +150,73 @@ Delivered:
 - [x] Create group models
 - [x] Create Data models
 - [x] Create Robust user registration form
-- [ ] Create forms for data submission
+- [x] Create forms for data submission
 - [x] Set Up DRF
-- [ ] Create Form for profile update
+- [x] Create Form for profile update
 - [x] Create Serializers
 - [x] Create API view for Profile
 - [x] Create API views for Groups
 - [x] Create API view for Ministry Data
-- [ ] Create Auth API
+- [x] Switch To Viewsets
+- [x] Update Readme
+- [x] Set up JWT
+- [x] Create Auth API
+- [x] Create Registration API View
+- [x] Protect Views
+- [x] Create Login view
+- [ ] Create Password reset
+- [x] Create Logout view
+- [ ] Make custom perms
 - [ ] Write tests
-- [ ] Models for comm channel
+- [x] TestAPI's and populate test data
+- [x] create comm channel app
+- [x] Models for comm channel
+- [x] Create Viewsets for comm channel
+- [x] Create urls and router for comm channel
+- [x] Create Pastor Dashboard
+- [ ] Create comm channel UI
+- [ ] Create Password reset 
+- [ ] API for password reset
+- [ ] Emailing feature
+
+### Frontend
+- [x] Landing page
+- [x] Login page
+- [x] Registration page
+- [x] Comms page
+- [x] Posting page
+- [x] Home page
+- [x] Seperate Home and landing page
+- [ ] Create sidebar
+- [x] create home page feed
+- [ ] Create home page profile
+- [ ] add upload button to home page
 
 ## Milestones
-- [ ] Full API Views
-- [ ] Basic UI
+- [x] Full API Views
+- [ ] Basic Dashboards
 - [ ] Full test suite
 - [ ] Dashboards
 - [ ] Populate database
-- [ ] Member Groups
-- [ ] Communication Channel
+- [x] Member Groups
+- [x] Communication Channel
 - [ ] Full UI
 - [ ] Deployment
+
+## Suggestions
+- Communication channel
+- In app bible/hymnbook
+
+
+## API Endpoints
+
+/leadership-team
+/age-group
+/discipleship-group
+/ropes-class
+/serving-team
+/ministry-data
+/api/register
+/api/posts
+/api/comments
+/profiles
