@@ -1,3 +1,5 @@
+# Church Structures
+
 Open Church Management is currently designed to accommodate data for low church, non rigid, loose hierarchy churches such as baptist, other denominations can attempt to use it as well, however more bespoke updates may be necessary to fit the denomination's specific needs.
 
 ## Contents
