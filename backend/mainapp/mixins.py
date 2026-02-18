@@ -21,5 +21,11 @@ class PastorContextMixin:
         context.update({
             "posts": Post.objects.annotate(like_count=Count("liked_by")).order_by("-like_count")[:5],
             "leaders": CustomUser.objects.filter(groups__name__in=["Head Pastor","Pastor", "Leader", "Jr Leader"]).distinct(),
+            "scriptures":{
+                "John 3:16": "For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life.",
+                "Psalm 23:1": "The Lord is my shepherd, I lack nothing.",
+                "Philippians 4:13": "I can do all this through him who gives me strength.",
+                "Romans 8:28": "And we know that in all things God works for the good of those who love him, who have been called according to his purpose."
+            }
         })
         return context
