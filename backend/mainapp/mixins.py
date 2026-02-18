@@ -19,7 +19,7 @@ class PastorContextMixin:
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context.update({
-            "posts": Post.objects.annotate(like_count=Count("liked_by")).order_by("-like_count")[:3],
+            "posts": Post.objects.annotate(like_count=Count("liked_by")).order_by("-like_count")[:5],
             "leaders": CustomUser.objects.filter(groups__name__in=["Head Pastor","Pastor", "Leader", "Jr Leader"]).distinct(),
         })
         return context
