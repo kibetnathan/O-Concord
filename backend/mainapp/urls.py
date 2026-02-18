@@ -1,15 +1,15 @@
 from django.urls import path, include
 from . import views
-from .views import LeadershipTeamViewSet, AgeGroupViewSet, DiscipleshipGroupViewSet, RopesClassViewSet, ServingTeamViewSet, MinistryDataViewSet
+from .views import LeadershipTeamViewSet, ServicesViewSet, FellowshipGroupViewSet, CourseViewSet, DepartmentViewSet, EquipmentViewSet
 from rest_framework import routers
 
 router = routers.DefaultRouter()
 router.register(r"leadership-team", LeadershipTeamViewSet)
-router.register(r"age-group", AgeGroupViewSet)
-router.register(r"discipleship-group", DiscipleshipGroupViewSet)
-router.register(r"ropes-class", RopesClassViewSet)
-router.register(r"serving-team", ServingTeamViewSet)
-router.register(r"ministry-data", MinistryDataViewSet)
+router.register(r"services", ServicesViewSet)
+router.register(r"fellowship-group", FellowshipGroupViewSet)
+router.register(r"course", CourseViewSet)
+router.register(r"department", DepartmentViewSet)
+router.register(r"equipment", EquipmentViewSet)
 
 
 urlpatterns= [
@@ -19,10 +19,4 @@ urlpatterns= [
     path("pastor/<str:view_type>/", views.PastorDashboardView.as_view(), name="pastor_view"),
     path('api/', include(router.urls)),
     path('not-authorized/', views.not_authorized, name='not_authorized'),
-    path('leadership-teams', LeadershipTeamView.as_view()),
-    path('age-groups', AgeGroupView.as_view()),
-    path('discipleship-groups', DiscipleshipGroupView.as_view()),
-    path('ropes-classes', RopesClassView.as_view()),
-    path('ministry-data', MinistryDataView.as_view()),
-    path('serving-team', ServingTeamView.as_view()),
 ]
