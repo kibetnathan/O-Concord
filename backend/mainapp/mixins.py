@@ -2,7 +2,7 @@
 from django.contrib.auth.mixins import UserPassesTestMixin
 from communication.models import Post
 from userapp.models import CustomUser, Profile
-from mainapp.models import DiscipleshipGroup, AgeGroup, ServingTeam, RopesClass
+from mainapp.models import FellowshipGroup, Services, Department, Course
 
 class PastorRequiredMixin(UserPassesTestMixin):
     def test_func(self):
@@ -18,6 +18,6 @@ class PastorContextMixin:
         context = super().get_context_data(**kwargs)
         context.update({
             "posts": Post.objects.all()[:3],
-            "leaders": CustomUser.objects.filter(groups__name__in=["Pastor", "Leader", "DG Leader"]).distinct(),
+            "leaders": CustomUser.objects.filter(groups__name__in=["Head Pastor","Pastor", "Leader", "Jr Leader"]).distinct(),
         })
         return context

@@ -27,7 +27,7 @@ class DepartmentAdmin(admin.ModelAdmin):
 
 @admin.register(Equipment)
 class EquipmentAdmin(admin.ModelAdmin):
-    list_display = ('name', 'assigned_to')
+    list_display = ('name', 'assigned_service', 'assigned_department')
 # @admin.register(MinistryData)
 # class MinistryDataAdmin(admin.ModelAdmin):
 #     list_display = ('user', 'dg')

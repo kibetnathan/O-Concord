@@ -1,4 +1,4 @@
-from .models import DiscipleshipGroup, AgeGroup, ServingTeam, RopesClass
+from .models import FellowshipGroup, Services, Department, Course
 from django.conf import settings
 from communication.models import Post
 from userapp.models import CustomUser
@@ -16,10 +16,10 @@ def profile_processor(request):
 
 def global_stats(request):
     return{
-        "total_dgs" : DiscipleshipGroup.objects.count(),
-        "age_groups" : AgeGroup.objects.count(),
-        "departments" : ServingTeam.objects.count(),
-        "ropes_classes" : RopesClass.objects.count(),
+        "total_fgs" : FellowshipGroup.objects.count(),
+        "services" : Services.objects.count(),
+        "departments" : Department.objects.count(),
+        "courses" : Course.objects.count(),
         "global_posts": Post.objects.all() 
     }
 
