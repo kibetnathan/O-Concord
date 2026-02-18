@@ -25,6 +25,9 @@ class DepartmentAdmin(admin.ModelAdmin):
     list_display = ('name', 'leader')
     filter_horizontal = ('members',)
 
+@admin.register(Equipment)
+class EquipmentAdmin(admin.ModelAdmin):
+    list_display = ('name', 'assigned_to')
 # @admin.register(MinistryData)
 # class MinistryDataAdmin(admin.ModelAdmin):
 #     list_display = ('user', 'dg')
