@@ -9,7 +9,7 @@ class Post(models.Model):
     title = models.CharField(max_length=255)
     text = models.TextField()
     published_date = models.DateTimeField(blank=True, null=True)
-
+    liked_by = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='liked_posts')
     author = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE
