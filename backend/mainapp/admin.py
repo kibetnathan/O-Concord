@@ -1,13 +1,13 @@
 from django.contrib import admin
-from .models import LeadershipTeam, AgeGroup, DiscipleshipGroup, RopesClass, ServingTeam, MinistryData
+from .models import LeadershipTeam, FellowshipGroup, Services, Department, Course, Equipment
 # Register your models here.
-@admin.register(AgeGroup)
-class AgeGroupAdmin(admin.ModelAdmin):
+@admin.register(Services)
+class ServicesAdmin(admin.ModelAdmin):
     list_display = ('name', 'pastor')
     filter_horizontal = ('members',)  # nice multi-select for members
 
-@admin.register(DiscipleshipGroup)
-class DiscipleshipGroupAdmin(admin.ModelAdmin):
+@admin.register(FellowshipGroup)
+class FellowshipGroupAdmin(admin.ModelAdmin):
     list_display = ('name', 'leader')
     filter_horizontal = ('members',)
 
@@ -16,16 +16,16 @@ class LeadershipTeamAdmin(admin.ModelAdmin):
     list_display = ('name',)
     filter_horizontal = ('members',)
 
-@admin.register(RopesClass)
-class RopesClassAdmin(admin.ModelAdmin):
+@admin.register(Course)
+class CourseAdmin(admin.ModelAdmin):
     filter_horizontal = ('members',)
 
-@admin.register(ServingTeam)
-class ServingTeamAdmin(admin.ModelAdmin):
+@admin.register(Department)
+class DepartmentAdmin(admin.ModelAdmin):
     list_display = ('name', 'leader')
     filter_horizontal = ('members',)
 
-@admin.register(MinistryData)
-class MinistryDataAdmin(admin.ModelAdmin):
-    list_display = ('user', 'dg')
-    filter_horizontal = ('department',)
+# @admin.register(MinistryData)
+# class MinistryDataAdmin(admin.ModelAdmin):
+#     list_display = ('user', 'dg')
+#     filter_horizontal = ('department',)
