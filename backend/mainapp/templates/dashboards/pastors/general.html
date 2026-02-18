@@ -4,12 +4,14 @@
     <div class="bg-white w-100 h-65 rounded-2xl p-2">
       <h2 class="text-center text-2xl">Top Posts</h2>
       <ul class="list-disc px-3">
+        {% for post in posts %}
         <!-- Post list -->
          <li class="m-2 text-gray-600 flex flex-row justify-between">
-          <span class="text-sm">Post Title</span>
-          <span class="text-sm">Post Author</span>
-          <span class="text-sm">Post Likes</span>
+          <span class="text-sm">{{ post.title }}</span>
+          <span class="text-sm">{{ post.author }}</span>
+          <span class="text-sm">{{ post.like_count }}</span>
          </li>
+         {% endfor %}
       </ul>
     </div>
 

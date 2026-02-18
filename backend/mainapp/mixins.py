@@ -3,6 +3,8 @@ from django.contrib.auth.mixins import UserPassesTestMixin
 from communication.models import Post
 from userapp.models import CustomUser, Profile
 from mainapp.models import FellowshipGroup, Services, Department, Course
+from django.db.models import Count
+
 
 class PastorRequiredMixin(UserPassesTestMixin):
     def test_func(self):
@@ -17,7 +19,7 @@ class PastorContextMixin:
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context.update({
-            "posts": Post.objects.all()[:3],
+            "posts": Post.objects.annotate(like_count=Count("liked_by")).order_by("-like_count")[:3],
             "leaders": CustomUser.objects.filter(groups__name__in=["Head Pastor","Pastor", "Leader", "Jr Leader"]).distinct(),
         })
         return context
