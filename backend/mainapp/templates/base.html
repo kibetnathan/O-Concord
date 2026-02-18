@@ -14,11 +14,12 @@
     <link href="{% static 'css/dist/styles.css' %}" rel="stylesheet" />
   </head>
   <body>
-    <header class="bg-white border-b-2 border-b-neutral-100">
-      <div
-        class="mx-auto flex h-16 max-w-7xl items-center gap-8 px-4 sm:px-6 lg:px-8"
-      >
-      {% if user.is_authenticated %}
+
+    
+    {% block content %} 
+        <header class="fixed top-2 w-screen items-center justify-center flex z-100">
+      <nav class="relative flex flex-row bg-gray-100/70 rounded-3xl w-[80%] h-fit justify-between outline-1 outline-gray-300 items-center p-2">
+{% if user.is_authenticated %}
          <a class="block text-teal-600" href={% url "home" %}>
           <span class="sr-only">Home</span>
           <i class="fa-solid fa-cross fa-2x"></i>
@@ -30,9 +31,8 @@
           <i class="fa-solid fa-cross fa-2x"></i>
         </a>
         {% endif %}
-        <div class="flex flex-1 items-center justify-end md:justify-between">
-          <nav aria-label="Global" class="hidden md:block">
-            <ul class="flex items-center gap-6 text-sm">
+        <div class="flex flex-row">
+          <ul class="flex items-center gap-6 text-sm">
               <li>
                 <a
                   class="text-gray-500 transition hover:text-gray-500/75"
@@ -50,10 +50,7 @@
                 </a>
               </li>
             </ul>
-          </nav>
-
-          <div class="flex items-center gap-4">
-            <div class="sm:flex sm:gap-4">
+              <div class="sm:flex sm:gap-4 mx-2">
               {% if not user.is_authenticated %}
               <a
                 class="block rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-teal-700"
@@ -83,42 +80,16 @@
             class="size-10 rounded-full object-cover"
           />
         {% endif %}
-                <span class="text-xl font-light">{{user.username}}</span>
-                <form method="post" action="{% url 'logout' %}">
-                {% csrf_token %}
-              <button type="submit"
-                      class="bg-teal-600 text-white px-4 py-2 rounded m-2 hover:cursor-pointer">
-                Logout
-              </button>
-                  </form>
+                <span class="text-lg text-gray-500 mx-2 font-light">{{user.username}}</span>
               </div>
               {% endif %}
             </div>
-
-            <button
-              class="block rounded-sm bg-gray-100 p-2.5 text-gray-600 transition hover:text-gray-600/75 md:hidden"
-            >
-              <span class="sr-only">Toggle menu</span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="size-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M4 6h16M4 12h16M4 18h16"
-                ></path>
-              </svg>
-            </button>
           </div>
-        </div>
-      </div>
-    </header>
-    {% block content %} {% endblock %}
+      
+    </nav>
+  </header>
+    {% endblock %}
+    
     <footer class="bg-gray-100">
       <div
         class="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:pt-24"
@@ -208,5 +179,13 @@
         </p>
       </div>
     </footer>
+    <script>
+      // Any scripts needed later on
+    </script>
+    <script>
+      // Major script imports
+    </script>
+    {% block extra_script %}
+    {% endblock extra_script %}
   </body>
 </html>
