@@ -404,8 +404,32 @@
   .h-100 {
     height: calc(var(--spacing) * 100);
   }
+  .h-140 {
+    height: calc(var(--spacing) * 140);
+  }
+  .h-150 {
+    height: calc(var(--spacing) * 150);
+  }
+  .h-160 {
+    height: calc(var(--spacing) * 160);
+  }
+  .h-170 {
+    height: calc(var(--spacing) * 170);
+  }
+  .h-200 {
+    height: calc(var(--spacing) * 200);
+  }
+  .h-250 {
+    height: calc(var(--spacing) * 250);
+  }
+  .h-\[8\%\] {
+    height: 8%;
+  }
   .h-\[80\%\] {
     height: 80%;
+  }
+  .h-\[80\] {
+    height: 80;
   }
   .h-\[85vh\] {
     height: 85vh;
@@ -431,6 +455,9 @@
   .w-1\/2 {
     width: calc(1/2 * 100%);
   }
+  .w-20 {
+    width: calc(var(--spacing) * 20);
+  }
   .w-25 {
     width: calc(var(--spacing) * 25);
   }
@@ -454,6 +481,9 @@
   }
   .w-\[60\%\] {
     width: 60%;
+  }
+  .w-\[70\%\] {
+    width: 70%;
   }
   .w-\[70vw\] {
     width: 70vw;
@@ -521,11 +551,17 @@
   .justify-around {
     justify-content: space-around;
   }
+  .justify-baseline {
+    justify-content: baseline;
+  }
   .justify-between {
     justify-content: space-between;
   }
   .justify-center {
     justify-content: center;
+  }
+  .justify-start {
+    justify-content: flex-start;
   }
   .gap-2 {
     gap: calc(var(--spacing) * 2);
@@ -953,6 +989,13 @@
   .file\:text-white {
     &::file-selector-button {
       color: var(--color-white);
+    }
+  }
+  .hover\:cursor-pointer {
+    &:hover {
+      @media (hover: hover) {
+        cursor: pointer;
+      }
     }
   }
   .hover\:bg-gray-50 {

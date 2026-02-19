@@ -28,6 +28,8 @@ class PastorDashboardView(LoginRequiredMixin, PastorRequiredMixin, PastorContext
         view_type = self.kwargs.get("view_type", "home")  # default to 'home'
         if view_type == "general":
             return ["dashboards/pastors/general.html"]
+        elif view_type == "services": 
+            return ["dashboards/pastors/services.html"]
         return ["pastor.html"]
 
 def not_authorized(request):

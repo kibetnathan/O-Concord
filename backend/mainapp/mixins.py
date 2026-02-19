@@ -21,6 +21,7 @@ class PastorContextMixin:
         context.update({
             "posts": Post.objects.annotate(like_count=Count("liked_by")).order_by("-like_count")[:5],
             "leaders": CustomUser.objects.filter(groups__name__in=["Head Pastor","Pastor", "Leader", "Jr Leader"]).distinct(),
+            "services": Services.objects.annotate(member_count=Count("members")).order_by("-member_count")[:5],
             "scriptures":{
                 "John 3:16": "For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life.",
                 "Psalm 23:1": "The Lord is my shepherd, I lack nothing.",

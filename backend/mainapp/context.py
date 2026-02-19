@@ -17,9 +17,10 @@ def profile_processor(request):
 def global_stats(request):
     return{
         "total_fgs" : FellowshipGroup.objects.count(),
-        "services" : Services.objects.count(),
-        "departments" : Department.objects.count(),
-        "courses" : Course.objects.count(),
-        "global_posts": Post.objects.all() 
+        "services_count" : Services.objects.count(),
+        "departments_count" : Department.objects.count(),
+        "courses_count" : Course.objects.count(),
+        "global_posts": Post.objects.all(),
+        "members_count": CustomUser.objects.count(),
     }
 
