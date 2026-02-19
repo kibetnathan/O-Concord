@@ -27,6 +27,7 @@ class PastorContextMixin:
                 "Psalm 23:1": "The Lord is my shepherd, I lack nothing.",
                 "Philippians 4:13": "I can do all this through him who gives me strength.",
                 "Romans 8:28": "And we know that in all things God works for the good of those who love him, who have been called according to his purpose."
-            }
+            },
+            "my_services": Services.objects.filter(pastor=self.request.user).annotate(member_count=Count("members")).order_by("-member_count")[:5],
         })
         return context
