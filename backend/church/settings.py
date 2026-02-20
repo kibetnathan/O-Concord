@@ -50,7 +50,8 @@ INSTALLED_APPS = [
     'cloudinary',
     'rest_framework',
     'communication',
-    'taggit'
+    'taggit',
+    'corsheaders',
 ]
 
 
@@ -60,6 +61,7 @@ TAILWIND_APP_NAME = 'theme'
 INTERNAL_IPS = ["127.0.0.1"]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -185,3 +187,27 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # logout config
 
 LOGOUT_REDIRECT_URL = "/accounts/login/"
+
+# CORS settings for API
+CORS_ALLOW_ALL_ORIGINS = False # Reccomended for development(never use in production)
+
+#Reccomended for production
+# For specific origins
+CORS_ALLOWED_ORIGINS = [
+    # Local React Dev
+
+    'http://localhost:5173',
+
+    # React deployed
+    'https://example.com',
+
+    # Render deployed app (backend or frontend)
+]
+
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_HEADERS = [
+    'content-type',
+    'authorization',
+    'x-csrftoken',
+    'x-requested-width'
+]

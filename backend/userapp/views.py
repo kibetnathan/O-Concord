@@ -7,6 +7,7 @@ from rest_framework.response import Response
 from rest_framework import status, viewsets
 from .forms import CustomRegistrationForm
 from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework.permissions import IsAuthenticated
 
 def login_view(request):
     if request.method == 'POST':
@@ -88,3 +89,13 @@ class RegistrationAPIView(APIView):
             }, status=status.HTTP_201_CREATED)
         return Response(form.errors, status=status.HTTP_400_BAD_REQUEST)
 
+class CurrentUserAPIView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        user = request.user
+        return Response({
+            "id": user.id,
+            "username": user.username,
+            "email": user.email,
+        })

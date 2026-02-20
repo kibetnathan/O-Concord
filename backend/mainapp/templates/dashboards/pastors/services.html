@@ -26,12 +26,12 @@
                 <h3 class="text-2xl">My Service</h3>
                 <ul class="w-full h-80 overflow-y-auto">
                     {% for service in my_services %}
-                    <li class="grid grid-cols-3 gap-4 w-full">
+                    <li class="flex flex-col w-full">
                         <span>{{ service.name }}</span>
                         <span>{{ service.pastor }}</span>
                         <span class="flex flex-row justify-between w-full">{{ service.member_count }}
-                        <a class="material-symbols-outlined text-gray-500 hover:text-gray-700 hover:cursor-pointer">edit</a>
                         </span>
+                        <a class="material-symbols-outlined text-gray-500 hover:text-gray-700 hover:cursor-pointer">edit</a>
                     </li>
                     {% endfor %}
                 </ul>
