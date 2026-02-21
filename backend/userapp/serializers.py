@@ -15,7 +15,7 @@ class ProfileSerializer(serializers.ModelSerializer):
         source='user',
         write_only=True
     )
-    profile_pic = serializers.URLField(required=False, allow_blank=True)
+    profile_pic = serializers.SerializerMethodField()
 
     class Meta:
         model = Profile
@@ -32,6 +32,12 @@ class ProfileSerializer(serializers.ModelSerializer):
             'profile_pic'
         ]
         read_only_fields = ["user"]
+
+    def get_profile_pic(self, obj):
+        if obj.profile_pic:
+            return obj.profile_pic.url
+        return None
+    
     # Field-level validator for age
     def validate_age(self, value):
         if value < 0:
