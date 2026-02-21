@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import CustomUser, Profile
 from datetime import date 
+from django.contrib.auth.models import Group
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -44,3 +45,8 @@ class ProfileSerializer(serializers.ModelSerializer):
         if value > date.today():
             raise serializers.ValidationError("Date of birth cannot be in the future")
         return value
+    
+class GroupSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Group
+        fields = ["id", "name"]

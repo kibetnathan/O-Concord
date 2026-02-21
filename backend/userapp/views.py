@@ -1,7 +1,7 @@
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 from .models import CustomUser, Profile
-from .serializers import UserSerializer, ProfileSerializer
+from .serializers import UserSerializer, ProfileSerializer, GroupSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status, viewsets
@@ -99,3 +99,11 @@ class CurrentUserAPIView(APIView):
             "username": user.username,
             "email": user.email,
         })
+
+class GroupListView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        groups = request.user.groups.all()  # Get user groups
+        serializer = GroupSerializer(groups, many=True)
+        return Response(serializer.data)
