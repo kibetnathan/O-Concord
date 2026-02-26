@@ -62,6 +62,7 @@ class ProfileView(APIView):
         return Response({"status": "success", "data": "profile deleted"}, status=status.HTTP_200_OK)
     
 class ProfileViewSet(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated]
     queryset = Profile.objects.all().order_by('id')
     serializer_class = ProfileSerializer
 
