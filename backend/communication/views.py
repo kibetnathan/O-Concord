@@ -7,6 +7,9 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from taggit.utils import parse_tags
 from django.utils import timezone
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated
+from django.shortcuts import get_object_or_404
 
 # Create your views here.
 class PostViewSet(viewsets.ModelViewSet):
@@ -54,3 +57,21 @@ def create_post(request):
         return redirect("posts")  # redirect somewhere
 
     return render(request, "postform.html")
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def toggle_like(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+    user = request.user
+
+    if post.liked_by.filter(id=user.id).exists():
+        post.liked_by.remove(user)
+        liked = False
+    else:
+        post.liked_by.add(user)
+        liked = True
+
+    return Response({
+        'liked': liked,
+        'like_count': post.liked_by.count()
+    })

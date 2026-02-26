@@ -11,7 +11,7 @@ class PostSerializer(serializers.ModelSerializer):
     is_liked = serializers.SerializerMethodField()
     class Meta:
         model = Post
-        fields = ['image', 'title', 'text', 'published_date', 'author', 'tags', 'like_count', 'is_liked']
+        fields = ['id', 'image', 'title', 'text', 'published_date', 'author', 'tags', 'like_count', 'is_liked']
     def get_image(self, obj):
         if obj.image:
             return obj.image.url
