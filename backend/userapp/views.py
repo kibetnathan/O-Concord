@@ -110,3 +110,8 @@ class GroupListView(APIView):
         groups = request.user.groups.all()  # Get user groups
         serializer = GroupSerializer(groups, many=True)
         return Response(serializer.data)
+    
+class UserViewSet(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated]
+    queryset = CustomUser.objects.all().order_by('id')
+    serializer_class = UserSerializer

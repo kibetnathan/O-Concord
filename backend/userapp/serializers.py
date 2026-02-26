@@ -4,9 +4,14 @@ from datetime import date
 from django.contrib.auth.models import Group
 
 class UserSerializer(serializers.ModelSerializer):
+    groups = serializers.SerializerMethodField()
+
     class Meta:
         model = CustomUser
-        fields = ['id', 'username', 'first_name', 'last_name', 'email']
+        fields = ['id', 'username', 'first_name', 'last_name', 'email', 'groups']
+
+    def get_groups(self, obj):
+        return [group.name for group in obj.groups.all()]
 
 class ProfileSerializer(serializers.ModelSerializer):
     user = UserSerializer(read_only=True)  # nested user info
