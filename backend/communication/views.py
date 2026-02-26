@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from rest_framework.response import Response
-from rest_framework import status, viewsets
+from rest_framework import status, viewsets, permissions
 from .models import Post, Comment
 from .serializers import PostSerializer, CommentSerializer
 from django.shortcuts import render, redirect
@@ -10,14 +10,20 @@ from django.utils import timezone
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from django.shortcuts import get_object_or_404
+from rest_framework.parsers import MultiPartParser, FormParser
 
 # Create your views here.
 class PostViewSet(viewsets.ModelViewSet):
-    queryset = Post.objects.all()
+    queryset = Post.objects.all().order_by('-published_date')
     serializer_class = PostSerializer
+    # Parsers allow DRF to understand the FormData (images + text)
+    parser_classes = (MultiPartParser, FormParser)
+    permission_classes = [permissions.IsAuthenticated]
 
     def perform_create(self, serializer):
-        serializer.save(author=self.request.user)
+        # This automatically sets the author to the logged-in user
+        # and saves the title, text, and image from the request
+        serializer.save(author=self.request.user, published_date=timezone.now())
 
 class CommentViewSet(viewsets.ModelViewSet):
     queryset = Comment.objects.all()

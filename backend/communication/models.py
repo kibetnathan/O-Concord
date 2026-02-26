@@ -10,6 +10,7 @@ class Post(models.Model):
     text = models.TextField()
     published_date = models.DateTimeField(blank=True, null=True)
     liked_by = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='liked_posts')
+    # comments = models.ManyToManyField('Comment', blank=True, related_name='comments')
     author = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE
@@ -24,7 +25,7 @@ class Comment(models.Model):
     post = models.ForeignKey(
         Post,
         on_delete=models.CASCADE,
-        related_name="comments"
+        related_name="post_comments"
     )
 
     author = models.ForeignKey(
