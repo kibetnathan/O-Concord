@@ -1,0 +1,788 @@
+import React, { useState, useEffect, useRef, useMemo } from 'react';
+import Sidebar from '../components/Sidebar';
+import { NavLink } from 'react-router-dom';
+import { useChatStore, canCreateRoom, ROOM_TYPES } from '../zustand/chatStore';
+import useAuthStore from '../zustand/authStore';
+import useMainStore from '../zustand/mainStore';
+
+// ── Helpers ───────────────────────────────────────────────────────────────────
+
+function formatTime(iso) {
+  return new Date(iso).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+}
+function getInitials(name = '') {
+  return name.split(' ').slice(0, 2).map((n) => n[0]).join('').toUpperCase();
+}
+const AVATAR_COLORS = [
+  'bg-amber-600', 'bg-stone-500', 'bg-amber-700',
+  'bg-yellow-600', 'bg-stone-600', 'bg-amber-500',
+];
+function avatarBg(id) {
+  return AVATAR_COLORS[Math.abs(Number(id) || 0) % AVATAR_COLORS.length];
+}
+
+// ── Permission helpers ────────────────────────────────────────────────────────
+
+const UNRESTRICTED_ROLES = ['Pastor', 'Head Pastor'];
+
+function isUnrestricted(user) {
+  return user?.groups?.some((g) => UNRESTRICTED_ROLES.includes(g)) ?? false;
+}
+
+function isMemberOf(group, userId) {
+  const id = Number(userId);
+  return (
+    (Array.isArray(group.members) && group.members.includes(id)) ||
+    group.leader === id
+  );
+}
+
+function buildVisibleRoomIds(user, fellowships, leadership_teams, departments, courses) {
+  if (isUnrestricted(user)) return null;
+  const userId = user?.id;
+  const visible = new Set();
+  const check = (list, type) => {
+    const arr = list?.results ?? (Array.isArray(list) ? list : []);
+    arr.forEach((g) => { if (isMemberOf(g, userId)) visible.add(`${type}_${g.id}`); });
+  };
+  check(fellowships,      'fellowship');
+  check(leadership_teams, 'leadership');
+  check(departments,      'department');
+  check(courses,          'course');
+  return visible;
+}
+
+// ── Error message normaliser ──────────────────────────────────────────────────
+
+function friendlyError(raw) {
+  if (!raw) return 'Something went wrong. Please try again.';
+  const msg = raw.toLowerCase();
+  if (msg.includes('already exists')) return 'A room for this group already exists.';
+  if (msg.includes('permission') || msg.includes('missing or insufficient'))
+    return 'You do not have permission to create this room. Check Firestore security rules.';
+  if (msg.includes('network') || msg.includes('unavailable') || msg.includes('failed to fetch'))
+    return 'Network error. Check your connection and try again.';
+  if (msg.includes('quota')) return 'Firestore quota exceeded. Try again later.';
+  return raw.replace('[chatStore] createRoom error: ', '');
+}
+
+// ── Icons ─────────────────────────────────────────────────────────────────────
+
+const IconSearch = () => (
+  <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/>
+  </svg>
+);
+const IconHash = () => (
+  <svg className="w-3 h-3" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" d="M5.25 8.25h15m-16.5 7.5h15m-1.8-13.5l-3.9 19.5m-2.1-19.5l-3.9 19.5"/>
+  </svg>
+);
+const IconSend = () => (
+  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5"/>
+  </svg>
+);
+const IconSmile = () => (
+  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" d="M15.182 15.182a4.5 4.5 0 01-6.364 0M21 12a9 9 0 11-18 0 9 9 0 0118 0zM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75zm-.375 0h.008v.015h-.008V9.75zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75zm-.375 0h.008v.015h-.008V9.75z"/>
+  </svg>
+);
+const IconPlus = () => (
+  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15"/>
+  </svg>
+);
+const IconX = () => (
+  <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12"/>
+  </svg>
+);
+const IconChevronLeft = () => (
+  <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5"/>
+  </svg>
+);
+
+// ── Avatar ────────────────────────────────────────────────────────────────────
+
+function Avatar({ userId, name: nameProp, size = 'md' }) {
+  const sz = size === 'sm' ? 'w-6 h-6 text-[0.45rem]'
+           : size === 'lg' ? 'w-9 h-9 text-xs'
+           : 'w-7 h-7 text-[0.5rem]';
+  return (
+    <div className={`${sz} ${avatarBg(userId ?? 0)} flex items-center justify-center text-white font-cormorant font-semibold shrink-0`}>
+      {getInitials(nameProp ?? '?')}
+    </div>
+  );
+}
+
+// ── Create Room Modal ─────────────────────────────────────────────────────────
+
+const SECTIONS = [
+  { type: 'fellowship', label: 'Fellowship Groups',  storeKey: 'fellowships'      },
+  { type: 'leadership', label: 'Leadership Teams',   storeKey: 'leadership_teams' },
+  { type: 'department', label: 'Serving Teams',      storeKey: 'departments'      },
+  { type: 'course',     label: 'Courses',            storeKey: 'courses'          },
+];
+
+function GroupOption({ group, typeKey, selectedKey, onSelect, alreadyHasRoom }) {
+  const isSelected = selectedKey === `${typeKey}_${group.id}`;
+  return (
+    <button
+      onClick={() => !alreadyHasRoom && onSelect(`${typeKey}_${group.id}`, group, typeKey)}
+      disabled={alreadyHasRoom}
+      className={`w-full text-left px-4 py-2.5 border transition-colors ${
+        alreadyHasRoom
+          ? 'border-stone-100 bg-stone-50 opacity-50 cursor-not-allowed'
+          : isSelected
+            ? 'border-amber-400 bg-amber-50'
+            : 'border-stone-200 hover:border-stone-300 bg-white'
+      }`}
+    >
+      <div className="flex items-center justify-between gap-2">
+        <p className="font-cormorant text-sm font-semibold text-stone-800 leading-tight truncate">{group.name}</p>
+        {alreadyHasRoom && (
+          <span className="font-coptic text-[0.42rem] uppercase tracking-widest text-stone-400 shrink-0">Room exists</span>
+        )}
+      </div>
+      {group.description && (
+        <p className="text-xs text-stone-400 mt-0.5 truncate">{group.description}</p>
+      )}
+    </button>
+  );
+}
+
+function CreateRoomModal({ user, existingRoomIds, onClose, onConfirm, loading, error }) {
+  const [selectedKey, setSelectedKey] = useState('');
+  const [selectedGroup, setSelectedGroup] = useState(null);
+  const [selectedType, setSelectedType] = useState('');
+
+  const unrestricted = isUnrestricted(user);
+  const { fellowships, leadership_teams, departments, courses } = useMainStore();
+  const storeData = { fellowships, leadership_teams, departments, courses };
+
+  function getList(storeKey) {
+    const val = storeData[storeKey];
+    const all = val?.results ?? (Array.isArray(val) ? val : []);
+    if (unrestricted) return all;
+    return all.filter((g) => isMemberOf(g, user?.id));
+  }
+
+  const handleSelect = (key, group, type) => {
+    setSelectedKey(key);
+    setSelectedGroup(group);
+    setSelectedType(type);
+  };
+
+  const totalVisible = SECTIONS.reduce((acc, s) => acc + getList(s.storeKey).length, 0);
+
+  return (
+    // Bottom sheet on mobile, centred modal on desktop
+    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/60 backdrop-blur-sm">
+      <div className="relative bg-[#faf8f3] border border-stone-200 shadow-2xl w-full sm:max-w-md sm:mx-4 flex flex-col max-h-[88vh] sm:max-h-[85vh] rounded-t-2xl sm:rounded-none">
+
+        {/* Drag handle -- mobile only */}
+        <div className="absolute top-2.5 left-1/2 -translate-x-1/2 w-8 h-1 bg-stone-300 rounded-full sm:hidden" />
+
+        <div className="flex items-center justify-between px-6 pt-7 pb-5 sm:pt-5 border-b border-stone-200 shrink-0">
+          <div>
+            <p className="text-[0.5rem] uppercase tracking-[0.2em] text-stone-400 mb-0.5">New Chat Room</p>
+            <h2 className="font-cormorant text-xl font-semibold text-stone-800">Link a Group</h2>
+            {!unrestricted && (
+              <p className="text-[0.6rem] text-stone-400 mt-1">Showing groups you are a member of.</p>
+            )}
+          </div>
+          <button onClick={onClose} className="text-stone-400 hover:text-stone-600 transition-colors">
+            <IconX />
+          </button>
+        </div>
+
+        <div className="overflow-y-auto flex-1 px-6 py-5 space-y-5">
+          {error && (
+            <div className="flex items-start gap-2 text-xs text-red-700 bg-red-50 border border-red-200 px-3 py-2.5">
+              <svg className="w-3.5 h-3.5 shrink-0 mt-0.5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"/>
+              </svg>
+              <span>{error}</span>
+            </div>
+          )}
+
+          {totalVisible === 0 && (
+            <div className="py-8 text-center space-y-1">
+              <p className="font-cormorant text-base text-stone-400">No groups available</p>
+              <p className="font-coptic text-[0.5rem] uppercase tracking-widest text-stone-400">
+                {unrestricted ? 'No groups have been created yet.' : 'You are not a member of any group yet.'}
+              </p>
+            </div>
+          )}
+
+          {SECTIONS.map(({ type, label, storeKey }) => {
+            const list = getList(storeKey);
+            if (list.length === 0) return null;
+            return (
+              <div key={type}>
+                <p className="font-coptic text-[0.5rem] uppercase tracking-[0.18em] text-stone-400 mb-2">{label}</p>
+                <div className="space-y-1.5">
+                  {list.map((group) => (
+                    <GroupOption
+                      key={group.id}
+                      group={group}
+                      typeKey={type}
+                      selectedKey={selectedKey}
+                      onSelect={handleSelect}
+                      alreadyHasRoom={existingRoomIds.has(`${type}_${group.id}`)}
+                    />
+                  ))}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        <div className="px-6 py-4 border-t border-stone-200 flex items-center justify-end gap-3 shrink-0">
+          <button
+            onClick={onClose}
+            className="font-coptic text-[0.6rem] uppercase tracking-widest text-stone-500 hover:text-stone-700 px-4 py-2 transition-colors"
+          >
+            Cancel
+          </button>
+          <button
+            onClick={() => { if (selectedGroup && selectedType) onConfirm(selectedGroup, selectedType); }}
+            disabled={!selectedKey || loading}
+            className="flex items-center gap-2 bg-amber-500 hover:bg-amber-600 disabled:bg-stone-100 disabled:text-stone-300 text-white font-coptic text-[0.6rem] uppercase tracking-widest px-5 py-2 transition-colors"
+          >
+            {loading ? 'Creating...' : 'Create Room'}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ── Room List Panel ───────────────────────────────────────────────────────────
+
+function RoomListPanel({ filtered, roomsLoading, activeRoomId, messages, search, setSearch, isPrivileged, onSelectRoom, onOpenCreate }) {
+  return (
+    <div className="flex flex-col h-full bg-[#0f0f0d]">
+      <div className="px-5 py-5 border-b border-white/6 shrink-0">
+        <p className="text-[0.55rem] uppercase tracking-[0.25em] text-stone-500 mb-1">Messaging</p>
+        <div className="flex items-center justify-between">
+          <h2 className="font-cormorant text-xl font-semibold text-stone-100 leading-tight">Group Chats</h2>
+          {isPrivileged && (
+            <button
+              onClick={onOpenCreate}
+              className="flex items-center gap-1 text-stone-600 hover:text-amber-500 transition-colors"
+            >
+              <IconPlus />
+              <span className="font-coptic text-[0.48rem] uppercase tracking-widest">New</span>
+            </button>
+          )}
+        </div>
+        <div className="w-5 h-0.5 bg-amber-500 mt-2" />
+      </div>
+
+      <div className="px-3 py-3 border-b border-white/6 shrink-0">
+        <div className="relative">
+          <span className="absolute left-2.5 top-1/2 -translate-y-1/2 text-stone-600"><IconSearch /></span>
+          <input
+            type="text"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Search rooms..."
+            className="w-full bg-white/5 border border-white/[0.08] focus:border-amber-500/40 focus:outline-none pl-8 pr-3 py-2 text-xs text-stone-300 placeholder:text-stone-700 transition-colors"
+          />
+        </div>
+      </div>
+
+      <div className="px-5 py-3 border-b border-white/6 shrink-0">
+        <p className="font-cormorant text-xl font-light text-stone-200">{filtered.length}</p>
+        <p className="font-coptic text-[0.48rem] uppercase tracking-widest text-stone-600">Rooms</p>
+      </div>
+
+      <div className="px-4 pt-4 pb-2 shrink-0">
+        <p className="font-coptic text-[0.5rem] uppercase tracking-[0.2em] text-stone-600">Chats</p>
+      </div>
+
+      <div className="flex-1 overflow-y-auto">
+        {roomsLoading && (
+          <div className="flex justify-center py-10">
+            <span className="font-coptic text-[0.45rem] uppercase tracking-widest text-stone-700 animate-pulse">Loading...</span>
+          </div>
+        )}
+        {!roomsLoading && filtered.map((room) => {
+          const isSelected = activeRoomId === room.id;
+          const lastMsg = isSelected ? messages[messages.length - 1] : null;
+          return (
+            <button
+              key={room.id}
+              onClick={() => onSelectRoom(room.id)}
+              className={`w-full text-left px-4 py-3.5 border-b border-white/5 transition-all group ${
+                isSelected
+                  ? 'bg-amber-500/10 border-r-2 border-r-amber-500'
+                  : 'border-r-2 border-r-transparent hover:bg-white/[0.04]'
+              }`}
+            >
+              <div className="flex items-center gap-2 mb-0.5">
+                <span className={`shrink-0 ${isSelected ? 'text-amber-500' : 'text-stone-600 group-hover:text-stone-400'}`}>
+                  <IconHash />
+                </span>
+                <span className={`font-cormorant text-base font-semibold truncate flex-1 leading-tight ${isSelected ? 'text-stone-100' : 'text-stone-400 group-hover:text-stone-200'}`}>
+                  {room.name}
+                </span>
+                {room.sourceType && (
+                  <span className="font-coptic text-[0.42rem] uppercase tracking-widest text-stone-700 shrink-0">
+                    {ROOM_TYPES[room.sourceType]?.label ?? room.sourceType}
+                  </span>
+                )}
+              </div>
+              {room.description && (
+                <p className={`text-[0.6rem] truncate pl-4 leading-relaxed ${isSelected ? 'text-stone-500' : 'text-stone-700'}`}>
+                  {room.description}
+                </p>
+              )}
+              {lastMsg && (
+                <p className="text-[0.62rem] truncate pl-4 mt-0.5 leading-relaxed text-stone-400">
+                  <span className="text-stone-300">{lastMsg.displayName?.split(' ')[0]}: </span>
+                  {lastMsg.text}
+                </p>
+              )}
+            </button>
+          );
+        })}
+        {!roomsLoading && filtered.length === 0 && (
+          <div className="flex flex-col items-center py-10 gap-2">
+            <p className="font-coptic text-[0.5rem] uppercase tracking-widest text-stone-700">
+              {search ? 'No rooms found' : 'No rooms available'}
+            </p>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+// ── Message Row ───────────────────────────────────────────────────────────────
+
+const QUICK_REACTIONS = ['pray', 'heart', 'thumbsup', 'fire', 'raised_hands', 'tada', 'muscle'];
+const REACTION_DISPLAY = {
+  pray: '🙏', heart: '❤️', thumbsup: '👍', fire: '🔥',
+  raised_hands: '🙌', tada: '🎉', muscle: '💪',
+};
+
+function MessageRow({ message, prevSameUser, onReact, currentUserId }) {
+  const isOwn = String(message.userId) === String(currentUserId);
+  const [showPicker, setShowPicker] = useState(false);
+  const reactions = message.reactions ?? [];
+
+  return (
+    <div className={`flex gap-3 group ${isOwn ? 'flex-row-reverse' : ''} ${prevSameUser ? 'mt-0.5' : 'mt-5'} relative`}>
+      <div className="w-7 shrink-0 flex items-end">
+        {!prevSameUser && <Avatar userId={message.userId} name={message.displayName} size="md" />}
+      </div>
+
+      <div className={`flex flex-col ${isOwn ? 'items-end' : 'items-start'} max-w-[80%] sm:max-w-[72%]`}>
+        {!prevSameUser && (
+          <div className={`flex items-baseline gap-2 mb-1 ${isOwn ? 'flex-row-reverse' : ''}`}>
+            <span className="font-cormorant text-sm font-semibold text-stone-800 leading-none">
+              {isOwn ? 'You' : (message.displayName ?? 'Member')}
+            </span>
+            <span className="font-coptic text-[0.5rem] uppercase tracking-widest text-stone-400">
+              {formatTime(message.timestamp)}
+            </span>
+          </div>
+        )}
+
+        <div className={`px-3.5 py-2.5 text-sm leading-relaxed ${
+          isOwn
+            ? 'bg-amber-500 text-white shadow-sm shadow-amber-200'
+            : 'bg-white border border-stone-200 text-stone-700 shadow-sm'
+        }`}>
+          {message.text}
+        </div>
+
+        {reactions.length > 0 && (
+          <div className={`flex flex-wrap gap-1 mt-1.5 ${isOwn ? 'justify-end' : ''}`}>
+            {reactions.map((r) => {
+              const hasReacted = r.users?.includes(String(currentUserId));
+              const display = REACTION_DISPLAY[r.emoji] ?? r.emoji;
+              return (
+                <button
+                  key={r.emoji}
+                  onClick={() => onReact(message.id, r.emoji)}
+                  className={`flex items-center gap-1 border px-2 py-0.5 transition-colors shadow-sm ${
+                    hasReacted ? 'bg-amber-50 border-amber-400' : 'bg-white border-stone-200 hover:border-amber-400 hover:bg-amber-50'
+                  }`}
+                >
+                  <span className="text-xs">{display}</span>
+                  <span className="font-coptic text-[0.48rem] text-stone-500">{r.users?.length ?? 0}</span>
+                </button>
+              );
+            })}
+          </div>
+        )}
+      </div>
+
+      {/* Reaction picker -- desktop hover */}
+      <div className={`absolute top-0 ${isOwn ? 'left-10' : 'right-0'} hidden group-hover:md:flex items-center z-10`}>
+        <div className="relative">
+          <button
+            onClick={() => setShowPicker((v) => !v)}
+            className="p-1.5 bg-white border border-stone-200 text-stone-400 hover:text-amber-500 hover:border-amber-300 transition-colors shadow-sm"
+          >
+            <IconSmile />
+          </button>
+          {showPicker && (
+            <div className={`absolute top-0 ${isOwn ? 'right-full mr-1' : 'left-full ml-1'} flex gap-1 bg-white border border-stone-200 px-2 py-1.5 z-20 shadow-md`}>
+              {QUICK_REACTIONS.map((key) => (
+                <button
+                  key={key}
+                  onClick={() => { onReact(message.id, key); setShowPicker(false); }}
+                  className="text-sm hover:scale-125 transition-transform"
+                >
+                  {REACTION_DISPLAY[key]}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Reaction picker -- mobile tap */}
+      <div className={`w-full flex ${isOwn ? 'justify-end' : 'justify-start'} gap-1 mt-1 md:hidden`}>
+        {showPicker && QUICK_REACTIONS.map((key) => (
+          <button
+            key={key}
+            onClick={() => { onReact(message.id, key); setShowPicker(false); }}
+            className="text-sm p-1 bg-white border border-stone-100 rounded-full shadow-sm"
+          >
+            {REACTION_DISPLAY[key]}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// ── Page ──────────────────────────────────────────────────────────────────────
+
+function ThreadsPage() {
+  const [activeRoomId, setActiveRoomId] = useState(null);
+  const [search, setSearch] = useState('');
+  const [input, setInput] = useState('');
+  const [showCreateModal, setShowCreateModal] = useState(false);
+  const [createLoading, setCreateLoading] = useState(false);
+  const [createError, setCreateError] = useState('');
+  // Mobile: 'rooms' shows the room list, 'chat' shows the message thread
+  const [mobileView, setMobileView] = useState('rooms');
+  const messagesEndRef = useRef(null);
+  const inputRef = useRef(null);
+
+  // Subscribe to individual slices so the shared mainStore `loading` flag
+  // toggling on unrelated fetches does not re-render this component.
+  const rooms            = useChatStore((s) => s.rooms);
+  const roomsLoading     = useChatStore((s) => s.roomsLoading);
+  const messages         = useChatStore((s) => s.messages);
+  const messagesLoading  = useChatStore((s) => s.messagesLoading);
+  const subscribeToRooms = useChatStore((s) => s.subscribeToRooms);
+  const subscribeToRoom  = useChatStore((s) => s.subscribeToRoom);
+  const sendMessage      = useChatStore((s) => s.sendMessage);
+  const handleReaction   = useChatStore((s) => s.handleReaction);
+  const createRoom       = useChatStore((s) => s.createRoom);
+
+  const { user } = useAuthStore();
+
+  const fellowships          = useMainStore((s) => s.fellowships);
+  const leadership_teams     = useMainStore((s) => s.leadership_teams);
+  const departments          = useMainStore((s) => s.departments);
+  const courses              = useMainStore((s) => s.courses);
+  const fetchFellowships     = useMainStore((s) => s.fetchFellowships);
+  const fetchLeadershipTeams = useMainStore((s) => s.fetchLeadershipTeams);
+  const fetchDepartments     = useMainStore((s) => s.fetchDepartments);
+  const fetchCourses         = useMainStore((s) => s.fetchCourses);
+
+  const isPrivileged = canCreateRoom(user);
+
+  // Memoised -- only recomputes when group data or user actually changes,
+  // not on every render. Prevents the rooms useEffect firing in a loop.
+  const visibleRoomIds = useMemo(
+    () => buildVisibleRoomIds(user, fellowships, leadership_teams, departments, courses),
+    [user, fellowships, leadership_teams, departments, courses]
+  );
+
+  const existingRoomIds = useMemo(
+    () => new Set(rooms.map((r) => String(r.id))),
+    [rooms]
+  );
+
+  // Store unsub functions in refs so cleanup always calls the latest version
+  // rather than a stale closure captured at mount time.
+  const unsubRooms    = useRef(null);
+  const unsubMessages = useRef(null);
+
+  useEffect(() => {
+    useChatStore.getState().subscribeToRooms();
+    unsubRooms.current = () => useChatStore.getState().roomsUnsubscribe?.();
+
+    fetchFellowships();
+    fetchLeadershipTeams();
+    fetchDepartments();
+    fetchCourses();
+
+    return () => {
+      unsubRooms.current?.();
+      unsubMessages.current?.();
+    };
+  }, []);
+
+  useEffect(() => {
+    if (rooms.length > 0 && activeRoomId === null) {
+      const firstVisible = rooms.find(
+        (r) => visibleRoomIds === null || visibleRoomIds.has(r.id)
+      );
+      if (firstVisible) setActiveRoomId(firstVisible.id);
+    }
+  }, [rooms, visibleRoomIds]);
+
+  useEffect(() => {
+    if (activeRoomId !== null) {
+      // Unsubscribe previous room listener before subscribing to the new one
+      unsubMessages.current?.();
+      useChatStore.getState().subscribeToRoom(activeRoomId);
+      unsubMessages.current = () => useChatStore.getState().messagesUnsubscribe?.();
+      setInput('');
+    }
+  }, [activeRoomId]);
+
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages]);
+
+  const activeRoom = rooms.find((r) => r.id === activeRoomId);
+
+  const filtered = rooms
+    .filter((r) => typeof r.name === 'string')
+    .filter((r) => visibleRoomIds === null || visibleRoomIds.has(r.id))
+    .filter((r) => r.name.toLowerCase().includes(search.toLowerCase()));
+
+  const handleSend = () => {
+    const text = input.trim();
+    if (!text || !user || activeRoomId === null) return;
+    const displayName =
+      user.first_name && user.last_name
+        ? `${user.first_name} ${user.last_name}`
+        : user.username ?? 'Member';
+    sendMessage(activeRoomId, user.id, displayName, text);
+    setInput('');
+    inputRef.current?.focus();
+  };
+
+  const handleKey = (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      handleSend();
+    }
+  };
+
+  const onReact = (messageId, emoji) => {
+    if (!user || activeRoomId === null) return;
+    handleReaction(activeRoomId, messageId, emoji, user.id);
+  };
+
+  const handleCreateRoom = async (group, type) => {
+    if (!user) return;
+    setCreateLoading(true);
+    setCreateError('');
+    const result = await createRoom(group, type, user);
+    setCreateLoading(false);
+    if (result.success) {
+      setShowCreateModal(false);
+    } else {
+      setCreateError(friendlyError(result.error));
+    }
+  };
+
+  // Selecting a room on mobile switches straight to the chat view
+  const handleSelectRoom = (roomId) => {
+    setActiveRoomId(roomId);
+    setMobileView('chat');
+  };
+
+  return (
+    // pb-20 on mobile leaves room above the Sidebar's floating bottom nav
+    <div className="flex h-[100dvh] overflow-hidden bg-[#faf8f3]">
+      <Sidebar />
+
+      {showCreateModal && (
+        <CreateRoomModal
+          user={user}
+          existingRoomIds={existingRoomIds}
+          onClose={() => { setShowCreateModal(false); setCreateError(''); }}
+          onConfirm={handleCreateRoom}
+          loading={createLoading}
+          error={createError}
+        />
+      )}
+
+      {/* Main content area */}
+      <div className="relative flex flex-1 min-w-0 overflow-hidden">
+
+        {/* ── MOBILE room list (full-width, behind chat when mobileView==='chat') ── */}
+        <div className={`
+          absolute inset-0 md:relative md:inset-auto
+          flex flex-col md:hidden
+          w-full transition-transform duration-300 ease-in-out
+          ${mobileView === 'rooms' ? 'translate-x-0' : '-translate-x-full'}
+          z-10
+        `}>
+          {/* Offset top for the Sidebar mobile nav area and bottom for the floating nav */}
+          <div className="flex flex-col h-full pb-24">
+            <RoomListPanel
+              filtered={filtered}
+              roomsLoading={roomsLoading}
+              activeRoomId={activeRoomId}
+              messages={messages}
+              search={search}
+              setSearch={setSearch}
+              isPrivileged={isPrivileged}
+              onSelectRoom={handleSelectRoom}
+              onOpenCreate={() => setShowCreateModal(true)}
+            />
+          </div>
+        </div>
+
+        {/* ── Chat area (desktop: always visible; mobile: slides in from right) ── */}
+        <div className={`
+          absolute inset-0 md:relative md:inset-auto
+          flex flex-col flex-1 min-w-0 overflow-hidden bg-[#faf8f3]
+          transition-transform duration-300 ease-in-out
+          ${mobileView === 'chat' ? 'translate-x-0' : 'translate-x-full'}
+          md:translate-x-0
+          z-10
+        `}>
+
+          {/* Tab bar -- desktop only */}
+          <ul className="hidden md:flex flex-row border-b border-stone-200 px-6">
+            {[{ to: '/feed', label: 'Top Posts' }, { to: '/threads', label: 'My Groups' }].map(({ to, label }) => (
+              <NavLink key={to} to={to} className={({ isActive }) =>
+                `font-cormorant text-xl px-5 py-4 border-b-2 transition-colors hover:cursor-pointer ${isActive ? 'text-stone-800 border-amber-500' : 'text-stone-400 border-transparent hover:text-stone-700'}`
+              }>{label}</NavLink>
+            ))}
+          </ul>
+
+          {/* Chat header */}
+          <div className="flex items-center gap-3 px-4 md:px-6 py-3 md:py-4 border-b border-stone-200 bg-white shrink-0">
+            {/* Back to rooms -- mobile only */}
+            <button
+              onClick={() => setMobileView('rooms')}
+              className="md:hidden text-stone-400 active:text-stone-600 transition-colors p-1 -ml-1 shrink-0"
+            >
+              <IconChevronLeft />
+            </button>
+            <div className="flex-1 min-w-0">
+              <p className="text-[0.55rem] uppercase tracking-[0.2em] text-stone-400 mb-0.5">Fellowship Chat</p>
+              <h3 className="font-cormorant text-xl md:text-2xl font-semibold text-stone-800 leading-tight flex items-center gap-2 truncate">
+                <span className="text-amber-500 shrink-0"><IconHash /></span>
+                <span className="truncate">{roomsLoading ? '...' : (activeRoom?.name ?? 'Select a room')}</span>
+              </h3>
+              {activeRoom?.description && (
+                <p className="text-xs text-stone-400 mt-0.5 md:mt-1 border-l-2 border-amber-400/50 pl-2.5 truncate leading-relaxed">
+                  {activeRoom.description}
+                </p>
+              )}
+            </div>
+            {activeRoom?.createdBy && (
+              <p className="hidden sm:block text-[0.52rem] font-coptic uppercase tracking-widest text-stone-400 shrink-0">
+                Created by {activeRoom.createdBy.displayName}
+              </p>
+            )}
+          </div>
+
+          {/* Messages */}
+          {/* pb-24 leaves room above the Sidebar floating nav on mobile */}
+          <div className="flex-1 overflow-y-auto px-4 md:px-6 py-5 bg-[#faf8f3] pb-6 md:pb-5">
+            {messagesLoading && (
+              <div className="flex justify-center py-10">
+                <span className="font-coptic text-[0.5rem] uppercase tracking-widest text-stone-400 animate-pulse">Loading messages...</span>
+              </div>
+            )}
+            {!messagesLoading && activeRoomId === null && (
+              <div className="flex flex-col items-center py-20 gap-3 text-center">
+                <p className="font-cormorant text-xl text-stone-400">Select a room to begin</p>
+              </div>
+            )}
+            {!messagesLoading && activeRoomId !== null && messages.length === 0 && (
+              <div className="flex flex-col items-center py-16 gap-2 text-center">
+                <p className="font-cormorant text-lg text-stone-400">Be the first to speak in this room</p>
+                <p className="text-xs text-stone-300 font-coptic uppercase tracking-widest">No messages yet</p>
+              </div>
+            )}
+            {!messagesLoading && messages.length > 0 && (
+              <>
+                <div className="flex items-center gap-3 mb-5">
+                  <div className="flex-1 h-px bg-stone-200" />
+                  <span className="font-coptic text-[0.48rem] uppercase tracking-widest text-stone-400 shrink-0">Today</span>
+                  <div className="flex-1 h-px bg-stone-200" />
+                </div>
+                {messages.map((msg, i) => (
+                  <MessageRow
+                    key={msg.id}
+                    message={msg}
+                    prevSameUser={messages[i - 1]?.userId === msg.userId}
+                    onReact={onReact}
+                    currentUserId={user?.id}
+                  />
+                ))}
+              </>
+            )}
+            <div ref={messagesEndRef} />
+          </div>
+
+          {/* Input -- sits above the Sidebar floating nav on mobile */}
+          <div className="border-t border-stone-200 px-4 md:px-6 py-3 md:py-4 shrink-0 bg-white mb-[4.5rem] md:mb-0">
+            <div className="flex items-end gap-2 md:gap-3 bg-[#faf8f3] border border-stone-200 focus-within:border-amber-400 transition-colors px-3 md:px-4 py-2.5 md:py-3">
+              <textarea
+                ref={inputRef}
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onKeyDown={handleKey}
+                placeholder={activeRoom ? `Message #${activeRoom.name}...` : 'Select a room...'}
+                disabled={activeRoomId === null}
+                rows={1}
+                className="flex-1 resize-none text-sm text-stone-700 placeholder:text-stone-300 bg-transparent focus:outline-none leading-relaxed max-h-28 disabled:opacity-40"
+              />
+              <button
+                onClick={handleSend}
+                disabled={!input.trim() || activeRoomId === null}
+                className="shrink-0 flex items-center gap-1.5 bg-amber-500 hover:bg-amber-600 active:bg-amber-700 disabled:bg-stone-100 disabled:text-stone-300 text-white font-coptic text-[0.6rem] uppercase tracking-widest px-3 md:px-4 py-2 transition-colors"
+              >
+                <IconSend />
+                <span className="hidden sm:inline">Send</span>
+              </button>
+            </div>
+            <p className="hidden md:block font-coptic text-[0.48rem] uppercase tracking-widest text-stone-300 mt-1.5">
+              Enter to send · Shift + Enter for new line
+            </p>
+          </div>
+        </div>
+
+        {/* ── DESKTOP room list panel (right aside, hidden on mobile) ── */}
+        <aside className="hidden md:flex flex-col w-64 shrink-0 border-l border-white/6 h-full overflow-hidden">
+          <RoomListPanel
+            filtered={filtered}
+            roomsLoading={roomsLoading}
+            activeRoomId={activeRoomId}
+            messages={messages}
+            search={search}
+            setSearch={setSearch}
+            isPrivileged={isPrivileged}
+            onSelectRoom={setActiveRoomId}
+            onOpenCreate={() => setShowCreateModal(true)}
+          />
+        </aside>
+      </div>
+    </div>
+  );
+}
+
+export default ThreadsPage;
