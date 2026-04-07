@@ -44,7 +44,7 @@ function Home() {
       </header>
 
       {/* ── About strip ── */}
-      <section id="about" className="bg-[#faf8f3] border-b border-stone-200 px-6 sm:px-10 lg:px-16 py-16 sm:py-20">
+      <section id="about" className="bg-white border-b border-stone-200 px-6 sm:px-10 lg:px-16 py-16 sm:py-20">
         <div className="max-w-6xl mx-auto flex flex-col lg:flex-row gap-10 lg:gap-20 items-start">
           <div className="lg:w-1/2">
             <p className="text-[0.6rem] uppercase tracking-[0.25em] text-stone-400 mb-3">About the Platform</p>
@@ -64,7 +64,7 @@ function Home() {
       </section>
 
       {/* ── Stats ── */}
-      <section className="bg-[#0f0f0d] px-6 sm:px-10 lg:px-16 py-12">
+      <section className="bg-amber-500 px-6 sm:px-10 lg:px-16 py-12">
         <div className="max-w-6xl mx-auto grid grid-cols-2 sm:grid-cols-4 gap-8">
           {[
             { value: "Relevant",    label: "Features" },
@@ -73,15 +73,15 @@ function Home() {
             { value: "1",     label: "Church, Many Members" },
           ].map(({ value, label }) => (
             <div key={label} className="flex flex-col items-center text-center">
-              <p className="font-cormorant text-4xl sm:text-5xl font-light text-amber-500">{value}</p>
-              <p className="font-coptic text-[0.55rem] uppercase tracking-widest text-stone-300 mt-1">{label}</p>
+              <p className="font-cormorant text-4xl sm:text-5xl font-light text-black">{value}</p>
+              <p className="font-coptic text-[0.55rem] uppercase tracking-widest text-black/70 mt-1">{label}</p>
             </div>
           ))}
         </div>
       </section>
 
       {/* ── Features ── */}
-      <section className="bg-[#faf8f3] px-6 sm:px-10 lg:px-16 py-20 sm:py-28">
+      <section className="bg-white px-6 sm:px-10 lg:px-16 py-20 sm:py-28">
         <div className="max-w-6xl mx-auto">
           <div className="mb-12">
             <p className="text-[0.6rem] uppercase tracking-[0.25em] text-stone-400 mb-2">What's Inside</p>
@@ -196,11 +196,11 @@ function Home() {
       </section>
 
       {/* ── Tech stack ── */}
-      <section className="bg-[#0f0f0d] px-6 sm:px-10 lg:px-16 py-20">
+      <section className="bg-black px-6 sm:px-10 lg:px-16 py-20">
         <div className="max-w-6xl mx-auto flex flex-col lg:flex-row gap-12 lg:gap-20 items-start">
           <div className="lg:w-1/3 shrink-0">
-            <p className="text-[0.6rem] uppercase tracking-[0.25em] text-stone-400 mb-2">Under the Hood</p>
-            <h2 className="font-cormorant text-4xl font-light text-stone-100">Built on solid foundations</h2>
+            <p className="text-[0.6rem] uppercase tracking-[0.25em] text-amber-400 mb-2">Under the Hood</p>
+            <h2 className="font-cormorant text-4xl font-light text-white">Built on solid foundations</h2>
             <div className="w-8 h-0.5 bg-amber-500 mt-4" />
             <p className="font-coptic text-xs text-stone-300 leading-relaxed mt-5">
               Chosen for reliability, flexibility, and the ability to self-host
@@ -217,10 +217,10 @@ function Home() {
                 { layer: "Real-time",     tech: "Firebase",             note: "Group messaging channels" },
                 { layer: "Deployment",    tech: "Self-hostable",        note: "Open source — run it on your own server" },
               ].map(({ layer, tech, note }) => (
-                <div key={layer} className="border border-white/6 p-4 hover:border-amber-500/30 transition-colors">
-                  <p className="font-coptic text-[0.5rem] uppercase tracking-widest text-stone-400 mb-1">{layer}</p>
-                  <p className="font-cormorant text-lg font-semibold text-stone-100">{tech}</p>
-                  <p className="font-coptic text-[0.6rem] text-stone-400 mt-0.5">{note}</p>
+                <div key={layer} className="border border-white/10 p-4 hover:border-amber-500/40 transition-colors">
+                  <p className="font-coptic text-[0.5rem] uppercase tracking-widest text-amber-400 mb-1">{layer}</p>
+                  <p className="font-cormorant text-lg font-semibold text-white">{tech}</p>
+                  <p className="font-coptic text-[0.6rem] text-stone-300 mt-0.5">{note}</p>
                 </div>
               ))}
             </div>

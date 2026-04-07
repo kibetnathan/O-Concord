@@ -261,14 +261,14 @@ function FellowshipDetail({
   const [confirmDelete, setConfirmDelete] = useState(false);
 
   return (
-    <div className="relative overflow-hidden bg-khaki/70 backdrop-blur-md border border-white/10 rounded-sm shadow-lg shadow-black/20 p-6 flex flex-col gap-5">
-      <div className="absolute -top-8 -right-8 w-32 h-32 bg-amber-500/15 rounded-full blur-3xl pointer-events-none" />
+    <div className="relative overflow-hidden bg-amber-50 border border-amber-200 rounded-sm shadow-sm p-6 flex flex-col gap-5">
+      <div className="absolute -top-8 -right-8 w-32 h-32 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
       <div className="flex items-start justify-between relative z-10">
         <div>
           <p className="text-[0.8rem] uppercase tracking-[0.25em] text-stone-700 mb-1">
             Fellowship Group
           </p>
-          <h3 className="font-cormorant text-2xl font-semibold text-amber-800 leading-tight">
+          <h3 className="font-cormorant text-2xl font-semibold text-stone-900 leading-tight">
             {group.name}
           </h3>
         </div>
@@ -289,19 +289,19 @@ function FellowshipDetail({
               <IconTrash />
             </button>
           ) : (
-            <div className="flex items-center gap-1 bg-red-500/10 border border-red-500/20 px-2 py-1 ml-1">
-              <span className="font-coptic text-[0.55rem] text-red-400 uppercase tracking-widest">
+            <div className="flex items-center gap-1 bg-red-50 border border-red-200 px-2 py-1 ml-1">
+              <span className="font-coptic text-[0.55rem] text-red-500 uppercase tracking-widest">
                 Delete?
               </span>
               <button
                 onClick={() => onDelete(group.id)}
-                className="p-0.5 text-red-400 hover:text-red-300"
+                className="p-0.5 text-red-500 hover:text-red-700"
               >
                 <IconCheck />
               </button>
               <button
                 onClick={() => setConfirmDelete(false)}
-                className="p-0.5 text-stone-500 hover:text-stone-300"
+                className="p-0.5 text-stone-400 hover:text-stone-600"
               >
                 <IconX />
               </button>
@@ -309,7 +309,7 @@ function FellowshipDetail({
           )}
           <button
             onClick={onClose}
-            className="p-1.5 text-stone-600 hover:text-stone-300 transition-colors ml-0.5"
+            className="p-1.5 text-stone-500 hover:text-stone-900 transition-colors ml-0.5"
           >
             <IconX />
           </button>
@@ -331,7 +331,7 @@ function FellowshipDetail({
             className="w-9 h-9 rounded-full object-cover ring-2 ring-amber-500/30"
           />
           <div>
-            <p className="text-sm font-cormorant font-semibold text-light">
+            <p className="text-sm font-cormorant font-semibold text-stone-900">
               {leader
                 ? leader.first_name && leader.last_name
                   ? `${leader.first_name} ${leader.last_name}`
@@ -362,7 +362,7 @@ function FellowshipDetail({
                     className="w-7 h-7 rounded-full object-cover shrink-0"
                   />
                   <div className="min-w-0">
-                    <p className="text-xs text-light truncate">
+                    <p className="text-xs text-stone-700 truncate">
                       {m.first_name && m.last_name
                         ? `${m.first_name} ${m.last_name}`
                         : m.username}
@@ -871,7 +871,7 @@ function Fellowships() {
   };
 
   return (
-    <div className="min-h-screen w-full bg-[#faf8f3] p-8">
+    <div className="min-h-screen w-full bg-white p-8">
       {/* ── Header ── */}
       <div className="flex items-end justify-between mb-10">
         <div>

@@ -145,15 +145,15 @@ function BookList({ books, selectedBook, loadingBooks, bookSearch, setBookSearch
 
   return (
     <>
-      <div className="px-3 py-2.5 border-b border-white/6 shrink-0">
+      <div className="px-3 py-2.5 border-b border-stone-200 shrink-0">
         <div className="relative">
-          <span className="absolute left-2.5 top-1/2 -translate-y-1/2 text-stone-600"><IconSearch /></span>
+          <span className="absolute left-2.5 top-1/2 -translate-y-1/2 text-stone-400"><IconSearch /></span>
           <input
             type="text"
             value={bookSearch}
             onChange={e => setBookSearch(e.target.value)}
             placeholder="Find book…"
-            className="w-full bg-white/5 border border-white/8 focus:border-amber-500/40 focus:outline-none pl-8 pr-3 py-1.5 text-[0.7rem] text-stone-300 placeholder:text-stone-700"
+            className="w-full bg-stone-50 border border-stone-200 focus:border-amber-400 focus:outline-none pl-8 pr-3 py-1.5 text-[0.7rem] text-stone-700 placeholder:text-stone-400"
           />
         </div>
       </div>
@@ -172,8 +172,8 @@ function BookList({ books, selectedBook, loadingBooks, bookSearch, setBookSearch
                   <button key={book.id} onClick={() => onSelectBook(book)}
                     className={`w-full text-left px-4 py-2 font-cormorant text-sm transition-colors border-l-2 ${
                       selectedBook?.id === book.id
-                        ? 'text-stone-100 bg-amber-500/10 border-l-amber-500'
-                        : 'text-stone-400 hover:text-stone-200 hover:bg-white/4 border-l-transparent'
+                        ? 'text-amber-600 bg-amber-50 border-l-amber-500'
+                        : 'text-stone-600 hover:text-black hover:bg-amber-50 border-l-transparent'
                     }`}
                   >
                     {book.name}
@@ -189,8 +189,8 @@ function BookList({ books, selectedBook, loadingBooks, bookSearch, setBookSearch
                   <button key={book.id} onClick={() => onSelectBook(book)}
                     className={`w-full text-left px-4 py-2 font-cormorant text-sm transition-colors border-l-2 ${
                       selectedBook?.id === book.id
-                        ? 'text-stone-100 bg-amber-500/10 border-l-amber-500'
-                        : 'text-stone-400 hover:text-stone-200 hover:bg-white/4 border-l-transparent'
+                        ? 'text-amber-600 bg-amber-50 border-l-amber-500'
+                        : 'text-stone-600 hover:text-black hover:bg-amber-50 border-l-transparent'
                     }`}
                   >
                     {book.name}
@@ -344,16 +344,16 @@ function BiblePage() {
     : [];
 
   return (
-    <div className="flex h-screen overflow-hidden bg-[#faf8f3]">
+    <div className="flex h-screen overflow-hidden bg-white">
       <Sidebar />
 
       <div className="flex flex-1 min-w-0 overflow-hidden relative">
 
         {/* DESKTOP book panel */}
-        <aside className={`hidden lg:flex flex-col bg-[#0f0f0d] border-r border-white/6 h-screen overflow-hidden transition-all duration-300 ${showBookPanel ? 'w-56 shrink-0' : 'w-0'}`}>
-          <div className="px-4 py-5 border-b border-white/6 shrink-0">
+        <aside className={`hidden lg:flex flex-col bg-white border-r border-stone-200 h-screen overflow-hidden transition-all duration-300 ${showBookPanel ? 'w-56 shrink-0' : 'w-0'}`}>
+          <div className="px-4 py-5 border-b border-stone-200 shrink-0">
             <p className="font-coptic text-[0.5rem] uppercase tracking-[0.25em] text-stone-500 mb-1">Scripture</p>
-            <h2 className="font-cormorant text-xl font-semibold text-stone-100">Books</h2>
+            <h2 className="font-cormorant text-xl font-semibold text-stone-900">Books</h2>
             <div className="w-5 h-0.5 bg-amber-500 mt-2" />
           </div>
           <BookList books={books} selectedBook={selectedBook} loadingBooks={loadingBooks}
@@ -366,22 +366,22 @@ function BiblePage() {
         )}
 
         {/* MOBILE drawer */}
-        <div className={`lg:hidden fixed z-50 bg-[#0f0f0d] flex flex-col transition-transform duration-300
-          bottom-0 left-0 right-0 h-[75vh] rounded-t-2xl border-t border-white/10
-          md:bottom-auto md:top-0 md:right-auto md:h-full md:w-72 md:rounded-none md:border-t-0 md:border-r md:border-white/6
+        <div className={`lg:hidden fixed z-50 bg-white flex flex-col transition-transform duration-300
+          bottom-0 left-0 right-0 h-[75vh] rounded-t-2xl border-t border-stone-200
+          md:bottom-auto md:top-0 md:right-auto md:h-full md:w-72 md:rounded-none md:border-t-0 md:border-r md:border-stone-200
           ${showBookPanel ? 'translate-y-0 md:translate-x-0' : 'translate-y-full md:-translate-x-full'}`}
         >
           <div className="md:hidden flex justify-center pt-3 pb-1 shrink-0">
-            <div className="w-10 h-1 bg-white/20 rounded-full" />
+            <div className="w-10 h-1 bg-stone-200 rounded-full" />
           </div>
-          <div className="px-4 py-4 border-b border-white/6 shrink-0 flex items-center justify-between">
+          <div className="px-4 py-4 border-b border-stone-200 shrink-0 flex items-center justify-between">
             <div>
               <p className="font-coptic text-[0.5rem] uppercase tracking-[0.25em] text-stone-500 mb-0.5">Scripture</p>
-              <h2 className="font-cormorant text-xl font-semibold text-stone-100">Books</h2>
+              <h2 className="font-cormorant text-xl font-semibold text-stone-900">Books</h2>
               <div className="w-5 h-0.5 bg-amber-500 mt-1.5" />
             </div>
             <button onClick={() => setShowBookPanel(false)}
-              className="p-1.5 text-stone-500 hover:text-stone-200 border border-white/10 hover:border-white/20 transition-colors"
+              className="p-1.5 text-stone-500 hover:text-stone-900 border border-stone-200 hover:border-stone-400 transition-colors"
             >
               <IconX />
             </button>
@@ -476,7 +476,7 @@ function BiblePage() {
           )}
 
           {/* Reading area */}
-          <div ref={contentRef} className="flex-1 overflow-y-auto px-4 sm:px-8 lg:px-10 py-6 sm:py-8 bg-[#faf8f3]">
+          <div ref={contentRef} className="flex-1 overflow-y-auto px-4 sm:px-8 lg:px-10 py-6 sm:py-8 bg-white">
 
             {!selectedBook && !loadingBooks && (
               <div className="flex flex-col items-center justify-center h-full gap-4 text-center px-4">

@@ -240,13 +240,13 @@ function PostView() {
   const canDeletePost = isPostAuthor || isLeader(currentUser);
 
   if (postLoading) return (
-    <div className="min-h-screen bg-[#faf8f3] flex items-center justify-center">
+    <div className="min-h-screen bg-white flex items-center justify-center">
       <p className="text-xs uppercase tracking-[0.25em] text-stone-400 animate-pulse">Loading…</p>
     </div>
   );
 
   if (!post) return (
-    <div className="min-h-screen bg-[#faf8f3] flex flex-col items-center justify-center gap-4">
+    <div className="min-h-screen bg-white flex flex-col items-center justify-center gap-4">
       <p className="text-xs uppercase tracking-[0.25em] text-stone-400">Post not found</p>
       <button onClick={() => navigate(-1)} className="font-coptic text-[0.6rem] uppercase tracking-widest text-amber-500 hover:text-amber-600">
         Go back
@@ -255,7 +255,7 @@ function PostView() {
   );
 
   return (
-    <div className="min-h-screen w-full bg-[#faf8f3]">
+    <div className="min-h-screen w-full bg-white">
       <div className="max-w-2xl mx-auto px-6 py-10">
 
         {/* ── Back nav ── */}

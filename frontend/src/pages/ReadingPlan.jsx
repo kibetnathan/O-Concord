@@ -114,7 +114,7 @@ function PlanDetail({ plan, onClose, onJoin, onLeave, canEdit, onEdit, onDelete 
       <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={onClose} />
 
       {/* Panel */}
-      <div className="relative z-10 w-full sm:max-w-lg bg-[#faf8f3] border border-stone-200 shadow-2xl flex flex-col max-h-[90vh] rounded-t-2xl sm:rounded-none overflow-hidden">
+      <div className="relative z-10 w-full sm:max-w-lg bg-white border border-stone-200 shadow-2xl flex flex-col max-h-[90vh] rounded-t-2xl sm:rounded-none overflow-hidden">
 
         {/* Drag handle — mobile */}
         <div className="sm:hidden flex justify-center pt-3 pb-1 shrink-0">
@@ -293,7 +293,7 @@ function PlanForm({ initial, onSubmit, onClose, saving }) {
   return (
     <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center">
       <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={onClose} />
-      <div className="relative z-10 w-full sm:max-w-md bg-[#faf8f3] border border-stone-200 shadow-2xl flex flex-col max-h-[90vh] rounded-t-2xl sm:rounded-none overflow-hidden">
+      <div className="relative z-10 w-full sm:max-w-md bg-white border border-stone-200 shadow-2xl flex flex-col max-h-[90vh] rounded-t-2xl sm:rounded-none overflow-hidden">
 
         <div className="sm:hidden flex justify-center pt-3 pb-1 shrink-0">
           <div className="w-10 h-1 bg-stone-200 rounded-full" />
@@ -479,7 +479,7 @@ function ReadingPlansPage() {
   const displayedPlans = tab === 'mine' ? myPlans : plans;
 
   return (
-    <div className="flex h-screen overflow-hidden bg-[#faf8f3]">
+    <div className="flex h-screen overflow-hidden bg-white">
       <Sidebar />
 
       <div className="flex flex-1 min-w-0 overflow-hidden flex-col">

@@ -44,14 +44,14 @@ function App() {
 
   if (loading) {
     return (
-      <div className="flex flex-col items-center justify-center h-screen bg-[#0f0f0d] gap-6">
+      <div className="flex flex-col items-center justify-center h-screen bg-white gap-6">
         {/* Logo */}
-        <div className="font-cormorant text-3xl font-semibold tracking-[0.15em] text-stone-100">
+        <div className="font-cormorant text-3xl font-semibold tracking-[0.15em] text-stone-900">
           O<span className="text-amber-500">C</span>M
         </div>
 
         {/* Animated bar */}
-        <div className="w-32 h-px bg-stone-800 relative overflow-hidden">
+        <div className="w-32 h-px bg-stone-200 relative overflow-hidden">
           <div
             className="absolute top-0 left-0 h-full bg-amber-500"
             style={{

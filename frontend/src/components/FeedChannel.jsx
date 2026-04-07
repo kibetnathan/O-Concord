@@ -32,7 +32,7 @@ function FeedChannel() {
   }, [token]);
 
   return (
-    <div className="w-full min-h-screen bg-[#faf8f3]">
+    <div className="w-full min-h-screen bg-white">
       {/* ── Tab Bar ── */}
       <ul className="flex flex-row border-b border-stone-200 px-6">
         <NavLink
@@ -62,7 +62,7 @@ function FeedChannel() {
       </ul>
 
       {/* ── Compose Row ── */}
-      <div className="flex items-center gap-4 px-6 py-4 border-b border-stone-200 bg-[#faf8f3]">
+      <div className="flex items-center gap-4 px-6 py-4 border-b border-stone-200 bg-white">
         <img
           src={profile?.profile_pic || "/images/defaultavatar.jpg"}
           alt="Profile"

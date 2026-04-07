@@ -35,7 +35,7 @@ function ProfileSection() {
 
   if (!profile)
     return (
-      <aside className="sticky right-0 top-0 h-screen w-100 bg-[#0f0f0d] border-l border-white/6 md:flex hidden items-center justify-center">
+      <aside className="sticky right-0 top-0 h-screen w-100 bg-white border-l border-stone-200 md:flex hidden items-center justify-center">
         <p className="text-xs tracking-widest uppercase text-stone-400 animate-pulse">
           Loading…
         </p>
@@ -53,10 +53,10 @@ function ProfileSection() {
 
   return (
     <>
-      <aside className="sticky right-0 top-0 h-screen w-100 bg-[#0f0f0d] border-l border-white/6 md:flex hidden flex-col overflow-y-auto">
+      <aside className="sticky right-0 top-0 h-screen w-100 bg-white border-l border-stone-200 md:flex hidden flex-col overflow-y-auto">
 
         {/* ── Profile Card ── */}
-        <div className="flex flex-col items-center px-6 pt-10 pb-7 border-b border-white/6">
+        <div className="flex flex-col items-center px-6 pt-10 pb-7 border-b border-stone-200">
 
           {/* Avatar */}
           <div className="relative mb-5">
@@ -65,14 +65,14 @@ function ProfileSection() {
               alt="Profile"
               className="w-20 h-20 rounded-full object-cover ring-2 ring-amber-500/30"
             />
-            <span className="absolute bottom-0.5 right-0.5 w-3 h-3 bg-amber-500 rounded-full ring-2 ring-[#0f0f0d]" />
+            <span className="absolute bottom-0.5 right-0.5 w-3 h-3 bg-amber-500 rounded-full ring-2 ring-white" />
           </div>
 
           {/* Name & username */}
-          <h2 className="font-cormorant text-2xl font-semibold text-stone-100 tracking-wide text-center leading-tight">
+          <h2 className="font-cormorant text-2xl font-semibold text-stone-900 tracking-wide text-center leading-tight">
             {fullName}
           </h2>
-          <p className="font-coptic text-xs text-stone-300 tracking-widest mt-1">
+          <p className="font-coptic text-xs text-stone-500 tracking-widest mt-1">
             @{user?.username}
           </p>
 
@@ -82,10 +82,10 @@ function ProfileSection() {
           <ul className="w-full flex flex-col gap-2.5">
             {profileFields.map(({ label, value }) => (
               <li key={label} className="flex items-baseline justify-between gap-3">
-                <span className="text-[0.6rem] uppercase tracking-[0.2em] text-stone-400 shrink-0">
+                <span className="text-[0.6rem] uppercase tracking-[0.2em] text-stone-500 shrink-0">
                   {label}
                 </span>
-                <span className="text-xs text-stone-300 font-light text-right truncate">
+                <span className="text-xs text-stone-700 font-light text-right truncate">
                   {value || "—"}
                 </span>
               </li>
@@ -96,10 +96,10 @@ function ProfileSection() {
         {/* ── My Groups ── */}
         <div className="flex flex-col flex-1 px-6 py-6">
           <div className="flex items-center gap-2 mb-4">
-            <span className="text-[0.6rem] uppercase tracking-[0.25em] text-stone-400">
+            <span className="text-[0.6rem] uppercase tracking-[0.25em] text-stone-500">
               My Groups
             </span>
-            <div className="flex-1 h-px bg-white/6" />
+            <div className="flex-1 h-px bg-stone-200" />
             {myGroups?.length > 0 && (
               <span className="text-[0.6rem] text-amber-500 tabular-nums">
                 {myGroups.length}
@@ -112,7 +112,7 @@ function ProfileSection() {
               myGroups.map((group) => (
                 <li
                   key={group.id}
-                  className="font-coptic text-xs text-stone-200 px-3 py-2.5 border-l-2 border-transparent hover:border-amber-500/60 hover:text-white hover:bg-white/4 transition-all duration-150 cursor-default tracking-wide"
+                  className="font-coptic text-xs text-stone-700 px-3 py-2.5 border-l-2 border-transparent hover:border-amber-500 hover:text-black hover:bg-amber-50 transition-all duration-150 cursor-default tracking-wide"
                 >
                   {group.name}
                 </li>
@@ -128,13 +128,13 @@ function ProfileSection() {
         {/* ── Footer ── */}
         <button
           onClick={() => setEditOpen(true)}
-          className="flex items-center gap-3 w-full px-4 py-2.5 text-left font-coptic text-[0.6rem] uppercase tracking-widest text-stone-300 hover:text-amber-400 hover:cursor-pointer hover:bg-white/5 transition-colors group"
+          className="flex items-center gap-3 w-full px-4 py-2.5 text-left font-coptic text-[0.6rem] uppercase tracking-widest text-stone-600 hover:text-amber-600 hover:cursor-pointer hover:bg-amber-50 transition-colors group"
         >
           <IconEdit />
           Edit Profile
         </button>
 
-        <div className="px-6 py-4 border-t border-white/6">
+        <div className="px-6 py-4 border-t border-stone-200">
           <p className="text-[0.55rem] tracking-[0.25em] uppercase text-stone-400">
             Open Church Management
           </p>

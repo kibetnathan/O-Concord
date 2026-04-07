@@ -41,7 +41,7 @@ function OrgListCard({ org, isSelected, onSelect }) {
       className={`w-full text-left transition-all duration-150 border-l-2 ${
         isSelected
           ? "border-amber-500 bg-amber-600/10"
-          : "border-transparent hover:border-amber-500/40 hover:bg-white/3"
+          : "border-transparent hover:border-amber-500/40 hover:bg-amber-50"
       }`}
     >
       {org.banner && (
@@ -50,7 +50,7 @@ function OrgListCard({ org, isSelected, onSelect }) {
         </div>
       )}
       <div className="px-4 py-3">
-        <h3 className="font-cormorant text-base font-semibold text-stone-100 leading-tight truncate">
+        <h3 className="font-cormorant text-base font-semibold text-stone-900 leading-tight truncate">
           {org.name}
         </h3>
         {org.description && (
@@ -219,16 +219,16 @@ function CharityOrganisationsPage() {
   const effectiveSelected = selected ?? (orgs.length > 0 ? orgs[0] : null);
 
   return (
-    <div className="flex flex-row bg-[#0f0f0d] w-full min-h-screen">
+    <div className="flex flex-row bg-white w-full min-h-screen">
       <Sidebar />
 
       <div className="flex-1 flex flex-col w-full min-h-screen overflow-hidden">
         {/* Page header */}
-        <div className="px-8 py-6 border-b border-white/6 shrink-0">
+        <div className="px-8 py-6 border-b border-stone-200 shrink-0">
           <p className="font-coptic text-[0.6rem] uppercase tracking-[0.25em] text-stone-500 mb-1">
             Outreach
           </p>
-          <h1 className="font-cormorant text-2xl font-semibold text-stone-100">
+          <h1 className="font-cormorant text-2xl font-semibold text-stone-900">
             Charity Organisations
           </h1>
         </div>
@@ -246,7 +246,7 @@ function CharityOrganisationsPage() {
         ) : (
           <div className="flex flex-row flex-1 overflow-hidden">
             {/* Left list — ~1/3 */}
-            <div className="w-80 shrink-0 border-r border-white/6 overflow-y-auto divide-y divide-white/4">
+            <div className="w-80 shrink-0 border-r border-stone-200 overflow-y-auto divide-y divide-stone-100">
               {orgs.map((org) => (
                 <OrgListCard
                   key={org.id}
@@ -258,7 +258,7 @@ function CharityOrganisationsPage() {
             </div>
 
             {/* Right detail — ~2/3 */}
-            <div className="flex-1 overflow-y-auto p-8 bg-[#f7f5f0]">
+            <div className="flex-1 overflow-y-auto p-8 bg-stone-50">
               {effectiveSelected ? (
                 <OrgDetailCard key={effectiveSelected.id} org={effectiveSelected} />
               ) : (

@@ -82,7 +82,7 @@ function DetailRow({ icon, label, value }) {
       <span className="text-stone-700 mt-0.5">{icon}</span>
       <div className="min-w-0">
         <p className="font-coptic text-[0.55rem] uppercase tracking-widest text-stone-700 leading-none mb-0.5">{label}</p>
-        <p className="text-sm text-light truncate">{value}</p>
+        <p className="text-sm text-stone-700 truncate">{value}</p>
       </div>
     </div>
   );
@@ -141,12 +141,12 @@ function UserDetail({ user, allProfiles, onClose, onEdit, onDelete }) {
   const [confirmDelete, setConfirmDelete] = useState(false);
 
   return (
-    <div className="relative overflow-hidden bg-khaki/70 backdrop-blur-md border border-white/10 rounded-sm shadow-lg shadow-black/20 p-6 flex flex-col gap-5">
-      <div className="absolute -top-8 -right-8 w-32 h-32 bg-amber-500/15 rounded-full blur-3xl pointer-events-none" />
+    <div className="relative overflow-hidden bg-amber-50 border border-amber-200 rounded-sm shadow-sm p-6 flex flex-col gap-5">
+      <div className="absolute -top-8 -right-8 w-32 h-32 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
 
       {/* Action buttons */}
       <div className="relative z-10 flex items-center justify-end gap-0.5">
-        <button onClick={onEdit} title="Edit" className="p-1.5 text-stone-500 hover:text-amber-400 transition-colors">
+        <button onClick={onEdit} title="Edit" className="p-1.5 text-stone-500 hover:text-amber-600 transition-colors">
           <IconEdit />
         </button>
         {!confirmDelete ? (
@@ -154,13 +154,13 @@ function UserDetail({ user, allProfiles, onClose, onEdit, onDelete }) {
             <IconTrash />
           </button>
         ) : (
-          <div className="flex items-center gap-1 bg-red-500/10 border border-red-500/20 px-2 py-1 ml-1">
-            <span className="font-coptic text-[0.55rem] text-red-400 uppercase tracking-widest">Delete?</span>
-            <button onClick={() => onDelete(user.id)} className="p-0.5 text-red-400 hover:text-red-300"><IconCheck /></button>
-            <button onClick={() => setConfirmDelete(false)} className="p-0.5 text-stone-500 hover:text-stone-300"><IconX /></button>
+          <div className="flex items-center gap-1 bg-red-50 border border-red-200 px-2 py-1 ml-1">
+            <span className="font-coptic text-[0.55rem] text-red-500 uppercase tracking-widest">Delete?</span>
+            <button onClick={() => onDelete(user.id)} className="p-0.5 text-red-500 hover:text-red-700"><IconCheck /></button>
+            <button onClick={() => setConfirmDelete(false)} className="p-0.5 text-stone-400 hover:text-stone-600"><IconX /></button>
           </div>
         )}
-        <button onClick={onClose} className="p-1.5 text-stone-600 hover:text-stone-300 transition-colors ml-0.5">
+        <button onClick={onClose} className="p-1.5 text-stone-500 hover:text-stone-900 transition-colors ml-0.5">
           <IconX />
         </button>
       </div>
@@ -173,12 +173,12 @@ function UserDetail({ user, allProfiles, onClose, onEdit, onDelete }) {
           className="w-20 h-20 rounded-full object-cover ring-2 ring-amber-500/30"
         />
         <div className="text-center">
-          <h3 className="font-cormorant text-2xl font-semibold text-stone-100 leading-tight">
+          <h3 className="font-cormorant text-2xl font-semibold text-stone-900 leading-tight">
             {user.first_name && user.last_name
               ? `${user.first_name} ${user.last_name}`
               : user.username}
           </h3>
-          <p className="font-coptic text-[0.55rem] uppercase tracking-widest text-stone-700 mt-0.5">
+          <p className="font-coptic text-[0.55rem] uppercase tracking-widest text-stone-500 mt-0.5">
             @{user.username}
           </p>
         </div>
@@ -467,7 +467,7 @@ function UsersDashboard() {
   const rightTitle = mode === "edit" ? "Edit Member" : "Member Details";
 
   return (
-    <div className="min-h-screen w-full bg-[#faf8f3] p-8">
+    <div className="min-h-screen w-full bg-white p-8">
 
       {/* ── Header ── */}
       <div className="mb-10">

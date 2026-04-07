@@ -95,7 +95,7 @@ function ComingSoon() {
           )`,
         }}
       >
-        <div className="relative bg-[#0f0f0d]/90 border border-amber-700/40 rounded-sm w-full max-w-xl shadow-2xl overflow-hidden">
+        <div className="relative bg-white border border-stone-200 rounded-sm w-full max-w-xl shadow-2xl overflow-hidden">
 
           {/* Top warning stripe */}
           <div

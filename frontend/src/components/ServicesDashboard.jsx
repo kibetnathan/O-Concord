@@ -141,26 +141,26 @@ function ServiceDetail({ service, allUsers, allProfiles, allDepartments, equipme
   const [confirmDelete, setConfirmDelete] = useState(false);
 
   return (
-    <div className="relative overflow-hidden bg-khaki/70 backdrop-blur-md border border-white/10 rounded-sm shadow-lg shadow-black/20 p-6 flex flex-col gap-5">
+    <div className="relative overflow-hidden bg-amber-50 border border-amber-200 rounded-sm shadow-sm p-6 flex flex-col gap-5">
       <div className="absolute -top-8 -right-8 w-32 h-32 bg-amber-500/8 rounded-full blur-3xl pointer-events-none" />
 
       <div className="flex items-start justify-between relative z-10">
         <div className="flex-1 min-w-0">
           <p className="text-[0.6rem] uppercase tracking-[0.25em] text-stone-500 mb-1">Service</p>
-          <h3 className="font-cormorant text-2xl font-semibold text-light leading-tight truncate">{service.name}</h3>
+          <h3 className="font-cormorant text-2xl font-semibold text-stone-900 leading-tight truncate">{service.name}</h3>
         </div>
         <div className="flex items-center gap-0.5 shrink-0 ml-2">
-          <button onClick={onEdit} title="Edit" className="p-1.5 text-stone-500 hover:text-amber-400 transition-colors"><IconEdit /></button>
+          <button onClick={onEdit} title="Edit" className="p-1.5 text-stone-500 hover:text-amber-600 transition-colors"><IconEdit /></button>
           {!confirmDelete
             ? <button onClick={() => setConfirmDelete(true)} title="Delete" className="p-1.5 text-stone-500 hover:text-red-400 transition-colors"><IconTrash /></button>
             : <DeleteConfirm onConfirm={() => onDelete(service.id)} onCancel={() => setConfirmDelete(false)} />
           }
-          <button onClick={onClose} className="p-1.5 text-stone-600 hover:text-stone-300 transition-colors ml-0.5"><IconX /></button>
+          <button onClick={onClose} className="p-1.5 text-stone-500 hover:text-stone-900 transition-colors ml-0.5"><IconX /></button>
         </div>
       </div>
 
       {service.description && (
-        <p className="text-sm text-stone-100 leading-relaxed relative z-10 border-l-2 border-amber-500/35 pl-3">{service.description}</p>
+        <p className="text-sm text-stone-700 leading-relaxed relative z-10 border-l-2 border-amber-500/35 pl-3">{service.description}</p>
       )}
 
       <div className="relative z-10">
@@ -169,7 +169,7 @@ function ServiceDetail({ service, allUsers, allProfiles, allDepartments, equipme
           <img src={pastorProfile?.profile_pic_url || "/images/defaultavatar.jpg"} alt={pastor?.username || "Pastor"}
             className="w-9 h-9 rounded-full object-cover ring-2 ring-amber-500/30" />
           <div>
-            <p className="text-sm font-cormorant font-semibold text-light">{pastor ? userName(pastor) : "No pastor assigned"}</p>
+            <p className="text-sm font-cormorant font-semibold text-stone-900">{pastor ? userName(pastor) : "No pastor assigned"}</p>
             {pastor && <p className="font-coptic text-[0.55rem] uppercase tracking-widest text-stone-500">@{pastor.username}</p>}
           </div>
         </div>
@@ -180,7 +180,7 @@ function ServiceDetail({ service, allUsers, allProfiles, allDepartments, equipme
           <p className="text-[0.6rem] uppercase tracking-widest text-stone-500 font-coptic mb-2">Crew Departments</p>
           <div className="flex flex-wrap gap-1.5">
             {crewDepts.map((d) => (
-              <span key={d.id} className="text-[0.6rem] uppercase tracking-widest text-stone-400 bg-white/5 border border-white/10 px-2 py-1">{d.name}</span>
+              <span key={d.id} className="text-[0.6rem] uppercase tracking-widest text-stone-600 bg-stone-50 border border-stone-200 px-2 py-1">{d.name}</span>
             ))}
           </div>
         </div>
@@ -189,10 +189,10 @@ function ServiceDetail({ service, allUsers, allProfiles, allDepartments, equipme
       {assignedEquip && (
         <div className="relative z-10">
           <p className="text-[0.6rem] uppercase tracking-widest text-stone-500 font-coptic mb-2">Assigned Equipment</p>
-          <div className="bg-white/5 border border-white/10 px-4 py-3 flex items-center gap-3">
+          <div className="bg-stone-50 border border-stone-200 px-4 py-3 flex items-center gap-3">
             {assignedEquip.image && <img src={assignedEquip.image} alt={assignedEquip.name} className="w-10 h-10 object-cover shrink-0" />}
             <div>
-              <p className="text-sm text-stone-200 font-cormorant font-semibold">{assignedEquip.name}</p>
+              <p className="text-sm text-stone-800 font-cormorant font-semibold">{assignedEquip.name}</p>
               <p className="text-[0.6rem] text-stone-500 uppercase tracking-widest font-coptic">Qty: {assignedEquip.quantity}</p>
             </div>
           </div>
@@ -208,7 +208,7 @@ function ServiceDetail({ service, allUsers, allProfiles, allDepartments, equipme
               <div key={m.id} className="flex items-center gap-3">
                 <img src={mp?.profile_pic_url || "/images/defaultavatar.jpg"} alt={m.username} className="w-7 h-7 rounded-full object-cover shrink-0" />
                 <div className="min-w-0">
-                  <p className="text-xs text-stone-100 truncate">{userName(m)}</p>
+                  <p className="text-xs text-stone-700 truncate">{userName(m)}</p>
                   <p className="font-coptic text-[0.55rem] text-stone-600 truncate">@{m.username}</p>
                 </div>
               </div>
@@ -254,38 +254,38 @@ function EquipmentDetail({ item, services, departments, onClose, onEdit, onDelet
   const [confirmDelete, setConfirmDelete] = useState(false);
 
   return (
-    <div className="relative overflow-hidden bg-khaki/70 backdrop-blur-md border border-white/10 rounded-sm shadow-lg shadow-black/20 p-6 flex flex-col gap-5">
+    <div className="relative overflow-hidden bg-amber-50 border border-amber-200 rounded-sm shadow-sm p-6 flex flex-col gap-5">
       <div className="absolute -top-8 -right-8 w-32 h-32 bg-amber-500/15 rounded-full blur-3xl pointer-events-none" />
 
       <div className="flex items-start justify-between relative z-10">
         <div className="flex-1 min-w-0">
           <p className="text-[0.6rem] uppercase tracking-[0.25em] text-stone-500 mb-1">Equipment</p>
-          <h3 className="font-cormorant text-2xl font-semibold text-stone-100 leading-tight truncate">{item.name}</h3>
+          <h3 className="font-cormorant text-2xl font-semibold text-stone-900 leading-tight truncate">{item.name}</h3>
         </div>
         <div className="flex items-center gap-0.5 shrink-0 ml-2">
-          <button onClick={onEdit} title="Edit" className="p-1.5 text-stone-500 hover:text-amber-400 transition-colors"><IconEdit /></button>
+          <button onClick={onEdit} title="Edit" className="p-1.5 text-stone-500 hover:text-amber-600 transition-colors"><IconEdit /></button>
           {!confirmDelete
             ? <button onClick={() => setConfirmDelete(true)} title="Delete" className="p-1.5 text-stone-500 hover:text-red-400 transition-colors"><IconTrash /></button>
             : <DeleteConfirm onConfirm={() => onDelete(item.id)} onCancel={() => setConfirmDelete(false)} />
           }
-          <button onClick={onClose} className="p-1.5 text-stone-600 hover:text-stone-300 transition-colors ml-0.5"><IconX /></button>
+          <button onClick={onClose} className="p-1.5 text-stone-500 hover:text-stone-900 transition-colors ml-0.5"><IconX /></button>
         </div>
       </div>
 
       {item.image && <img src={item.image} alt={item.name} className="w-full h-36 object-cover relative z-10 outline-1 outline-light/70 p-px" />}
 
       {item.description && (
-        <p className="text-sm text-stone-100 leading-relaxed relative z-10 border-l-2 border-amber-500/40 pl-3">{item.description}</p>
+        <p className="text-sm text-stone-700 leading-relaxed relative z-10 border-l-2 border-amber-500/40 pl-3">{item.description}</p>
       )}
 
       <div className="grid grid-cols-2 gap-3 relative z-10">
-        <div className="bg-white/5 border border-white/10 px-3 py-2.5">
-          <p className="font-coptic text-[0.55rem] uppercase tracking-widest text-stone-700 mb-1">Quantity</p>
-          <p className="font-cormorant text-2xl font-light text-light">{item.quantity}</p>
+        <div className="bg-stone-50 border border-stone-200 px-3 py-2.5">
+          <p className="font-coptic text-[0.55rem] uppercase tracking-widest text-stone-500 mb-1">Quantity</p>
+          <p className="font-cormorant text-2xl font-light text-stone-900">{item.quantity}</p>
         </div>
-        <div className="bg-white/5 border border-white/10 px-3 py-2.5">
-          <p className="font-coptic text-[0.55rem] uppercase tracking-widest text-stone-700 mb-1">Assigned To</p>
-          <p className="text-xs text-light mt-1">
+        <div className="bg-stone-50 border border-stone-200 px-3 py-2.5">
+          <p className="font-coptic text-[0.55rem] uppercase tracking-widest text-stone-500 mb-1">Assigned To</p>
+          <p className="text-xs text-stone-700 mt-1">
             {assignedService ? assignedService.name : assignedDepartment ? assignedDepartment.name : "Unassigned"}
           </p>
         </div>
@@ -511,7 +511,7 @@ function EquipmentFields({ name, setName, description, setDescription, quantity,
         <div className="flex flex-col gap-1.5">
           <InputLabel>Image <span className="text-stone-300 normal-case tracking-normal">(optional)</span></InputLabel>
           <input type="file" accept="image/*" onChange={(e) => setImage(e.target.files[0])}
-            className="text-xs text-stone-500 file:mr-3 file:py-1.5 file:px-3 file:border-0 file:text-[0.6rem] file:font-coptic file:uppercase file:tracking-widest file:bg-stone-700 file:text-stone-200 hover:file:bg-stone-600 file:transition-colors file:cursor-pointer" />
+            className="text-xs text-stone-500 file:mr-3 file:py-1.5 file:px-3 file:border-0 file:text-[0.6rem] file:font-coptic file:uppercase file:tracking-widest file:bg-amber-500 file:text-white hover:file:bg-amber-600 file:transition-colors file:cursor-pointer" />
         </div>
       )}
       <div className="flex flex-col gap-1.5">
@@ -704,7 +704,7 @@ function ServicesDashboard() {
     : (tab === "services" ? "Service Details" : "Equipment Details");
 
   return (
-    <div className="min-h-screen w-full bg-[#faf8f3] p-8">
+    <div className="min-h-screen w-full bg-white p-8">
 
       <div className="flex items-end justify-between mb-8">
         <div>

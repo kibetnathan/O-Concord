@@ -2,10 +2,11 @@
 @plugin "daisyui";
 
 @theme {
-  --color-ivory: #FFFEF6;
-  --color-light: #fffffc;
-  --color-khaki: #beb7a4;
-  --color-porcelain: #f5f0eb;
+  --color-ivory: #FFFEF6;       /* warm off-white — main page backgrounds */
+  --color-light: #fffffc;       /* near-white — cards, panels */
+  --color-khaki: #beb7a4;       /* warm grey-tan — borders, muted accents */
+  --color-porcelain: #f5f0eb;   /* parchment — sidebars, secondary panels */
+  --color-parchment: #ede8e0;   /* deeper parchment — hover states, dividers */
   --font-cormorant: "Cormorant Garamond", serif;
   --font-coptic: "Noto Sans Coptic", "sans";
 }

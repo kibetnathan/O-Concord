@@ -17,7 +17,7 @@ const IconCamera = () => (
 
 function InputLabel({ children }) {
   return (
-    <label className="font-coptic text-[0.6rem] uppercase tracking-widest text-stone-400">
+    <label className="font-coptic text-[0.6rem] uppercase tracking-widest text-stone-500">
       {children}
     </label>
   );
@@ -81,21 +81,21 @@ function ProfileFormInner({ profile, user, updateProfile, onClose }) {
   const avatarSrc = imagePreview || profile?.profile_pic_url || "/images/defaultavatar.jpg";
 
   return (
-    <div className="fixed right-0 top-0 h-screen w-80 bg-[#0f0f0d] border-l border-white/10 z-50 flex flex-col overflow-y-auto shadow-2xl">
+    <div className="fixed right-0 top-0 h-screen w-80 bg-white border-l border-stone-200 z-50 flex flex-col overflow-y-auto shadow-2xl">
 
       {/* Header */}
-      <div className="flex items-center justify-between px-6 py-5 border-b border-white/[0.07] shrink-0">
+      <div className="flex items-center justify-between px-6 py-5 border-b border-stone-100 shrink-0">
         <div>
-          <p className="text-[0.6rem] uppercase tracking-[0.25em] text-stone-400 font-coptic">Account</p>
-          <h2 className="font-cormorant text-xl font-semibold text-stone-100 leading-tight">Edit Profile</h2>
+          <p className="text-[0.6rem] uppercase tracking-[0.25em] text-stone-500 font-coptic">Account</p>
+          <h2 className="font-cormorant text-xl font-semibold text-stone-900 leading-tight">Edit Profile</h2>
         </div>
-        <button onClick={onClose} className="text-stone-400 hover:text-stone-100 transition-colors p-1">
+        <button onClick={onClose} className="text-stone-500 hover:text-stone-900 transition-colors p-1">
           <IconX />
         </button>
       </div>
 
       {/* Avatar picker */}
-      <div className="flex flex-col items-center px-6 py-6 border-b border-white/[0.07] shrink-0">
+      <div className="flex flex-col items-center px-6 py-6 border-b border-stone-100 shrink-0">
         <div className="relative group">
           <img
             src={avatarSrc}
@@ -120,7 +120,7 @@ function ProfileFormInner({ profile, user, updateProfile, onClose }) {
         <button
           type="button"
           onClick={() => fileInputRef.current?.click()}
-          className="mt-3 font-coptic text-[0.6rem] uppercase tracking-widest text-stone-300 hover:text-amber-400 transition-colors"
+          className="mt-3 font-coptic text-[0.6rem] uppercase tracking-widest text-stone-500 hover:text-amber-600 transition-colors"
         >
           Change Photo
         </button>
@@ -137,18 +137,18 @@ function ProfileFormInner({ profile, user, updateProfile, onClose }) {
         {/* Read-only */}
         <div className="flex flex-col gap-1.5">
           <InputLabel>Username</InputLabel>
-          <p className="px-3 py-2.5 text-sm text-stone-200 bg-white/3 border border-white/6">
+          <p className="px-3 py-2.5 text-sm text-stone-700 bg-stone-50 border border-stone-200">
             @{user?.username}
           </p>
         </div>
         <div className="flex flex-col gap-1.5">
           <InputLabel>Email</InputLabel>
-          <p className="px-3 py-2.5 text-sm text-stone-200 bg-white/3 border border-white/6">
+          <p className="px-3 py-2.5 text-sm text-stone-700 bg-stone-50 border border-stone-200">
             {user?.email || "—"}
           </p>
         </div>
 
-        <div className="h-px bg-white/[0.07]" />
+        <div className="h-px bg-stone-100" />
 
         {/* Editable */}
         {[
@@ -165,7 +165,7 @@ function ProfileFormInner({ profile, user, updateProfile, onClose }) {
               value={fields[key]}
               onChange={(e) => setFields((f) => ({ ...f, [key]: e.target.value }))}
               placeholder={placeholder}
-              className="bg-white/5 border border-white/10 focus:border-amber-400/60 focus:outline-none px-3 py-2.5 text-sm text-stone-200 placeholder:text-stone-600 transition-colors"
+              className="bg-white border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-900 placeholder:text-stone-300 transition-colors"
             />
           </div>
         ))}

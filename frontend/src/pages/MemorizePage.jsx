@@ -440,7 +440,7 @@ function MemorizePage() {
   const sessionRemain = reviewQueue.length;
 
   return (
-    <div className="flex h-screen overflow-hidden bg-[#faf8f3]">
+    <div className="flex h-screen overflow-hidden bg-white">
       <Sidebar />
 
       <div className="flex flex-1 min-w-0 overflow-hidden flex-col">
@@ -536,7 +536,7 @@ function MemorizePage() {
               {/* No due verses */}
               {dueVerses.length === 0 && (
                 <div className="flex flex-col items-center justify-center py-20 gap-4 text-center">
-                  <div className="w-14 h-14 border border-stone-200 flex items-center justify-center text-stone-200">
+                  <div className="w-14 h-14 border border-stone-200 flex items-center justify-center text-stone-400">
                     <IconCheck />
                   </div>
                   <p className="font-cormorant text-2xl text-stone-400">All caught up</p>

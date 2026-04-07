@@ -180,7 +180,7 @@ function CreateRoomModal({ user, existingRoomIds, onClose, onConfirm, loading, e
   return (
     // Bottom sheet on mobile, centred modal on desktop
     <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/60 backdrop-blur-sm">
-      <div className="relative bg-[#faf8f3] border border-stone-200 shadow-2xl w-full sm:max-w-md sm:mx-4 flex flex-col max-h-[88vh] sm:max-h-[85vh] rounded-t-2xl sm:rounded-none">
+      <div className="relative bg-white border border-stone-200 shadow-2xl w-full sm:max-w-md sm:mx-4 flex flex-col max-h-[88vh] sm:max-h-[85vh] rounded-t-2xl sm:rounded-none">
 
         {/* Drag handle -- mobile only */}
         <div className="absolute top-2.5 left-1/2 -translate-x-1/2 w-8 h-1 bg-stone-300 rounded-full sm:hidden" />
@@ -264,11 +264,11 @@ function CreateRoomModal({ user, existingRoomIds, onClose, onConfirm, loading, e
 
 function RoomListPanel({ filtered, roomsLoading, activeRoomId, messages, search, setSearch, isPrivileged, onSelectRoom, onOpenCreate }) {
   return (
-    <div className="flex flex-col h-full bg-[#0f0f0d]">
-      <div className="px-5 py-5 border-b border-white/6 shrink-0">
+    <div className="flex flex-col h-full bg-white">
+      <div className="px-5 py-5 border-b border-stone-200 shrink-0">
         <p className="text-[0.55rem] uppercase tracking-[0.25em] text-stone-500 mb-1">Messaging</p>
         <div className="flex items-center justify-between">
-          <h2 className="font-cormorant text-xl font-semibold text-stone-100 leading-tight">Group Chats</h2>
+          <h2 className="font-cormorant text-xl font-semibold text-stone-900 leading-tight">Group Chats</h2>
           {isPrivileged && (
             <button
               onClick={onOpenCreate}
@@ -282,7 +282,7 @@ function RoomListPanel({ filtered, roomsLoading, activeRoomId, messages, search,
         <div className="w-5 h-0.5 bg-amber-500 mt-2" />
       </div>
 
-      <div className="px-3 py-3 border-b border-white/6 shrink-0">
+      <div className="px-3 py-3 border-b border-stone-200 shrink-0">
         <div className="relative">
           <span className="absolute left-2.5 top-1/2 -translate-y-1/2 text-stone-600"><IconSearch /></span>
           <input
@@ -290,13 +290,13 @@ function RoomListPanel({ filtered, roomsLoading, activeRoomId, messages, search,
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search rooms..."
-            className="w-full bg-white/5 border border-white/[0.08] focus:border-amber-500/40 focus:outline-none pl-8 pr-3 py-2 text-xs text-stone-300 placeholder:text-stone-700 transition-colors"
+            className="w-full bg-stone-50 border border-stone-200 focus:border-amber-500/40 focus:outline-none pl-8 pr-3 py-2 text-xs text-stone-700 placeholder:text-stone-400 transition-colors"
           />
         </div>
       </div>
 
-      <div className="px-5 py-3 border-b border-white/6 shrink-0">
-        <p className="font-cormorant text-xl font-light text-stone-200">{filtered.length}</p>
+      <div className="px-5 py-3 border-b border-stone-200 shrink-0">
+        <p className="font-cormorant text-xl font-light text-stone-900">{filtered.length}</p>
         <p className="font-coptic text-[0.48rem] uppercase tracking-widest text-stone-600">Rooms</p>
       </div>
 
@@ -317,17 +317,17 @@ function RoomListPanel({ filtered, roomsLoading, activeRoomId, messages, search,
             <button
               key={room.id}
               onClick={() => onSelectRoom(room.id)}
-              className={`w-full text-left px-4 py-3.5 border-b border-white/5 transition-all group ${
+              className={`w-full text-left px-4 py-3.5 border-b border-stone-100 transition-all group ${
                 isSelected
                   ? 'bg-amber-500/10 border-r-2 border-r-amber-500'
-                  : 'border-r-2 border-r-transparent hover:bg-white/[0.04]'
+                  : 'border-r-2 border-r-transparent hover:bg-amber-50'
               }`}
             >
               <div className="flex items-center gap-2 mb-0.5">
                 <span className={`shrink-0 ${isSelected ? 'text-amber-500' : 'text-stone-600 group-hover:text-stone-400'}`}>
                   <IconHash />
                 </span>
-                <span className={`font-cormorant text-base font-semibold truncate flex-1 leading-tight ${isSelected ? 'text-stone-100' : 'text-stone-400 group-hover:text-stone-200'}`}>
+                <span className={`font-cormorant text-base font-semibold truncate flex-1 leading-tight ${isSelected ? 'text-stone-900' : 'text-stone-600 group-hover:text-black'}`}>
                   {room.name}
                 </span>
                 {room.sourceType && (
@@ -343,7 +343,7 @@ function RoomListPanel({ filtered, roomsLoading, activeRoomId, messages, search,
               )}
               {lastMsg && (
                 <p className="text-[0.62rem] truncate pl-4 mt-0.5 leading-relaxed text-stone-400">
-                  <span className="text-stone-300">{lastMsg.displayName?.split(' ')[0]}: </span>
+                  <span className="text-stone-500">{lastMsg.displayName?.split(' ')[0]}: </span>
                   {lastMsg.text}
                 </p>
               )}
@@ -610,7 +610,7 @@ function ThreadsPage() {
 
   return (
     // pb-20 on mobile leaves room above the Sidebar's floating bottom nav
-    <div className="flex h-[100dvh] overflow-hidden bg-[#faf8f3]">
+    <div className="flex h-[100dvh] overflow-hidden bg-white">
       <Sidebar />
 
       {showCreateModal && (
@@ -654,7 +654,7 @@ function ThreadsPage() {
         {/* ── Chat area (desktop: always visible; mobile: slides in from right) ── */}
         <div className={`
           absolute inset-0 md:relative md:inset-auto
-          flex flex-col flex-1 min-w-0 overflow-hidden bg-[#faf8f3]
+          flex flex-col flex-1 min-w-0 overflow-hidden bg-white
           transition-transform duration-300 ease-in-out
           ${mobileView === 'chat' ? 'translate-x-0' : 'translate-x-full'}
           md:translate-x-0
@@ -700,7 +700,7 @@ function ThreadsPage() {
 
           {/* Messages */}
           {/* pb-24 leaves room above the Sidebar floating nav on mobile */}
-          <div className="flex-1 overflow-y-auto px-4 md:px-6 py-5 bg-[#faf8f3] pb-6 md:pb-5">
+          <div className="flex-1 overflow-y-auto px-4 md:px-6 py-5 bg-white pb-6 md:pb-5">
             {messagesLoading && (
               <div className="flex justify-center py-10">
                 <span className="font-coptic text-[0.5rem] uppercase tracking-widest text-stone-400 animate-pulse">Loading messages...</span>
@@ -714,7 +714,7 @@ function ThreadsPage() {
             {!messagesLoading && activeRoomId !== null && messages.length === 0 && (
               <div className="flex flex-col items-center py-16 gap-2 text-center">
                 <p className="font-cormorant text-lg text-stone-400">Be the first to speak in this room</p>
-                <p className="text-xs text-stone-300 font-coptic uppercase tracking-widest">No messages yet</p>
+                <p className="text-xs text-stone-500 font-coptic uppercase tracking-widest">No messages yet</p>
               </div>
             )}
             {!messagesLoading && messages.length > 0 && (
@@ -740,7 +740,7 @@ function ThreadsPage() {
 
           {/* Input -- sits above the Sidebar floating nav on mobile */}
           <div className="border-t border-stone-200 px-4 md:px-6 py-3 md:py-4 shrink-0 bg-white mb-[4.5rem] md:mb-0">
-            <div className="flex items-end gap-2 md:gap-3 bg-[#faf8f3] border border-stone-200 focus-within:border-amber-400 transition-colors px-3 md:px-4 py-2.5 md:py-3">
+            <div className="flex items-end gap-2 md:gap-3 bg-white border border-stone-200 focus-within:border-amber-400 transition-colors px-3 md:px-4 py-2.5 md:py-3">
               <textarea
                 ref={inputRef}
                 value={input}
@@ -760,14 +760,14 @@ function ThreadsPage() {
                 <span className="hidden sm:inline">Send</span>
               </button>
             </div>
-            <p className="hidden md:block font-coptic text-[0.48rem] uppercase tracking-widest text-stone-300 mt-1.5">
+            <p className="hidden md:block font-coptic text-[0.48rem] uppercase tracking-widest text-stone-500 mt-1.5">
               Enter to send · Shift + Enter for new line
             </p>
           </div>
         </div>
 
         {/* ── DESKTOP room list panel (right aside, hidden on mobile) ── */}
-        <aside className="hidden md:flex flex-col w-64 shrink-0 border-l border-white/6 h-full overflow-hidden">
+        <aside className="hidden md:flex flex-col w-64 shrink-0 border-l border-stone-200 h-full overflow-hidden">
           <RoomListPanel
             filtered={filtered}
             roomsLoading={roomsLoading}

@@ -117,7 +117,7 @@ function LivePlayer({ videoId, latestVideo }) {
 
       {/* Latest video */}
       {latestVideo && (
-        <div className="px-6 md:px-10 py-7 bg-[#faf8f3] border-b border-stone-200">
+        <div className="px-6 md:px-10 py-7 bg-white border-b border-stone-200">
           <p className="font-coptic text-[0.48rem] uppercase tracking-[0.3em] text-stone-400 mb-4">
             Latest Message
           </p>
@@ -214,7 +214,7 @@ function LatestVideoCard({ video }) {
           Latest Message
         </span>
         <div className="flex-1 h-px bg-stone-200" />
-        <span className="font-coptic text-[0.48rem] text-stone-300">{publishedDate}</span>
+        <span className="font-coptic text-[0.48rem] text-stone-500">{publishedDate}</span>
       </div>
 
       {playing ? (
@@ -280,7 +280,7 @@ function LatestVideoCard({ video }) {
 
 function OfflinePage({ nextService, latestVideo }) {
   return (
-    <div className="flex flex-col flex-1 min-h-0 overflow-y-auto bg-[#faf8f3]">
+    <div className="flex flex-col flex-1 min-h-0 overflow-y-auto bg-white">
 
       {/* Hero */}
       <div className="flex flex-col items-center justify-center text-center px-8 md:px-16 pt-16 pb-14 flex-1">
@@ -322,7 +322,7 @@ function OfflinePage({ nextService, latestVideo }) {
               Next service begins in
             </p>
             <Countdown target={nextService} />
-            <p className="font-coptic text-[0.45rem] tracking-[0.25em] uppercase text-stone-300 mt-1">
+            <p className="font-coptic text-[0.45rem] tracking-[0.25em] uppercase text-stone-500 mt-1">
               Sunday services — 9:00 AM &amp; 11:00 AM EAT
             </p>
           </div>
@@ -341,7 +341,7 @@ function OfflinePage({ nextService, latestVideo }) {
 
 function LoadingState() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center gap-5 bg-[#faf8f3]">
+    <div className="flex flex-col flex-1 items-center justify-center gap-5 bg-white">
       <div className="w-5 h-5 border border-stone-300 border-t-amber-500 rounded-full animate-spin" />
       <p className="font-coptic text-[0.48rem] tracking-[0.35em] uppercase text-stone-400">
         Checking stream status
@@ -358,7 +358,7 @@ export default function StreamingPage() {
   const { status, videoId, latestVideo, nextService } = useLiveStream();
   
   return (
-    <div className="flex h-[100dvh] overflow-hidden bg-[#faf8f3]">
+    <div className="flex h-[100dvh] overflow-hidden bg-white">
       <Sidebar />
 
       <main className="flex flex-col flex-1 min-w-0 overflow-hidden">

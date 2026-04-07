@@ -10,19 +10,19 @@ const LEADER_ROLES = ["Pastor", "Jr Leader", "Leader", "Staff"];
 const navLinkClass = ({ isActive }) =>
   `flex items-center gap-3 px-4 py-2.5 text-[0.8rem] tracking-widest uppercase transition-all duration-200 border-l-2 ${
     isActive
-      ? "bg-amber-600/15 text-amber-500 border-amber-500"
-      : "text-stone-300 hover:bg-white/5 hover:text-white border-transparent"
+      ? "bg-amber-50 text-amber-600 border-amber-500"
+      : "text-stone-700 hover:bg-amber-50 hover:text-black border-transparent"
   }`;
 
 const subLinkClass = ({ isActive }) =>
   `flex items-center gap-2.5 pl-9 pr-4 py-2 text-xs tracking-widest uppercase transition-all duration-150 border-l-2 ${
     isActive
-      ? "text-amber-400 border-amber-500/60 bg-amber-600/10"
-      : "text-stone-300 hover:text-white border-transparent hover:bg-white/[0.03]"
+      ? "text-amber-600 border-amber-500 bg-amber-50"
+      : "text-stone-600 hover:text-black border-transparent hover:bg-amber-50"
   }`;
 
 const SectionLabel = ({ children }) => (
-  <li className="px-4 pt-6 pb-1 text-[0.65rem] uppercase tracking-[0.25em] text-stone-400 font-medium">
+  <li className="px-4 pt-6 pb-1 text-[0.65rem] uppercase tracking-[0.25em] text-stone-500 font-medium">
     {children}
   </li>
 );
@@ -48,8 +48,8 @@ function ExpandableSection({ icon, label, children, defaultOpen = false }) {
         onClick={() => setOpen((v) => !v)}
         className={`w-full flex items-center gap-3 px-4 py-2.5 text-[0.8rem] tracking-widest uppercase transition-all duration-200 border-l-2 border-transparent ${
           open
-            ? "text-stone-100 bg-white/4"
-            : "text-stone-300 hover:bg-white/5 hover:text-white"
+            ? "text-stone-900 bg-amber-50"
+            : "text-stone-700 hover:bg-amber-50 hover:text-black"
         }`}
       >
         {icon}
@@ -57,7 +57,7 @@ function ExpandableSection({ icon, label, children, defaultOpen = false }) {
         <ChevronIcon open={open} />
       </button>
       {open && (
-        <ul className="flex flex-col mt-0.5 border-l border-white/6 ml-4">
+        <ul className="flex flex-col mt-0.5 border-l border-stone-200 ml-4">
           {children}
         </ul>
       )}
@@ -88,11 +88,11 @@ function Sidebar() {
 
   return (
     <>
-      <aside className="sticky top-0 hidden md:flex flex-col w-95 h-screen bg-[#0f0f0d] border-r border-white/6">
-        <div className="flex items-center justify-between px-6 h-16 border-b border-white/6 shrink-0">
+      <aside className="sticky top-0 hidden md:flex flex-col w-95 h-screen bg-white border-r border-stone-200">
+        <div className="flex items-center justify-between px-6 h-16 border-b border-stone-200 shrink-0">
           <NavLink
             to="/"
-            className="font-cormorant text-2xl font-semibold tracking-[0.15em] text-stone-100 hover:text-amber-400 transition-colors"
+            className="font-cormorant text-2xl font-semibold tracking-[0.15em] text-stone-900 hover:text-amber-600 transition-colors"
           >
             O<span className="text-amber-500">C</span>M
           </NavLink>
@@ -413,7 +413,7 @@ function Sidebar() {
 
         <button
           onClick={handleLogout}
-          className="flex items-center gap-3 w-full px-4 py-2.5 text-left font-coptic text-[0.75rem] uppercase tracking-widest text-stone-400 hover:text-red-400 hover:bg-white/5 transition-colors group"
+          className="flex items-center gap-3 w-full px-4 py-2.5 text-left font-coptic text-[0.75rem] uppercase tracking-widest text-stone-500 hover:text-red-500 hover:bg-red-50 transition-colors group"
         >
           <svg
             className="w-4 h-4 shrink-0 group-hover:translate-x-0.5 transition-transform"
@@ -430,7 +430,7 @@ function Sidebar() {
           </svg>
           Sign Out
         </button>
-        <div className="px-5 py-4 border-t border-white/6 shrink-0">
+        <div className="px-5 py-4 border-t border-stone-200 shrink-0">
           <p className="text-[0.65rem] tracking-widest uppercase text-amber-500/80">
             Powered by Mavuno Church
           </p>
@@ -438,10 +438,10 @@ function Sidebar() {
       </aside>
       <div className="fixed flex md:hidden bottom-3 left-0 right-0 px-3 z-50">
         {activeTray && (
-          <div className="absolute bottom-18 left-3 right-3 bg-[#0f0f0d]/95 backdrop-blur-md border border-white/8 rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.7)] overflow-hidden">
+          <div className="absolute bottom-18 left-3 right-3 bg-white backdrop-blur-md border border-stone-200 rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.15)] overflow-hidden">
             {activeTray === "dashboard" && (
               <ul className="flex flex-col py-2">
-                <li className="px-4 pt-2 pb-1 text-[0.5rem] uppercase tracking-[0.25em] text-stone-600">
+                <li className="px-4 pt-2 pb-1 text-[0.5rem] uppercase tracking-[0.25em] text-stone-500">
                   Dashboard
                 </li>
                 {[
@@ -472,8 +472,8 @@ function Sidebar() {
                       className={({ isActive }) =>
                         `flex items-center gap-3 px-5 py-2.5 text-[0.65rem] uppercase tracking-widest transition-colors ${
                           isActive
-                            ? "text-amber-500 bg-amber-600/10"
-                            : "text-stone-400 hover:text-stone-100 hover:bg-white/5"
+                            ? "text-amber-600 bg-amber-50"
+                            : "text-stone-700 hover:text-black hover:bg-amber-50"
                         }`
                       }
                     >
@@ -486,7 +486,7 @@ function Sidebar() {
 
             {activeTray === "scripture" && (
               <ul className="flex flex-col py-2">
-                <li className="px-4 pt-2 pb-1 text-[0.5rem] uppercase tracking-[0.25em] text-stone-600">
+                <li className="px-4 pt-2 pb-1 text-[0.5rem] uppercase tracking-[0.25em] text-stone-500">
                   Scripture
                 </li>
                 {[
@@ -551,8 +551,8 @@ function Sidebar() {
                       className={({ isActive }) =>
                         `flex items-center gap-3 px-5 py-3 text-[0.65rem] uppercase tracking-widest transition-colors ${
                           isActive
-                            ? "text-amber-500 bg-amber-600/10"
-                            : "text-stone-400 hover:text-stone-100 hover:bg-white/5"
+                            ? "text-amber-600 bg-amber-50"
+                            : "text-stone-700 hover:text-black hover:bg-amber-50"
                         }`
                       }
                     >
@@ -566,7 +566,7 @@ function Sidebar() {
           </div>
         )}
 
-        <nav className="w-full h-16 rounded-2xl bg-[#0f0f0d]/80 backdrop-blur-md border border-white/8 shadow-[0_8px_32px_rgba(0,0,0,0.6)]">
+        <nav className="w-full h-16 rounded-2xl bg-white backdrop-blur-md border border-stone-200 shadow-[0_8px_32px_rgba(0,0,0,0.1)]">
           <ul className="flex items-center justify-around h-full px-2">
             <li>
               <NavLink
@@ -576,7 +576,7 @@ function Sidebar() {
                   `flex flex-col items-center gap-1 px-3 py-1.5 rounded-xl transition-all duration-200 ${
                     isActive
                       ? "text-amber-500"
-                      : "text-stone-500 hover:text-stone-300"
+                      : "text-stone-600 hover:text-black"
                   }`
                 }
               >
@@ -616,7 +616,7 @@ function Sidebar() {
                 className={`flex flex-col items-center gap-1 px-3 py-1.5 rounded-xl transition-all duration-200 ${
                   activeTray === "scripture"
                     ? "text-amber-500"
-                    : "text-stone-500 hover:text-stone-300"
+                    : "text-stone-600 hover:text-black"
                 }`}
               >
                 <span
@@ -659,7 +659,7 @@ function Sidebar() {
                   `flex flex-col items-center gap-1 px-3 py-1.5 rounded-xl transition-all duration-200 ${
                     isActive
                       ? "text-amber-500"
-                      : "text-stone-500 hover:text-stone-300"
+                      : "text-stone-600 hover:text-black"
                   }`
                 }
               >
@@ -697,7 +697,7 @@ function Sidebar() {
                   `flex flex-col items-center gap-1 px-3 py-1.5 rounded-xl transition-all duration-200 ${
                     isActive
                       ? "text-amber-500"
-                      : "text-stone-500 hover:text-stone-300"
+                      : "text-stone-600 hover:text-black"
                   }`
                 }
               >
@@ -743,7 +743,7 @@ function Sidebar() {
                   className={`flex flex-col items-center gap-1 px-3 py-1.5 rounded-xl transition-all duration-200 ${
                     activeTray === "dashboard"
                       ? "text-amber-500"
-                      : "text-stone-500 hover:text-stone-300"
+                      : "text-stone-600 hover:text-black"
                   }`}
                 >
                   <span
@@ -777,7 +777,7 @@ function Sidebar() {
                   `flex flex-col items-center gap-1 px-3 py-1.5 rounded-xl transition-all duration-200 ${
                     isActive
                       ? "text-amber-500"
-                      : "text-stone-500 hover:text-stone-300"
+                      : "text-stone-600 hover:text-black"
                   }`
                 }
               >
