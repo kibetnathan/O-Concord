@@ -17,7 +17,7 @@ const IconCamera = () => (
 
 function InputLabel({ children }) {
   return (
-    <label className="font-coptic text-[0.6rem] uppercase tracking-widest text-stone-500">
+    <label className="font-coptic text-[0.6rem] uppercase tracking-widest text-stone-400">
       {children}
     </label>
   );
@@ -86,10 +86,10 @@ function ProfileFormInner({ profile, user, updateProfile, onClose }) {
       {/* Header */}
       <div className="flex items-center justify-between px-6 py-5 border-b border-white/[0.07] shrink-0">
         <div>
-          <p className="text-[0.6rem] uppercase tracking-[0.25em] text-stone-500 font-coptic">Account</p>
+          <p className="text-[0.6rem] uppercase tracking-[0.25em] text-stone-400 font-coptic">Account</p>
           <h2 className="font-cormorant text-xl font-semibold text-stone-100 leading-tight">Edit Profile</h2>
         </div>
-        <button onClick={onClose} className="text-stone-600 hover:text-stone-300 transition-colors p-1">
+        <button onClick={onClose} className="text-stone-400 hover:text-stone-100 transition-colors p-1">
           <IconX />
         </button>
       </div>
@@ -120,7 +120,7 @@ function ProfileFormInner({ profile, user, updateProfile, onClose }) {
         <button
           type="button"
           onClick={() => fileInputRef.current?.click()}
-          className="mt-3 font-coptic text-[0.6rem] uppercase tracking-widest text-stone-500 hover:text-amber-400 transition-colors"
+          className="mt-3 font-coptic text-[0.6rem] uppercase tracking-widest text-stone-300 hover:text-amber-400 transition-colors"
         >
           Change Photo
         </button>
@@ -137,13 +137,13 @@ function ProfileFormInner({ profile, user, updateProfile, onClose }) {
         {/* Read-only */}
         <div className="flex flex-col gap-1.5">
           <InputLabel>Username</InputLabel>
-          <p className="px-3 py-2.5 text-sm text-stone-500 bg-white/3 border border-white/6">
+          <p className="px-3 py-2.5 text-sm text-stone-200 bg-white/3 border border-white/6">
             @{user?.username}
           </p>
         </div>
         <div className="flex flex-col gap-1.5">
           <InputLabel>Email</InputLabel>
-          <p className="px-3 py-2.5 text-sm text-stone-500 bg-white/3 border border-white/6">
+          <p className="px-3 py-2.5 text-sm text-stone-200 bg-white/3 border border-white/6">
             {user?.email || "—"}
           </p>
         </div>

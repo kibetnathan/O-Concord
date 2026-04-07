@@ -5,8 +5,13 @@
   --color-ivory: #FFFEF6;
   --color-light: #fffffc;
   --color-khaki: #beb7a4;
+  --color-porcelain: #f5f0eb;
   --font-cormorant: "Cormorant Garamond", serif;
   --font-coptic: "Noto Sans Coptic", "sans";
+}
+
+html {
+  font-size: 106.25%; /* 17px base — slightly larger than default 16px */
 }
 @font-face {
   font-family: "Cormorant Garamond";

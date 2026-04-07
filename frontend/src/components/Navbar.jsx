@@ -14,10 +14,9 @@ function Navbar() {
   };
 
   const navLinkClass = ({ isActive }) =>
-    `font-coptic text-[0.6rem] uppercase tracking-[0.2em] transition-colors px-3 py-1.5 border-b border-transparent ${
-      isActive
-        ? "text-amber-500 border-amber-500"
-        : "text-stone-400 hover:text-stone-100"
+    `font-coptic text-[0.6rem] uppercase tracking-[0.2em] transition-colors px-3 py-1.5 border-b border-transparent ${isActive
+      ? "text-amber-500 border-amber-500"
+      : "text-stone-200 hover:text-white"
     }`;
 
   return (
@@ -32,7 +31,7 @@ function Navbar() {
         {/* Desktop links */}
         <ul className="hidden sm:flex items-center gap-1">
           <li>
-            <a href="#" onClick={handleHome} className="font-coptic text-[0.6rem] uppercase tracking-[0.2em] transition-colors px-3 py-1.5 border-b border-transparent text-stone-400 hover:text-stone-100">
+            <a href="#" onClick={handleHome} className="font-coptic text-[0.6rem] uppercase tracking-[0.2em] transition-colors px-3 py-1.5 border-b border-transparent text-stone-200 hover:text-white">
               Home
             </a>
           </li>
@@ -41,7 +40,7 @@ function Navbar() {
               href="https://mavunochurch.org"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-coptic text-[0.6rem] uppercase tracking-[0.2em] transition-colors px-3 py-1.5 border-b border-transparent text-stone-400 hover:text-stone-100 flex items-center gap-1"
+              className="font-coptic text-[0.6rem] uppercase tracking-[0.2em] transition-colors px-3 py-1.5 border-b border-transparent text-stone-100 hover:text-stone-100 flex items-center gap-1"
             >
               Mavuno Church
               <svg className="w-2.5 h-2.5 opacity-50" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
@@ -50,7 +49,7 @@ function Navbar() {
             </a>
           </li>
           <li>
-            <a href="#about" className="font-coptic text-[0.6rem] uppercase tracking-[0.2em] transition-colors px-3 py-1.5 border-b border-transparent text-stone-400 hover:text-stone-100">
+            <a href="#about" className="font-coptic text-[0.6rem] uppercase tracking-[0.2em] transition-colors px-3 py-1.5 border-b border-transparent text-stone-200 hover:text-white">
               Docs
             </a>
           </li>
@@ -61,7 +60,7 @@ function Navbar() {
           <div className="w-px h-4 bg-white/10" />
           <NavLink
             to="/auth/login"
-            className="font-coptic text-[0.6rem] uppercase tracking-[0.2em] text-stone-400 hover:text-stone-100 transition-colors"
+            className="font-coptic text-[0.6rem] uppercase tracking-[0.2em] text-stone-200 hover:text-white transition-colors"
           >
             Sign In
           </NavLink>
@@ -79,21 +78,20 @@ function Navbar() {
           onClick={() => setMobileOpen((v) => !v)}
           aria-label="Toggle menu"
         >
-          <span className={`block w-5 h-px bg-stone-400 transition-all duration-200 ${mobileOpen ? "rotate-45 translate-y-[3px]" : ""}`} />
-          <span className={`block w-5 h-px bg-stone-400 transition-all duration-200 ${mobileOpen ? "opacity-0" : ""}`} />
-          <span className={`block w-5 h-px bg-stone-400 transition-all duration-200 ${mobileOpen ? "-rotate-45 -translate-y-[3px]" : ""}`} />
+          <span className={`block w-5 h-px bg-stone-200 transition-all duration-200 ${mobileOpen ? "rotate-45 translate-y-[3px]" : ""}`} />
+          <span className={`block w-5 h-px bg-stone-200 transition-all duration-200 ${mobileOpen ? "opacity-0" : ""}`} />
+          <span className={`block w-5 h-px bg-stone-200 transition-all duration-200 ${mobileOpen ? "-rotate-45 -translate-y-[3px]" : ""}`} />
         </button>
       </nav>
 
       {/* Mobile menu */}
-      <div className={`sm:hidden bg-[#0f0f0d]/98 backdrop-blur-md border-b border-white/6 flex flex-col transition-all duration-200 overflow-hidden ${
-        mobileOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0 pointer-events-none"
-      }`}>
+      <div className={`sm:hidden bg-[#0f0f0d]/98 backdrop-blur-md border-b border-white/6 flex flex-col transition-all duration-200 overflow-hidden ${mobileOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0 pointer-events-none"
+        }`}>
         <div className="flex flex-col px-6 py-4 gap-1">
           <a
             href="#"
             onClick={handleHome}
-            className="font-coptic text-[0.6rem] uppercase tracking-[0.2em] text-stone-400 hover:text-stone-100 py-3 border-b border-white/5 transition-colors"
+            className="font-coptic text-[0.6rem] uppercase tracking-[0.2em] text-stone-200 hover:text-white py-3 border-b border-white/5 transition-colors"
           >
             Home
           </a>
@@ -111,7 +109,7 @@ function Navbar() {
           <a
             href="#about"
             onClick={() => setMobileOpen(false)}
-            className="font-coptic text-[0.6rem] uppercase tracking-[0.2em] text-stone-400 hover:text-stone-100 py-3 border-b border-white/5 transition-colors"
+            className="font-coptic text-[0.6rem] uppercase tracking-[0.2em] text-stone-200 hover:text-white py-3 border-b border-white/5 transition-colors"
           >
             Docs
           </a>
@@ -119,7 +117,7 @@ function Navbar() {
             <NavLink
               to="/auth/login"
               onClick={() => setMobileOpen(false)}
-              className="flex-1 text-center font-coptic text-[0.6rem] uppercase tracking-[0.2em] text-stone-400 border border-white/10 hover:border-white/20 py-2.5 transition-colors"
+              className="flex-1 text-center font-coptic text-[0.6rem] uppercase tracking-[0.2em] text-stone-200 border border-white/20 hover:border-white/40 py-2.5 transition-colors"
             >
               Sign In
             </NavLink>

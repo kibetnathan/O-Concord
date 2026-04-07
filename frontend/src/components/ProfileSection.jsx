@@ -36,7 +36,7 @@ function ProfileSection() {
   if (!profile)
     return (
       <aside className="sticky right-0 top-0 h-screen w-100 bg-[#0f0f0d] border-l border-white/6 md:flex hidden items-center justify-center">
-        <p className="text-xs tracking-widest uppercase text-stone-600 animate-pulse">
+        <p className="text-xs tracking-widest uppercase text-stone-400 animate-pulse">
           Loading…
         </p>
       </aside>
@@ -72,7 +72,7 @@ function ProfileSection() {
           <h2 className="font-cormorant text-2xl font-semibold text-stone-100 tracking-wide text-center leading-tight">
             {fullName}
           </h2>
-          <p className="font-coptic text-xs text-stone-500 tracking-widest mt-1">
+          <p className="font-coptic text-xs text-stone-300 tracking-widest mt-1">
             @{user?.username}
           </p>
 
@@ -82,7 +82,7 @@ function ProfileSection() {
           <ul className="w-full flex flex-col gap-2.5">
             {profileFields.map(({ label, value }) => (
               <li key={label} className="flex items-baseline justify-between gap-3">
-                <span className="text-[0.6rem] uppercase tracking-[0.2em] text-stone-600 shrink-0">
+                <span className="text-[0.6rem] uppercase tracking-[0.2em] text-stone-400 shrink-0">
                   {label}
                 </span>
                 <span className="text-xs text-stone-300 font-light text-right truncate">
@@ -96,7 +96,7 @@ function ProfileSection() {
         {/* ── My Groups ── */}
         <div className="flex flex-col flex-1 px-6 py-6">
           <div className="flex items-center gap-2 mb-4">
-            <span className="text-[0.6rem] uppercase tracking-[0.25em] text-stone-600">
+            <span className="text-[0.6rem] uppercase tracking-[0.25em] text-stone-400">
               My Groups
             </span>
             <div className="flex-1 h-px bg-white/6" />
@@ -112,13 +112,13 @@ function ProfileSection() {
               myGroups.map((group) => (
                 <li
                   key={group.id}
-                  className="font-coptic text-xs text-stone-400 px-3 py-2.5 border-l-2 border-transparent hover:border-amber-500/60 hover:text-stone-100 hover:bg-white/4 transition-all duration-150 cursor-default tracking-wide"
+                  className="font-coptic text-xs text-stone-200 px-3 py-2.5 border-l-2 border-transparent hover:border-amber-500/60 hover:text-white hover:bg-white/4 transition-all duration-150 cursor-default tracking-wide"
                 >
                   {group.name}
                 </li>
               ))
             ) : (
-              <li className="text-[0.65rem] text-stone-600 tracking-widest uppercase py-2">
+              <li className="text-[0.65rem] text-stone-400 tracking-widest uppercase py-2">
                 No groups yet
               </li>
             )}
@@ -128,14 +128,14 @@ function ProfileSection() {
         {/* ── Footer ── */}
         <button
           onClick={() => setEditOpen(true)}
-          className="flex items-center gap-3 w-full px-4 py-2.5 text-left font-coptic text-[0.6rem] uppercase tracking-widest text-stone-600 hover:text-amber-400 hover:cursor-pointer hover:bg-white/5 transition-colors group"
+          className="flex items-center gap-3 w-full px-4 py-2.5 text-left font-coptic text-[0.6rem] uppercase tracking-widest text-stone-300 hover:text-amber-400 hover:cursor-pointer hover:bg-white/5 transition-colors group"
         >
           <IconEdit />
           Edit Profile
         </button>
 
         <div className="px-6 py-4 border-t border-white/6">
-          <p className="text-[0.55rem] tracking-[0.25em] uppercase text-stone-700">
+          <p className="text-[0.55rem] tracking-[0.25em] uppercase text-stone-400">
             Open Church Management
           </p>
         </div>
