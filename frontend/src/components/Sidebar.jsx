@@ -88,7 +88,7 @@ function Sidebar() {
 
   return (
     <>
-      <aside className="sticky top-0 hidden md:flex flex-col w-95 h-screen bg-white border-r border-stone-200">
+      <aside className="sticky top-0 hidden md:flex flex-col w-95 h-screen bg-porcelain border-r border-stone-200">
         <div className="flex items-center justify-between px-6 h-16 border-b border-stone-200 shrink-0">
           <NavLink
             to="/"
@@ -438,7 +438,7 @@ function Sidebar() {
       </aside>
       <div className="fixed flex md:hidden bottom-3 left-0 right-0 px-3 z-50">
         {activeTray && (
-          <div className="absolute bottom-18 left-3 right-3 bg-white backdrop-blur-md border border-stone-200 rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.15)] overflow-hidden">
+          <div className="absolute bottom-18 left-3 right-3 bg-porcelain backdrop-blur-md border border-stone-200 rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.15)] overflow-hidden">
             {activeTray === "dashboard" && (
               <ul className="flex flex-col py-2">
                 <li className="px-4 pt-2 pb-1 text-[0.5rem] uppercase tracking-[0.25em] text-stone-500">
@@ -566,7 +566,7 @@ function Sidebar() {
           </div>
         )}
 
-        <nav className="w-full h-16 rounded-2xl bg-white backdrop-blur-md border border-stone-200 shadow-[0_8px_32px_rgba(0,0,0,0.1)]">
+        <nav className="w-full h-16 rounded-2xl bg-porcelain backdrop-blur-md border border-stone-200 shadow-[0_8px_32px_rgba(0,0,0,0.1)]">
           <ul className="flex items-center justify-around h-full px-2">
             <li>
               <NavLink

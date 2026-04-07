@@ -81,7 +81,7 @@ function ProfileFormInner({ profile, user, updateProfile, onClose }) {
   const avatarSrc = imagePreview || profile?.profile_pic_url || "/images/defaultavatar.jpg";
 
   return (
-    <div className="fixed right-0 top-0 h-screen w-80 bg-white border-l border-stone-200 z-50 flex flex-col overflow-y-auto shadow-2xl">
+    <div className="fixed right-0 top-0 h-screen w-80 bg-porcelain border-l border-stone-200 z-50 flex flex-col overflow-y-auto shadow-2xl">
 
       {/* Header */}
       <div className="flex items-center justify-between px-6 py-5 border-b border-stone-100 shrink-0">
@@ -165,7 +165,7 @@ function ProfileFormInner({ profile, user, updateProfile, onClose }) {
               value={fields[key]}
               onChange={(e) => setFields((f) => ({ ...f, [key]: e.target.value }))}
               placeholder={placeholder}
-              className="bg-white border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-900 placeholder:text-stone-300 transition-colors"
+              className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-900 placeholder:text-stone-300 transition-colors"
             />
           </div>
         ))}
