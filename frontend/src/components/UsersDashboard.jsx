@@ -102,7 +102,7 @@ function UserCard({ isSelected, onSelect, user, allProfiles }) {
   return (
     <div
       onClick={() => onSelect(user)}
-      className={`flex flex-row gap-4 p-3 items-center bg-white border transition-all duration-200 cursor-pointer hover:border-amber-300 hover:shadow-sm ${
+      className={`flex flex-row gap-4 p-3 items-center bg-ivory border transition-all duration-200 cursor-pointer hover:border-amber-300 hover:shadow-sm ${
         isSelected ? "border-amber-400 shadow-sm" : "border-transparent"
       }`}
     >
@@ -302,25 +302,25 @@ function EditUserForm({ user, allProfiles, onSuccess, onCancel }) {
         <div className="flex flex-col gap-1.5">
           <InputLabel>First Name</InputLabel>
           <input type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} placeholder="First name"
-            className="bg-white border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-300 transition-colors w-full" />
+            className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-300 transition-colors w-full" />
         </div>
         <div className="flex flex-col gap-1.5">
           <InputLabel>Last Name</InputLabel>
           <input type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} placeholder="Last name"
-            className="bg-white border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-300 transition-colors w-full" />
+            className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-300 transition-colors w-full" />
         </div>
       </div>
 
       <div className="flex flex-col gap-1.5">
         <InputLabel>Username *</InputLabel>
         <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="username" required
-          className="bg-white border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-300 transition-colors w-full" />
+          className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-300 transition-colors w-full" />
       </div>
 
       <div className="flex flex-col gap-1.5">
         <InputLabel>Email</InputLabel>
         <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="email@example.com"
-          className="bg-white border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-300 transition-colors w-full" />
+          className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-300 transition-colors w-full" />
       </div>
 
       <div className="flex flex-col gap-1.5">
@@ -366,31 +366,31 @@ function EditUserForm({ user, allProfiles, onSuccess, onCancel }) {
       <div className="flex flex-col gap-1.5">
         <InputLabel>Phone Number</InputLabel>
         <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="+254 700 000 000"
-          className="bg-white border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-300 transition-colors w-full" />
+          className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-300 transition-colors w-full" />
       </div>
 
       <div className="flex flex-col gap-1.5">
         <InputLabel>Date of Birth</InputLabel>
         <input type="date" value={dob} onChange={(e) => setDob(e.target.value)}
-          className="bg-white border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 transition-colors w-full" />
+          className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 transition-colors w-full" />
       </div>
 
       <div className="flex flex-col gap-1.5">
         <InputLabel>Campus</InputLabel>
         <input type="text" value={campus} onChange={(e) => setCampus(e.target.value)} placeholder="Campus name"
-          className="bg-white border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-300 transition-colors w-full" />
+          className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-300 transition-colors w-full" />
       </div>
 
       <div className="flex flex-col gap-1.5">
         <InputLabel>School</InputLabel>
         <input type="text" value={school} onChange={(e) => setSchool(e.target.value)} placeholder="School / University"
-          className="bg-white border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-300 transition-colors w-full" />
+          className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-300 transition-colors w-full" />
       </div>
 
       <div className="flex flex-col gap-1.5">
         <InputLabel>Workplace</InputLabel>
         <input type="text" value={workplace} onChange={(e) => setWorkplace(e.target.value)} placeholder="Company / Organisation"
-          className="bg-white border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-300 transition-colors w-full" />
+          className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-300 transition-colors w-full" />
       </div>
 
       {error && <p className="text-[0.6rem] uppercase tracking-widest text-red-400">{error}</p>}
@@ -467,12 +467,12 @@ function UsersDashboard() {
   const rightTitle = mode === "edit" ? "Edit Member" : "Member Details";
 
   return (
-    <div className="min-h-screen w-full bg-white p-8">
+    <div className="min-h-screen w-full bg-ivory p-8">
 
       {/* ── Header ── */}
       <div className="mb-10">
         <p className="text-[0.6rem] uppercase tracking-[0.25em] text-stone-400 mb-1">Members</p>
-        <h1 className="font-cormorant text-4xl font-semibold text-stone-800 leading-tight">Congregants</h1>
+        <h1 className="font-cormorant text-4xl font-semibold text-black leading-tight">Congregants</h1>
         <div className="w-8 h-0.5 bg-amber-500 mt-3" />
       </div>
 
@@ -516,13 +516,13 @@ function UsersDashboard() {
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="Search by name or username…"
-                className="bg-white border border-stone-200 focus:border-amber-400 focus:outline-none pl-9 pr-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-300 transition-colors w-full"
+                className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none pl-9 pr-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-300 transition-colors w-full"
               />
             </div>
             <select
               value={groupFilter}
               onChange={(e) => setGroupFilter(e.target.value)}
-              className="bg-white border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 transition-colors shrink-0"
+              className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 transition-colors shrink-0"
             >
               <option value="all">All Roles</option>
               {allGroups.map((g) => (
@@ -533,7 +533,7 @@ function UsersDashboard() {
 
           {/* User list */}
           {filtered.length > 0 ? (
-            <div className="flex flex-col divide-y divide-stone-100 border border-stone-100 bg-white">
+            <div className="flex flex-col divide-y divide-stone-100 border border-stone-100 bg-ivory">
               {filtered.map((user) => (
                 <UserCard
                   key={user.id}

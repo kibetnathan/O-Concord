@@ -103,7 +103,7 @@ function PostForm() {
               type="text"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              className="bg-white border border-stone-200 focus:border-amber-400 focus:outline-none px-4 py-3 text-sm text-stone-800 placeholder:text-stone-300 font-light transition-colors"
+              className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-4 py-3 text-sm text-stone-800 placeholder:text-stone-300 font-light transition-colors"
               placeholder="What is your post about?"
               required
             />
@@ -117,7 +117,7 @@ function PostForm() {
             <textarea
               value={text}
               onChange={(e) => setText(e.target.value)}
-              className="bg-white border border-stone-200 focus:border-amber-400 focus:outline-none px-4 py-3 text-sm text-stone-800 placeholder:text-stone-300 font-light transition-colors resize-none min-h-36"
+              className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-4 py-3 text-sm text-stone-800 placeholder:text-stone-300 font-light transition-colors resize-none min-h-36"
               placeholder="Write your post..."
               required
             />
@@ -132,7 +132,7 @@ function PostForm() {
               type="text"
               value={tags}
               onChange={(e) => setTags(e.target.value)}
-              className="bg-white border border-stone-200 focus:border-amber-400 focus:outline-none px-4 py-3 text-sm text-stone-800 placeholder:text-stone-300 font-light transition-colors"
+              className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-4 py-3 text-sm text-stone-800 placeholder:text-stone-300 font-light transition-colors"
               placeholder="e.g. worship, announcements, prayer"
               required
             />

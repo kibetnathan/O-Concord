@@ -13,7 +13,7 @@ function PageNotFound() {
     <>
       <Navbar />
       <div className="flex flex-col w-full min-h-screen justify-center items-center bg-amber-50">
-        <div className="relative bg-white border border-stone-200 rounded-sm p-12 w-96 text-center shadow-md overflow-hidden">
+        <div className="relative bg-porcelain border border-stone-200 rounded-sm p-12 w-96 text-center shadow-md overflow-hidden">
           <div className='absolute -top-8 -right-6 w-32 h-32 bg-amber-500/10 rounded-full blur-3xl pointer-events-none' ></div>
           <div className="w-12 h-px bg-amber-500 mx-auto mb-8" />
 

@@ -236,7 +236,7 @@ function SignUpForm() {
 // ── Shared helpers ────────────────────────────────────────────────────────────
 
 const inputCls =
-  "bg-white border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-300 transition-colors w-full";
+  "bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-300 transition-colors w-full";
 
 function Field({ label, children }) {
   return (

@@ -85,7 +85,7 @@ function LoginForm() {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your username"
                 required
-                className="bg-white border border-stone-200 focus:border-amber-400 focus:outline-none px-4 py-3 text-sm text-stone-700 placeholder:text-stone-300 transition-colors"
+                className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-4 py-3 text-sm text-stone-700 placeholder:text-stone-300 transition-colors"
               />
             </div>
 
@@ -99,7 +99,7 @@ function LoginForm() {
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Enter your password"
                 required
-                className="bg-white border border-stone-200 focus:border-amber-400 focus:outline-none px-4 py-3 text-sm text-stone-700 placeholder:text-stone-300 transition-colors"
+                className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-4 py-3 text-sm text-stone-700 placeholder:text-stone-300 transition-colors"
               />
             </div>
 

@@ -43,7 +43,7 @@ export default function ProfilePage() {
 
   if (!profile)
     return (
-      <div className="md:hidden flex h-screen w-full bg-white items-center justify-center">
+      <div className="md:hidden flex h-screen w-full bg-ivory items-center justify-center">
         <Sidebar/>
         <p className="text-xs tracking-widest uppercase text-stone-500 animate-pulse">
           Loading…
@@ -53,7 +53,7 @@ export default function ProfilePage() {
 
   return (
     <>
-      <div className="md:hidden flex flex-col min-h-screen bg-white overflow-y-auto pb-20">
+      <div className="md:hidden flex flex-col min-h-screen bg-ivory overflow-y-auto pb-20">
         <Sidebar/>
         {/* ── Profile Card ── */}
         <div className="flex flex-col items-center px-6 pt-14 pb-7 border-b border-stone-200">

@@ -35,14 +35,14 @@ export default function AdminStreamPanel() {
         <p className="font-coptic text-[0.5rem] uppercase tracking-[0.3em] text-stone-500 mb-1">
           Dashboard / Streaming
         </p>
-        <h1 className="font-cormorant text-3xl font-semibold text-stone-800 leading-tight">
+        <h1 className="font-cormorant text-3xl font-semibold text-black leading-tight">
           Stream Control
         </h1>
         <div className="w-8 h-px bg-amber-500 mt-3" />
       </div>
 
       {/* Info card */}
-      <div className="border border-stone-200 bg-white p-5 mb-6">
+      <div className="border border-stone-200 bg-ivory p-5 mb-6">
         <p className="font-coptic text-[0.6rem] uppercase tracking-[0.2em] text-stone-400 mb-2">
           How it works
         </p>
@@ -54,7 +54,7 @@ export default function AdminStreamPanel() {
       </div>
 
       {/* Toggle row */}
-      <div className="border border-stone-200 bg-white">
+      <div className="border border-stone-200 bg-ivory">
         <div className="flex items-center justify-between px-5 py-5">
           <div className="flex flex-col gap-1">
             <p className="font-cormorant text-xl font-semibold text-stone-800 leading-tight">

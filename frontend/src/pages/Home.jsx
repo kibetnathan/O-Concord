@@ -50,14 +50,14 @@ function Home() {
       {/* ── About strip ── */}
       <section
         id="about"
-        className="bg-white border-b border-stone-200 px-6 sm:px-10 lg:px-16 py-16 sm:py-20"
+        className="bg-ivory border-b border-stone-200 px-6 sm:px-10 lg:px-16 py-16 sm:py-20"
       >
         <div className="max-w-6xl mx-auto flex flex-col lg:flex-row gap-10 lg:gap-20 items-start">
           <div className="lg:w-1/2">
             <p className="text-[0.6rem] uppercase tracking-[0.25em] text-stone-400 mb-3">
               About the Platform
             </p>
-            <h2 className="font-cormorant text-4xl sm:text-5xl font-light text-stone-800 leading-tight">
+            <h2 className="font-cormorant text-4xl sm:text-5xl font-light text-black leading-tight">
               Built for Mavuno.
               <br />
               <span className="text-amber-500 italic">
@@ -99,13 +99,13 @@ function Home() {
       </section>
 
       {/* ── Features ── */}
-      <section className="bg-white px-6 sm:px-10 lg:px-16 py-20 sm:py-28">
+      <section className="bg-ivory px-6 sm:px-10 lg:px-16 py-20 sm:py-28">
         <div className="max-w-6xl mx-auto">
           <div className="mb-12">
             <p className="text-[0.6rem] uppercase tracking-[0.25em] text-stone-400 mb-2">
               What's Inside
             </p>
-            <h2 className="font-cormorant text-4xl sm:text-5xl font-light text-stone-800">
+            <h2 className="font-cormorant text-4xl sm:text-5xl font-light text-black">
               Platform Features
             </h2>
             <div className="w-8 h-0.5 bg-amber-500 mt-4" />
@@ -146,7 +146,7 @@ function Home() {
             ].map(({ number, title, body }) => (
               <div
                 key={number}
-                className="bg-white border border-stone-100 p-6 hover:border-amber-300 hover:shadow-md transition-all group"
+                className="bg-ivory border border-stone-100 p-6 hover:border-amber-300 hover:shadow-md transition-all group"
               >
                 <p className="font-cormorant text-3xl font-light text-amber-500/60 mb-4 group-hover:text-amber-500 transition-colors">
                   {number}
@@ -214,7 +214,7 @@ function Home() {
             ].map(({ role, color, accent, points }) => (
               <div
                 key={role}
-                className={`bg-white border-t-4 ${color} p-6 shadow-sm`}
+                className={`bg-ivory border-t-4 ${color} p-6 shadow-sm`}
               >
                 <h3
                   className={`font-cormorant text-2xl font-semibold ${accent} mb-4`}

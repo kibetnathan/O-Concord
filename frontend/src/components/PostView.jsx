@@ -240,13 +240,13 @@ function PostView() {
   const canDeletePost = isPostAuthor || isLeader(currentUser);
 
   if (postLoading) return (
-    <div className="min-h-screen bg-white flex items-center justify-center">
+    <div className="min-h-screen bg-ivory flex items-center justify-center">
       <p className="text-xs uppercase tracking-[0.25em] text-stone-400 animate-pulse">Loading…</p>
     </div>
   );
 
   if (!post) return (
-    <div className="min-h-screen bg-white flex flex-col items-center justify-center gap-4">
+    <div className="min-h-screen bg-ivory flex flex-col items-center justify-center gap-4">
       <p className="text-xs uppercase tracking-[0.25em] text-stone-400">Post not found</p>
       <button onClick={() => navigate(-1)} className="font-coptic text-[0.6rem] uppercase tracking-widest text-amber-500 hover:text-amber-600">
         Go back
@@ -255,7 +255,7 @@ function PostView() {
   );
 
   return (
-    <div className="min-h-screen w-full bg-white">
+    <div className="min-h-screen w-full bg-ivory">
       <div className="max-w-2xl mx-auto px-6 py-10">
 
         {/* ── Back nav ── */}
@@ -321,7 +321,7 @@ function PostView() {
           </div>
 
           {/* Title */}
-          <h1 className="font-cormorant text-3xl font-semibold text-stone-800 leading-snug mb-4">
+          <h1 className="font-cormorant text-3xl font-semibold text-black leading-snug mb-4">
             {post.title}
           </h1>
 
@@ -386,7 +386,7 @@ function PostView() {
                 onChange={(e) => setCommentText(e.target.value)}
                 placeholder="Write a comment…"
                 rows={2}
-                className="bg-white border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-300 transition-colors resize-none w-full"
+                className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-300 transition-colors resize-none w-full"
               />
               <div className="flex justify-end">
                 <button
@@ -410,7 +410,7 @@ function PostView() {
                 value={editText}
                 onChange={(e) => setEditText(e.target.value)}
                 rows={3}
-                className="bg-white border border-amber-300 focus:border-amber-500 focus:outline-none px-3 py-2.5 text-sm text-stone-700 transition-colors resize-none w-full mb-2"
+                className="bg-ivory border border-amber-300 focus:border-amber-500 focus:outline-none px-3 py-2.5 text-sm text-stone-700 transition-colors resize-none w-full mb-2"
               />
               <div className="flex gap-2">
                 <button

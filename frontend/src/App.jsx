@@ -44,7 +44,7 @@ function App() {
 
   if (loading) {
     return (
-      <div className="flex flex-col items-center justify-center h-screen bg-white gap-6">
+      <div className="flex flex-col items-center justify-center h-screen bg-ivory gap-6">
         {/* Logo */}
         <div className="font-cormorant text-3xl font-semibold tracking-[0.15em] text-stone-900">
           O<span className="text-amber-500">C</span>M

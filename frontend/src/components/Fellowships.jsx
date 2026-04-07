@@ -153,7 +153,7 @@ function FormInput({ ...props }) {
   return (
     <input
       {...props}
-      className="bg-white border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-300 transition-colors w-full"
+      className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-300 transition-colors w-full"
     />
   );
 }
@@ -174,7 +174,7 @@ function FellowshipCard({
   return (
     <div
       onClick={() => onSelect(group)}
-      className={`flex flex-col bg-white border transition-all duration-200 cursor-pointer hover:border-amber-300 hover:shadow-md ${
+      className={`flex flex-col bg-ivory border transition-all duration-200 cursor-pointer hover:border-amber-300 hover:shadow-md ${
         isSelected ? "border-amber-400 shadow-md" : "border-stone-100"
       }`}
     >
@@ -455,7 +455,7 @@ function CreateFellowshipForm({ allUsers, allProfiles, onSuccess }) {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           placeholder="Brief description of this fellowship group…"
-          className="bg-white border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-300 transition-colors resize-none min-h-16 w-full"
+          className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-300 transition-colors resize-none min-h-16 w-full"
         />
       </div>
 
@@ -470,7 +470,7 @@ function CreateFellowshipForm({ allUsers, allProfiles, onSuccess }) {
         <select
           value={leaderId}
           onChange={(e) => setLeaderId(e.target.value)}
-          className="bg-white border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 transition-colors w-full"
+          className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 transition-colors w-full"
         >
           <option value="">Select a leader…</option>
           {allUsers.map((u) => (
@@ -526,7 +526,7 @@ function CreateFellowshipForm({ allUsers, allProfiles, onSuccess }) {
             value={memberSearch}
             onChange={(e) => setMemberSearch(e.target.value)}
             placeholder="Search members…"
-            className="bg-white border border-stone-200 focus:border-amber-400 focus:outline-none pl-9 pr-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-300 transition-colors w-full"
+            className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none pl-9 pr-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-300 transition-colors w-full"
           />
         </div>
 
@@ -686,7 +686,7 @@ function EditFellowshipForm({
         <textarea
           value={description}
           onChange={(e) => setDescription(e.target.value)}
-          className="bg-white border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 transition-colors resize-none min-h-16 w-full"
+          className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 transition-colors resize-none min-h-16 w-full"
         />
       </div>
       <div className="flex flex-col gap-1.5">
@@ -694,7 +694,7 @@ function EditFellowshipForm({
         <select
           value={leaderId}
           onChange={(e) => setLeaderId(e.target.value)}
-          className="bg-white border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 transition-colors w-full"
+          className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 transition-colors w-full"
         >
           <option value="">No leader</option>
           {allUsers.map((u) => (
@@ -735,7 +735,7 @@ function EditFellowshipForm({
             value={memberSearch}
             onChange={(e) => setMemberSearch(e.target.value)}
             placeholder="Search members…"
-            className="bg-white border border-stone-200 focus:border-amber-400 focus:outline-none pl-9 pr-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-300 transition-colors w-full"
+            className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none pl-9 pr-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-300 transition-colors w-full"
           />
         </div>
         <div className="border border-stone-200 divide-y divide-stone-100 max-h-48 overflow-y-auto">
@@ -871,14 +871,14 @@ function Fellowships() {
   };
 
   return (
-    <div className="min-h-screen w-full bg-white p-8">
+    <div className="min-h-screen w-full bg-ivory p-8">
       {/* ── Header ── */}
       <div className="flex items-end justify-between mb-10">
         <div>
           <p className="text-[0.6rem] uppercase tracking-[0.25em] text-stone-400 mb-1">
             Groups
           </p>
-          <h1 className="font-cormorant text-4xl font-semibold text-stone-800 leading-tight">
+          <h1 className="font-cormorant text-4xl font-semibold text-black leading-tight">
             Fellowship Groups
           </h1>
           <div className="w-8 h-0.5 bg-amber-500 mt-3" />
@@ -947,7 +947,7 @@ function Fellowships() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search groups…"
-              className="bg-white border border-stone-200 focus:border-amber-400 focus:outline-none pl-9 pr-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-300 transition-colors w-full"
+              className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none pl-9 pr-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-300 transition-colors w-full"
             />
           </div>
 

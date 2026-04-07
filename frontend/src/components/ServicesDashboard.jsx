@@ -87,7 +87,7 @@ function ServiceCard({ service, allUsers, allProfiles, allDepartments, onSelect,
 
   return (
     <div onClick={() => onSelect(service)}
-      className={`flex flex-col bg-white border transition-all duration-200 cursor-pointer hover:border-amber-300 hover:shadow-md ${isSelected ? "border-amber-400 shadow-md" : "border-stone-100"}`}>
+      className={`flex flex-col bg-ivory border transition-all duration-200 cursor-pointer hover:border-amber-300 hover:shadow-md ${isSelected ? "border-amber-400 shadow-md" : "border-stone-100"}`}>
       <div className="flex items-start justify-between p-5 border-b border-stone-100">
         <div className="flex-1 min-w-0">
           <h3 className="font-cormorant text-xl font-semibold text-stone-800 leading-tight truncate">{service.name}</h3>
@@ -228,7 +228,7 @@ function EquipmentCard({ item, services, departments, onSelect, isSelected }) {
 
   return (
     <div onClick={() => onSelect(item)}
-      className={`flex bg-white border transition-all duration-200 cursor-pointer hover:border-amber-300 hover:shadow-md ${isSelected ? "border-amber-400 shadow-md" : "border-stone-100"}`}>
+      className={`flex bg-ivory border transition-all duration-200 cursor-pointer hover:border-amber-300 hover:shadow-md ${isSelected ? "border-amber-400 shadow-md" : "border-stone-100"}`}>
       {item.image && <img src={item.image} alt={item.name} className="w-20 h-full object-cover shrink-0" />}
       <div className="flex flex-col flex-1 min-w-0 p-4 gap-1">
         <div className="flex items-start justify-between gap-2">
@@ -348,7 +348,7 @@ function MemberPicker({ allUsers, allProfiles, selected, onChange }) {
       <div className="relative">
         <span className="absolute left-3 top-1/2 -translate-y-1/2 text-stone-300"><IconSearch /></span>
         <input type="text" value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search members…"
-          className="bg-white border border-stone-200 focus:border-amber-400 focus:outline-none pl-9 pr-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-300 transition-colors w-full" />
+          className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none pl-9 pr-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-300 transition-colors w-full" />
       </div>
       <div className="border border-stone-200 divide-y divide-stone-100 max-h-44 overflow-y-auto">
         {filtered.map((u) => {
@@ -381,17 +381,17 @@ function ServiceFields({ name, setName, description, setDescription, pastorId, s
       <div className="flex flex-col gap-1.5">
         <InputLabel>Service Name *</InputLabel>
         <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="e.g. Youth Service" required
-          className="bg-white border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-300 transition-colors w-full" />
+          className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-300 transition-colors w-full" />
       </div>
       <div className="flex flex-col gap-1.5">
         <InputLabel>Description</InputLabel>
         <textarea value={description} onChange={(e) => setDescription(e.target.value)} placeholder="About this service…"
-          className="bg-white border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-300 transition-colors resize-none min-h-16 w-full" />
+          className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-300 transition-colors resize-none min-h-16 w-full" />
       </div>
       <div className="flex flex-col gap-1.5">
         <InputLabel>Pastor <span className="text-stone-300 normal-case tracking-normal">(optional)</span></InputLabel>
         <select value={pastorId} onChange={(e) => setPastorId(e.target.value)}
-          className="bg-white border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 transition-colors w-full">
+          className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 transition-colors w-full">
           <option value="">No pastor</option>
           {allUsers.map((u) => (
             <option key={u.id} value={u.id}>
@@ -495,17 +495,17 @@ function EquipmentFields({ name, setName, description, setDescription, quantity,
       <div className="flex flex-col gap-1.5">
         <InputLabel>Name *</InputLabel>
         <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="e.g. Yamaha Sound Desk" required
-          className="bg-white border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-300 transition-colors w-full" />
+          className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-300 transition-colors w-full" />
       </div>
       <div className="flex flex-col gap-1.5">
         <InputLabel>Description</InputLabel>
         <textarea value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Details about this equipment…"
-          className="bg-white border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-300 transition-colors resize-none min-h-16 w-full" />
+          className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-300 transition-colors resize-none min-h-16 w-full" />
       </div>
       <div className="flex flex-col gap-1.5">
         <InputLabel>Quantity</InputLabel>
         <input type="number" min="1" value={quantity} onChange={(e) => setQuantity(e.target.value)}
-          className="bg-white border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 transition-colors w-full" />
+          className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 transition-colors w-full" />
       </div>
       {showImageField && (
         <div className="flex flex-col gap-1.5">
@@ -519,21 +519,21 @@ function EquipmentFields({ name, setName, description, setDescription, quantity,
         <div className="flex gap-3">
           {["none", "service", "department"].map((opt) => (
             <button key={opt} type="button" onClick={() => setAssignTo(opt)}
-              className={`flex-1 py-2 text-[0.6rem] uppercase tracking-widest font-coptic border transition-colors ${assignTo === opt ? "bg-amber-500 border-amber-500 text-white" : "bg-white border-stone-200 text-stone-500 hover:border-amber-300"}`}>
+              className={`flex-1 py-2 text-[0.6rem] uppercase tracking-widest font-coptic border transition-colors ${assignTo === opt ? "bg-amber-500 border-amber-500 text-white" : "bg-ivory border-stone-200 text-stone-500 hover:border-amber-300"}`}>
               {opt === "none" ? "None" : opt === "service" ? "Service" : "Department"}
             </button>
           ))}
         </div>
         {assignTo === "service" && (
           <select value={assignedService} onChange={(e) => setAssignedService(e.target.value)}
-            className="bg-white border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 transition-colors w-full mt-1">
+            className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 transition-colors w-full mt-1">
             <option value="">Select a service…</option>
             {services.map((s) => <option key={s.id} value={s.id}>{s.name}</option>)}
           </select>
         )}
         {assignTo === "department" && (
           <select value={assignedDepartment} onChange={(e) => setAssignedDepartment(e.target.value)}
-            className="bg-white border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 transition-colors w-full mt-1">
+            className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 transition-colors w-full mt-1">
             <option value="">Select a department…</option>
             {departments.map((d) => <option key={d.id} value={d.id}>{d.name}</option>)}
           </select>
@@ -704,12 +704,12 @@ function ServicesDashboard() {
     : (tab === "services" ? "Service Details" : "Equipment Details");
 
   return (
-    <div className="min-h-screen w-full bg-white p-8">
+    <div className="min-h-screen w-full bg-ivory p-8">
 
       <div className="flex items-end justify-between mb-8">
         <div>
           <p className="text-[0.6rem] uppercase tracking-[0.25em] text-stone-400 mb-1">Church</p>
-          <h1 className="font-cormorant text-4xl font-semibold text-stone-800 leading-tight">Services & Equipment</h1>
+          <h1 className="font-cormorant text-4xl font-semibold text-black leading-tight">Services & Equipment</h1>
           <div className="w-8 h-0.5 bg-amber-500 mt-3" />
         </div>
         <button onClick={() => { setMode(mode === "create" ? "idle" : "create"); setSelected(null); }}
@@ -764,7 +764,7 @@ function ServicesDashboard() {
             <span className="absolute left-3 top-1/2 -translate-y-1/2 text-stone-300"><IconSearch /></span>
             <input type="text" value={search} onChange={(e) => setSearch(e.target.value)}
               placeholder={tab === "services" ? "Search services…" : "Search equipment…"}
-              className="bg-white border border-stone-200 focus:border-amber-400 focus:outline-none pl-9 pr-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-300 transition-colors w-full" />
+              className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none pl-9 pr-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-300 transition-colors w-full" />
           </div>
 
           {tab === "services" ? (

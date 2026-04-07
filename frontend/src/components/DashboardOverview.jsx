@@ -252,13 +252,13 @@ function DashboardOverview() {
   );
 
   return (
-    <div className="min-h-screen w-full bg-white p-8">
+    <div className="min-h-screen w-full bg-ivory p-8">
       {/* ── Page header ── */}
       <div className="mb-10">
         <p className="text-[0.6rem] uppercase tracking-[0.25em] text-stone-400 mb-1">
           {greeting()},
         </p>
-        <h1 className="font-cormorant text-4xl font-semibold text-stone-800 leading-tight">
+        <h1 className="font-cormorant text-4xl font-semibold text-black leading-tight">
           {displayName}
         </h1>
         <div className="w-8 h-0.5 bg-amber-500 mt-3" />
@@ -294,7 +294,7 @@ function DashboardOverview() {
                   return (
                     <div
                       key={leader.id}
-                      className="relative overflow-hidden flex items-center gap-4 bg-white border border-stone-200 px-4 py-3 rounded-sm shadow-sm hover:border-amber-300 transition-colors"
+                      className="relative overflow-hidden flex items-center gap-4 bg-ivory border border-stone-200 px-4 py-3 rounded-sm shadow-sm hover:border-amber-300 transition-colors"
                     >
                       <div className="absolute -bottom-4 -left-4 w-16 h-16 bg-amber-500/8 rounded-full blur-xl pointer-events-none" />
                       <img
@@ -332,7 +332,7 @@ function DashboardOverview() {
           <section>
             <SectionHeading>Top Posts</SectionHeading>
             {topPosts.length > 0 ? (
-              <div className="flex flex-col divide-y divide-stone-100 border border-stone-100 bg-white">
+              <div className="flex flex-col divide-y divide-stone-100 border border-stone-100 bg-ivory">
                 {topPosts.map((post, i) => (
                   <div
                     key={post.id}
@@ -419,7 +419,7 @@ function DashboardOverview() {
                 onChange={(e) => setTitle(e.target.value)}
                 required
                 placeholder="Post title…"
-                className="bg-white border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-900 placeholder:text-stone-300 transition-colors rounded-sm"
+                className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-900 placeholder:text-stone-300 transition-colors rounded-sm"
               />
             </div>
 
@@ -433,7 +433,7 @@ function DashboardOverview() {
                 onChange={(e) => setText(e.target.value)}
                 required
                 placeholder="What's on your heart?"
-                className="bg-white border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-900 placeholder:text-stone-300 transition-colors resize-none min-h-24 rounded-sm"
+                className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-900 placeholder:text-stone-300 transition-colors resize-none min-h-24 rounded-sm"
               />
             </div>
 
@@ -448,7 +448,7 @@ function DashboardOverview() {
                 onChange={(e) => setTags(e.target.value)}
                 required
                 placeholder="worship, prayer…"
-                className="bg-white border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-900 placeholder:text-stone-300 transition-colors rounded-sm"
+                className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-900 placeholder:text-stone-300 transition-colors rounded-sm"
               />
             </div>
 

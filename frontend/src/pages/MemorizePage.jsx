@@ -180,7 +180,7 @@ function PracticeCard({ verse, onResult, onSkip }) {
       </div>
 
       {/* Verse display with inline inputs */}
-      <div className="border border-stone-200 bg-white p-4 sm:p-6 leading-loose font-serif text-base sm:text-lg text-stone-700 min-h-[120px]">
+      <div className="border border-stone-200 bg-ivory p-4 sm:p-6 leading-loose font-serif text-base sm:text-lg text-stone-700 min-h-[120px]">
         {blanked.map(({ word, blanked: isBlank }, i) => {
           if (!isBlank) return <span key={i}>{word} </span>;
 
@@ -440,13 +440,13 @@ function MemorizePage() {
   const sessionRemain = reviewQueue.length;
 
   return (
-    <div className="flex h-screen overflow-hidden bg-white">
+    <div className="flex h-screen overflow-hidden bg-ivory">
       <Sidebar />
 
       <div className="flex flex-1 min-w-0 overflow-hidden flex-col">
 
         {/* Top bar */}
-        <div className="flex items-center gap-3 px-4 sm:px-6 py-3 border-b border-stone-200 bg-white shrink-0">
+        <div className="flex items-center gap-3 px-4 sm:px-6 py-3 border-b border-stone-200 bg-porcelain shrink-0">
           <button onClick={() => navigate('/bible')}
             className="p-1.5 text-stone-400 hover:text-amber-500 border border-stone-200 hover:border-amber-300 transition-colors shrink-0"
           >
@@ -486,7 +486,7 @@ function MemorizePage() {
         </div>
 
         {/* Tab switcher */}
-        <div className="flex border-b border-stone-200 bg-white shrink-0">
+        <div className="flex border-b border-stone-200 bg-porcelain shrink-0">
           {[
             { key: 'review', label: `Review${stats?.due_today ? ` (${stats.due_today})` : ''}` },
             { key: 'saved',  label: `All verses${stats?.total ? ` (${stats.total})` : ''}` },
@@ -606,7 +606,7 @@ function MemorizePage() {
                   >Open Bible reader →</button>
                 </div>
               ) : (
-                <div className="border border-stone-200 bg-white">
+                <div className="border border-stone-200 bg-ivory">
                   {verses.map(verse => (
                     <VerseRow key={verse.id} verse={verse} onDelete={handleDelete} />
                   ))}

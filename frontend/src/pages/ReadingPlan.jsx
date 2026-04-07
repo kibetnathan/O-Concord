@@ -74,7 +74,7 @@ function formatDate(dateStr) {
 function YouVersionWidget({ widgetUrl, title }) {
   if (!widgetUrl) return null;
   return (
-    <div className="w-full overflow-hidden border border-stone-200 bg-white">
+    <div className="w-full overflow-hidden border border-stone-200 bg-ivory">
       <iframe
         src={widgetUrl}
         title={`YouVersion plan: ${title}`}
@@ -114,7 +114,7 @@ function PlanDetail({ plan, onClose, onJoin, onLeave, canEdit, onEdit, onDelete 
       <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={onClose} />
 
       {/* Panel */}
-      <div className="relative z-10 w-full sm:max-w-lg bg-white border border-stone-200 shadow-2xl flex flex-col max-h-[90vh] rounded-t-2xl sm:rounded-none overflow-hidden">
+      <div className="relative z-10 w-full sm:max-w-lg bg-porcelain border border-stone-200 shadow-2xl flex flex-col max-h-[90vh] rounded-t-2xl sm:rounded-none overflow-hidden">
 
         {/* Drag handle — mobile */}
         <div className="sm:hidden flex justify-center pt-3 pb-1 shrink-0">
@@ -258,7 +258,7 @@ function Field({ label, error, children }) {
 }
 
 function inputCls(err) {
-  return `w-full border ${err ? 'border-red-300 focus:border-red-400' : 'border-stone-200 focus:border-amber-400'} focus:outline-none px-3 py-2 text-sm text-stone-700 font-serif bg-white`;
+  return `w-full border ${err ? 'border-red-300 focus:border-red-400' : 'border-stone-200 focus:border-amber-400'} focus:outline-none px-3 py-2 text-sm text-stone-700 font-serif bg-ivory`;
 }
 
 function PlanForm({ initial, onSubmit, onClose, saving }) {
@@ -293,7 +293,7 @@ function PlanForm({ initial, onSubmit, onClose, saving }) {
   return (
     <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center">
       <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={onClose} />
-      <div className="relative z-10 w-full sm:max-w-md bg-white border border-stone-200 shadow-2xl flex flex-col max-h-[90vh] rounded-t-2xl sm:rounded-none overflow-hidden">
+      <div className="relative z-10 w-full sm:max-w-md bg-porcelain border border-stone-200 shadow-2xl flex flex-col max-h-[90vh] rounded-t-2xl sm:rounded-none overflow-hidden">
 
         <div className="sm:hidden flex justify-center pt-3 pb-1 shrink-0">
           <div className="w-10 h-1 bg-stone-200 rounded-full" />
@@ -375,7 +375,7 @@ function PlanCard({ plan, onClick }) {
   return (
     <button
       onClick={onClick}
-      className="w-full text-left border border-stone-200 bg-white hover:border-amber-300 hover:shadow-sm transition-all group flex flex-col"
+      className="w-full text-left border border-stone-200 bg-ivory hover:border-amber-300 hover:shadow-sm transition-all group flex flex-col"
     >
       {/* Cover / widget preview strip */}
       <div className="h-1.5 w-full bg-stone-100 group-hover:bg-amber-100 transition-colors" />
@@ -479,13 +479,13 @@ function ReadingPlansPage() {
   const displayedPlans = tab === 'mine' ? myPlans : plans;
 
   return (
-    <div className="flex h-screen overflow-hidden bg-white">
+    <div className="flex h-screen overflow-hidden bg-ivory">
       <Sidebar />
 
       <div className="flex flex-1 min-w-0 overflow-hidden flex-col">
 
         {/* Top bar */}
-        <div className="flex items-center gap-3 px-4 sm:px-6 py-3 sm:py-3.5 border-b border-stone-200 bg-white shrink-0">
+        <div className="flex items-center gap-3 px-4 sm:px-6 py-3 sm:py-3.5 border-b border-stone-200 bg-porcelain shrink-0">
           <div className="flex-1 min-w-0">
             <p className="font-coptic text-[0.5rem] uppercase tracking-[0.25em] text-stone-400 mb-0.5">Mavuno</p>
             <h1 className="font-cormorant text-xl font-semibold text-stone-800 leading-none">Reading Plans</h1>
@@ -502,7 +502,7 @@ function ReadingPlansPage() {
         </div>
 
         {/* Tabs */}
-        <div className="flex border-b border-stone-200 bg-white shrink-0">
+        <div className="flex border-b border-stone-200 bg-porcelain shrink-0">
           {[
             { key: 'all',  label: `All plans${plans.length ? ` (${plans.length})` : ''}` },
             { key: 'mine', label: `Following${myPlans.length ? ` (${myPlans.length})` : ''}` },

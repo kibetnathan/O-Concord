@@ -81,7 +81,7 @@ function OrgDetailCard({ org }) {
     : null;
 
   return (
-    <div className="flex flex-col bg-white border border-stone-200 shadow-sm">
+    <div className="flex flex-col bg-ivory border border-stone-200 shadow-sm">
       {/* Banner */}
       {org.banner ? (
         <div className="w-full h-56 overflow-hidden shrink-0 border-b border-stone-200">
@@ -219,7 +219,7 @@ function CharityOrganisationsPage() {
   const effectiveSelected = selected ?? (orgs.length > 0 ? orgs[0] : null);
 
   return (
-    <div className="flex flex-row bg-white w-full min-h-screen">
+    <div className="flex flex-row bg-ivory w-full min-h-screen">
       <Sidebar />
 
       <div className="flex-1 flex flex-col w-full min-h-screen overflow-hidden">

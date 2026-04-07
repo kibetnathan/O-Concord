@@ -137,7 +137,7 @@ function GroupOption({ group, typeKey, selectedKey, onSelect, alreadyHasRoom }) 
           ? 'border-stone-100 bg-stone-50 opacity-50 cursor-not-allowed'
           : isSelected
             ? 'border-amber-400 bg-amber-50'
-            : 'border-stone-200 hover:border-stone-300 bg-white'
+            : 'border-stone-200 hover:border-stone-300 bg-ivory'
       }`}
     >
       <div className="flex items-center justify-between gap-2">
@@ -180,7 +180,7 @@ function CreateRoomModal({ user, existingRoomIds, onClose, onConfirm, loading, e
   return (
     // Bottom sheet on mobile, centred modal on desktop
     <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/60 backdrop-blur-sm">
-      <div className="relative bg-white border border-stone-200 shadow-2xl w-full sm:max-w-md sm:mx-4 flex flex-col max-h-[88vh] sm:max-h-[85vh] rounded-t-2xl sm:rounded-none">
+      <div className="relative bg-porcelain border border-stone-200 shadow-2xl w-full sm:max-w-md sm:mx-4 flex flex-col max-h-[88vh] sm:max-h-[85vh] rounded-t-2xl sm:rounded-none">
 
         {/* Drag handle -- mobile only */}
         <div className="absolute top-2.5 left-1/2 -translate-x-1/2 w-8 h-1 bg-stone-300 rounded-full sm:hidden" />
@@ -264,7 +264,7 @@ function CreateRoomModal({ user, existingRoomIds, onClose, onConfirm, loading, e
 
 function RoomListPanel({ filtered, roomsLoading, activeRoomId, messages, search, setSearch, isPrivileged, onSelectRoom, onOpenCreate }) {
   return (
-    <div className="flex flex-col h-full bg-white">
+    <div className="flex flex-col h-full bg-ivory">
       <div className="px-5 py-5 border-b border-stone-200 shrink-0">
         <p className="text-[0.55rem] uppercase tracking-[0.25em] text-stone-500 mb-1">Messaging</p>
         <div className="flex items-center justify-between">
@@ -396,7 +396,7 @@ function MessageRow({ message, prevSameUser, onReact, currentUserId }) {
         <div className={`px-3.5 py-2.5 text-sm leading-relaxed ${
           isOwn
             ? 'bg-amber-500 text-white shadow-sm shadow-amber-200'
-            : 'bg-white border border-stone-200 text-stone-700 shadow-sm'
+            : 'bg-ivory border border-stone-200 text-stone-700 shadow-sm'
         }`}>
           {message.text}
         </div>
@@ -411,7 +411,7 @@ function MessageRow({ message, prevSameUser, onReact, currentUserId }) {
                   key={r.emoji}
                   onClick={() => onReact(message.id, r.emoji)}
                   className={`flex items-center gap-1 border px-2 py-0.5 transition-colors shadow-sm ${
-                    hasReacted ? 'bg-amber-50 border-amber-400' : 'bg-white border-stone-200 hover:border-amber-400 hover:bg-amber-50'
+                    hasReacted ? 'bg-amber-50 border-amber-400' : 'bg-ivory border-stone-200 hover:border-amber-400 hover:bg-amber-50'
                   }`}
                 >
                   <span className="text-xs">{display}</span>
@@ -428,12 +428,12 @@ function MessageRow({ message, prevSameUser, onReact, currentUserId }) {
         <div className="relative">
           <button
             onClick={() => setShowPicker((v) => !v)}
-            className="p-1.5 bg-white border border-stone-200 text-stone-400 hover:text-amber-500 hover:border-amber-300 transition-colors shadow-sm"
+            className="p-1.5 bg-ivory border border-stone-200 text-stone-400 hover:text-amber-500 hover:border-amber-300 transition-colors shadow-sm"
           >
             <IconSmile />
           </button>
           {showPicker && (
-            <div className={`absolute top-0 ${isOwn ? 'right-full mr-1' : 'left-full ml-1'} flex gap-1 bg-white border border-stone-200 px-2 py-1.5 z-20 shadow-md`}>
+            <div className={`absolute top-0 ${isOwn ? 'right-full mr-1' : 'left-full ml-1'} flex gap-1 bg-ivory border border-stone-200 px-2 py-1.5 z-20 shadow-md`}>
               {QUICK_REACTIONS.map((key) => (
                 <button
                   key={key}
@@ -454,7 +454,7 @@ function MessageRow({ message, prevSameUser, onReact, currentUserId }) {
           <button
             key={key}
             onClick={() => { onReact(message.id, key); setShowPicker(false); }}
-            className="text-sm p-1 bg-white border border-stone-100 rounded-full shadow-sm"
+            className="text-sm p-1 bg-ivory border border-stone-100 rounded-full shadow-sm"
           >
             {REACTION_DISPLAY[key]}
           </button>
@@ -610,7 +610,7 @@ function ThreadsPage() {
 
   return (
     // pb-20 on mobile leaves room above the Sidebar's floating bottom nav
-    <div className="flex h-[100dvh] overflow-hidden bg-white">
+    <div className="flex h-[100dvh] overflow-hidden bg-ivory">
       <Sidebar />
 
       {showCreateModal && (
@@ -654,7 +654,7 @@ function ThreadsPage() {
         {/* ── Chat area (desktop: always visible; mobile: slides in from right) ── */}
         <div className={`
           absolute inset-0 md:relative md:inset-auto
-          flex flex-col flex-1 min-w-0 overflow-hidden bg-white
+          flex flex-col flex-1 min-w-0 overflow-hidden bg-ivory
           transition-transform duration-300 ease-in-out
           ${mobileView === 'chat' ? 'translate-x-0' : 'translate-x-full'}
           md:translate-x-0
@@ -671,7 +671,7 @@ function ThreadsPage() {
           </ul>
 
           {/* Chat header */}
-          <div className="flex items-center gap-3 px-4 md:px-6 py-3 md:py-4 border-b border-stone-200 bg-white shrink-0">
+          <div className="flex items-center gap-3 px-4 md:px-6 py-3 md:py-4 border-b border-stone-200 bg-porcelain shrink-0">
             {/* Back to rooms -- mobile only */}
             <button
               onClick={() => setMobileView('rooms')}
@@ -700,7 +700,7 @@ function ThreadsPage() {
 
           {/* Messages */}
           {/* pb-24 leaves room above the Sidebar floating nav on mobile */}
-          <div className="flex-1 overflow-y-auto px-4 md:px-6 py-5 bg-white pb-6 md:pb-5">
+          <div className="flex-1 overflow-y-auto px-4 md:px-6 py-5 bg-ivory pb-6 md:pb-5">
             {messagesLoading && (
               <div className="flex justify-center py-10">
                 <span className="font-coptic text-[0.5rem] uppercase tracking-widest text-stone-400 animate-pulse">Loading messages...</span>
@@ -739,8 +739,8 @@ function ThreadsPage() {
           </div>
 
           {/* Input -- sits above the Sidebar floating nav on mobile */}
-          <div className="border-t border-stone-200 px-4 md:px-6 py-3 md:py-4 shrink-0 bg-white mb-[4.5rem] md:mb-0">
-            <div className="flex items-end gap-2 md:gap-3 bg-white border border-stone-200 focus-within:border-amber-400 transition-colors px-3 md:px-4 py-2.5 md:py-3">
+          <div className="border-t border-stone-200 px-4 md:px-6 py-3 md:py-4 shrink-0 bg-porcelain mb-[4.5rem] md:mb-0">
+            <div className="flex items-end gap-2 md:gap-3 bg-ivory border border-stone-200 focus-within:border-amber-400 transition-colors px-3 md:px-4 py-2.5 md:py-3">
               <textarea
                 ref={inputRef}
                 value={input}

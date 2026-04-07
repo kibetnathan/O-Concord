@@ -59,7 +59,7 @@ function InputLabel({ children }) {
 function FormInput({ ...props }) {
   return (
     <input {...props}
-      className="bg-white border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-300 transition-colors w-full" />
+      className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-300 transition-colors w-full" />
   );
 }
 
@@ -95,7 +95,7 @@ function MemberPicker({ allUsers, allProfiles, selected, onChange }) {
       <div className="relative">
         <span className="absolute left-3 top-1/2 -translate-y-1/2 text-stone-300"><IconSearch /></span>
         <input type="text" value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search members…"
-          className="bg-white border border-stone-200 focus:border-amber-400 focus:outline-none pl-9 pr-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-300 transition-colors w-full" />
+          className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none pl-9 pr-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-300 transition-colors w-full" />
       </div>
       <div className="border border-stone-200 divide-y divide-stone-100 max-h-48 overflow-y-auto">
         {filtered.length > 0 ? filtered.map((u) => {
@@ -132,7 +132,7 @@ function TeamCard({ team, allUsers, allProfiles, onSelect, isSelected }) {
   const memberList = allUsers.filter((u) => team.members?.includes(u.id));
   return (
     <div onClick={() => onSelect(team)}
-      className={`flex flex-col bg-white border transition-all duration-200 cursor-pointer hover:border-amber-300 hover:shadow-md ${isSelected ? "border-amber-400 shadow-md" : "border-stone-100"}`}>
+      className={`flex flex-col bg-ivory border transition-all duration-200 cursor-pointer hover:border-amber-300 hover:shadow-md ${isSelected ? "border-amber-400 shadow-md" : "border-stone-100"}`}>
       <div className="flex items-start justify-between p-5 border-b border-stone-100">
         <div className="flex-1 min-w-0">
           <h3 className="font-cormorant text-xl font-semibold text-stone-800 leading-tight truncate">{team.name}</h3>
@@ -260,7 +260,7 @@ function CreateTeamForm({ allUsers, allProfiles, onSuccess }) {
       <div className="flex flex-col gap-1.5">
         <InputLabel>Description</InputLabel>
         <textarea value={description} onChange={(e) => setDescription(e.target.value)} placeholder="What does this team oversee?"
-          className="bg-white border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-300 transition-colors resize-none min-h-16 w-full" />
+          className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-300 transition-colors resize-none min-h-16 w-full" />
       </div>
       <div className="flex flex-col gap-1.5">
         <InputLabel>Members</InputLabel>
@@ -306,7 +306,7 @@ function EditTeamForm({ team, allUsers, allProfiles, onSuccess, onCancel }) {
       <div className="flex flex-col gap-1.5">
         <InputLabel>Description</InputLabel>
         <textarea value={description} onChange={(e) => setDescription(e.target.value)}
-          className="bg-white border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 transition-colors resize-none min-h-16 w-full" />
+          className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 transition-colors resize-none min-h-16 w-full" />
       </div>
       <div className="flex flex-col gap-1.5">
         <InputLabel>Members</InputLabel>
@@ -377,12 +377,12 @@ function LeadershipDashboard() {
   const rightTitle = mode === "create" ? "New Team" : mode === "edit" ? "Edit Team" : "Team Details";
 
   return (
-    <div className="min-h-screen w-full bg-white p-8">
+    <div className="min-h-screen w-full bg-ivory p-8">
 
       <div className="flex items-end justify-between mb-10">
         <div>
           <p className="text-[0.6rem] uppercase tracking-[0.25em] text-stone-400 mb-1">Teams</p>
-          <h1 className="font-cormorant text-4xl font-semibold text-stone-800 leading-tight">Leadership Teams</h1>
+          <h1 className="font-cormorant text-4xl font-semibold text-black leading-tight">Leadership Teams</h1>
           <div className="w-8 h-0.5 bg-amber-500 mt-3" />
         </div>
         <button onClick={() => { setMode(mode === "create" ? "idle" : "create"); setSelected(null); }}
@@ -416,7 +416,7 @@ function LeadershipDashboard() {
           <div className="relative">
             <span className="absolute left-3 top-1/2 -translate-y-1/2 text-stone-300"><IconSearch /></span>
             <input type="text" value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search teams…"
-              className="bg-white border border-stone-200 focus:border-amber-400 focus:outline-none pl-9 pr-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-300 transition-colors w-full" />
+              className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none pl-9 pr-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-300 transition-colors w-full" />
           </div>
 
           {filtered.length > 0 ? (

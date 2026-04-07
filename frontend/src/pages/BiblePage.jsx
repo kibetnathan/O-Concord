@@ -90,7 +90,7 @@ function BookmarkToast({ message, type }) {
     <div className={`fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2.5 px-4 py-2.5 border shadow-lg text-xs font-coptic tracking-widest uppercase transition-all
       ${type === 'error'  ? 'bg-red-50 border-red-200 text-red-600' :
         type === 'exists' ? 'bg-amber-50 border-amber-200 text-amber-700' :
-                            'bg-white border-stone-200 text-stone-700'}`}
+                            'bg-ivory border-stone-200 text-stone-700'}`}
     >
       {type === 'success' && <IconBookmark filled />}
       {message}
@@ -344,13 +344,13 @@ function BiblePage() {
     : [];
 
   return (
-    <div className="flex h-screen overflow-hidden bg-white">
+    <div className="flex h-screen overflow-hidden bg-ivory">
       <Sidebar />
 
       <div className="flex flex-1 min-w-0 overflow-hidden relative">
 
         {/* DESKTOP book panel */}
-        <aside className={`hidden lg:flex flex-col bg-white border-r border-stone-200 h-screen overflow-hidden transition-all duration-300 ${showBookPanel ? 'w-56 shrink-0' : 'w-0'}`}>
+        <aside className={`hidden lg:flex flex-col bg-porcelain border-r border-stone-200 h-screen overflow-hidden transition-all duration-300 ${showBookPanel ? 'w-56 shrink-0' : 'w-0'}`}>
           <div className="px-4 py-5 border-b border-stone-200 shrink-0">
             <p className="font-coptic text-[0.5rem] uppercase tracking-[0.25em] text-stone-500 mb-1">Scripture</p>
             <h2 className="font-cormorant text-xl font-semibold text-stone-900">Books</h2>
@@ -366,7 +366,7 @@ function BiblePage() {
         )}
 
         {/* MOBILE drawer */}
-        <div className={`lg:hidden fixed z-50 bg-white flex flex-col transition-transform duration-300
+        <div className={`lg:hidden fixed z-50 bg-porcelain flex flex-col transition-transform duration-300
           bottom-0 left-0 right-0 h-[75vh] rounded-t-2xl border-t border-stone-200
           md:bottom-auto md:top-0 md:right-auto md:h-full md:w-72 md:rounded-none md:border-t-0 md:border-r md:border-stone-200
           ${showBookPanel ? 'translate-y-0 md:translate-x-0' : 'translate-y-full md:-translate-x-full'}`}
@@ -394,7 +394,7 @@ function BiblePage() {
         <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
 
           {/* Top bar */}
-          <div className="flex items-center gap-2 sm:gap-3 px-3 sm:px-5 py-3 sm:py-3.5 border-b border-stone-200 bg-white shrink-0">
+          <div className="flex items-center gap-2 sm:gap-3 px-3 sm:px-5 py-3 sm:py-3.5 border-b border-stone-200 bg-porcelain shrink-0">
             <button onClick={() => setShowBookPanel(v => !v)}
               className="p-1.5 text-stone-400 hover:text-amber-500 border border-stone-200 hover:border-amber-300 transition-colors shrink-0"
             >
@@ -437,7 +437,7 @@ function BiblePage() {
                 <span className="text-stone-400"><IconChevron dir="down" /></span>
               </button>
               {showTransDD && (
-                <div className="absolute right-0 top-full mt-1 w-64 sm:w-72 bg-white border border-stone-200 shadow-lg z-30 flex flex-col max-h-72 sm:max-h-80">
+                <div className="absolute right-0 top-full mt-1 w-64 sm:w-72 bg-ivory border border-stone-200 shadow-lg z-30 flex flex-col max-h-72 sm:max-h-80">
                   <div className="p-2 border-b border-stone-100">
                     <input autoFocus type="text" value={transSearch} onChange={e => setTransSearch(e.target.value)}
                       placeholder="Search translations…"
@@ -476,7 +476,7 @@ function BiblePage() {
           )}
 
           {/* Reading area */}
-          <div ref={contentRef} className="flex-1 overflow-y-auto px-4 sm:px-8 lg:px-10 py-6 sm:py-8 bg-white">
+          <div ref={contentRef} className="flex-1 overflow-y-auto px-4 sm:px-8 lg:px-10 py-6 sm:py-8 bg-ivory">
 
             {!selectedBook && !loadingBooks && (
               <div className="flex flex-col items-center justify-center h-full gap-4 text-center px-4">

@@ -82,7 +82,7 @@ function LivePlayer({ videoId, latestVideo }) {
     <div className="flex flex-col flex-1 min-h-0 overflow-y-auto">
 
       {/* Header strip */}
-      <div className="flex items-center justify-between px-6 md:px-10 py-4 border-b border-stone-200 shrink-0 bg-white">
+      <div className="flex items-center justify-between px-6 md:px-10 py-4 border-b border-stone-200 shrink-0 bg-ivory">
         <LiveBadge />
         <span className="font-coptic text-[0.48rem] tracking-[0.25em] uppercase text-stone-400">
           Mavuno Church Hill City
@@ -109,7 +109,7 @@ function LivePlayer({ videoId, latestVideo }) {
       </div>
 
       {/* Caption strip */}
-      <div className="px-6 md:px-10 py-4 border-b border-stone-200 bg-white flex items-center justify-between shrink-0">
+      <div className="px-6 md:px-10 py-4 border-b border-stone-200 bg-ivory flex items-center justify-between shrink-0">
         <p className="font-coptic text-[0.55rem] text-stone-400 tracking-wider">
           Join us in worship — share this stream with someone.
         </p>
@@ -117,7 +117,7 @@ function LivePlayer({ videoId, latestVideo }) {
 
       {/* Latest video */}
       {latestVideo && (
-        <div className="px-6 md:px-10 py-7 bg-white border-b border-stone-200">
+        <div className="px-6 md:px-10 py-7 bg-ivory border-b border-stone-200">
           <p className="font-coptic text-[0.48rem] uppercase tracking-[0.3em] text-stone-400 mb-4">
             Latest Message
           </p>
@@ -207,7 +207,7 @@ function LatestVideoCard({ video }) {
   });
 
   return (
-    <div className="border-t border-stone-200 bg-white px-6 md:px-16 py-8">
+    <div className="border-t border-stone-200 bg-ivory px-6 md:px-16 py-8">
       <div className="flex items-center gap-3 mb-6">
         <div className="w-4 h-px bg-amber-400/60" />
         <span className="font-coptic text-[0.48rem] tracking-[0.35em] uppercase text-stone-400">
@@ -280,7 +280,7 @@ function LatestVideoCard({ video }) {
 
 function OfflinePage({ nextService, latestVideo }) {
   return (
-    <div className="flex flex-col flex-1 min-h-0 overflow-y-auto bg-white">
+    <div className="flex flex-col flex-1 min-h-0 overflow-y-auto bg-ivory">
 
       {/* Hero */}
       <div className="flex flex-col items-center justify-center text-center px-8 md:px-16 pt-16 pb-14 flex-1">
@@ -341,7 +341,7 @@ function OfflinePage({ nextService, latestVideo }) {
 
 function LoadingState() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center gap-5 bg-white">
+    <div className="flex flex-col flex-1 items-center justify-center gap-5 bg-ivory">
       <div className="w-5 h-5 border border-stone-300 border-t-amber-500 rounded-full animate-spin" />
       <p className="font-coptic text-[0.48rem] tracking-[0.35em] uppercase text-stone-400">
         Checking stream status
@@ -358,13 +358,13 @@ export default function StreamingPage() {
   const { status, videoId, latestVideo, nextService } = useLiveStream();
   
   return (
-    <div className="flex h-[100dvh] overflow-hidden bg-white">
+    <div className="flex h-[100dvh] overflow-hidden bg-ivory">
       <Sidebar />
 
       <main className="flex flex-col flex-1 min-w-0 overflow-hidden">
 
         {/* Page header */}
-        <div className="flex items-center justify-between px-6 md:px-10 h-14 border-b border-stone-200 bg-white shrink-0">
+        <div className="flex items-center justify-between px-6 md:px-10 h-14 border-b border-stone-200 bg-ivory shrink-0">
           <div className="flex items-center gap-3">
             <p className="font-coptic text-[0.48rem] uppercase tracking-[0.3em] text-stone-400">
               Streaming
