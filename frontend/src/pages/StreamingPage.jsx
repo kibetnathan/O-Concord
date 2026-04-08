@@ -34,7 +34,7 @@ function CountdownUnit({ value, label }) {
       <span className="font-cormorant text-6xl md:text-7xl font-light text-amber-600 leading-none tabular-nums">
         {String(value).padStart(2, '0')}
       </span>
-      <span className="font-coptic text-[0.45rem] tracking-[0.35em] uppercase text-stone-400 mt-2">
+      <span className="font-coptic text-[0.45rem] tracking-[0.35em] uppercase text-stone-700 mt-2">
         {label}
       </span>
     </div>
@@ -66,7 +66,7 @@ function LiveBadge() {
         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75" />
         <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500" />
       </span>
-      <span className="font-coptic text-[0.48rem] tracking-[0.4em] uppercase text-red-500">
+      <span className="font-coptic text-[0.48rem] tracking-[0.4em] uppercase text-red-700">
         Live Now
       </span>
     </div>
@@ -84,7 +84,7 @@ function LivePlayer({ videoId, latestVideo }) {
       {/* Header strip */}
       <div className="flex items-center justify-between px-6 md:px-10 py-4 border-b border-stone-200 shrink-0 bg-ivory">
         <LiveBadge />
-        <span className="font-coptic text-[0.48rem] tracking-[0.25em] uppercase text-stone-400">
+        <span className="font-coptic text-[0.48rem] tracking-[0.25em] uppercase text-stone-700">
           Mavuno Church Hill City
         </span>
         <a
@@ -110,7 +110,7 @@ function LivePlayer({ videoId, latestVideo }) {
 
       {/* Caption strip */}
       <div className="px-6 md:px-10 py-4 border-b border-stone-200 bg-ivory flex items-center justify-between shrink-0">
-        <p className="font-coptic text-[0.55rem] text-stone-400 tracking-wider">
+        <p className="font-coptic text-xs text-stone-700 tracking-wider">
           Join us in worship — share this stream with someone.
         </p>
       </div>
@@ -118,7 +118,7 @@ function LivePlayer({ videoId, latestVideo }) {
       {/* Latest video */}
       {latestVideo && (
         <div className="px-6 md:px-10 py-7 bg-ivory border-b border-stone-200">
-          <p className="font-coptic text-[0.48rem] uppercase tracking-[0.3em] text-stone-400 mb-4">
+          <p className="font-coptic text-[0.48rem] uppercase tracking-[0.3em] text-stone-700 mb-4">
             Latest Message
           </p>
           <LatestVideoRow video={latestVideo} />
@@ -177,9 +177,9 @@ function LatestVideoRow({ video }) {
         <h3 className="font-cormorant text-xl text-stone-800 leading-snug truncate">
           {video.title}
         </h3>
-        <p className="font-coptic text-[0.48rem] text-stone-400 mt-1">{publishedDate}</p>
+        <p className="font-coptic text-[0.48rem] text-stone-700 mt-1">{publishedDate}</p>
         {video.description && (
-          <p className="text-xs text-stone-400 leading-relaxed line-clamp-1 mt-1 hidden md:block font-light">
+          <p className="text-xs text-stone-700 leading-relaxed line-clamp-1 mt-1 hidden md:block font-light">
             {video.description}
           </p>
         )}
@@ -210,11 +210,11 @@ function LatestVideoCard({ video }) {
     <div className="border-t border-stone-200 bg-ivory px-6 md:px-16 py-8">
       <div className="flex items-center gap-3 mb-6">
         <div className="w-4 h-px bg-amber-400/60" />
-        <span className="font-coptic text-[0.48rem] tracking-[0.35em] uppercase text-stone-400">
+        <span className="font-coptic text-[0.48rem] tracking-[0.35em] uppercase text-stone-700">
           Latest Message
         </span>
         <div className="flex-1 h-px bg-stone-200" />
-        <span className="font-coptic text-[0.48rem] text-stone-500">{publishedDate}</span>
+        <span className="font-coptic text-[0.48rem] text-stone-700">{publishedDate}</span>
       </div>
 
       {playing ? (
@@ -257,7 +257,7 @@ function LatestVideoCard({ video }) {
       )}
 
       {!playing && video.description && (
-        <p className="text-sm text-stone-400 leading-relaxed line-clamp-2 mt-4 font-light">
+        <p className="text-sm text-stone-700 leading-relaxed line-clamp-2 mt-4 font-light">
           {video.description}
         </p>
       )}
@@ -295,7 +295,7 @@ function OfflinePage({ nextService, latestVideo }) {
         {/* Offline indicator */}
         <div className="flex items-center gap-2 mb-7">
           <span className="w-1.5 h-1.5 rounded-full bg-stone-300" />
-          <span className="font-coptic text-[0.48rem] tracking-[0.4em] uppercase text-stone-400">
+          <span className="font-coptic text-[0.48rem] tracking-[0.4em] uppercase text-stone-700">
             Currently Offline
           </span>
         </div>
@@ -318,11 +318,11 @@ function OfflinePage({ nextService, latestVideo }) {
         {/* Countdown */}
         {nextService && (
           <div className="flex flex-col items-center gap-6">
-            <p className="font-coptic text-[0.52rem] tracking-[0.3em] uppercase text-stone-400">
+            <p className="font-coptic text-[0.52rem] tracking-[0.3em] uppercase text-stone-700">
               Next service begins in
             </p>
             <Countdown target={nextService} />
-            <p className="font-coptic text-[0.45rem] tracking-[0.25em] uppercase text-stone-500 mt-1">
+            <p className="font-coptic text-[0.45rem] tracking-[0.25em] uppercase text-stone-700 mt-1">
               Sunday services — 9:00 AM &amp; 11:00 AM EAT
             </p>
           </div>
@@ -343,7 +343,7 @@ function LoadingState() {
   return (
     <div className="flex flex-col flex-1 items-center justify-center gap-5 bg-ivory">
       <div className="w-5 h-5 border border-stone-300 border-t-amber-500 rounded-full animate-spin" />
-      <p className="font-coptic text-[0.48rem] tracking-[0.35em] uppercase text-stone-400">
+      <p className="font-coptic text-[0.48rem] tracking-[0.35em] uppercase text-stone-700">
         Checking stream status
       </p>
     </div>
@@ -366,11 +366,11 @@ export default function StreamingPage() {
         {/* Page header */}
         <div className="flex items-center justify-between px-6 md:px-10 h-14 border-b border-stone-200 bg-ivory shrink-0">
           <div className="flex items-center gap-3">
-            <p className="font-coptic text-[0.48rem] uppercase tracking-[0.3em] text-stone-400">
+            <p className="font-coptic text-[0.48rem] uppercase tracking-[0.3em] text-stone-700">
               Streaming
             </p>
             <div className="w-px h-3 bg-stone-200" />
-            <p className="font-cormorant text-base text-stone-500">
+            <p className="font-cormorant text-base text-stone-700">
               Live &amp; On Demand
             </p>
           </div>

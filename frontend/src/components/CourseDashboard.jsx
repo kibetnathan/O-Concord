@@ -61,7 +61,7 @@ function SectionHeading({ children }) {
 
 function InputLabel({ children }) {
   return (
-    <label className="font-coptic text-[0.6rem] uppercase tracking-widest text-stone-700">{children}</label>
+    <label className="font-coptic text-xs uppercase tracking-widest text-stone-700">{children}</label>
   );
 }
 
@@ -140,17 +140,17 @@ function CourseCard({ course, allUsers, allProfiles, onSelect, isSelected }) {
       <div className="flex items-start justify-between p-5 border-b border-stone-100">
         <div className="flex-1 min-w-0">
           <h3 className="font-cormorant text-xl font-semibold text-stone-800 leading-tight truncate">{course.name}</h3>
-          {course.description && <p className="text-xs text-stone-400 mt-1 line-clamp-2">{course.description}</p>}
+          {course.description && <p className="text-xs text-stone-700 mt-1 line-clamp-2">{course.description}</p>}
         </div>
         {status && (
-          <span className={`text-[0.6rem] uppercase tracking-widest border px-2 py-1 shrink-0 ml-3 ${status.color}`}>{status.label}</span>
+          <span className={`text-xs uppercase tracking-widest border px-2 py-1 shrink-0 ml-3 ${status.color}`}>{status.label}</span>
         )}
       </div>
       <div className="px-5 py-3 flex items-center gap-4 border-b border-stone-100 flex-wrap">
-        <div className="flex items-center gap-1.5 text-stone-400">
+        <div className="flex items-center gap-1.5 text-stone-700">
           <IconCalendar /><span className="text-xs">{formatDate(course.start_date)}</span>
         </div>
-        <div className="flex items-center gap-1.5 text-stone-400">
+        <div className="flex items-center gap-1.5 text-stone-700">
           <IconClock /><span className="text-xs">{parseDuration(course.expected_duration)}</span>
         </div>
       </div>
@@ -159,7 +159,7 @@ function CourseCard({ course, allUsers, allProfiles, onSelect, isSelected }) {
           <img src={leaderProfile?.profile_pic_url || "/images/defaultavatar.jpg"} alt={leader?.username || "Instructor"}
             className="w-6 h-6 rounded-full object-cover ring-1 ring-amber-400/30" />
           <div>
-            <p className="text-[0.55rem] uppercase tracking-widest text-stone-400 font-coptic leading-none">Instructor</p>
+            <p className="text-xs uppercase tracking-widest text-stone-700 font-coptic leading-none">Instructor</p>
             <p className="text-xs text-stone-600">
               {leader ? (leader.first_name && leader.last_name ? `${leader.first_name} ${leader.last_name}` : leader.username) : "—"}
             </p>
@@ -177,7 +177,7 @@ function CourseCard({ course, allUsers, allProfiles, onSelect, isSelected }) {
               +{memberList.length - 4}
             </span>
           )}
-          {memberList.length === 0 && <p className="text-[0.6rem] text-stone-300 italic">No enrolments</p>}
+          {memberList.length === 0 && <p className="text-xs text-stone-600 italic">No enrolments</p>}
         </div>
       </div>
     </div>
@@ -199,28 +199,28 @@ function CourseDetail({ course, allUsers, allProfiles, onClose, onEdit, onDelete
 
       <div className="flex items-start justify-between relative z-10">
         <div>
-          <p className="text-[0.6rem] uppercase tracking-[0.25em] text-stone-700 mb-1">Course</p>
+          <p className="text-xs uppercase tracking-[0.25em] text-stone-700 mb-1">Course</p>
           <h3 className="font-cormorant text-2xl font-semibold text-stone-900 leading-tight">{course.name}</h3>
           {status && (
-            <span className={`inline-block mt-1 text-[0.6rem] uppercase tracking-widest border px-2 py-0.5 ${status.color}`}>{status.label}</span>
+            <span className={`inline-block mt-1 text-xs uppercase tracking-widest border px-2 py-0.5 ${status.color}`}>{status.label}</span>
           )}
         </div>
         <div className="flex items-center gap-0.5 shrink-0 ml-2">
-          <button onClick={onEdit} title="Edit" className="p-1.5 text-stone-500 hover:text-amber-600 transition-colors">
+          <button onClick={onEdit} title="Edit" className="p-1.5 text-stone-700 hover:text-amber-600 transition-colors">
             <IconEdit />
           </button>
           {!confirmDelete ? (
-            <button onClick={() => setConfirmDelete(true)} title="Delete" className="p-1.5 text-stone-500 hover:text-red-400 transition-colors">
+            <button onClick={() => setConfirmDelete(true)} title="Delete" className="p-1.5 text-stone-700 hover:text-red-700 transition-colors">
               <IconTrash />
             </button>
           ) : (
             <div className="flex items-center gap-1 bg-red-50 border border-red-200 px-2 py-1 ml-1">
-              <span className="font-coptic text-[0.55rem] text-red-500 uppercase tracking-widest">Delete?</span>
-              <button onClick={() => onDelete(course.id)} className="p-0.5 text-red-500 hover:text-red-700"><IconCheck /></button>
-              <button onClick={() => setConfirmDelete(false)} className="p-0.5 text-stone-400 hover:text-stone-600"><IconX /></button>
+              <span className="font-coptic text-xs text-red-700 uppercase tracking-widest">Delete?</span>
+              <button onClick={() => onDelete(course.id)} className="p-0.5 text-red-700 hover:text-red-700"><IconCheck /></button>
+              <button onClick={() => setConfirmDelete(false)} className="p-0.5 text-stone-700 hover:text-stone-600"><IconX /></button>
             </div>
           )}
-          <button onClick={onClose} className="p-1.5 text-stone-500 hover:text-stone-900 transition-colors ml-0.5">
+          <button onClick={onClose} className="p-1.5 text-stone-700 hover:text-stone-900 transition-colors ml-0.5">
             <IconX />
           </button>
         </div>
@@ -232,17 +232,17 @@ function CourseDetail({ course, allUsers, allProfiles, onClose, onEdit, onDelete
 
       <div className="relative z-10 grid grid-cols-2 gap-3">
         <div className="bg-stone-50 border border-stone-200 px-3 py-2.5">
-          <p className="font-coptic text-[0.55rem] uppercase tracking-widest text-stone-500 mb-1">Start Date</p>
+          <p className="font-coptic text-xs uppercase tracking-widest text-stone-700 mb-1">Start Date</p>
           <p className="text-sm text-stone-600">{formatDate(course.start_date)}</p>
         </div>
         <div className="bg-stone-50 border border-stone-200 px-3 py-2.5">
-          <p className="font-coptic text-[0.55rem] uppercase tracking-widest text-stone-500 mb-1">Duration</p>
+          <p className="font-coptic text-xs uppercase tracking-widest text-stone-700 mb-1">Duration</p>
           <p className="text-sm text-stone-600">{parseDuration(course.expected_duration)}</p>
         </div>
       </div>
 
       <div className="relative z-10">
-        <p className="text-[0.6rem] uppercase tracking-widest text-stone-500 font-coptic mb-2">Instructor</p>
+        <p className="text-xs uppercase tracking-widest text-stone-700 font-coptic mb-2">Instructor</p>
         <div className="flex items-center gap-3">
           <img src={leaderProfile?.profile_pic_url || "/images/defaultavatar.jpg"} alt={leader?.username || "Instructor"}
             className="w-9 h-9 rounded-full object-cover ring-2 ring-amber-500/30" />
@@ -250,13 +250,13 @@ function CourseDetail({ course, allUsers, allProfiles, onClose, onEdit, onDelete
             <p className="text-sm font-cormorant font-semibold text-stone-900">
               {leader ? (leader.first_name && leader.last_name ? `${leader.first_name} ${leader.last_name}` : leader.username) : "No instructor assigned"}
             </p>
-            {leader && <p className="font-coptic text-[0.55rem] uppercase tracking-widest text-stone-500">@{leader.username}</p>}
+            {leader && <p className="font-coptic text-xs uppercase tracking-widest text-stone-700">@{leader.username}</p>}
           </div>
         </div>
       </div>
 
       <div className="relative z-10">
-        <p className="text-[0.6rem] uppercase tracking-widest text-stone-500 font-coptic mb-2">Enrolled ({memberList.length})</p>
+        <p className="text-xs uppercase tracking-widest text-stone-700 font-coptic mb-2">Enrolled ({memberList.length})</p>
         <div className="flex flex-col gap-2 max-h-56 overflow-y-auto pr-1">
           {memberList.length > 0 ? memberList.map((m) => {
             const mp = allProfiles.find((p) => p.user?.id === m.id);
@@ -265,7 +265,7 @@ function CourseDetail({ course, allUsers, allProfiles, onClose, onEdit, onDelete
                 <img src={mp?.profile_pic_url || "/images/defaultavatar.jpg"} alt={m.username} className="w-7 h-7 rounded-full object-cover shrink-0" />
                 <div className="min-w-0">
                   <p className="text-xs text-stone-700 truncate">{m.first_name && m.last_name ? `${m.first_name} ${m.last_name}` : m.username}</p>
-                  <p className="font-coptic text-[0.55rem] text-stone-600 truncate">@{m.username}</p>
+                  <p className="font-coptic text-xs text-stone-600 truncate">@{m.username}</p>
                 </div>
               </div>
             );
@@ -293,7 +293,7 @@ function MemberPicker({ allUsers, allProfiles, selected, onChange }) {
           {selected.map((id) => {
             const u = allUsers.find((u) => u.id === id);
             return (
-              <span key={id} className="flex items-center gap-1 text-[0.65rem] bg-amber-50 border border-amber-200 text-amber-700 px-2 py-1">
+              <span key={id} className="flex items-center gap-1 text-sm bg-amber-50 border border-amber-200 text-amber-700 px-2 py-1">
                 {u?.first_name || u?.username}
                 <button type="button" onClick={() => toggle(id)} className="hover:text-amber-900"><IconX /></button>
               </span>
@@ -302,9 +302,9 @@ function MemberPicker({ allUsers, allProfiles, selected, onChange }) {
         </div>
       )}
       <div className="relative">
-        <span className="absolute left-3 top-1/2 -translate-y-1/2 text-stone-300"><IconSearch /></span>
+        <span className="absolute left-3 top-1/2 -translate-y-1/2 text-stone-600"><IconSearch /></span>
         <input type="text" value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search members…"
-          className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none pl-9 pr-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-300 transition-colors w-full" />
+          className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none pl-9 pr-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-700 transition-colors w-full" />
       </div>
       <div className="border border-stone-200 divide-y divide-stone-100 max-h-44 overflow-y-auto">
         {filtered.length > 0 ? filtered.map((u) => {
@@ -316,17 +316,17 @@ function MemberPicker({ allUsers, allProfiles, selected, onChange }) {
               <img src={mp?.profile_pic_url || "/images/defaultavatar.jpg"} alt={u.username} className="w-7 h-7 rounded-full object-cover shrink-0" />
               <div className="flex-1 min-w-0">
                 <p className="text-sm text-stone-700 truncate">{u.first_name && u.last_name ? `${u.first_name} ${u.last_name}` : u.username}</p>
-                <p className="font-coptic text-[0.55rem] text-stone-400 truncate">@{u.username}</p>
+                <p className="font-coptic text-xs text-stone-700 truncate">@{u.username}</p>
               </div>
               <div className={`w-4 h-4 border flex items-center justify-center shrink-0 transition-colors ${checked ? "bg-amber-500 border-amber-500" : "border-stone-300"}`}>
                 {checked && <svg className="w-2.5 h-2.5 text-white" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>}
               </div>
             </div>
           );
-        }) : <p className="text-xs text-stone-300 px-3 py-4 text-center italic">No users found</p>}
+        }) : <p className="text-xs text-stone-600 px-3 py-4 text-center italic">No users found</p>}
       </div>
       {selected.length > 0 && (
-        <p className="text-[0.6rem] text-stone-400 uppercase tracking-widest">{selected.length} member{selected.length !== 1 ? "s" : ""} selected</p>
+        <p className="text-xs text-stone-700 uppercase tracking-widest">{selected.length} member{selected.length !== 1 ? "s" : ""} selected</p>
       )}
     </div>
   );
@@ -340,12 +340,12 @@ function CourseFields({ name, setName, description, setDescription, startDate, s
       <div className="flex flex-col gap-1.5">
         <InputLabel>Course Name *</InputLabel>
         <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="e.g. Foundations of Faith" required
-          className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-300 transition-colors w-full" />
+          className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-700 transition-colors w-full" />
       </div>
       <div className="flex flex-col gap-1.5">
         <InputLabel>Description</InputLabel>
         <textarea value={description} onChange={(e) => setDescription(e.target.value)} placeholder="What will this course cover?"
-          className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-300 transition-colors resize-none min-h-16 w-full" />
+          className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-700 transition-colors resize-none min-h-16 w-full" />
       </div>
       <div className="grid grid-cols-2 gap-3">
         <div className="flex flex-col gap-1.5">
@@ -357,7 +357,7 @@ function CourseFields({ name, setName, description, setDescription, startDate, s
           <InputLabel>Duration *</InputLabel>
           <div className="flex gap-2">
             <input type="number" min="1" value={duration} onChange={(e) => setDuration(e.target.value)} placeholder="e.g. 8" required
-              className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-300 transition-colors w-full" />
+              className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-700 transition-colors w-full" />
             <select value={durationUnit} onChange={(e) => setDurationUnit(e.target.value)}
               className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-2 py-2.5 text-sm text-stone-700 transition-colors shrink-0">
               <option value="weeks">wks</option>
@@ -367,7 +367,7 @@ function CourseFields({ name, setName, description, setDescription, startDate, s
         </div>
       </div>
       <div className="flex flex-col gap-1.5">
-        <InputLabel>Instructor <span className="text-stone-300 normal-case tracking-normal">(optional)</span></InputLabel>
+        <InputLabel>Instructor <span className="text-stone-600 normal-case tracking-normal">(optional)</span></InputLabel>
         <select value={leaderId} onChange={(e) => setLeaderId(e.target.value)}
           className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 transition-colors w-full">
           <option value="">Select an instructor…</option>
@@ -379,7 +379,7 @@ function CourseFields({ name, setName, description, setDescription, startDate, s
         </select>
       </div>
       <div className="flex flex-col gap-1.5">
-        <InputLabel>Enrol Members <span className="text-stone-300 normal-case tracking-normal">(optional)</span></InputLabel>
+        <InputLabel>Enrol Members <span className="text-stone-600 normal-case tracking-normal">(optional)</span></InputLabel>
         <MemberPicker allUsers={allUsers} allProfiles={allProfiles} selected={selectedMembers} onChange={setSelectedMembers} />
       </div>
     </>
@@ -427,9 +427,9 @@ function CreateCourseForm({ allUsers, allProfiles, onSuccess }) {
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-5">
       <CourseFields {...{ name, setName, description, setDescription, startDate, setStartDate, duration, setDuration, durationUnit, setDurationUnit, leaderId, setLeaderId, allUsers, allProfiles, selectedMembers, setSelectedMembers }} />
-      {error && <p className="text-[0.6rem] uppercase tracking-widest text-red-400">{error}</p>}
+      {error && <p className="text-xs uppercase tracking-widest text-red-700">{error}</p>}
       <button type="submit" disabled={submitting}
-        className="bg-amber-500 hover:bg-amber-600 disabled:bg-amber-300 text-white font-coptic text-[0.65rem] uppercase tracking-widest py-3 transition-colors flex items-center justify-center gap-2">
+        className="bg-amber-500 hover:bg-amber-600 disabled:bg-amber-300 text-white font-coptic text-sm uppercase tracking-widest py-3 transition-colors flex items-center justify-center gap-2">
         {submitting ? <span className="animate-pulse">Creating…</span> : <><IconPlus /><span>Create Course</span></>}
       </button>
     </form>
@@ -475,14 +475,14 @@ function EditCourseForm({ course, allUsers, allProfiles, onSuccess, onCancel }) 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-5">
       <CourseFields {...{ name, setName, description, setDescription, startDate, setStartDate, duration, setDuration, durationUnit, setDurationUnit, leaderId, setLeaderId, allUsers, allProfiles, selectedMembers, setSelectedMembers }} />
-      {error && <p className="text-[0.6rem] uppercase tracking-widest text-red-400">{error}</p>}
+      {error && <p className="text-xs uppercase tracking-widest text-red-700">{error}</p>}
       <div className="flex gap-2">
         <button type="submit" disabled={submitting}
-          className="flex-1 bg-amber-500 hover:bg-amber-600 disabled:bg-amber-300 text-white font-coptic text-[0.65rem] uppercase tracking-widest py-3 transition-colors flex items-center justify-center gap-2">
+          className="flex-1 bg-amber-500 hover:bg-amber-600 disabled:bg-amber-300 text-white font-coptic text-sm uppercase tracking-widest py-3 transition-colors flex items-center justify-center gap-2">
           {submitting ? <span className="animate-pulse">Saving…</span> : <><IconCheck /><span>Save Changes</span></>}
         </button>
         <button type="button" onClick={onCancel}
-          className="border border-stone-200 text-stone-700 hover:border-stone-400 font-coptic text-[0.65rem] uppercase tracking-widest px-4 py-3 transition-colors">
+          className="border border-stone-200 text-stone-700 hover:border-stone-400 font-coptic text-sm uppercase tracking-widest px-4 py-3 transition-colors">
           Cancel
         </button>
       </div>
@@ -551,12 +551,12 @@ function CourseDashboard() {
 
       <div className="flex items-end justify-between mb-10">
         <div>
-          <p className="text-[0.6rem] uppercase tracking-[0.25em] text-stone-400 mb-1">Learning</p>
+          <p className="text-xs uppercase tracking-[0.25em] text-stone-700 mb-1">Learning</p>
           <h1 className="font-cormorant text-4xl font-semibold text-black leading-tight">Courses</h1>
           <div className="w-8 h-0.5 bg-amber-500 mt-3" />
         </div>
         <button onClick={() => { setMode(mode === "create" ? "idle" : "create"); setSelected(null); }}
-          className="flex items-center gap-2 bg-amber-500 hover:bg-amber-600 text-white font-coptic text-[0.65rem] uppercase tracking-widest px-4 py-3 transition-colors">
+          className="flex items-center gap-2 bg-amber-500 hover:bg-amber-600 text-white font-coptic text-sm uppercase tracking-widest px-4 py-3 transition-colors">
           <IconPlus />
           {mode === "create" ? "Cancel" : "New Course"}
         </button>
@@ -582,7 +582,7 @@ function CourseDashboard() {
               <React.Fragment key={label}>
                 <div>
                   <p className="font-cormorant text-3xl font-light text-stone-800">{value}</p>
-                  <p className="text-[0.6rem] uppercase tracking-widest text-stone-400 font-coptic">{label}</p>
+                  <p className="text-xs uppercase tracking-widest text-stone-700 font-coptic">{label}</p>
                 </div>
                 {i < arr.length - 1 && <div className="w-px h-8 bg-stone-200" />}
               </React.Fragment>
@@ -591,9 +591,9 @@ function CourseDashboard() {
 
           <div className="flex gap-3">
             <div className="relative flex-1">
-              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-stone-300"><IconSearch /></span>
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-stone-600"><IconSearch /></span>
               <input type="text" value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search courses…"
-                className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none pl-9 pr-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-300 transition-colors w-full" />
+                className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none pl-9 pr-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-700 transition-colors w-full" />
             </div>
             <select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)}
               className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 transition-colors shrink-0">
@@ -615,7 +615,7 @@ function CourseDashboard() {
           ) : (
             <div className="flex flex-col items-center py-20 gap-3">
               <div className="w-8 h-px bg-amber-500/40" />
-              <p className="text-xs uppercase tracking-[0.25em] text-stone-300">
+              <p className="text-xs uppercase tracking-[0.25em] text-stone-600">
                 {search || statusFilter !== "all" ? "No courses match your filters" : "No courses yet"}
               </p>
               <div className="w-8 h-px bg-amber-500/40" />
@@ -645,7 +645,7 @@ function CourseDashboard() {
           ) : (
             <div className="flex flex-col items-center justify-center h-48 border border-dashed border-stone-200 gap-3">
               <IconBook />
-              <p className="text-xs uppercase tracking-widest text-stone-300 font-coptic text-center">
+              <p className="text-xs uppercase tracking-widest text-stone-600 font-coptic text-center">
                 Select a course to view details<br />or create a new one
               </p>
             </div>

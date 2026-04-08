@@ -63,7 +63,7 @@ function SectionHeading({ children }) {
 
 function InputLabel({ children }) {
   return (
-    <label className="font-coptic text-[0.6rem] uppercase tracking-widest text-stone-500">{children}</label>
+    <label className="font-coptic text-xs uppercase tracking-widest text-stone-700">{children}</label>
   );
 }
 
@@ -88,7 +88,7 @@ function MemberPicker({ allUsers, allProfiles, selected, onChange }) {
           {selected.map((id) => {
             const u = allUsers.find((u) => u.id === id);
             return (
-              <span key={id} className="flex items-center gap-1 text-[0.65rem] bg-amber-50 border border-amber-200 text-amber-700 px-2 py-1">
+              <span key={id} className="flex items-center gap-1 text-sm bg-amber-50 border border-amber-200 text-amber-700 px-2 py-1">
                 {u?.first_name || u?.username}
                 <button type="button" onClick={() => toggle(id)} className="hover:text-amber-900"><IconX /></button>
               </span>
@@ -97,9 +97,9 @@ function MemberPicker({ allUsers, allProfiles, selected, onChange }) {
         </div>
       )}
       <div className="relative">
-        <span className="absolute left-3 top-1/2 -translate-y-1/2 text-stone-300"><IconSearch /></span>
+        <span className="absolute left-3 top-1/2 -translate-y-1/2 text-stone-600"><IconSearch /></span>
         <input type="text" value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search members…"
-          className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none pl-9 pr-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-300 transition-colors w-full" />
+          className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none pl-9 pr-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-700 transition-colors w-full" />
       </div>
       <div className="border border-stone-200 divide-y divide-stone-100 max-h-48 overflow-y-auto">
         {filtered.length > 0 ? filtered.map((u) => {
@@ -111,17 +111,17 @@ function MemberPicker({ allUsers, allProfiles, selected, onChange }) {
               <img src={mp?.profile_pic_url || "/images/defaultavatar.jpg"} alt={u.username} className="w-7 h-7 rounded-full object-cover shrink-0" />
               <div className="flex-1 min-w-0">
                 <p className="text-sm text-stone-700 truncate">{userName(u)}</p>
-                <p className="font-coptic text-[0.55rem] text-stone-400 truncate">@{u.username}</p>
+                <p className="font-coptic text-xs text-stone-700 truncate">@{u.username}</p>
               </div>
               <div className={`w-4 h-4 border flex items-center justify-center shrink-0 transition-colors ${checked ? "bg-amber-500 border-amber-500" : "border-stone-300"}`}>
                 {checked && <svg className="w-2.5 h-2.5 text-white" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>}
               </div>
             </div>
           );
-        }) : <p className="text-xs text-stone-300 px-3 py-4 text-center italic">No users found</p>}
+        }) : <p className="text-xs text-stone-600 px-3 py-4 text-center italic">No users found</p>}
       </div>
       {selected.length > 0 && (
-        <p className="text-[0.6rem] text-stone-400 uppercase tracking-widest">
+        <p className="text-xs text-stone-700 uppercase tracking-widest">
           {selected.length} member{selected.length !== 1 ? "s" : ""} selected
         </p>
       )}
@@ -146,7 +146,7 @@ function CharityCard({ org, allUsers, allProfiles, onSelect, isSelected }) {
       <div className="flex items-start justify-between p-5 border-b border-stone-100">
         <div className="flex-1 min-w-0">
           <h3 className="font-cormorant text-xl font-semibold text-stone-800 leading-tight truncate">{org.name}</h3>
-          {org.description && <p className="text-xs text-stone-400 mt-1 line-clamp-2">{org.description}</p>}
+          {org.description && <p className="text-xs text-stone-700 mt-1 line-clamp-2">{org.description}</p>}
         </div>
       </div>
       {pastor && (
@@ -158,7 +158,7 @@ function CharityCard({ org, allUsers, allProfiles, onSelect, isSelected }) {
                 <img src={pp?.profile_pic_url || "/images/defaultavatar.jpg"} alt={pastor.username}
                   className="w-6 h-6 rounded-full object-cover ring-1 ring-amber-400/30" />
                 <div>
-                  <p className="text-[0.55rem] uppercase tracking-widest text-stone-400 font-coptic leading-none">Pastor</p>
+                  <p className="text-xs uppercase tracking-widest text-stone-700 font-coptic leading-none">Pastor</p>
                   <p className="text-xs text-stone-600">{userName(pastor)}</p>
                 </div>
               </>
@@ -174,14 +174,14 @@ function CharityCard({ org, allUsers, allProfiles, onSelect, isSelected }) {
               title={userName(m)} className="w-7 h-7 rounded-full object-cover ring-2 ring-white -ml-1.5 first:ml-0" />;
           })}
           {memberList.length > 6 && (
-            <span className="w-7 h-7 rounded-full bg-stone-100 border border-stone-200 flex items-center justify-center text-[0.55rem] text-stone-500 -ml-1.5">
+            <span className="w-7 h-7 rounded-full bg-stone-100 border border-stone-200 flex items-center justify-center text-xs text-stone-700 -ml-1.5">
               +{memberList.length - 6}
             </span>
           )}
-          {memberList.length === 0 && <p className="text-xs text-stone-300 italic">No members yet</p>}
+          {memberList.length === 0 && <p className="text-xs text-stone-600 italic">No members yet</p>}
         </div>
         {org.donation_link && (
-          <span className="flex items-center gap-1 text-[0.55rem] uppercase tracking-widest text-amber-600">
+          <span className="flex items-center gap-1 text-xs uppercase tracking-widest text-amber-600">
             <IconLink /> Donate
           </span>
         )}
@@ -210,25 +210,25 @@ function CharityDetail({ org, allUsers, allProfiles, onClose, onEdit, onDelete }
 
       <div className="flex items-start justify-between relative z-10">
         <div className="flex-1 min-w-0">
-          <p className="text-[0.8rem] uppercase tracking-[0.25em] text-stone-500 mb-1">Charity Organisation</p>
+          <p className="text-sm uppercase tracking-[0.25em] text-stone-700 mb-1">Charity Organisation</p>
           <h3 className="font-cormorant text-2xl font-semibold text-stone-900 leading-tight truncate">{org.name}</h3>
         </div>
         <div className="flex items-center gap-0.5 shrink-0 ml-2">
-          <button onClick={onEdit} title="Edit" className="p-1.5 text-stone-500 hover:text-amber-600 transition-colors">
+          <button onClick={onEdit} title="Edit" className="p-1.5 text-stone-700 hover:text-amber-600 transition-colors">
             <IconEdit />
           </button>
           {!confirmDelete ? (
-            <button onClick={() => setConfirmDelete(true)} title="Delete" className="p-1.5 text-stone-500 hover:text-red-400 transition-colors">
+            <button onClick={() => setConfirmDelete(true)} title="Delete" className="p-1.5 text-stone-700 hover:text-red-700 transition-colors">
               <IconTrash />
             </button>
           ) : (
             <div className="flex items-center gap-1 bg-red-50 border border-red-200 px-2 py-1 ml-1">
-              <span className="font-coptic text-[0.55rem] text-red-500 uppercase tracking-widest">Delete?</span>
-              <button onClick={() => onDelete(org.id)} className="p-0.5 text-red-500 hover:text-red-700"><IconCheck /></button>
-              <button onClick={() => setConfirmDelete(false)} className="p-0.5 text-stone-400 hover:text-stone-600"><IconX /></button>
+              <span className="font-coptic text-xs text-red-700 uppercase tracking-widest">Delete?</span>
+              <button onClick={() => onDelete(org.id)} className="p-0.5 text-red-700 hover:text-red-700"><IconCheck /></button>
+              <button onClick={() => setConfirmDelete(false)} className="p-0.5 text-stone-700 hover:text-stone-600"><IconX /></button>
             </div>
           )}
-          <button onClick={onClose} className="p-1.5 text-stone-500 hover:text-stone-900 transition-colors ml-0.5">
+          <button onClick={onClose} className="p-1.5 text-stone-700 hover:text-stone-900 transition-colors ml-0.5">
             <IconX />
           </button>
         </div>
@@ -241,15 +241,15 @@ function CharityDetail({ org, allUsers, allProfiles, onClose, onEdit, onDelete }
       <div className="relative z-10 flex flex-wrap gap-3">
         {org.payment_method && (
           <div className="w-full">
-            <p className="text-[0.6rem] uppercase tracking-widest text-stone-500 font-coptic mb-1">Payment Details</p>
+            <p className="text-xs uppercase tracking-widest text-stone-700 font-coptic mb-1">Payment Details</p>
             <p className="text-xs text-stone-700 whitespace-pre-wrap leading-relaxed">{org.payment_method}</p>
           </div>
         )}
         {org.donation_link && (
           <div>
-            <p className="text-[0.6rem] uppercase tracking-widest text-stone-500 font-coptic mb-1">Donation Link</p>
+            <p className="text-xs uppercase tracking-widest text-stone-700 font-coptic mb-1">Donation Link</p>
             <a href={org.donation_link} target="_blank" rel="noopener noreferrer"
-              className="flex items-center gap-1 text-[0.65rem] text-amber-500 hover:text-amber-600 transition-colors">
+              className="flex items-center gap-1 text-sm text-amber-500 hover:text-amber-600 transition-colors">
               <IconLink /> Open link
             </a>
           </div>
@@ -257,19 +257,19 @@ function CharityDetail({ org, allUsers, allProfiles, onClose, onEdit, onDelete }
       </div>
 
       <div className="relative z-10">
-        <p className="text-[0.6rem] uppercase tracking-widest text-stone-500 font-coptic mb-2">Pastor</p>
+        <p className="text-xs uppercase tracking-widest text-stone-700 font-coptic mb-2">Pastor</p>
         <div className="flex items-center gap-3">
           <img src={pastorProfile?.profile_pic_url || "/images/defaultavatar.jpg"} alt={pastor?.username || "Pastor"}
             className="w-9 h-9 rounded-full object-cover ring-2 ring-amber-500/30" />
           <div>
             <p className="text-sm font-cormorant font-semibold text-stone-900">{pastor ? userName(pastor) : "No pastor assigned"}</p>
-            {pastor && <p className="font-coptic text-[0.55rem] uppercase tracking-widest text-stone-500">@{pastor.username}</p>}
+            {pastor && <p className="font-coptic text-xs uppercase tracking-widest text-stone-700">@{pastor.username}</p>}
           </div>
         </div>
       </div>
 
       <div className="relative z-10">
-        <p className="text-[0.6rem] uppercase tracking-widest text-stone-500 font-coptic mb-2">Members ({memberList.length})</p>
+        <p className="text-xs uppercase tracking-widest text-stone-700 font-coptic mb-2">Members ({memberList.length})</p>
         <div className="flex flex-col gap-2 max-h-64 overflow-y-auto pr-1">
           {memberList.length > 0 ? memberList.map((m) => {
             const mp = allProfiles.find((p) => p.user?.id === m.id);
@@ -278,7 +278,7 @@ function CharityDetail({ org, allUsers, allProfiles, onClose, onEdit, onDelete }
                 <img src={mp?.profile_pic_url || "/images/defaultavatar.jpg"} alt={m.username} className="w-7 h-7 rounded-full object-cover shrink-0" />
                 <div className="min-w-0">
                   <p className="text-xs text-stone-700 truncate">{userName(m)}</p>
-                  <p className="font-coptic text-[0.55rem] text-stone-600 truncate">@{m.username}</p>
+                  <p className="font-coptic text-xs text-stone-600 truncate">@{m.username}</p>
                 </div>
               </div>
             );
@@ -305,17 +305,17 @@ function CharityFields({
       <div className="flex flex-col gap-1.5">
         <InputLabel>Organisation Name *</InputLabel>
         <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="e.g. Hope Community Fund" required
-          className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-300 transition-colors w-full" />
+          className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-700 transition-colors w-full" />
       </div>
 
       <div className="flex flex-col gap-1.5">
         <InputLabel>Description *</InputLabel>
         <textarea value={description} onChange={(e) => setDescription(e.target.value)} placeholder="What does this organisation do?"
-          className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-300 transition-colors resize-none min-h-16 w-full" />
+          className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-700 transition-colors resize-none min-h-16 w-full" />
       </div>
 
       <div className="flex flex-col gap-1.5">
-        <InputLabel>Banner Image <span className="text-stone-300 normal-case tracking-normal">(optional)</span></InputLabel>
+        <InputLabel>Banner Image <span className="text-stone-600 normal-case tracking-normal">(optional)</span></InputLabel>
         {existingBanner && !bannerFile && (
           <div className="w-full h-20 border border-stone-200 overflow-hidden mb-1">
             <img src={existingBanner} alt="Current banner" className="w-full h-full object-cover" />
@@ -327,7 +327,7 @@ function CharityFields({
           </div>
         )}
         <button type="button" onClick={() => fileInputRef.current?.click()}
-          className="flex items-center gap-2 border border-dashed border-stone-300 hover:border-amber-400 text-stone-400 hover:text-amber-500 text-xs px-3 py-2.5 transition-colors w-full justify-center">
+          className="flex items-center gap-2 border border-dashed border-stone-300 hover:border-amber-400 text-stone-700 hover:text-amber-500 text-xs px-3 py-2.5 transition-colors w-full justify-center">
           <IconPhoto />
           {bannerFile ? bannerFile.name : existingBanner ? "Replace banner" : "Upload banner"}
         </button>
@@ -335,27 +335,27 @@ function CharityFields({
           onChange={(e) => setBannerFile(e.target.files?.[0] ?? null)} />
         {bannerFile && (
           <button type="button" onClick={() => setBannerFile(null)}
-            className="text-[0.6rem] uppercase tracking-widest text-stone-400 hover:text-red-400 transition-colors text-left">
+            className="text-xs uppercase tracking-widest text-stone-700 hover:text-red-700 transition-colors text-left">
             Remove selection
           </button>
         )}
       </div>
 
       <div className="flex flex-col gap-1.5">
-        <InputLabel>Payment Details <span className="text-stone-300 normal-case tracking-normal">(optional)</span></InputLabel>
+        <InputLabel>Payment Details <span className="text-stone-600 normal-case tracking-normal">(optional)</span></InputLabel>
         <textarea value={paymentMethod} onChange={(e) => setPaymentMethod(e.target.value)}
           placeholder="e.g. Bank: FNB, Account: 123456, Branch: 250655&#10;PayPal: donate@hope.org"
-          className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-300 transition-colors resize-none min-h-20 w-full" />
+          className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-700 transition-colors resize-none min-h-20 w-full" />
       </div>
 
       <div className="flex flex-col gap-1.5">
-        <InputLabel>Donation Link <span className="text-stone-300 normal-case tracking-normal">(optional)</span></InputLabel>
+        <InputLabel>Donation Link <span className="text-stone-600 normal-case tracking-normal">(optional)</span></InputLabel>
         <input type="url" value={donationLink} onChange={(e) => setDonationLink(e.target.value)} placeholder="https://…"
-          className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-300 transition-colors w-full" />
+          className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-700 transition-colors w-full" />
       </div>
 
       <div className="flex flex-col gap-1.5">
-        <InputLabel>Pastor <span className="text-stone-300 normal-case tracking-normal">(optional)</span></InputLabel>
+        <InputLabel>Pastor <span className="text-stone-600 normal-case tracking-normal">(optional)</span></InputLabel>
         <select value={pastorId} onChange={(e) => setPastorId(e.target.value)}
           className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 transition-colors w-full">
           <option value="">No pastor</option>
@@ -368,7 +368,7 @@ function CharityFields({
       </div>
 
       <div className="flex flex-col gap-1.5">
-        <InputLabel>Members <span className="text-stone-300 normal-case tracking-normal">(optional)</span></InputLabel>
+        <InputLabel>Members <span className="text-stone-600 normal-case tracking-normal">(optional)</span></InputLabel>
         <MemberPicker allUsers={allUsers} allProfiles={allProfiles} selected={selectedMembers} onChange={setSelectedMembers} />
       </div>
     </>
@@ -435,9 +435,9 @@ function CreateCharityForm({ allUsers, allProfiles, onSuccess }) {
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-5">
       <CharityFields {...{ name, setName, description, setDescription, paymentMethod, setPaymentMethod, donationLink, setDonationLink, pastorId, setPastorId, allUsers, allProfiles, selectedMembers, setSelectedMembers, bannerFile, setBannerFile, existingBanner: null }} />
-      {error && <p className="text-[0.6rem] uppercase tracking-widest text-red-400">{error}</p>}
+      {error && <p className="text-xs uppercase tracking-widest text-red-700">{error}</p>}
       <button type="submit" disabled={submitting}
-        className="bg-amber-500 hover:bg-amber-600 disabled:bg-amber-300 text-white font-coptic text-[0.65rem] uppercase tracking-widest py-3 transition-colors flex items-center justify-center gap-2">
+        className="bg-amber-500 hover:bg-amber-600 disabled:bg-amber-300 text-white font-coptic text-sm uppercase tracking-widest py-3 transition-colors flex items-center justify-center gap-2">
         {submitting ? <span className="animate-pulse">Creating…</span> : <><IconPlus /><span>Create Organisation</span></>}
       </button>
     </form>
@@ -475,14 +475,14 @@ function EditCharityForm({ org, allUsers, allProfiles, onSuccess, onCancel }) {
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-5">
       <CharityFields {...{ name, setName, description, setDescription, paymentMethod, setPaymentMethod, donationLink, setDonationLink, pastorId, setPastorId, allUsers, allProfiles, selectedMembers, setSelectedMembers, bannerFile, setBannerFile, existingBanner: org.banner }} />
-      {error && <p className="text-[0.6rem] uppercase tracking-widest text-red-400">{error}</p>}
+      {error && <p className="text-xs uppercase tracking-widest text-red-700">{error}</p>}
       <div className="flex gap-2">
         <button type="submit" disabled={submitting}
-          className="flex-1 bg-amber-500 hover:bg-amber-600 disabled:bg-amber-300 text-white font-coptic text-[0.65rem] uppercase tracking-widest py-3 transition-colors flex items-center justify-center gap-2">
+          className="flex-1 bg-amber-500 hover:bg-amber-600 disabled:bg-amber-300 text-white font-coptic text-sm uppercase tracking-widest py-3 transition-colors flex items-center justify-center gap-2">
           {submitting ? <span className="animate-pulse">Saving…</span> : <><IconCheck /><span>Save Changes</span></>}
         </button>
         <button type="button" onClick={onCancel}
-          className="border border-stone-200 text-stone-700 hover:border-stone-400 font-coptic text-[0.65rem] uppercase tracking-widest px-4 py-3 transition-colors">
+          className="border border-stone-200 text-stone-700 hover:border-stone-400 font-coptic text-sm uppercase tracking-widest px-4 py-3 transition-colors">
           Cancel
         </button>
       </div>
@@ -541,12 +541,12 @@ function CharityOrganisationDashboard() {
 
       <div className="flex items-end justify-between mb-10">
         <div>
-          <p className="text-[0.6rem] uppercase tracking-[0.25em] text-stone-400 mb-1">Outreach</p>
+          <p className="text-xs uppercase tracking-[0.25em] text-stone-700 mb-1">Outreach</p>
           <h1 className="font-cormorant text-4xl font-semibold text-black leading-tight">Charity Organisations</h1>
           <div className="w-8 h-0.5 bg-amber-500 mt-3" />
         </div>
         <button onClick={() => { setMode(mode === "create" ? "idle" : "create"); setSelected(null); }}
-          className="flex items-center gap-2 bg-amber-500 hover:bg-amber-600 text-white font-coptic text-[0.65rem] uppercase tracking-widest px-4 py-3 transition-colors">
+          className="flex items-center gap-2 bg-amber-500 hover:bg-amber-600 text-white font-coptic text-sm uppercase tracking-widest px-4 py-3 transition-colors">
           <IconPlus />
           {mode === "create" ? "Cancel" : "New Organisation"}
         </button>
@@ -570,7 +570,7 @@ function CharityOrganisationDashboard() {
               <React.Fragment key={label}>
                 <div>
                   <p className="font-cormorant text-3xl font-light text-stone-800">{value}</p>
-                  <p className="text-[0.6rem] uppercase tracking-widest text-stone-400 font-coptic">{label}</p>
+                  <p className="text-xs uppercase tracking-widest text-stone-700 font-coptic">{label}</p>
                 </div>
                 {i < arr.length - 1 && <div className="w-px h-8 bg-stone-200" />}
               </React.Fragment>
@@ -578,9 +578,9 @@ function CharityOrganisationDashboard() {
           </div>
 
           <div className="relative">
-            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-stone-300"><IconSearch /></span>
+            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-stone-600"><IconSearch /></span>
             <input type="text" value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search organisations…"
-              className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none pl-9 pr-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-300 transition-colors w-full" />
+              className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none pl-9 pr-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-700 transition-colors w-full" />
           </div>
 
           {filtered.length > 0 ? (
@@ -594,7 +594,7 @@ function CharityOrganisationDashboard() {
           ) : (
             <div className="flex flex-col items-center py-20 gap-3">
               <div className="w-8 h-px bg-amber-500/40" />
-              <p className="text-xs uppercase tracking-[0.25em] text-stone-300">
+              <p className="text-xs uppercase tracking-[0.25em] text-stone-600">
                 {search ? "No organisations match your search" : "No organisations yet"}
               </p>
               <div className="w-8 h-px bg-amber-500/40" />
@@ -624,7 +624,7 @@ function CharityOrganisationDashboard() {
           ) : (
             <div className="flex flex-col items-center justify-center h-48 border border-dashed border-stone-200 gap-3">
               <IconHeart />
-              <p className="text-xs uppercase tracking-widest text-stone-300 font-coptic text-center">
+              <p className="text-xs uppercase tracking-widest text-stone-600 font-coptic text-center">
                 Select an organisation to view details<br />or create a new one
               </p>
             </div>

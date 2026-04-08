@@ -15,9 +15,12 @@ const IconCamera = () => (
   </svg>
 );
 
-function InputLabel({ children }) {
+function InputLabel({ children, htmlFor }) {
   return (
-    <label className="font-coptic text-[0.6rem] uppercase tracking-widest text-stone-500">
+    <label
+      htmlFor={htmlFor}
+      className="font-coptic text-xs uppercase tracking-widest text-stone-800 font-semibold"
+    >
       {children}
     </label>
   );
@@ -81,31 +84,49 @@ function ProfileFormInner({ profile, user, updateProfile, onClose }) {
   const avatarSrc = imagePreview || profile?.profile_pic_url || "/images/defaultavatar.jpg";
 
   return (
-    <div className="fixed right-0 top-0 h-screen w-80 bg-porcelain border-l border-stone-200 z-50 flex flex-col overflow-y-auto shadow-2xl">
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="edit-profile-heading"
+      className="fixed right-0 top-0 h-screen w-80 bg-porcelain border-l border-stone-200 z-50 flex flex-col overflow-y-auto shadow-2xl"
+    >
 
       {/* Header */}
-      <div className="flex items-center justify-between px-6 py-5 border-b border-stone-100 shrink-0">
+      <div className="flex items-center justify-between px-6 py-5 border-b border-stone-200 shrink-0">
         <div>
-          <p className="text-[0.6rem] uppercase tracking-[0.25em] text-stone-500 font-coptic">Account</p>
-          <h2 className="font-cormorant text-xl font-semibold text-stone-900 leading-tight">Edit Profile</h2>
+          <p className="text-xs uppercase tracking-[0.22em] text-stone-700 font-coptic font-semibold">
+            Account
+          </p>
+          <h2
+            id="edit-profile-heading"
+            className="font-cormorant text-2xl font-semibold text-stone-900 leading-tight"
+          >
+            Edit Profile
+          </h2>
         </div>
-        <button onClick={onClose} className="text-stone-500 hover:text-stone-900 transition-colors p-1">
+        <button
+          type="button"
+          onClick={onClose}
+          aria-label="Close edit profile"
+          className="text-stone-700 hover:text-stone-900 transition-colors p-1"
+        >
           <IconX />
         </button>
       </div>
 
       {/* Avatar picker */}
-      <div className="flex flex-col items-center px-6 py-6 border-b border-stone-100 shrink-0">
+      <div className="flex flex-col items-center px-6 py-6 border-b border-stone-200 shrink-0">
         <div className="relative group">
           <img
             src={avatarSrc}
-            alt="Profile"
+            alt="Current profile picture"
             className="w-20 h-20 rounded-full object-cover ring-2 ring-amber-500/30"
           />
           <button
             type="button"
+            aria-label="Change profile picture"
             onClick={() => fileInputRef.current?.click()}
-            className="absolute inset-0 rounded-full bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+            className="absolute inset-0 rounded-full bg-black/55 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 focus-visible:opacity-100 transition-opacity"
           >
             <IconCamera />
           </button>
@@ -116,16 +137,17 @@ function ProfileFormInner({ profile, user, updateProfile, onClose }) {
           accept="image/*"
           onChange={handleImageChange}
           className="hidden"
+          aria-label="Upload new profile picture"
         />
         <button
           type="button"
           onClick={() => fileInputRef.current?.click()}
-          className="mt-3 font-coptic text-[0.6rem] uppercase tracking-widest text-stone-500 hover:text-amber-600 transition-colors"
+          className="mt-3 font-coptic text-xs uppercase tracking-widest text-stone-800 hover:text-amber-700 transition-colors font-semibold"
         >
           Change Photo
         </button>
         {imageFile && (
-          <p className="mt-1 font-coptic text-[0.55rem] uppercase tracking-widest text-amber-500 text-center truncate w-full px-2">
+          <p className="mt-1 font-coptic text-xs uppercase tracking-widest text-amber-700 font-semibold text-center truncate w-full px-2">
             {imageFile.name}
           </p>
         )}
@@ -136,19 +158,25 @@ function ProfileFormInner({ profile, user, updateProfile, onClose }) {
 
         {/* Read-only */}
         <div className="flex flex-col gap-1.5">
-          <InputLabel>Username</InputLabel>
-          <p className="px-3 py-2.5 text-sm text-stone-700 bg-stone-50 border border-stone-200">
+          <InputLabel htmlFor="profile-username">Username</InputLabel>
+          <p
+            id="profile-username"
+            className="px-3 py-2.5 text-base text-stone-800 bg-stone-50 border border-stone-300"
+          >
             @{user?.username}
           </p>
         </div>
         <div className="flex flex-col gap-1.5">
-          <InputLabel>Email</InputLabel>
-          <p className="px-3 py-2.5 text-sm text-stone-700 bg-stone-50 border border-stone-200">
+          <InputLabel htmlFor="profile-email">Email</InputLabel>
+          <p
+            id="profile-email"
+            className="px-3 py-2.5 text-base text-stone-800 bg-stone-50 border border-stone-300"
+          >
             {user?.email || "—"}
           </p>
         </div>
 
-        <div className="h-px bg-stone-100" />
+        <div className="h-px bg-stone-200" aria-hidden="true" />
 
         {/* Editable */}
         {[
@@ -157,26 +185,36 @@ function ProfileFormInner({ profile, user, updateProfile, onClose }) {
           { key: "DoB",         label: "Date of Birth",  type: "date", placeholder: "" },
           { key: "school",      label: "School",         type: "text", placeholder: "Your school or university" },
           { key: "workplace",   label: "Workplace",      type: "text", placeholder: "Where do you work?" },
-        ].map(({ key, label, type, placeholder }) => (
-          <div key={key} className="flex flex-col gap-1.5">
-            <InputLabel>{label}</InputLabel>
-            <input
-              type={type}
-              value={fields[key]}
-              onChange={(e) => setFields((f) => ({ ...f, [key]: e.target.value }))}
-              placeholder={placeholder}
-              className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-900 placeholder:text-stone-300 transition-colors"
-            />
-          </div>
-        ))}
+        ].map(({ key, label, type, placeholder }) => {
+          const inputId = `profile-${key}`;
+          return (
+            <div key={key} className="flex flex-col gap-1.5">
+              <InputLabel htmlFor={inputId}>{label}</InputLabel>
+              <input
+                id={inputId}
+                type={type}
+                value={fields[key]}
+                onChange={(e) => setFields((f) => ({ ...f, [key]: e.target.value }))}
+                placeholder={placeholder}
+                className="bg-ivory border border-stone-300 focus:border-amber-500 focus:outline-none px-3 py-2.5 text-base text-stone-900 placeholder:text-stone-500 transition-colors"
+              />
+            </div>
+          );
+        })}
 
         {error && (
-          <p className="text-[0.6rem] uppercase tracking-widest text-red-400 font-coptic">{error}</p>
+          <p
+            role="alert"
+            className="text-sm uppercase tracking-widest text-red-700 font-semibold font-coptic"
+          >
+            {error}
+          </p>
         )}
 
         <button
-          type="submit" disabled={submitting}
-          className="mt-auto bg-amber-500 hover:bg-amber-600 disabled:bg-amber-500/40 text-white font-coptic text-[0.65rem] uppercase tracking-widest py-3 transition-colors flex items-center justify-center"
+          type="submit"
+          disabled={submitting}
+          className="mt-auto bg-amber-500 hover:bg-amber-600 disabled:bg-amber-500/50 text-black font-coptic text-sm font-semibold uppercase tracking-widest py-3 transition-colors flex items-center justify-center"
         >
           {submitting ? <span className="animate-pulse">Saving…</span> : success ? "Saved ✓" : "Save Changes"}
         </button>

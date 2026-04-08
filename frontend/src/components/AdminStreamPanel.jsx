@@ -32,7 +32,7 @@ export default function AdminStreamPanel() {
 
       {/* Section header */}
       <div className="mb-8">
-        <p className="font-coptic text-[0.5rem] uppercase tracking-[0.3em] text-stone-500 mb-1">
+        <p className="font-coptic text-[0.5rem] uppercase tracking-[0.3em] text-stone-700 mb-1">
           Dashboard / Streaming
         </p>
         <h1 className="font-cormorant text-3xl font-semibold text-black leading-tight">
@@ -43,10 +43,10 @@ export default function AdminStreamPanel() {
 
       {/* Info card */}
       <div className="border border-stone-200 bg-ivory p-5 mb-6">
-        <p className="font-coptic text-[0.6rem] uppercase tracking-[0.2em] text-stone-400 mb-2">
+        <p className="font-coptic text-xs uppercase tracking-[0.2em] text-stone-700 mb-2">
           How it works
         </p>
-        <p className="text-sm text-stone-500 leading-relaxed">
+        <p className="text-sm text-stone-700 leading-relaxed">
           Sunday services at 9:00 AM and 11:00 AM EAT are detected automatically.
           Use the toggle below to enable live stream detection during a midweek service.
           Remember to turn it off once the service ends.
@@ -74,7 +74,7 @@ export default function AdminStreamPanel() {
               ) : (
                 <>
                   <span className="w-1.5 h-1.5 rounded-full bg-stone-300" />
-                  <p className="font-coptic text-[0.5rem] uppercase tracking-widest text-stone-400">
+                  <p className="font-coptic text-[0.5rem] uppercase tracking-widest text-stone-700">
                     Not checking
                   </p>
                 </>
@@ -114,7 +114,7 @@ export default function AdminStreamPanel() {
 
       {/* Saving indicator */}
       {saving && (
-        <p className="font-coptic text-[0.48rem] uppercase tracking-widest text-stone-400 mt-3 animate-pulse">
+        <p className="font-coptic text-[0.48rem] uppercase tracking-widest text-stone-700 mt-3 animate-pulse">
           Saving...
         </p>
       )}

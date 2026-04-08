@@ -13,10 +13,10 @@ function StatCard({ label, count, icon }) {
     <div className="relative overflow-hidden flex flex-col justify-between rounded-sm p-6 bg-amber-500 border border-amber-400 shadow-lg shadow-amber-200/40">
       <div className="absolute -top-6 -right-6 w-24 h-24 bg-amber-400/20 rounded-full blur-2xl pointer-events-none" />
       <div className="flex items-start justify-between mb-4 relative z-10">
-        <span className="text-[0.8rem] uppercase tracking-[0.25em] text-black">
+        <span className="text-sm uppercase tracking-[0.22em] text-black font-semibold">
           {label}
         </span>
-        <span className="text-black">{icon}</span>
+        <span className="text-black" aria-hidden="true">{icon}</span>
       </div>
       <p className="font-cormorant text-5xl font-light text-white leading-none relative z-10">
         {count != null ? (
@@ -32,10 +32,10 @@ function StatCard({ label, count, icon }) {
 function SectionHeading({ children }) {
   return (
     <div className="flex items-center gap-3 mb-5">
-      <h2 className="font-cormorant text-2xl font-semibold text-stone-800 shrink-0">
+      <h2 className="font-cormorant text-2xl font-semibold text-stone-900 shrink-0">
         {children}
       </h2>
-      <div className="flex-1 h-px bg-stone-200" />
+      <div className="flex-1 h-px bg-stone-300" aria-hidden="true" />
     </div>
   );
 }
@@ -254,15 +254,15 @@ function DashboardOverview() {
   return (
     <div className="min-h-screen w-full bg-ivory p-8">
       {/* ── Page header ── */}
-      <div className="mb-10">
-        <p className="text-[0.6rem] uppercase tracking-[0.25em] text-stone-400 mb-1">
+      <header className="mb-10">
+        <p className="text-sm uppercase tracking-[0.22em] text-stone-700 mb-1 font-coptic">
           {greeting()},
         </p>
-        <h1 className="font-cormorant text-4xl font-semibold text-black leading-tight">
+        <h1 className="font-cormorant text-4xl font-semibold text-stone-900 leading-tight">
           {displayName}
         </h1>
-        <div className="w-8 h-0.5 bg-amber-500 mt-3" />
-      </div>
+        <div className="w-8 h-0.5 bg-amber-500 mt-3" aria-hidden="true" />
+      </header>
 
       {/* ── Stats row ── */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-12">
@@ -306,12 +306,12 @@ function DashboardOverview() {
                         className="w-10 h-10 rounded-full object-cover ring-2 ring-amber-500/20 shrink-0 relative z-10"
                       />
                       <div className="min-w-0 relative z-10">
-                        <p className="font-cormorant text-base font-semibold text-stone-900 leading-tight truncate">
+                        <p className="font-cormorant text-lg font-semibold text-stone-900 leading-tight truncate">
                           {leader.first_name && leader.last_name
                             ? `${leader.first_name} ${leader.last_name}`
                             : leader.username}
                         </p>
-                        <p className="font-coptic text-[0.6rem] uppercase tracking-widest text-stone-500 truncate mt-0.5">
+                        <p className="font-coptic text-xs uppercase tracking-widest text-stone-700 truncate mt-0.5">
                           {leader.groups
                             ?.filter((g) => LEADER_GROUPS.includes(g))
                             .join(", ")}
@@ -322,7 +322,7 @@ function DashboardOverview() {
                 })}
               </div>
             ) : (
-              <p className="text-xs uppercase tracking-widest text-stone-300">
+              <p className="text-sm uppercase tracking-widest text-stone-700">
                 No leaders found
               </p>
             )}
@@ -338,7 +338,10 @@ function DashboardOverview() {
                     key={post.id}
                     className="flex items-start gap-4 px-5 py-4 hover:bg-stone-50 transition-colors"
                   >
-                    <span className="font-cormorant text-3xl font-light text-stone-300 leading-none w-7 shrink-0 pt-0.5">
+                    <span
+                      aria-hidden="true"
+                      className="font-cormorant text-3xl font-light text-stone-500 leading-none w-7 shrink-0 pt-0.5"
+                    >
                       {i + 1}
                     </span>
                     {post.image && (
@@ -349,19 +352,19 @@ function DashboardOverview() {
                       />
                     )}
                     <div className="flex-1 min-w-0">
-                      <p className="font-cormorant text-lg font-semibold text-stone-800 leading-tight truncate">
+                      <p className="font-cormorant text-xl font-semibold text-stone-900 leading-tight truncate">
                         {post.title}
                       </p>
-                      <p className="font-coptic text-[0.6rem] uppercase tracking-widest text-stone-400 mt-0.5">
+                      <p className="font-coptic text-xs uppercase tracking-widest text-stone-700 mt-0.5">
                         @{post.author?.username}
                       </p>
-                      <p className="text-xs text-stone-400 mt-1 line-clamp-1">
+                      <p className="text-sm text-stone-700 mt-1 line-clamp-1">
                         {post.content}
                       </p>
                     </div>
-                    <div className="flex items-center gap-1 text-amber-500 shrink-0 pt-1">
+                    <div className="flex items-center gap-1 text-amber-700 shrink-0 pt-1">
                       <IconHeart />
-                      <span className="text-xs tabular-nums font-medium">
+                      <span className="text-sm tabular-nums font-semibold">
                         {post.like_count ?? 0}
                       </span>
                     </div>
@@ -375,7 +378,7 @@ function DashboardOverview() {
             )}
             <Link
               to="/feed"
-              className="inline-flex items-center gap-2 mt-3 text-[0.65rem] uppercase tracking-widest text-amber-500 hover:text-amber-600 transition-colors group"
+              className="inline-flex items-center gap-2 mt-3 text-sm uppercase tracking-widest text-amber-700 hover:text-amber-800 transition-colors group font-semibold"
             >
               View all posts <IconArrow />
             </Link>
@@ -402,7 +405,7 @@ function DashboardOverview() {
                 <p className="font-cormorant text-lg font-semibold text-stone-900 leading-none">
                   {user?.first_name || user?.username}
                 </p>
-                <p className="font-coptic text-[0.55rem] uppercase tracking-widest text-stone-500">
+                <p className="font-coptic text-xs uppercase tracking-widest text-stone-700 mt-1">
                   @{user?.username}
                 </p>
               </div>
@@ -410,7 +413,7 @@ function DashboardOverview() {
 
             {/* Title */}
             <div className="flex flex-col gap-1 relative z-10">
-              <label className="font-coptic text-[0.6rem] uppercase tracking-widest text-stone-600">
+              <label className="font-coptic text-xs uppercase tracking-widest text-stone-800 font-semibold">
                 Title
               </label>
               <input
@@ -419,13 +422,13 @@ function DashboardOverview() {
                 onChange={(e) => setTitle(e.target.value)}
                 required
                 placeholder="Post title…"
-                className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-900 placeholder:text-stone-300 transition-colors rounded-sm"
+                className="bg-ivory border border-stone-300 focus:border-amber-500 focus:outline-none px-3 py-2.5 text-base text-stone-900 placeholder:text-stone-500 transition-colors rounded-sm"
               />
             </div>
 
             {/* Content */}
             <div className="flex flex-col gap-1 relative z-10">
-              <label className="font-coptic text-[0.6rem] uppercase tracking-widest text-stone-600">
+              <label className="font-coptic text-xs uppercase tracking-widest text-stone-800 font-semibold">
                 Content
               </label>
               <textarea
@@ -433,13 +436,13 @@ function DashboardOverview() {
                 onChange={(e) => setText(e.target.value)}
                 required
                 placeholder="What's on your heart?"
-                className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-900 placeholder:text-stone-300 transition-colors resize-none min-h-24 rounded-sm"
+                className="bg-ivory border border-stone-300 focus:border-amber-500 focus:outline-none px-3 py-2.5 text-base text-stone-900 placeholder:text-stone-500 transition-colors resize-none min-h-28 rounded-sm leading-relaxed"
               />
             </div>
 
             {/* Tags */}
             <div className="flex flex-col gap-1 relative z-10">
-              <label className="font-coptic text-[0.6rem] uppercase tracking-widest text-stone-600">
+              <label className="font-coptic text-xs uppercase tracking-widest text-stone-800 font-semibold">
                 Tags
               </label>
               <input
@@ -448,15 +451,15 @@ function DashboardOverview() {
                 onChange={(e) => setTags(e.target.value)}
                 required
                 placeholder="worship, prayer…"
-                className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-900 placeholder:text-stone-300 transition-colors rounded-sm"
+                className="bg-ivory border border-stone-300 focus:border-amber-500 focus:outline-none px-3 py-2.5 text-base text-stone-900 placeholder:text-stone-500 transition-colors rounded-sm"
               />
             </div>
 
             {/* Image */}
             <div className="flex flex-col gap-1 relative z-10">
-              <label className="font-coptic text-[0.6rem] uppercase tracking-widest text-stone-600">
+              <label className="font-coptic text-xs uppercase tracking-widest text-stone-800 font-semibold">
                 Image{" "}
-                <span className="text-stone-500 normal-case tracking-normal">
+                <span className="text-stone-700 normal-case tracking-normal">
                   (optional)
                 </span>
               </label>
@@ -464,13 +467,16 @@ function DashboardOverview() {
                 type="file"
                 accept="image/*"
                 onChange={(e) => setImage(e.target.files[0])}
-                className="text-xs text-stone-500 file:mr-3 file:py-1.5 file:px-3 file:border-0 file:text-[0.6rem] file:font-coptic file:uppercase file:tracking-widest file:bg-amber-500 file:text-white hover:file:bg-amber-600 file:transition-colors file:cursor-pointer file:rounded-sm"
+                className="text-sm text-stone-700 file:mr-3 file:py-2 file:px-3 file:border-0 file:text-xs file:font-coptic file:uppercase file:tracking-widest file:bg-amber-500 file:text-black file:font-semibold hover:file:bg-amber-600 file:transition-colors file:cursor-pointer file:rounded-sm"
               />
             </div>
 
             {/* Error */}
             {postError && (
-              <p className="text-[0.6rem] uppercase tracking-widest text-red-400 relative z-10">
+              <p
+                role="alert"
+                className="text-sm uppercase tracking-widest text-red-700 font-semibold relative z-10"
+              >
                 {postError}
               </p>
             )}
@@ -479,7 +485,7 @@ function DashboardOverview() {
             <button
               type="submit"
               disabled={posting}
-              className="mt-1 bg-amber-500 hover:bg-amber-600 disabled:bg-amber-500/40 text-white font-coptic text-[0.65rem] uppercase tracking-widest py-3 transition-colors flex items-center justify-center gap-2 group rounded-sm relative z-10"
+              className="mt-1 bg-amber-500 hover:bg-amber-600 disabled:bg-amber-500/50 text-black font-coptic text-sm font-semibold uppercase tracking-widest py-3 transition-colors flex items-center justify-center gap-2 group rounded-sm relative z-10"
             >
               {posting ? (
                 <span className="animate-pulse">Publishing…</span>
@@ -494,14 +500,17 @@ function DashboardOverview() {
             </button>
 
             {posted && (
-              <p className="text-[0.6rem] uppercase tracking-widest text-amber-400 text-center animate-pulse relative z-10">
+              <p
+                role="status"
+                className="text-sm uppercase tracking-widest text-amber-700 font-semibold text-center animate-pulse relative z-10"
+              >
                 Published successfully
               </p>
             )}
 
             <Link
               to="/feed/upload"
-              className="text-[0.6rem] uppercase tracking-widest text-stone-600 hover:text-amber-500 text-center transition-colors relative z-10"
+              className="text-sm uppercase tracking-widest text-stone-800 hover:text-amber-700 text-center transition-colors relative z-10 font-semibold"
             >
               Full post editor →
             </Link>

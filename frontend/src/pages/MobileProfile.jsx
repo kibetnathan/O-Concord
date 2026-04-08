@@ -43,9 +43,13 @@ export default function ProfilePage() {
 
   if (!profile)
     return (
-      <div className="md:hidden flex h-screen w-full bg-ivory items-center justify-center">
-        <Sidebar/>
-        <p className="text-xs tracking-widest uppercase text-stone-500 animate-pulse">
+      <div
+        role="status"
+        aria-busy="true"
+        className="md:hidden flex h-screen w-full bg-ivory items-center justify-center"
+      >
+        <Sidebar />
+        <p className="text-sm tracking-widest uppercase text-stone-700 animate-pulse">
           Loading…
         </p>
       </div>
@@ -53,13 +57,19 @@ export default function ProfilePage() {
 
   return (
     <>
-      <div className="md:hidden flex flex-col min-h-screen bg-ivory overflow-y-auto pb-20">
-        <Sidebar/>
+      <main
+        id="main-content"
+        className="md:hidden flex flex-col min-h-screen bg-ivory overflow-y-auto pb-20"
+      >
+        <Sidebar />
         {/* ── Profile Card ── */}
-        <div className="flex flex-col items-center px-6 pt-14 pb-7 border-b border-stone-200">
+        <section
+          aria-labelledby="mobile-profile-name"
+          className="flex flex-col items-center px-6 pt-14 pb-7 border-b border-stone-200"
+        >
 
           {/* Church label */}
-          <p className="font-coptic text-[0.55rem] tracking-[0.3em] uppercase text-stone-500 mb-6">
+          <p className="font-coptic text-xs tracking-[0.22em] uppercase text-stone-700 font-semibold mb-6">
             Open Church Management
           </p>
 
@@ -67,46 +77,58 @@ export default function ProfilePage() {
           <div className="relative mb-5">
             <img
               src={profile?.profile_pic_url || "/images/defaultavatar.jpg"}
-              alt="Profile"
-              className="w-20 h-20 rounded-full object-cover ring-2 ring-amber-500/30"
+              alt={`${fullName}'s profile picture`}
+              className="w-24 h-24 rounded-full object-cover ring-2 ring-amber-500/30"
             />
-            <span className="absolute bottom-0.5 right-0.5 w-3 h-3 bg-amber-500 rounded-full ring-2 ring-white" />
+            <span
+              aria-hidden="true"
+              className="absolute bottom-0.5 right-0.5 w-3.5 h-3.5 bg-amber-500 rounded-full ring-2 ring-white"
+            />
           </div>
 
           {/* Name & username */}
-          <h2 className="font-cormorant text-2xl font-semibold text-stone-900 tracking-wide text-center leading-tight">
+          <h1
+            id="mobile-profile-name"
+            className="font-cormorant text-3xl font-semibold text-stone-900 tracking-wide text-center leading-tight"
+          >
             {fullName}
-          </h2>
-          <p className="font-coptic text-xs text-stone-500 tracking-widest mt-1">
+          </h1>
+          <p className="font-coptic text-sm text-stone-700 tracking-widest mt-1">
             @{user?.username}
           </p>
 
-          <div className="w-8 h-px bg-amber-500/40 my-4" />
+          <div className="w-8 h-px bg-amber-500/40 my-4" aria-hidden="true" />
 
           {/* Profile fields */}
-          <ul className="w-full flex flex-col gap-2.5">
+          <dl className="w-full flex flex-col gap-3">
             {profileFields.map(({ label, value }) => (
-              <li key={label} className="flex items-baseline justify-between gap-3">
-                <span className="text-[0.6rem] uppercase tracking-[0.2em] text-stone-500 shrink-0">
+              <div key={label} className="flex items-baseline justify-between gap-3">
+                <dt className="text-xs uppercase tracking-[0.18em] text-stone-700 font-semibold shrink-0">
                   {label}
-                </span>
-                <span className="text-xs text-stone-700 font-light text-right truncate">
+                </dt>
+                <dd className="text-sm text-stone-800 text-right truncate">
                   {value || "—"}
-                </span>
-              </li>
+                </dd>
+              </div>
             ))}
-          </ul>
-        </div>
+          </dl>
+        </section>
 
         {/* ── My Groups ── */}
-        <div className="flex flex-col px-6 py-6 border-b border-stone-200">
+        <section
+          aria-labelledby="mobile-groups-heading"
+          className="flex flex-col px-6 py-6 border-b border-stone-200"
+        >
           <div className="flex items-center gap-2 mb-4">
-            <span className="text-[0.6rem] uppercase tracking-[0.25em] text-stone-500">
+            <h2
+              id="mobile-groups-heading"
+              className="text-xs uppercase tracking-[0.22em] text-stone-700 font-semibold"
+            >
               My Groups
-            </span>
-            <div className="flex-1 h-px bg-stone-200" />
+            </h2>
+            <div className="flex-1 h-px bg-stone-200" aria-hidden="true" />
             {myGroups?.length > 0 && (
-              <span className="text-[0.6rem] text-amber-500 tabular-nums">
+              <span className="text-xs text-amber-700 tabular-nums font-semibold">
                 {myGroups.length}
               </span>
             )}
@@ -117,31 +139,31 @@ export default function ProfilePage() {
               myGroups.map((group) => (
                 <li
                   key={group.id}
-                  className="font-coptic text-xs text-stone-700 px-3 py-2.5 border-l-2 border-transparent hover:border-amber-500 hover:text-black hover:bg-amber-50 transition-all duration-150 cursor-default tracking-wide"
+                  className="font-coptic text-sm text-stone-800 px-3 py-2.5 border-l-2 border-transparent hover:border-amber-500 hover:text-black hover:bg-amber-50 transition-all duration-150 cursor-default tracking-wide"
                 >
                   {group.name}
                 </li>
               ))
             ) : (
-              <li className="text-[0.65rem] text-stone-400 tracking-widest uppercase py-2">
+              <li className="text-xs text-stone-700 tracking-widest uppercase py-2">
                 No groups yet
               </li>
             )}
           </ul>
-        </div>
+        </section>
 
         {/* ── Footer Actions ── */}
         <div className="flex flex-col mt-auto">
           <button
+            type="button"
             onClick={logout}
-            className="flex items-center gap-3 w-full px-6 py-4 text-left font-coptic text-[0.6rem] uppercase tracking-widest text-stone-500 hover:text-red-500 hover:bg-red-50 transition-colors"
+            className="flex items-center gap-3 w-full px-6 py-4 text-left font-coptic text-sm uppercase tracking-widest text-stone-800 hover:text-red-700 hover:bg-red-50 transition-colors font-semibold"
           >
             <IconLogout />
             Sign Out
           </button>
         </div>
-
-      </div>
+      </main>
     </>
   );
 }

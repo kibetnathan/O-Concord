@@ -71,7 +71,7 @@ function SectionHeading({ children }) {
 
 function InputLabel({ children }) {
   return (
-    <label className="font-coptic text-[0.6rem] uppercase tracking-widest text-stone-500">{children}</label>
+    <label className="font-coptic text-xs uppercase tracking-widest text-stone-700">{children}</label>
   );
 }
 
@@ -81,7 +81,7 @@ function DetailRow({ icon, label, value }) {
     <div className="flex items-start gap-3">
       <span className="text-stone-700 mt-0.5">{icon}</span>
       <div className="min-w-0">
-        <p className="font-coptic text-[0.55rem] uppercase tracking-widest text-stone-700 leading-none mb-0.5">{label}</p>
+        <p className="font-coptic text-xs uppercase tracking-widest text-stone-700 leading-none mb-0.5">{label}</p>
         <p className="text-sm text-stone-700 truncate">{value}</p>
       </div>
     </div>
@@ -106,7 +106,7 @@ function UserCard({ isSelected, onSelect, user, allProfiles }) {
         isSelected ? "border-amber-400 shadow-sm" : "border-transparent"
       }`}
     >
-      <span className="font-cormorant text-2xl font-light text-stone-300 leading-none w-6 shrink-0 text-right">
+      <span className="font-cormorant text-2xl font-light text-stone-600 leading-none w-6 shrink-0 text-right">
         {user.id}
       </span>
       <img
@@ -120,12 +120,12 @@ function UserCard({ isSelected, onSelect, user, allProfiles }) {
             ? `${user.first_name} ${user.last_name}`
             : user.username}
         </p>
-        <p className="font-coptic text-[0.55rem] uppercase tracking-widest text-stone-400 truncate">
+        <p className="font-coptic text-xs uppercase tracking-widest text-stone-700 truncate">
           @{user.username}
         </p>
       </div>
       {user.groups?.length > 0 && (
-        <span className="text-[0.55rem] uppercase tracking-widest text-amber-600 bg-amber-50 border border-amber-100 px-2 py-1 shrink-0 hidden sm:block">
+        <span className="text-xs uppercase tracking-widest text-amber-600 bg-amber-50 border border-amber-100 px-2 py-1 shrink-0 hidden sm:block">
           {user.groups[0]}
         </span>
       )}
@@ -146,21 +146,21 @@ function UserDetail({ user, allProfiles, onClose, onEdit, onDelete }) {
 
       {/* Action buttons */}
       <div className="relative z-10 flex items-center justify-end gap-0.5">
-        <button onClick={onEdit} title="Edit" className="p-1.5 text-stone-500 hover:text-amber-600 transition-colors">
+        <button onClick={onEdit} title="Edit" className="p-1.5 text-stone-700 hover:text-amber-600 transition-colors">
           <IconEdit />
         </button>
         {!confirmDelete ? (
-          <button onClick={() => setConfirmDelete(true)} title="Delete" className="p-1.5 text-stone-500 hover:text-red-400 transition-colors">
+          <button onClick={() => setConfirmDelete(true)} title="Delete" className="p-1.5 text-stone-700 hover:text-red-700 transition-colors">
             <IconTrash />
           </button>
         ) : (
           <div className="flex items-center gap-1 bg-red-50 border border-red-200 px-2 py-1 ml-1">
-            <span className="font-coptic text-[0.55rem] text-red-500 uppercase tracking-widest">Delete?</span>
-            <button onClick={() => onDelete(user.id)} className="p-0.5 text-red-500 hover:text-red-700"><IconCheck /></button>
-            <button onClick={() => setConfirmDelete(false)} className="p-0.5 text-stone-400 hover:text-stone-600"><IconX /></button>
+            <span className="font-coptic text-xs text-red-700 uppercase tracking-widest">Delete?</span>
+            <button onClick={() => onDelete(user.id)} className="p-0.5 text-red-700 hover:text-red-700"><IconCheck /></button>
+            <button onClick={() => setConfirmDelete(false)} className="p-0.5 text-stone-700 hover:text-stone-600"><IconX /></button>
           </div>
         )}
-        <button onClick={onClose} className="p-1.5 text-stone-500 hover:text-stone-900 transition-colors ml-0.5">
+        <button onClick={onClose} className="p-1.5 text-stone-700 hover:text-stone-900 transition-colors ml-0.5">
           <IconX />
         </button>
       </div>
@@ -178,7 +178,7 @@ function UserDetail({ user, allProfiles, onClose, onEdit, onDelete }) {
               ? `${user.first_name} ${user.last_name}`
               : user.username}
           </h3>
-          <p className="font-coptic text-[0.55rem] uppercase tracking-widest text-stone-500 mt-0.5">
+          <p className="font-coptic text-xs uppercase tracking-widest text-stone-700 mt-0.5">
             @{user.username}
           </p>
         </div>
@@ -188,7 +188,7 @@ function UserDetail({ user, allProfiles, onClose, onEdit, onDelete }) {
             {roles.map((role) => (
               <span
                 key={role}
-                className="text-[0.55rem] uppercase tracking-widest text-amber-600 bg-amber-500/30 border border-amber-600/50 px-2 py-0.5"
+                className="text-xs uppercase tracking-widest text-amber-600 bg-amber-500/30 border border-amber-600/50 px-2 py-0.5"
               >
                 {role}
               </span>
@@ -200,7 +200,7 @@ function UserDetail({ user, allProfiles, onClose, onEdit, onDelete }) {
       <div className="h-px bg-white/[0.07] relative z-10" />
 
       <div className="flex flex-col gap-3 relative z-10">
-        <p className="font-coptic text-[0.6rem] uppercase tracking-widest text-stone-700">Contact</p>
+        <p className="font-coptic text-xs uppercase tracking-widest text-stone-700">Contact</p>
         <DetailRow icon={<IconMail />}  label="Email" value={user.email} />
         <DetailRow icon={<IconPhone />} label="Phone" value={userProfile?.phone_number} />
       </div>
@@ -208,7 +208,7 @@ function UserDetail({ user, allProfiles, onClose, onEdit, onDelete }) {
       <div className="h-px bg-white/[0.07] relative z-10" />
 
       <div className="flex flex-col gap-3 relative z-10">
-        <p className="font-coptic text-[0.6rem] uppercase tracking-widest text-stone-700">Personal</p>
+        <p className="font-coptic text-xs uppercase tracking-widest text-stone-700">Personal</p>
         <DetailRow icon={<IconCalendar />} label="Date of Birth" value={formatDate(userProfile?.DoB)} />
         <DetailRow icon={<IconBuilding />} label="Campus"        value={userProfile?.campus} />
         <DetailRow icon={<IconBuilding />} label="School"        value={userProfile?.school} />
@@ -302,25 +302,25 @@ function EditUserForm({ user, allProfiles, onSuccess, onCancel }) {
         <div className="flex flex-col gap-1.5">
           <InputLabel>First Name</InputLabel>
           <input type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} placeholder="First name"
-            className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-300 transition-colors w-full" />
+            className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-700 transition-colors w-full" />
         </div>
         <div className="flex flex-col gap-1.5">
           <InputLabel>Last Name</InputLabel>
           <input type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} placeholder="Last name"
-            className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-300 transition-colors w-full" />
+            className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-700 transition-colors w-full" />
         </div>
       </div>
 
       <div className="flex flex-col gap-1.5">
         <InputLabel>Username *</InputLabel>
         <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="username" required
-          className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-300 transition-colors w-full" />
+          className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-700 transition-colors w-full" />
       </div>
 
       <div className="flex flex-col gap-1.5">
         <InputLabel>Email</InputLabel>
         <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="email@example.com"
-          className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-300 transition-colors w-full" />
+          className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-700 transition-colors w-full" />
       </div>
 
       <div className="flex flex-col gap-1.5">
@@ -329,7 +329,7 @@ function EditUserForm({ user, allProfiles, onSuccess, onCancel }) {
         {selectedGroups.length > 0 && (
           <div className="flex flex-wrap gap-1.5">
             {selectedGroups.map((g) => (
-              <span key={g} className="flex items-center gap-1 text-[0.65rem] bg-amber-50 border border-amber-200 text-amber-700 px-2 py-1">
+              <span key={g} className="flex items-center gap-1 text-sm bg-amber-50 border border-amber-200 text-amber-700 px-2 py-1">
                 {g}
                 <button type="button" onClick={() => toggleGroup(g)} className="hover:text-amber-900"><IconX /></button>
               </span>
@@ -351,11 +351,11 @@ function EditUserForm({ user, allProfiles, onSuccess, onCancel }) {
               </div>
             );
           }) : (
-            <p className="text-xs text-stone-300 px-3 py-4 text-center italic">No groups available</p>
+            <p className="text-xs text-stone-600 px-3 py-4 text-center italic">No groups available</p>
           )}
         </div>
         {selectedGroups.length === 0 && (
-          <p className="text-[0.6rem] text-stone-400 uppercase tracking-widest">No roles assigned</p>
+          <p className="text-xs text-stone-700 uppercase tracking-widest">No roles assigned</p>
         )}
       </div>
 
@@ -366,7 +366,7 @@ function EditUserForm({ user, allProfiles, onSuccess, onCancel }) {
       <div className="flex flex-col gap-1.5">
         <InputLabel>Phone Number</InputLabel>
         <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="+254 700 000 000"
-          className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-300 transition-colors w-full" />
+          className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-700 transition-colors w-full" />
       </div>
 
       <div className="flex flex-col gap-1.5">
@@ -378,30 +378,30 @@ function EditUserForm({ user, allProfiles, onSuccess, onCancel }) {
       <div className="flex flex-col gap-1.5">
         <InputLabel>Campus</InputLabel>
         <input type="text" value={campus} onChange={(e) => setCampus(e.target.value)} placeholder="Campus name"
-          className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-300 transition-colors w-full" />
+          className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-700 transition-colors w-full" />
       </div>
 
       <div className="flex flex-col gap-1.5">
         <InputLabel>School</InputLabel>
         <input type="text" value={school} onChange={(e) => setSchool(e.target.value)} placeholder="School / University"
-          className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-300 transition-colors w-full" />
+          className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-700 transition-colors w-full" />
       </div>
 
       <div className="flex flex-col gap-1.5">
         <InputLabel>Workplace</InputLabel>
         <input type="text" value={workplace} onChange={(e) => setWorkplace(e.target.value)} placeholder="Company / Organisation"
-          className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-300 transition-colors w-full" />
+          className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-700 transition-colors w-full" />
       </div>
 
-      {error && <p className="text-[0.6rem] uppercase tracking-widest text-red-400">{error}</p>}
+      {error && <p className="text-xs uppercase tracking-widest text-red-700">{error}</p>}
 
       <div className="flex gap-2">
         <button type="submit" disabled={submitting}
-          className="flex-1 bg-amber-500 hover:bg-amber-600 disabled:bg-amber-300 text-white font-coptic text-[0.65rem] uppercase tracking-widest py-3 transition-colors flex items-center justify-center gap-2">
+          className="flex-1 bg-amber-500 hover:bg-amber-600 disabled:bg-amber-300 text-white font-coptic text-sm uppercase tracking-widest py-3 transition-colors flex items-center justify-center gap-2">
           {submitting ? <span className="animate-pulse">Saving…</span> : <><IconCheck /><span>Save Changes</span></>}
         </button>
         <button type="button" onClick={onCancel}
-          className="border border-stone-200 text-stone-500 hover:border-stone-400 font-coptic text-[0.65rem] uppercase tracking-widest px-4 py-3 transition-colors">
+          className="border border-stone-200 text-stone-700 hover:border-stone-400 font-coptic text-sm uppercase tracking-widest px-4 py-3 transition-colors">
           Cancel
         </button>
       </div>
@@ -471,7 +471,7 @@ function UsersDashboard() {
 
       {/* ── Header ── */}
       <div className="mb-10">
-        <p className="text-[0.6rem] uppercase tracking-[0.25em] text-stone-400 mb-1">Members</p>
+        <p className="text-xs uppercase tracking-[0.25em] text-stone-700 mb-1">Members</p>
         <h1 className="font-cormorant text-4xl font-semibold text-black leading-tight">Congregants</h1>
         <div className="w-8 h-0.5 bg-amber-500 mt-3" />
       </div>
@@ -491,24 +491,24 @@ function UsersDashboard() {
           <div className="flex items-center gap-6 pb-5 border-b border-stone-200 flex-wrap">
             <div>
               <p className="font-cormorant text-3xl font-light text-stone-800">{allUsers.length}</p>
-              <p className="text-[0.6rem] uppercase tracking-widest text-stone-400 font-coptic">Total Members</p>
+              <p className="text-xs uppercase tracking-widest text-stone-700 font-coptic">Total Members</p>
             </div>
             <div className="w-px h-8 bg-stone-200" />
             <div>
               <p className="font-cormorant text-3xl font-light text-stone-800">{filtered.length}</p>
-              <p className="text-[0.6rem] uppercase tracking-widest text-stone-400 font-coptic">Showing</p>
+              <p className="text-xs uppercase tracking-widest text-stone-700 font-coptic">Showing</p>
             </div>
             <div className="w-px h-8 bg-stone-200" />
             <div>
               <p className="font-cormorant text-3xl font-light text-stone-800">{allGroups.length}</p>
-              <p className="text-[0.6rem] uppercase tracking-widest text-stone-400 font-coptic">Roles</p>
+              <p className="text-xs uppercase tracking-widest text-stone-700 font-coptic">Roles</p>
             </div>
           </div>
 
           {/* Search + group filter */}
           <div className="flex gap-3">
             <div className="relative flex-1">
-              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-stone-300">
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-stone-600">
                 <IconSearch />
               </span>
               <input
@@ -516,7 +516,7 @@ function UsersDashboard() {
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="Search by name or username…"
-                className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none pl-9 pr-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-300 transition-colors w-full"
+                className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none pl-9 pr-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-700 transition-colors w-full"
               />
             </div>
             <select
@@ -547,7 +547,7 @@ function UsersDashboard() {
           ) : (
             <div className="flex flex-col items-center py-20 gap-3">
               <div className="w-8 h-px bg-amber-500/40" />
-              <p className="text-xs uppercase tracking-[0.25em] text-stone-300">
+              <p className="text-xs uppercase tracking-[0.25em] text-stone-600">
                 {search || groupFilter !== "all" ? "No members match your filters" : "No members yet"}
               </p>
               <div className="w-8 h-px bg-amber-500/40" />
@@ -579,7 +579,7 @@ function UsersDashboard() {
             </>
           ) : (
             <div className="flex flex-col items-center justify-center h-48 border border-dashed border-stone-200 gap-3">
-              <p className="text-xs uppercase tracking-widest text-stone-300 font-coptic text-center">
+              <p className="text-xs uppercase tracking-widest text-stone-600 font-coptic text-center">
                 Select a member<br />to view their details
               </p>
             </div>

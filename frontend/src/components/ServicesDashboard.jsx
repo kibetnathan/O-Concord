@@ -58,7 +58,7 @@ function SectionHeading({ children }) {
 
 function InputLabel({ children }) {
   return (
-    <label className="font-coptic text-[0.6rem] uppercase tracking-widest text-stone-500">{children}</label>
+    <label className="font-coptic text-xs uppercase tracking-widest text-stone-700">{children}</label>
   );
 }
 
@@ -70,9 +70,9 @@ function userName(u) {
 function DeleteConfirm({ onConfirm, onCancel }) {
   return (
     <div className="flex items-center gap-1 bg-red-500/10 border border-red-500/20 px-2 py-1 ml-1">
-      <span className="font-coptic text-[0.55rem] text-red-400 uppercase tracking-widest">Delete?</span>
-      <button onClick={onConfirm} className="p-0.5 text-red-400 hover:text-red-300"><IconCheck /></button>
-      <button onClick={onCancel}  className="p-0.5 text-stone-500 hover:text-stone-300"><IconX /></button>
+      <span className="font-coptic text-xs text-red-700 uppercase tracking-widest">Delete?</span>
+      <button onClick={onConfirm} className="p-0.5 text-red-700 hover:text-red-300"><IconCheck /></button>
+      <button onClick={onCancel}  className="p-0.5 text-stone-700 hover:text-stone-600"><IconX /></button>
     </div>
   );
 }
@@ -91,9 +91,9 @@ function ServiceCard({ service, allUsers, allProfiles, allDepartments, onSelect,
       <div className="flex items-start justify-between p-5 border-b border-stone-100">
         <div className="flex-1 min-w-0">
           <h3 className="font-cormorant text-xl font-semibold text-stone-800 leading-tight truncate">{service.name}</h3>
-          {service.description && <p className="text-xs text-stone-400 mt-1 line-clamp-2">{service.description}</p>}
+          {service.description && <p className="text-xs text-stone-700 mt-1 line-clamp-2">{service.description}</p>}
         </div>
-        <span className="text-[0.6rem] uppercase tracking-widest text-amber-600 bg-amber-50 border border-amber-100 px-2 py-1 shrink-0 ml-3">
+        <span className="text-xs uppercase tracking-widest text-amber-600 bg-amber-50 border border-amber-100 px-2 py-1 shrink-0 ml-3">
           {memberList.length} {memberList.length === 1 ? "member" : "members"}
         </span>
       </div>
@@ -101,17 +101,17 @@ function ServiceCard({ service, allUsers, allProfiles, allDepartments, onSelect,
         <img src={pastorProfile?.profile_pic_url || "/images/defaultavatar.jpg"} alt={pastor?.username || "Pastor"}
           className="w-6 h-6 rounded-full object-cover ring-1 ring-amber-400/30" />
         <div>
-          <p className="text-[0.55rem] uppercase tracking-widest text-stone-400 font-coptic leading-none">Pastor</p>
+          <p className="text-xs uppercase tracking-widest text-stone-700 font-coptic leading-none">Pastor</p>
           <p className="text-xs text-stone-600">{pastor ? userName(pastor) : "—"}</p>
         </div>
       </div>
       <div className="px-5 py-3 flex items-center justify-between gap-3">
         <div className="flex flex-wrap gap-1 flex-1 min-w-0">
           {crewDepts.slice(0, 3).map((d) => (
-            <span key={d.id} className="text-[0.55rem] uppercase tracking-widest text-stone-500 bg-stone-100 px-1.5 py-0.5 truncate max-w-24">{d.name}</span>
+            <span key={d.id} className="text-xs uppercase tracking-widest text-stone-700 bg-stone-100 px-1.5 py-0.5 truncate max-w-24">{d.name}</span>
           ))}
-          {crewDepts.length > 3 && <span className="text-[0.55rem] text-stone-400">+{crewDepts.length - 3}</span>}
-          {crewDepts.length === 0 && <span className="text-[0.55rem] text-stone-300 italic">No crew assigned</span>}
+          {crewDepts.length > 3 && <span className="text-xs text-stone-700">+{crewDepts.length - 3}</span>}
+          {crewDepts.length === 0 && <span className="text-xs text-stone-600 italic">No crew assigned</span>}
         </div>
         <div className="flex items-center shrink-0">
           {memberList.slice(0, 4).map((m) => {
@@ -120,7 +120,7 @@ function ServiceCard({ service, allUsers, allProfiles, allDepartments, onSelect,
               title={userName(m)} className="w-6 h-6 rounded-full object-cover ring-2 ring-white -ml-1.5 first:ml-0" />;
           })}
           {memberList.length > 4 && (
-            <span className="w-6 h-6 rounded-full bg-stone-100 border border-stone-200 flex items-center justify-center text-[0.5rem] text-stone-500 -ml-1.5">
+            <span className="w-6 h-6 rounded-full bg-stone-100 border border-stone-200 flex items-center justify-center text-[0.5rem] text-stone-700 -ml-1.5">
               +{memberList.length - 4}
             </span>
           )}
@@ -146,16 +146,16 @@ function ServiceDetail({ service, allUsers, allProfiles, allDepartments, equipme
 
       <div className="flex items-start justify-between relative z-10">
         <div className="flex-1 min-w-0">
-          <p className="text-[0.6rem] uppercase tracking-[0.25em] text-stone-500 mb-1">Service</p>
+          <p className="text-xs uppercase tracking-[0.25em] text-stone-700 mb-1">Service</p>
           <h3 className="font-cormorant text-2xl font-semibold text-stone-900 leading-tight truncate">{service.name}</h3>
         </div>
         <div className="flex items-center gap-0.5 shrink-0 ml-2">
-          <button onClick={onEdit} title="Edit" className="p-1.5 text-stone-500 hover:text-amber-600 transition-colors"><IconEdit /></button>
+          <button onClick={onEdit} title="Edit" className="p-1.5 text-stone-700 hover:text-amber-600 transition-colors"><IconEdit /></button>
           {!confirmDelete
-            ? <button onClick={() => setConfirmDelete(true)} title="Delete" className="p-1.5 text-stone-500 hover:text-red-400 transition-colors"><IconTrash /></button>
+            ? <button onClick={() => setConfirmDelete(true)} title="Delete" className="p-1.5 text-stone-700 hover:text-red-700 transition-colors"><IconTrash /></button>
             : <DeleteConfirm onConfirm={() => onDelete(service.id)} onCancel={() => setConfirmDelete(false)} />
           }
-          <button onClick={onClose} className="p-1.5 text-stone-500 hover:text-stone-900 transition-colors ml-0.5"><IconX /></button>
+          <button onClick={onClose} className="p-1.5 text-stone-700 hover:text-stone-900 transition-colors ml-0.5"><IconX /></button>
         </div>
       </div>
 
@@ -164,23 +164,23 @@ function ServiceDetail({ service, allUsers, allProfiles, allDepartments, equipme
       )}
 
       <div className="relative z-10">
-        <p className="text-[0.6rem] uppercase tracking-widest text-stone-500 font-coptic mb-2">Pastor</p>
+        <p className="text-xs uppercase tracking-widest text-stone-700 font-coptic mb-2">Pastor</p>
         <div className="flex items-center gap-3">
           <img src={pastorProfile?.profile_pic_url || "/images/defaultavatar.jpg"} alt={pastor?.username || "Pastor"}
             className="w-9 h-9 rounded-full object-cover ring-2 ring-amber-500/30" />
           <div>
             <p className="text-sm font-cormorant font-semibold text-stone-900">{pastor ? userName(pastor) : "No pastor assigned"}</p>
-            {pastor && <p className="font-coptic text-[0.55rem] uppercase tracking-widest text-stone-500">@{pastor.username}</p>}
+            {pastor && <p className="font-coptic text-xs uppercase tracking-widest text-stone-700">@{pastor.username}</p>}
           </div>
         </div>
       </div>
 
       {crewDepts.length > 0 && (
         <div className="relative z-10">
-          <p className="text-[0.6rem] uppercase tracking-widest text-stone-500 font-coptic mb-2">Crew Departments</p>
+          <p className="text-xs uppercase tracking-widest text-stone-700 font-coptic mb-2">Crew Departments</p>
           <div className="flex flex-wrap gap-1.5">
             {crewDepts.map((d) => (
-              <span key={d.id} className="text-[0.6rem] uppercase tracking-widest text-stone-600 bg-stone-50 border border-stone-200 px-2 py-1">{d.name}</span>
+              <span key={d.id} className="text-xs uppercase tracking-widest text-stone-600 bg-stone-50 border border-stone-200 px-2 py-1">{d.name}</span>
             ))}
           </div>
         </div>
@@ -188,19 +188,19 @@ function ServiceDetail({ service, allUsers, allProfiles, allDepartments, equipme
 
       {assignedEquip && (
         <div className="relative z-10">
-          <p className="text-[0.6rem] uppercase tracking-widest text-stone-500 font-coptic mb-2">Assigned Equipment</p>
+          <p className="text-xs uppercase tracking-widest text-stone-700 font-coptic mb-2">Assigned Equipment</p>
           <div className="bg-stone-50 border border-stone-200 px-4 py-3 flex items-center gap-3">
             {assignedEquip.image && <img src={assignedEquip.image} alt={assignedEquip.name} className="w-10 h-10 object-cover shrink-0" />}
             <div>
               <p className="text-sm text-stone-800 font-cormorant font-semibold">{assignedEquip.name}</p>
-              <p className="text-[0.6rem] text-stone-500 uppercase tracking-widest font-coptic">Qty: {assignedEquip.quantity}</p>
+              <p className="text-xs text-stone-700 uppercase tracking-widest font-coptic">Qty: {assignedEquip.quantity}</p>
             </div>
           </div>
         </div>
       )}
 
       <div className="relative z-10">
-        <p className="text-[0.6rem] uppercase tracking-widest text-stone-500 font-coptic mb-2">Members ({memberList.length})</p>
+        <p className="text-xs uppercase tracking-widest text-stone-700 font-coptic mb-2">Members ({memberList.length})</p>
         <div className="flex flex-col gap-2 max-h-48 overflow-y-auto pr-1">
           {memberList.length > 0 ? memberList.map((m) => {
             const mp = allProfiles.find((p) => p.user?.id === m.id);
@@ -209,7 +209,7 @@ function ServiceDetail({ service, allUsers, allProfiles, allDepartments, equipme
                 <img src={mp?.profile_pic_url || "/images/defaultavatar.jpg"} alt={m.username} className="w-7 h-7 rounded-full object-cover shrink-0" />
                 <div className="min-w-0">
                   <p className="text-xs text-stone-700 truncate">{userName(m)}</p>
-                  <p className="font-coptic text-[0.55rem] text-stone-600 truncate">@{m.username}</p>
+                  <p className="font-coptic text-xs text-stone-600 truncate">@{m.username}</p>
                 </div>
               </div>
             );
@@ -233,13 +233,13 @@ function EquipmentCard({ item, services, departments, onSelect, isSelected }) {
       <div className="flex flex-col flex-1 min-w-0 p-4 gap-1">
         <div className="flex items-start justify-between gap-2">
           <h3 className="font-cormorant text-lg font-semibold text-stone-800 leading-tight truncate">{item.name}</h3>
-          <span className="text-[0.6rem] uppercase tracking-widest text-stone-500 bg-stone-50 border border-stone-200 px-2 py-1 shrink-0">qty {item.quantity}</span>
+          <span className="text-xs uppercase tracking-widest text-stone-700 bg-stone-50 border border-stone-200 px-2 py-1 shrink-0">qty {item.quantity}</span>
         </div>
-        {item.description && <p className="text-xs text-stone-400 line-clamp-2">{item.description}</p>}
+        {item.description && <p className="text-xs text-stone-700 line-clamp-2">{item.description}</p>}
         <div className="mt-auto pt-2">
-          {assignedService && <span className="text-[0.55rem] uppercase tracking-widest text-amber-600 bg-amber-50 border border-amber-100 px-1.5 py-0.5">{assignedService.name}</span>}
-          {assignedDepartment && <span className="text-[0.55rem] uppercase tracking-widest text-stone-500 bg-stone-100 border border-stone-200 px-1.5 py-0.5">{assignedDepartment.name}</span>}
-          {!assignedService && !assignedDepartment && <span className="text-[0.55rem] uppercase tracking-widest text-stone-300 italic">Unassigned</span>}
+          {assignedService && <span className="text-xs uppercase tracking-widest text-amber-600 bg-amber-50 border border-amber-100 px-1.5 py-0.5">{assignedService.name}</span>}
+          {assignedDepartment && <span className="text-xs uppercase tracking-widest text-stone-700 bg-stone-100 border border-stone-200 px-1.5 py-0.5">{assignedDepartment.name}</span>}
+          {!assignedService && !assignedDepartment && <span className="text-xs uppercase tracking-widest text-stone-600 italic">Unassigned</span>}
         </div>
       </div>
     </div>
@@ -259,16 +259,16 @@ function EquipmentDetail({ item, services, departments, onClose, onEdit, onDelet
 
       <div className="flex items-start justify-between relative z-10">
         <div className="flex-1 min-w-0">
-          <p className="text-[0.6rem] uppercase tracking-[0.25em] text-stone-500 mb-1">Equipment</p>
+          <p className="text-xs uppercase tracking-[0.25em] text-stone-700 mb-1">Equipment</p>
           <h3 className="font-cormorant text-2xl font-semibold text-stone-900 leading-tight truncate">{item.name}</h3>
         </div>
         <div className="flex items-center gap-0.5 shrink-0 ml-2">
-          <button onClick={onEdit} title="Edit" className="p-1.5 text-stone-500 hover:text-amber-600 transition-colors"><IconEdit /></button>
+          <button onClick={onEdit} title="Edit" className="p-1.5 text-stone-700 hover:text-amber-600 transition-colors"><IconEdit /></button>
           {!confirmDelete
-            ? <button onClick={() => setConfirmDelete(true)} title="Delete" className="p-1.5 text-stone-500 hover:text-red-400 transition-colors"><IconTrash /></button>
+            ? <button onClick={() => setConfirmDelete(true)} title="Delete" className="p-1.5 text-stone-700 hover:text-red-700 transition-colors"><IconTrash /></button>
             : <DeleteConfirm onConfirm={() => onDelete(item.id)} onCancel={() => setConfirmDelete(false)} />
           }
-          <button onClick={onClose} className="p-1.5 text-stone-500 hover:text-stone-900 transition-colors ml-0.5"><IconX /></button>
+          <button onClick={onClose} className="p-1.5 text-stone-700 hover:text-stone-900 transition-colors ml-0.5"><IconX /></button>
         </div>
       </div>
 
@@ -280,11 +280,11 @@ function EquipmentDetail({ item, services, departments, onClose, onEdit, onDelet
 
       <div className="grid grid-cols-2 gap-3 relative z-10">
         <div className="bg-stone-50 border border-stone-200 px-3 py-2.5">
-          <p className="font-coptic text-[0.55rem] uppercase tracking-widest text-stone-500 mb-1">Quantity</p>
+          <p className="font-coptic text-xs uppercase tracking-widest text-stone-700 mb-1">Quantity</p>
           <p className="font-cormorant text-2xl font-light text-stone-900">{item.quantity}</p>
         </div>
         <div className="bg-stone-50 border border-stone-200 px-3 py-2.5">
-          <p className="font-coptic text-[0.55rem] uppercase tracking-widest text-stone-500 mb-1">Assigned To</p>
+          <p className="font-coptic text-xs uppercase tracking-widest text-stone-700 mb-1">Assigned To</p>
           <p className="text-xs text-stone-700 mt-1">
             {assignedService ? assignedService.name : assignedDepartment ? assignedDepartment.name : "Unassigned"}
           </p>
@@ -301,7 +301,7 @@ function CrewPicker({ allDepartments, selected, onChange }) {
   if (!allDepartments.length) return null;
   return (
     <div className="flex flex-col gap-1.5">
-      <InputLabel>Crew Departments <span className="text-stone-300 normal-case tracking-normal">(optional)</span></InputLabel>
+      <InputLabel>Crew Departments <span className="text-stone-600 normal-case tracking-normal">(optional)</span></InputLabel>
       <div className="border border-stone-200 divide-y divide-stone-100 max-h-36 overflow-y-auto">
         {allDepartments.map((d) => {
           const checked = selected.includes(d.id);
@@ -337,7 +337,7 @@ function MemberPicker({ allUsers, allProfiles, selected, onChange }) {
           {selected.map((id) => {
             const u = allUsers.find((u) => u.id === id);
             return (
-              <span key={id} className="flex items-center gap-1 text-[0.65rem] bg-amber-50 border border-amber-200 text-amber-700 px-2 py-1">
+              <span key={id} className="flex items-center gap-1 text-sm bg-amber-50 border border-amber-200 text-amber-700 px-2 py-1">
                 {u?.first_name || u?.username}
                 <button type="button" onClick={() => toggle(id)} className="hover:text-amber-900"><IconX /></button>
               </span>
@@ -346,9 +346,9 @@ function MemberPicker({ allUsers, allProfiles, selected, onChange }) {
         </div>
       )}
       <div className="relative">
-        <span className="absolute left-3 top-1/2 -translate-y-1/2 text-stone-300"><IconSearch /></span>
+        <span className="absolute left-3 top-1/2 -translate-y-1/2 text-stone-600"><IconSearch /></span>
         <input type="text" value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search members…"
-          className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none pl-9 pr-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-300 transition-colors w-full" />
+          className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none pl-9 pr-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-700 transition-colors w-full" />
       </div>
       <div className="border border-stone-200 divide-y divide-stone-100 max-h-44 overflow-y-auto">
         {filtered.map((u) => {
@@ -360,7 +360,7 @@ function MemberPicker({ allUsers, allProfiles, selected, onChange }) {
               <img src={mp?.profile_pic_url || "/images/defaultavatar.jpg"} alt={u.username} className="w-7 h-7 rounded-full object-cover shrink-0" />
               <div className="flex-1 min-w-0">
                 <p className="text-sm text-stone-700 truncate">{userName(u)}</p>
-                <p className="font-coptic text-[0.55rem] text-stone-400 truncate">@{u.username}</p>
+                <p className="font-coptic text-xs text-stone-700 truncate">@{u.username}</p>
               </div>
               <div className={`w-4 h-4 border flex items-center justify-center shrink-0 ${checked ? "bg-amber-500 border-amber-500" : "border-stone-300"}`}>
                 {checked && <svg className="w-2.5 h-2.5 text-white" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>}
@@ -381,15 +381,15 @@ function ServiceFields({ name, setName, description, setDescription, pastorId, s
       <div className="flex flex-col gap-1.5">
         <InputLabel>Service Name *</InputLabel>
         <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="e.g. Youth Service" required
-          className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-300 transition-colors w-full" />
+          className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-700 transition-colors w-full" />
       </div>
       <div className="flex flex-col gap-1.5">
         <InputLabel>Description</InputLabel>
         <textarea value={description} onChange={(e) => setDescription(e.target.value)} placeholder="About this service…"
-          className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-300 transition-colors resize-none min-h-16 w-full" />
+          className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-700 transition-colors resize-none min-h-16 w-full" />
       </div>
       <div className="flex flex-col gap-1.5">
-        <InputLabel>Pastor <span className="text-stone-300 normal-case tracking-normal">(optional)</span></InputLabel>
+        <InputLabel>Pastor <span className="text-stone-600 normal-case tracking-normal">(optional)</span></InputLabel>
         <select value={pastorId} onChange={(e) => setPastorId(e.target.value)}
           className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 transition-colors w-full">
           <option value="">No pastor</option>
@@ -436,9 +436,9 @@ function CreateServiceForm({ allUsers, allProfiles, allDepartments, onSuccess })
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-5">
       <ServiceFields {...{ name, setName, description, setDescription, pastorId, setPastorId, allUsers, allDepartments, allProfiles, selectedMembers, setSelectedMembers, selectedCrew, setSelectedCrew }} />
-      {error && <p className="text-[0.6rem] uppercase tracking-widest text-red-400">{error}</p>}
+      {error && <p className="text-xs uppercase tracking-widest text-red-700">{error}</p>}
       <button type="submit" disabled={submitting}
-        className="bg-amber-500 hover:bg-amber-600 disabled:bg-amber-300 text-white font-coptic text-[0.65rem] uppercase tracking-widest py-3 transition-colors flex items-center justify-center gap-2">
+        className="bg-amber-500 hover:bg-amber-600 disabled:bg-amber-300 text-white font-coptic text-sm uppercase tracking-widest py-3 transition-colors flex items-center justify-center gap-2">
         {submitting ? <span className="animate-pulse">Creating…</span> : <><IconPlus /><span>Create Service</span></>}
       </button>
     </form>
@@ -472,14 +472,14 @@ function EditServiceForm({ service, allUsers, allProfiles, allDepartments, onSuc
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-5">
       <ServiceFields {...{ name, setName, description, setDescription, pastorId, setPastorId, allUsers, allDepartments, allProfiles, selectedMembers, setSelectedMembers, selectedCrew, setSelectedCrew }} />
-      {error && <p className="text-[0.6rem] uppercase tracking-widest text-red-400">{error}</p>}
+      {error && <p className="text-xs uppercase tracking-widest text-red-700">{error}</p>}
       <div className="flex gap-2">
         <button type="submit" disabled={submitting}
-          className="flex-1 bg-amber-500 hover:bg-amber-600 disabled:bg-amber-300 text-white font-coptic text-[0.65rem] uppercase tracking-widest py-3 transition-colors flex items-center justify-center gap-2">
+          className="flex-1 bg-amber-500 hover:bg-amber-600 disabled:bg-amber-300 text-white font-coptic text-sm uppercase tracking-widest py-3 transition-colors flex items-center justify-center gap-2">
           {submitting ? <span className="animate-pulse">Saving…</span> : <><IconCheck /><span>Save Changes</span></>}
         </button>
         <button type="button" onClick={onCancel}
-          className="border border-stone-200 text-stone-500 hover:border-stone-400 font-coptic text-[0.65rem] uppercase tracking-widest px-4 py-3 transition-colors">
+          className="border border-stone-200 text-stone-700 hover:border-stone-400 font-coptic text-sm uppercase tracking-widest px-4 py-3 transition-colors">
           Cancel
         </button>
       </div>
@@ -495,12 +495,12 @@ function EquipmentFields({ name, setName, description, setDescription, quantity,
       <div className="flex flex-col gap-1.5">
         <InputLabel>Name *</InputLabel>
         <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="e.g. Yamaha Sound Desk" required
-          className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-300 transition-colors w-full" />
+          className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-700 transition-colors w-full" />
       </div>
       <div className="flex flex-col gap-1.5">
         <InputLabel>Description</InputLabel>
         <textarea value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Details about this equipment…"
-          className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-300 transition-colors resize-none min-h-16 w-full" />
+          className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-700 transition-colors resize-none min-h-16 w-full" />
       </div>
       <div className="flex flex-col gap-1.5">
         <InputLabel>Quantity</InputLabel>
@@ -509,17 +509,17 @@ function EquipmentFields({ name, setName, description, setDescription, quantity,
       </div>
       {showImageField && (
         <div className="flex flex-col gap-1.5">
-          <InputLabel>Image <span className="text-stone-300 normal-case tracking-normal">(optional)</span></InputLabel>
+          <InputLabel>Image <span className="text-stone-600 normal-case tracking-normal">(optional)</span></InputLabel>
           <input type="file" accept="image/*" onChange={(e) => setImage(e.target.files[0])}
-            className="text-xs text-stone-500 file:mr-3 file:py-1.5 file:px-3 file:border-0 file:text-[0.6rem] file:font-coptic file:uppercase file:tracking-widest file:bg-amber-500 file:text-white hover:file:bg-amber-600 file:transition-colors file:cursor-pointer" />
+            className="text-xs text-stone-700 file:mr-3 file:py-1.5 file:px-3 file:border-0 file:text-xs file:font-coptic file:uppercase file:tracking-widest file:bg-amber-500 file:text-white hover:file:bg-amber-600 file:transition-colors file:cursor-pointer" />
         </div>
       )}
       <div className="flex flex-col gap-1.5">
-        <InputLabel>Assign To <span className="text-stone-300 normal-case tracking-normal">(optional)</span></InputLabel>
+        <InputLabel>Assign To <span className="text-stone-600 normal-case tracking-normal">(optional)</span></InputLabel>
         <div className="flex gap-3">
           {["none", "service", "department"].map((opt) => (
             <button key={opt} type="button" onClick={() => setAssignTo(opt)}
-              className={`flex-1 py-2 text-[0.6rem] uppercase tracking-widest font-coptic border transition-colors ${assignTo === opt ? "bg-amber-500 border-amber-500 text-white" : "bg-ivory border-stone-200 text-stone-500 hover:border-amber-300"}`}>
+              className={`flex-1 py-2 text-xs uppercase tracking-widest font-coptic border transition-colors ${assignTo === opt ? "bg-amber-500 border-amber-500 text-white" : "bg-ivory border-stone-200 text-stone-700 hover:border-amber-300"}`}>
               {opt === "none" ? "None" : opt === "service" ? "Service" : "Department"}
             </button>
           ))}
@@ -584,9 +584,9 @@ function CreateEquipmentForm({ services, departments, onSuccess }) {
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-5">
       <EquipmentFields {...{ name, setName, description, setDescription, quantity, setQuantity, assignTo, setAssignTo, assignedService, setAssignedService, assignedDepartment, setAssignedDepartment, services, departments, showImageField: true, image, setImage }} />
-      {error && <p className="text-[0.6rem] uppercase tracking-widest text-red-400">{error}</p>}
+      {error && <p className="text-xs uppercase tracking-widest text-red-700">{error}</p>}
       <button type="submit" disabled={submitting}
-        className="bg-amber-500 hover:bg-amber-600 disabled:bg-amber-300 text-white font-coptic text-[0.65rem] uppercase tracking-widest py-3 transition-colors flex items-center justify-center gap-2">
+        className="bg-amber-500 hover:bg-amber-600 disabled:bg-amber-300 text-white font-coptic text-sm uppercase tracking-widest py-3 transition-colors flex items-center justify-center gap-2">
         {submitting ? <span className="animate-pulse">Adding…</span> : <><IconPlus /><span>Add Equipment</span></>}
       </button>
     </form>
@@ -626,14 +626,14 @@ function EditEquipmentForm({ item, services, departments, onSuccess, onCancel })
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-5">
       <EquipmentFields {...{ name, setName, description, setDescription, quantity, setQuantity, assignTo, setAssignTo, assignedService, setAssignedService, assignedDepartment, setAssignedDepartment, services, departments, showImageField: false }} />
-      {error && <p className="text-[0.6rem] uppercase tracking-widest text-red-400">{error}</p>}
+      {error && <p className="text-xs uppercase tracking-widest text-red-700">{error}</p>}
       <div className="flex gap-2">
         <button type="submit" disabled={submitting}
-          className="flex-1 bg-amber-500 hover:bg-amber-600 disabled:bg-amber-300 text-white font-coptic text-[0.65rem] uppercase tracking-widest py-3 transition-colors flex items-center justify-center gap-2">
+          className="flex-1 bg-amber-500 hover:bg-amber-600 disabled:bg-amber-300 text-white font-coptic text-sm uppercase tracking-widest py-3 transition-colors flex items-center justify-center gap-2">
           {submitting ? <span className="animate-pulse">Saving…</span> : <><IconCheck /><span>Save Changes</span></>}
         </button>
         <button type="button" onClick={onCancel}
-          className="border border-stone-200 text-stone-500 hover:border-stone-400 font-coptic text-[0.65rem] uppercase tracking-widest px-4 py-3 transition-colors">
+          className="border border-stone-200 text-stone-700 hover:border-stone-400 font-coptic text-sm uppercase tracking-widest px-4 py-3 transition-colors">
           Cancel
         </button>
       </div>
@@ -708,12 +708,12 @@ function ServicesDashboard() {
 
       <div className="flex items-end justify-between mb-8">
         <div>
-          <p className="text-[0.6rem] uppercase tracking-[0.25em] text-stone-400 mb-1">Church</p>
+          <p className="text-xs uppercase tracking-[0.25em] text-stone-700 mb-1">Church</p>
           <h1 className="font-cormorant text-4xl font-semibold text-black leading-tight">Services & Equipment</h1>
           <div className="w-8 h-0.5 bg-amber-500 mt-3" />
         </div>
         <button onClick={() => { setMode(mode === "create" ? "idle" : "create"); setSelected(null); }}
-          className="flex items-center gap-2 bg-amber-500 hover:bg-amber-600 text-white font-coptic text-[0.65rem] uppercase tracking-widest px-4 py-3 transition-colors">
+          className="flex items-center gap-2 bg-amber-500 hover:bg-amber-600 text-white font-coptic text-sm uppercase tracking-widest px-4 py-3 transition-colors">
           <IconPlus />
           {mode === "create" ? "Cancel" : tab === "services" ? "New Service" : "Add Equipment"}
         </button>
@@ -731,7 +731,7 @@ function ServicesDashboard() {
           { key: "equipment", label: "Equipment", icon: <IconEquipment /> },
         ].map(({ key, label, icon }) => (
           <button key={key} onClick={() => switchTab(key)}
-            className={`flex items-center gap-2 px-5 py-3 font-coptic text-[0.65rem] uppercase tracking-widest border-b-2 transition-colors -mb-px ${tab === key ? "border-amber-500 text-amber-600" : "border-transparent text-stone-400 hover:text-stone-600"}`}>
+            className={`flex items-center gap-2 px-5 py-3 font-coptic text-sm uppercase tracking-widest border-b-2 transition-colors -mb-px ${tab === key ? "border-amber-500 text-amber-600" : "border-transparent text-stone-700 hover:text-stone-600"}`}>
             {icon}{label}
           </button>
         ))}
@@ -743,28 +743,28 @@ function ServicesDashboard() {
           <div className="flex items-center gap-6 pb-5 border-b border-stone-200 flex-wrap">
             {tab === "services" ? (
               <>
-                <div><p className="font-cormorant text-3xl font-light text-stone-800">{services?.count ?? serviceList.length}</p><p className="text-[0.6rem] uppercase tracking-widest text-stone-400 font-coptic">Services</p></div>
+                <div><p className="font-cormorant text-3xl font-light text-stone-800">{services?.count ?? serviceList.length}</p><p className="text-xs uppercase tracking-widest text-stone-700 font-coptic">Services</p></div>
                 <div className="w-px h-8 bg-stone-200" />
-                <div><p className="font-cormorant text-3xl font-light text-stone-800">{totalServiceMembers}</p><p className="text-[0.6rem] uppercase tracking-widest text-stone-400 font-coptic">Total Members</p></div>
+                <div><p className="font-cormorant text-3xl font-light text-stone-800">{totalServiceMembers}</p><p className="text-xs uppercase tracking-widest text-stone-700 font-coptic">Total Members</p></div>
                 <div className="w-px h-8 bg-stone-200" />
-                <div><p className="font-cormorant text-3xl font-light text-stone-800">{serviceList.filter((s) => s.pastor).length}</p><p className="text-[0.6rem] uppercase tracking-widest text-stone-400 font-coptic">With Pastors</p></div>
+                <div><p className="font-cormorant text-3xl font-light text-stone-800">{serviceList.filter((s) => s.pastor).length}</p><p className="text-xs uppercase tracking-widest text-stone-700 font-coptic">With Pastors</p></div>
               </>
             ) : (
               <>
-                <div><p className="font-cormorant text-3xl font-light text-stone-800">{equipment.length}</p><p className="text-[0.6rem] uppercase tracking-widest text-stone-400 font-coptic">Items</p></div>
+                <div><p className="font-cormorant text-3xl font-light text-stone-800">{equipment.length}</p><p className="text-xs uppercase tracking-widest text-stone-700 font-coptic">Items</p></div>
                 <div className="w-px h-8 bg-stone-200" />
-                <div><p className="font-cormorant text-3xl font-light text-stone-800">{equipment.reduce((acc, e) => acc + (e.quantity ?? 0), 0)}</p><p className="text-[0.6rem] uppercase tracking-widest text-stone-400 font-coptic">Total Qty</p></div>
+                <div><p className="font-cormorant text-3xl font-light text-stone-800">{equipment.reduce((acc, e) => acc + (e.quantity ?? 0), 0)}</p><p className="text-xs uppercase tracking-widest text-stone-700 font-coptic">Total Qty</p></div>
                 <div className="w-px h-8 bg-stone-200" />
-                <div><p className="font-cormorant text-3xl font-light text-stone-800">{unassignedEquip}</p><p className="text-[0.6rem] uppercase tracking-widest text-stone-400 font-coptic">Unassigned</p></div>
+                <div><p className="font-cormorant text-3xl font-light text-stone-800">{unassignedEquip}</p><p className="text-xs uppercase tracking-widest text-stone-700 font-coptic">Unassigned</p></div>
               </>
             )}
           </div>
 
           <div className="relative">
-            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-stone-300"><IconSearch /></span>
+            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-stone-600"><IconSearch /></span>
             <input type="text" value={search} onChange={(e) => setSearch(e.target.value)}
               placeholder={tab === "services" ? "Search services…" : "Search equipment…"}
-              className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none pl-9 pr-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-300 transition-colors w-full" />
+              className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none pl-9 pr-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-700 transition-colors w-full" />
           </div>
 
           {tab === "services" ? (
@@ -829,7 +829,7 @@ function ServicesDashboard() {
           ) : (
             <div className="flex flex-col items-center justify-center h-48 border border-dashed border-stone-200 gap-3">
               {tab === "services" ? <IconService /> : <IconEquipment />}
-              <p className="text-xs uppercase tracking-widest text-stone-300 font-coptic text-center">
+              <p className="text-xs uppercase tracking-widest text-stone-600 font-coptic text-center">
                 {tab === "services" ? "Select a service to view details\nor create a new one" : "Select an item to view details\nor add new equipment"}
               </p>
             </div>
@@ -845,7 +845,7 @@ function EmptyState({ message }) {
   return (
     <div className="flex flex-col items-center py-20 gap-3">
       <div className="w-8 h-px bg-amber-500/40" />
-      <p className="text-xs uppercase tracking-[0.25em] text-stone-300">{message}</p>
+      <p className="text-xs uppercase tracking-[0.25em] text-stone-600">{message}</p>
       <div className="w-8 h-px bg-amber-500/40" />
     </div>
   );
