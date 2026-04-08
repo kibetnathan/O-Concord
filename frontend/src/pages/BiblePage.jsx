@@ -112,7 +112,7 @@ function VerseBlock({ verse, highlighted, onHighlight, isSaved, onBookmark, book
         isHighlighted ? 'bg-amber-100 border-l-2 border-amber-500 pr-10' : 'hover:bg-stone-50'
       }`}
     >
-      <sup className="font-coptic text-[0.55rem] text-amber-500 mr-1.5 select-none">{verse.number}</sup>
+      <sup className="font-coptic text-[0.7rem] text-amber-500 mr-1.5 select-none">{verse.number}</sup>
       {renderVerseContent(verse.content)}
 
       {isHighlighted && (
@@ -123,7 +123,7 @@ function VerseBlock({ verse, highlighted, onHighlight, isSaved, onBookmark, book
           className={`absolute right-2 top-1/2 -translate-y-1/2 p-1 border transition-colors
             ${isSaved
               ? 'text-amber-500 border-amber-200 bg-amber-50 cursor-default'
-              : 'text-stone-400 border-stone-200 hover:text-amber-500 hover:border-amber-300 hover:bg-amber-50'
+              : 'text-stone-700 border-stone-200 hover:text-amber-500 hover:border-amber-300 hover:bg-amber-50'
             }`}
         >
           {isBookmarking
@@ -147,13 +147,13 @@ function BookList({ books, selectedBook, loadingBooks, bookSearch, setBookSearch
     <>
       <div className="px-3 py-2.5 border-b border-stone-200 shrink-0">
         <div className="relative">
-          <span className="absolute left-2.5 top-1/2 -translate-y-1/2 text-stone-400"><IconSearch /></span>
+          <span className="absolute left-2.5 top-1/2 -translate-y-1/2 text-stone-700"><IconSearch /></span>
           <input
             type="text"
             value={bookSearch}
             onChange={e => setBookSearch(e.target.value)}
             placeholder="Find book…"
-            className="w-full bg-stone-50 border border-stone-200 focus:border-amber-400 focus:outline-none pl-8 pr-3 py-1.5 text-[0.7rem] text-stone-700 placeholder:text-stone-400"
+            className="w-full bg-stone-50 border border-stone-200 focus:border-amber-400 focus:outline-none pl-8 pr-3 py-1.5 text-[0.9rem] text-stone-700 placeholder:text-stone-500"
           />
         </div>
       </div>
@@ -167,24 +167,24 @@ function BookList({ books, selectedBook, loadingBooks, bookSearch, setBookSearch
           <>
             {filteredOT.length > 0 && (
               <>
-                <p className="font-coptic text-[0.45rem] uppercase tracking-[0.2em] text-stone-600 px-4 pt-3 pb-1">Old Testament</p>
+                <p className="font-coptic text-[0.65rem] uppercase tracking-[0.2em] text-stone-600 px-4 pt-3 pb-1">Old Testament</p>
                 {filteredOT.map(book => (
                   <button key={book.id} onClick={() => onSelectBook(book)}
-                    className={`w-full text-left px-4 py-2 font-cormorant text-sm transition-colors border-l-2 ${
+                    className={`w-full text-left px-4 py-2 font-cormorant text-md font-semibold transition-colors border-l-2 ${
                       selectedBook?.id === book.id
                         ? 'text-amber-600 bg-amber-50 border-l-amber-500'
                         : 'text-stone-600 hover:text-black hover:bg-amber-50 border-l-transparent'
                     }`}
                   >
                     {book.name}
-                    <span className="ml-1 font-coptic text-[0.45rem] text-stone-700">{book.numberOfChapters}ch</span>
+                    <span className="ml-1 font-coptic text-[0.65rem] text-stone-700">{book.numberOfChapters}ch</span>
                   </button>
                 ))}
               </>
             )}
             {filteredNT.length > 0 && (
               <>
-                <p className="font-coptic text-[0.45rem] uppercase tracking-[0.2em] text-stone-600 px-4 pt-4 pb-1">New Testament</p>
+                <p className="font-coptic text-[0.65rem] uppercase tracking-[0.2em] text-stone-600 px-4 pt-4 pb-1">New Testament</p>
                 {filteredNT.map(book => (
                   <button key={book.id} onClick={() => onSelectBook(book)}
                     className={`w-full text-left px-4 py-2 font-cormorant text-sm transition-colors border-l-2 ${
@@ -194,7 +194,7 @@ function BookList({ books, selectedBook, loadingBooks, bookSearch, setBookSearch
                     }`}
                   >
                     {book.name}
-                    <span className="ml-1 font-coptic text-[0.45rem] text-stone-700">{book.numberOfChapters}ch</span>
+                    <span className="ml-1 font-coptic text-[0.65rem] text-stone-700">{book.numberOfChapters}ch</span>
                   </button>
                 ))}
               </>
@@ -396,7 +396,7 @@ function BiblePage() {
           {/* Top bar */}
           <div className="flex items-center gap-2 sm:gap-3 px-3 sm:px-5 py-3 sm:py-3.5 border-b border-stone-200 bg-porcelain shrink-0">
             <button onClick={() => setShowBookPanel(v => !v)}
-              className="p-1.5 text-stone-400 hover:text-amber-500 border border-stone-200 hover:border-amber-300 transition-colors shrink-0"
+              className="p-1.5 text-stone-700 hover:text-amber-500 border border-stone-200 hover:border-amber-300 transition-colors shrink-0"
             >
               <span className="lg:hidden"><IconMenu /></span>
               <span className="hidden lg:block"><IconBook /></span>
@@ -410,17 +410,17 @@ function BiblePage() {
                   <span className="font-coptic text-[0.6rem] uppercase tracking-widest text-amber-600 shrink-0">Ch. {chapterNum}</span>
                 </>
               ) : (
-                <span className="font-cormorant text-base sm:text-lg text-stone-400 truncate">Select a book to begin</span>
+                <span className="font-cormorant text-base sm:text-lg text-stone-700 truncate">Select a book to begin</span>
               )}
             </div>
 
             {/* Memorize nav button with due badge */}
             <button
               onClick={() => navigate('/plans/verses')}
-              className="relative flex items-center gap-1.5 border border-stone-200 hover:border-amber-300 px-2.5 py-1.5 text-stone-400 hover:text-amber-600 transition-colors shrink-0"
+              className="relative flex items-center gap-1.5 border border-stone-200 hover:border-amber-300 px-2.5 py-1.5 text-stone-700 hover:text-amber-600 transition-colors shrink-0"
             >
               <IconBrain />
-              <span className="font-coptic text-[0.55rem] uppercase tracking-widest hidden sm:inline">Memorize</span>
+              <span className="font-coptic text-[0.7rem] uppercase tracking-widest hidden sm:inline">Memorize</span>
               {stats?.due_today > 0 && (
                 <span className="absolute -top-1.5 -right-1.5 w-4 h-4 bg-amber-500 text-white text-[0.5rem] font-bold flex items-center justify-center rounded-full">
                   {stats.due_today > 9 ? '9+' : stats.due_today}
@@ -434,7 +434,7 @@ function BiblePage() {
                 className="flex items-center gap-1.5 sm:gap-2 border border-stone-200 hover:border-amber-300 px-2 sm:px-3 py-1.5 transition-colors"
               >
                 <span className="font-coptic text-[0.6rem] uppercase tracking-widest text-amber-600">{translation}</span>
-                <span className="text-stone-400"><IconChevron dir="down" /></span>
+                <span className="text-stone-700"><IconChevron dir="down" /></span>
               </button>
               {showTransDD && (
                 <div className="absolute right-0 top-full mt-1 w-64 sm:w-72 bg-ivory border border-stone-200 shadow-lg z-30 flex flex-col max-h-72 sm:max-h-80">
@@ -450,7 +450,7 @@ function BiblePage() {
                         onClick={() => { setTranslation(t.id); setShowTransDD(false); setTransSearch(''); }}
                         className={`w-full text-left px-4 py-2.5 hover:bg-amber-50 transition-colors border-b border-stone-50 ${t.id === translation ? 'bg-amber-50' : ''}`}
                       >
-                        <span className="font-coptic text-[0.55rem] uppercase tracking-widest text-amber-600 block">{t.shortName}</span>
+                        <span className="font-coptic text-[0.7rem] uppercase tracking-widest text-amber-600 block">{t.shortName}</span>
                         <span className="font-cormorant text-sm text-stone-700">{t.englishName}</span>
                       </button>
                     ))}
@@ -466,8 +466,8 @@ function BiblePage() {
               <div className="flex items-center gap-1">
                 {chapterNums.map(n => (
                   <button key={n} onClick={() => setChapterNum(n)}
-                    className={`w-7 h-7 text-xs font-cormorant transition-colors shrink-0 ${
-                      n === chapterNum ? 'bg-amber-500 text-white' : 'text-stone-500 hover:bg-amber-100 hover:text-amber-700'
+                    className={`w-7 h-7 text-md font-cormorant transition-colors shrink-0 ${
+                      n === chapterNum ? 'bg-amber-500 text-white' : 'text-stone-800 hover:bg-amber-100 hover:text-amber-700'
                     }`}
                   >{n}</button>
                 ))}
@@ -481,8 +481,8 @@ function BiblePage() {
             {!selectedBook && !loadingBooks && (
               <div className="flex flex-col items-center justify-center h-full gap-4 text-center px-4">
                 <div className="w-14 h-14 border border-stone-200 flex items-center justify-center text-stone-300"><IconBook /></div>
-                <p className="font-cormorant text-2xl text-stone-400">Open a book to begin</p>
-                <p className="font-coptic text-[0.55rem] uppercase tracking-widest text-stone-400">Choose from the books list</p>
+                <p className="font-cormorant text-2xl text-stone-700">Open a book to begin</p>
+                <p className="font-coptic text-[0.7rem] uppercase tracking-widest text-stone-700">Choose from the books list</p>
                 <button onClick={() => setShowBookPanel(true)}
                   className="mt-2 font-coptic text-[0.6rem] uppercase tracking-widest text-amber-600 border border-amber-200 hover:bg-amber-50 px-4 py-2 transition-colors"
                 >Browse Books</button>
@@ -492,14 +492,14 @@ function BiblePage() {
             {loadingChapter && (
               <div className="flex items-center justify-center h-full gap-3">
                 <div className="w-5 h-5 border border-amber-500/40 border-t-amber-500 rounded-full animate-spin" />
-                <p className="font-coptic text-[0.55rem] uppercase tracking-widest text-stone-400">Loading…</p>
+                <p className="font-coptic text-[0.7rem] uppercase tracking-widest text-stone-700">Loading…</p>
               </div>
             )}
 
             {chapterData && !loadingChapter && (
               <div className="max-w-2xl mx-auto">
                 <div className="mb-6 sm:mb-8">
-                  <p className="font-coptic text-[0.55rem] uppercase tracking-[0.25em] text-stone-400 mb-1">
+                  <p className="font-coptic text-[0.7rem] uppercase tracking-[0.25em] text-stone-700 mb-1">
                     {chapterData.translation.shortName} · {chapterData.book.name}
                   </p>
                   <h1 className="font-cormorant text-3xl sm:text-4xl font-light text-stone-800">
@@ -539,7 +539,7 @@ function BiblePage() {
                 {footnotes.length > 0 && (
                   <div className="mt-10 border-t border-stone-200 pt-5">
                     <button onClick={() => setShowFootnotes(v => !v)}
-                      className="flex items-center gap-2 font-coptic text-[0.55rem] uppercase tracking-widest text-stone-400 hover:text-amber-600 transition-colors mb-3"
+                      className="flex items-center gap-2 font-coptic text-[0.7rem] uppercase tracking-widest text-stone-700 hover:text-amber-600 transition-colors mb-3"
                     >
                       <span className={`transition-transform ${showFootnotes ? 'rotate-90' : ''}`}><IconChevron /></span>
                       {footnotes.length} Footnote{footnotes.length !== 1 ? 's' : ''}
@@ -560,16 +560,16 @@ function BiblePage() {
 
                 <div className="flex items-center justify-between mt-10 sm:mt-12 pt-6 border-t border-stone-200">
                   <button onClick={() => goChapter(-1)} disabled={!prevChapter}
-                    className="flex items-center gap-2 font-coptic text-[0.6rem] uppercase tracking-widest text-stone-400 hover:text-amber-600 disabled:opacity-20 disabled:cursor-not-allowed transition-colors border border-stone-200 hover:border-amber-300 disabled:hover:border-stone-200 px-3 sm:px-4 py-2"
+                    className="flex items-center gap-2 font-coptic text-[0.6rem] uppercase tracking-widest text-stone-700 hover:text-amber-600 disabled:opacity-20 disabled:cursor-not-allowed transition-colors border border-stone-200 hover:border-amber-300 disabled:hover:border-stone-200 px-3 sm:px-4 py-2"
                   >
                     <IconChevron dir="left" />
                     <span className="hidden sm:inline">Previous</span>
                   </button>
-                  <span className="font-coptic text-[0.55rem] uppercase tracking-widest text-stone-300">
+                  <span className="font-coptic text-[0.7rem] uppercase tracking-widest text-stone-300">
                     {chapterData.book.name} {chapterNum}
                   </span>
                   <button onClick={() => goChapter(1)} disabled={!nextChapter}
-                    className="flex items-center gap-2 font-coptic text-[0.6rem] uppercase tracking-widest text-stone-400 hover:text-amber-600 disabled:opacity-20 disabled:cursor-not-allowed transition-colors border border-stone-200 hover:border-amber-300 disabled:hover:border-stone-200 px-3 sm:px-4 py-2"
+                    className="flex items-center gap-2 font-coptic text-[0.6rem] uppercase tracking-widest text-stone-700 hover:text-amber-600 disabled:opacity-20 disabled:cursor-not-allowed transition-colors border border-stone-200 hover:border-amber-300 disabled:hover:border-stone-200 px-3 sm:px-4 py-2"
                   >
                     <span className="hidden sm:inline">Next</span>
                     <IconChevron dir="right" />
