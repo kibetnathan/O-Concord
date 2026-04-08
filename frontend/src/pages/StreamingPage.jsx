@@ -30,11 +30,11 @@ function useCountdown(target) {
 
 function CountdownUnit({ value, label }) {
   return (
-    <div className="flex flex-col items-center min-w-[4.5rem]">
-      <span className="font-cormorant text-6xl md:text-7xl font-light text-amber-600 leading-none tabular-nums">
+    <div className="flex flex-col items-center min-w-[5rem]">
+      <span className="font-cormorant text-6xl md:text-8xl font-light text-amber-700 leading-none tabular-nums">
         {String(value).padStart(2, '0')}
       </span>
-      <span className="font-coptic text-[0.45rem] tracking-[0.35em] uppercase text-stone-700 mt-2">
+      <span className="font-coptic text-xs tracking-[0.35em] uppercase text-stone-800 mt-2">
         {label}
       </span>
     </div>
@@ -47,9 +47,9 @@ function Countdown({ target }) {
   return (
     <div className="flex items-end gap-3 md:gap-5">
       <CountdownUnit value={diff.h} label="hours" />
-      <span className="font-cormorant text-4xl text-amber-300 mb-4 leading-none">:</span>
+      <span className="font-cormorant text-5xl text-amber-500 mb-6 leading-none">:</span>
       <CountdownUnit value={diff.m} label="minutes" />
-      <span className="font-cormorant text-4xl text-amber-300 mb-4 leading-none">:</span>
+      <span className="font-cormorant text-5xl text-amber-500 mb-6 leading-none">:</span>
       <CountdownUnit value={diff.s} label="seconds" />
     </div>
   );
@@ -62,11 +62,11 @@ function Countdown({ target }) {
 function LiveBadge() {
   return (
     <div className="flex items-center gap-2">
-      <span className="relative flex h-2 w-2">
-        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75" />
-        <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500" />
+      <span className="relative flex h-2.5 w-2.5">
+        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-600 opacity-75" />
+        <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-600" />
       </span>
-      <span className="font-coptic text-[0.48rem] tracking-[0.4em] uppercase text-red-700">
+      <span className="font-coptic text-xs tracking-[0.4em] uppercase text-red-800 font-semibold">
         Live Now
       </span>
     </div>
@@ -82,16 +82,16 @@ function LivePlayer({ videoId, latestVideo }) {
     <div className="flex flex-col flex-1 min-h-0 overflow-y-auto">
 
       {/* Header strip */}
-      <div className="flex items-center justify-between px-6 md:px-10 py-4 border-b border-stone-200 shrink-0 bg-ivory">
+      <div className="flex items-center justify-between px-6 md:px-10 py-5 border-b border-stone-200 shrink-0 bg-ivory">
         <LiveBadge />
-        <span className="font-coptic text-[0.48rem] tracking-[0.25em] uppercase text-stone-700">
+        <span className="font-coptic text-xs tracking-[0.25em] uppercase text-stone-800">
           Mavuno Church Hill City
         </span>
         <a
           href={`https://www.youtube.com/watch?v=${videoId}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="font-coptic text-[0.48rem] tracking-[0.3em] uppercase text-amber-600 hover:text-amber-700 transition-colors"
+          className="font-coptic text-xs tracking-[0.3em] uppercase text-amber-800 hover:text-amber-900 transition-colors font-medium"
         >
           YouTube ↗
         </a>
@@ -109,16 +109,16 @@ function LivePlayer({ videoId, latestVideo }) {
       </div>
 
       {/* Caption strip */}
-      <div className="px-6 md:px-10 py-4 border-b border-stone-200 bg-ivory flex items-center justify-between shrink-0">
-        <p className="font-coptic text-xs text-stone-700 tracking-wider">
+      <div className="px-6 md:px-10 py-5 border-b border-stone-200 bg-ivory flex items-center justify-between shrink-0">
+        <p className="font-coptic text-sm text-stone-800 tracking-wider">
           Join us in worship — share this stream with someone.
         </p>
       </div>
 
       {/* Latest video */}
       {latestVideo && (
-        <div className="px-6 md:px-10 py-7 bg-ivory border-b border-stone-200">
-          <p className="font-coptic text-[0.48rem] uppercase tracking-[0.3em] text-stone-700 mb-4">
+        <div className="px-6 md:px-10 py-8 bg-ivory border-b border-stone-200">
+          <p className="font-coptic text-xs uppercase tracking-[0.3em] text-stone-800 mb-5 font-semibold">
             Latest Message
           </p>
           <LatestVideoRow video={latestVideo} />
@@ -127,6 +127,7 @@ function LivePlayer({ videoId, latestVideo }) {
     </div>
   );
 }
+
 
 // ---------------------------------------------------------------------------
 // Latest video -- compact horizontal row
@@ -174,12 +175,12 @@ function LatestVideoRow({ video }) {
         </div>
       </button>
       <div className="flex-1 min-w-0">
-        <h3 className="font-cormorant text-xl text-stone-800 leading-snug truncate">
+        <h3 className="font-cormorant text-2xl text-stone-900 leading-snug truncate">
           {video.title}
         </h3>
-        <p className="font-coptic text-[0.48rem] text-stone-700 mt-1">{publishedDate}</p>
+        <p className="font-coptic text-xs text-stone-800 mt-1">{publishedDate}</p>
         {video.description && (
-          <p className="text-xs text-stone-700 leading-relaxed line-clamp-1 mt-1 hidden md:block font-light">
+          <p className="text-sm text-stone-800 leading-relaxed line-clamp-1 mt-1 hidden md:block font-light">
             {video.description}
           </p>
         )}
@@ -188,7 +189,7 @@ function LatestVideoRow({ video }) {
         href={`https://www.youtube.com/watch?v=${video.videoId}`}
         target="_blank"
         rel="noopener noreferrer"
-        className="font-coptic text-[0.48rem] tracking-[0.3em] uppercase text-amber-600 hover:text-amber-700 transition-colors shrink-0 hidden md:block"
+        className="font-coptic text-xs tracking-[0.3em] uppercase text-amber-800 hover:text-amber-900 transition-colors shrink-0 hidden md:block font-medium"
       >
         Watch ↗
       </a>
@@ -207,14 +208,14 @@ function LatestVideoCard({ video }) {
   });
 
   return (
-    <div className="border-t border-stone-200 bg-ivory px-6 md:px-16 py-8">
-      <div className="flex items-center gap-3 mb-6">
-        <div className="w-4 h-px bg-amber-400/60" />
-        <span className="font-coptic text-[0.48rem] tracking-[0.35em] uppercase text-stone-700">
-          Latest Message
+    <div className="border-t border-stone-200 bg-ivory px-6 md:px-16 py-10">
+      <div className="flex items-center gap-3 mb-8">
+        <div className="w-6 h-px bg-amber-500/60" />
+        <span className="font-coptic text-xs tracking-[0.35em] uppercase text-stone-800 font-semibold">
+          Latest Stream
         </span>
         <div className="flex-1 h-px bg-stone-200" />
-        <span className="font-coptic text-[0.48rem] text-stone-700">{publishedDate}</span>
+        <span className="font-coptic text-xs text-stone-800 font-medium">{publishedDate}</span>
       </div>
 
       {playing ? (
@@ -257,7 +258,7 @@ function LatestVideoCard({ video }) {
       )}
 
       {!playing && video.description && (
-        <p className="text-sm text-stone-700 leading-relaxed line-clamp-2 mt-4 font-light">
+        <p className="text-base text-stone-800 leading-relaxed line-clamp-2 mt-6 font-co">
           {video.description}
         </p>
       )}
@@ -266,7 +267,7 @@ function LatestVideoCard({ video }) {
         href={`https://www.youtube.com/watch?v=${video.videoId}`}
         target="_blank"
         rel="noopener noreferrer"
-        className="inline-block font-coptic text-[0.48rem] tracking-[0.3em] uppercase text-amber-600 hover:text-amber-700 transition-colors mt-5"
+        className="inline-block font-coptic text-xs tracking-[0.3em] uppercase text-amber-800 hover:text-amber-900 transition-colors mt-6 font-medium"
       >
         Watch on YouTube ↗
       </a>
@@ -283,46 +284,46 @@ function OfflinePage({ nextService, latestVideo }) {
     <div className="flex flex-col flex-1 min-h-0 overflow-y-auto bg-ivory">
 
       {/* Hero */}
-      <div className="flex flex-col items-center justify-center text-center px-8 md:px-16 pt-16 pb-14 flex-1">
+      <div className="flex flex-col items-center justify-center text-center px-8 md:px-16 pt-20 pb-16 flex-1">
 
         {/* Top rule */}
-        <div className="flex items-center gap-4 w-full max-w-xs mb-12">
-          <div className="flex-1 h-px bg-stone-200" />
-          <div className="w-1 h-1 bg-amber-400 rotate-45" />
-          <div className="flex-1 h-px bg-stone-200" />
+        <div className="flex items-center gap-4 w-full max-w-xs mb-14">
+          <div className="flex-1 h-px bg-stone-300" />
+          <div className="w-1.5 h-1.5 bg-amber-500 rotate-45" />
+          <div className="flex-1 h-px bg-stone-300" />
         </div>
 
         {/* Offline indicator */}
-        <div className="flex items-center gap-2 mb-7">
-          <span className="w-1.5 h-1.5 rounded-full bg-stone-300" />
-          <span className="font-coptic text-[0.48rem] tracking-[0.4em] uppercase text-stone-700">
+        <div className="flex items-center gap-2 mb-8">
+          <span className="w-2 h-2 rounded-full bg-stone-400" />
+          <span className="font-coptic text-xs tracking-[0.4em] uppercase text-stone-800 font-medium">
             Currently Offline
           </span>
         </div>
 
         {/* Heading */}
-        <h1 className="font-cormorant text-5xl md:text-7xl font-light text-stone-800 leading-tight mb-2">
+        <h1 className="font-cormorant text-5xl md:text-8xl font-light text-stone-900 leading-tight mb-3">
           No Live Stream
         </h1>
-        <p className="font-cormorant text-lg text-amber-600/80 tracking-widest mb-10">
+        <p className="font-cormorant text-xl text-amber-800/90 tracking-widest mb-12">
           Mavuno Church Hill City
         </p>
 
         {/* Divider */}
-        <div className="flex items-center gap-4 w-full max-w-sm mb-10">
-          <div className="flex-1 h-px bg-stone-200" />
-          <div className="w-1 h-1 bg-stone-300 rotate-45" />
-          <div className="flex-1 h-px bg-stone-200" />
+        <div className="flex items-center gap-4 w-full max-w-sm mb-12">
+          <div className="flex-1 h-px bg-stone-300" />
+          <div className="w-1.5 h-1.5 bg-stone-400 rotate-45" />
+          <div className="flex-1 h-px bg-stone-300" />
         </div>
 
         {/* Countdown */}
         {nextService && (
-          <div className="flex flex-col items-center gap-6">
-            <p className="font-coptic text-[0.52rem] tracking-[0.3em] uppercase text-stone-700">
+          <div className="flex flex-col items-center gap-8">
+            <p className="font-coptic text-xs tracking-[0.3em] uppercase text-stone-800 font-semibold">
               Next service begins in
             </p>
             <Countdown target={nextService} />
-            <p className="font-coptic text-[0.45rem] tracking-[0.25em] uppercase text-stone-700 mt-1">
+            <p className="font-coptic text-xs tracking-[0.25em] uppercase text-stone-800 mt-2 font-medium">
               Sunday services — 9:00 AM &amp; 11:00 AM EAT
             </p>
           </div>
@@ -341,9 +342,9 @@ function OfflinePage({ nextService, latestVideo }) {
 
 function LoadingState() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center gap-5 bg-ivory">
-      <div className="w-5 h-5 border border-stone-300 border-t-amber-500 rounded-full animate-spin" />
-      <p className="font-coptic text-[0.48rem] tracking-[0.35em] uppercase text-stone-700">
+    <div className="flex flex-col flex-1 items-center justify-center gap-6 bg-ivory">
+      <div className="w-7 h-7 border-2 border-stone-300 border-t-amber-600 rounded-full animate-spin" />
+      <p className="font-coptic text-xs tracking-[0.35em] uppercase text-stone-800 font-medium">
         Checking stream status
       </p>
     </div>
@@ -364,13 +365,13 @@ export default function StreamingPage() {
       <main className="flex flex-col flex-1 min-w-0 overflow-hidden">
 
         {/* Page header */}
-        <div className="flex items-center justify-between px-6 md:px-10 h-14 border-b border-stone-200 bg-ivory shrink-0">
-          <div className="flex items-center gap-3">
-            <p className="font-coptic text-[0.48rem] uppercase tracking-[0.3em] text-stone-700">
+        <div className="flex items-center justify-between px-6 md:px-10 h-16 border-b border-stone-200 bg-ivory shrink-0">
+          <div className="flex items-center gap-4">
+            <p className="font-coptic text-xs uppercase tracking-[0.3em] text-stone-800 font-semibold">
               Streaming
             </p>
-            <div className="w-px h-3 bg-stone-200" />
-            <p className="font-cormorant text-base text-stone-700">
+            <div className="w-px h-4 bg-stone-300" />
+            <p className="font-cormorant text-lg text-stone-800">
               Live &amp; On Demand
             </p>
           </div>

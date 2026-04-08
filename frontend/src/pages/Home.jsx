@@ -86,7 +86,7 @@ function Home() {
         {/* ── Stats ── */}
         <section
           aria-label="Platform highlights"
-          className="bg-amber-500 mx-10 rounded-md px-6 sm:px-10 lg:px-16 py-12"
+          className="bg-amber-500 m-10 rounded-md px-6 sm:px-10 lg:px-16 py-12"
         >
           <ul
             role="list"
@@ -278,7 +278,7 @@ function Home() {
         {/* ── CTA ── */}
         <section
           aria-labelledby="cta-heading"
-          className="bg-amber-500 mx-10 rounded-md px-6 sm:px-10 lg:px-24 py-16 sm:py-20"
+          className="bg-amber-500 m-10 rounded-md px-6 sm:px-10 lg:px-24 py-16 sm:py-20"
         >
           <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-8">
             <div>

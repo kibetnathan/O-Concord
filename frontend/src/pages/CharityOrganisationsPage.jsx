@@ -54,7 +54,7 @@ function OrgListCard({ org, isSelected, onSelect }) {
           {org.name}
         </h3>
         {org.description && (
-          <p className="text-[0.7rem] text-stone-400 mt-0.5 line-clamp-2 leading-relaxed">
+          <p className="text-[0.75rem] text-stone-600 mt-0.5 line-clamp-2 leading-relaxed">
             {org.description}
           </p>
         )}
@@ -114,7 +114,7 @@ function OrgDetailCard({ org }) {
             </span>
           </span>
           {joinedDate && (
-            <span className="flex items-center gap-1.5 text-stone-400 text-sm">
+            <span className="flex items-center gap-1.5 text-stone-600 text-sm">
               <IconCalendar />
               Established {joinedDate}
             </span>
@@ -124,7 +124,7 @@ function OrgDetailCard({ org }) {
         {/* Description */}
         {org.description && (
           <div className="mb-6">
-            <p className="font-coptic text-[0.6rem] uppercase tracking-widest text-stone-400 mb-2">
+            <p className="font-coptic text-[0.6rem] uppercase tracking-widest text-stone-600 mb-2">
               About
             </p>
             <p className="text-sm text-stone-600 leading-relaxed">{org.description}</p>
@@ -169,7 +169,7 @@ function OrgDetailCard({ org }) {
             disabled={joinSent}
             className={`flex items-center gap-2 px-7 py-3 text-[0.75rem] uppercase tracking-[0.15em] font-coptic transition-all duration-200 ${
               joinSent
-                ? "bg-stone-100 text-stone-400 border border-stone-200 cursor-default"
+                ? "bg-stone-100 text-stone-600 border border-stone-200 cursor-default"
                 : "bg-amber-500 hover:bg-amber-600 text-white"
             }`}
           >
@@ -177,7 +177,7 @@ function OrgDetailCard({ org }) {
             {joinSent ? "Request Sent" : "Request to Join"}
           </button>
           {joinSent && (
-            <p className="text-[0.7rem] text-stone-400 font-coptic">
+            <p className="text-[0.75rem] text-stone-600 font-coptic">
               Your request has been submitted.
             </p>
           )}
@@ -225,7 +225,7 @@ function CharityOrganisationsPage() {
       <div className="flex-1 flex flex-col w-full min-h-screen overflow-hidden">
         {/* Page header */}
         <div className="px-8 py-6 border-b border-stone-200 shrink-0">
-          <p className="font-coptic text-[0.6rem] uppercase tracking-[0.25em] text-stone-500 mb-1">
+          <p className="font-coptic text-[0.7rem] uppercase tracking-[0.25em] text-stone-500 mb-1">
             Outreach
           </p>
           <h1 className="font-cormorant text-2xl font-semibold text-stone-900">
