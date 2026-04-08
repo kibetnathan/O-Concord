@@ -8,27 +8,33 @@ const LEADER_ROLES = ["Pastor", "Jr Leader", "Leader", "Staff"];
 
 // NavLink passes { isActive } into this function automatically - it knows if the current url matches the link
 const navLinkClass = ({ isActive }) =>
-  `flex items-center gap-3 px-4 py-2.5 text-[0.8rem] tracking-widest uppercase transition-all duration-200 border-l-2 ${
+  `flex items-center gap-3 px-4 py-2.5 text-sm tracking-widest uppercase transition-all duration-200 border-l-2 ${
     isActive
-      ? "bg-amber-50 text-amber-600 border-amber-500"
-      : "text-stone-700 hover:bg-amber-50 hover:text-black border-transparent"
+      ? "bg-amber-50 text-amber-700 border-amber-500"
+      : "text-stone-800 hover:bg-amber-50 hover:text-black border-transparent"
   }`;
 
 const subLinkClass = ({ isActive }) =>
-  `flex items-center gap-2.5 pl-9 pr-4 py-2 text-xs tracking-widest uppercase transition-all duration-150 border-l-2 ${
+  `flex items-center gap-2.5 pl-9 pr-4 py-2 text-sm tracking-widest uppercase transition-all duration-150 border-l-2 ${
     isActive
-      ? "text-amber-600 border-amber-500 bg-amber-50"
-      : "text-stone-600 hover:text-black border-transparent hover:bg-amber-50"
+      ? "text-amber-700 border-amber-500 bg-amber-50"
+      : "text-stone-700 hover:text-black border-transparent hover:bg-amber-50"
   }`;
 
-const SectionLabel = ({ children }) => (
-  <li className="px-4 pt-6 pb-1 text-[0.65rem] uppercase tracking-[0.25em] text-stone-500 font-medium">
+const SectionLabel = ({ children, id }) => (
+  <li
+    id={id}
+    role="presentation"
+    className="px-4 pt-6 pb-1 text-xs uppercase tracking-[0.22em] text-stone-700 font-semibold"
+  >
     {children}
   </li>
 );
 
 const ChevronIcon = ({ open }) => (
   <svg
+    aria-hidden="true"
+    focusable="false"
     className={`w-3 h-3 ml-auto transition-transform duration-200 ${open ? "rotate-180" : ""}`}
     fill="none"
     stroke="currentColor"
@@ -42,14 +48,18 @@ const ChevronIcon = ({ open }) => (
 function ExpandableSection({ icon, label, children, defaultOpen = false }) {
   // useState returns [currentValue, setterFunction] - defaultOpen sets what it starts as
   const [open, setOpen] = useState(defaultOpen);
+  const panelId = `sidebar-section-${label.replace(/\W+/g, "-").toLowerCase()}`;
   return (
     <li>
       <button
+        type="button"
         onClick={() => setOpen((v) => !v)}
-        className={`w-full flex items-center gap-3 px-4 py-2.5 text-[0.8rem] tracking-widest uppercase transition-all duration-200 border-l-2 border-transparent ${
+        aria-expanded={open}
+        aria-controls={panelId}
+        className={`w-full flex items-center gap-3 px-4 py-2.5 text-sm tracking-widest uppercase transition-all duration-200 border-l-2 border-transparent ${
           open
             ? "text-stone-900 bg-amber-50"
-            : "text-stone-700 hover:bg-amber-50 hover:text-black"
+            : "text-stone-800 hover:bg-amber-50 hover:text-black"
         }`}
       >
         {icon}
@@ -57,7 +67,10 @@ function ExpandableSection({ icon, label, children, defaultOpen = false }) {
         <ChevronIcon open={open} />
       </button>
       {open && (
-        <ul className="flex flex-col mt-0.5 border-l border-stone-200 ml-4">
+        <ul
+          id={panelId}
+          className="flex flex-col mt-0.5 border-l border-stone-200 ml-4"
+        >
           {children}
         </ul>
       )}
@@ -88,18 +101,22 @@ function Sidebar() {
 
   return (
     <>
-      <aside className="sticky top-0 hidden md:flex flex-col w-95 h-screen bg-porcelain border-r border-stone-200">
+      <aside
+        aria-label="Primary"
+        className="sticky top-0 hidden md:flex flex-col w-95 h-screen bg-porcelain border-r border-stone-200"
+      >
         <div className="flex items-center justify-between px-6 h-16 border-b border-stone-200 shrink-0">
           <NavLink
             to="/"
-            className="font-cormorant text-2xl font-semibold tracking-[0.15em] text-stone-900 hover:text-amber-600 transition-colors"
+            aria-label="Open Church Management — home"
+            className="font-cormorant text-2xl font-semibold tracking-[0.15em] text-stone-900 hover:text-amber-700 transition-colors"
           >
-            O<span className="text-amber-500">C</span>M
+            O<span className="text-amber-600">C</span>M
           </NavLink>
-          <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
+          <span className="w-1.5 h-1.5 rounded-full bg-amber-500" aria-hidden="true" />
         </div>
 
-        <nav className="flex-1 px-3 py-4 overflow-y-auto">
+        <nav aria-label="Sidebar" className="flex-1 px-3 py-4 overflow-y-auto">
           <ul className="flex flex-col gap-0.5">
             <li>
               <NavLink to="/feed" className={navLinkClass}>
@@ -412,8 +429,9 @@ function Sidebar() {
         </nav>
 
         <button
+          type="button"
           onClick={handleLogout}
-          className="flex items-center gap-3 w-full px-4 py-2.5 text-left font-coptic text-[0.75rem] uppercase tracking-widest text-stone-500 hover:text-red-500 hover:bg-red-50 transition-colors group"
+          className="flex items-center gap-3 w-full px-4 py-2.5 text-left font-coptic text-sm uppercase tracking-widest text-stone-700 hover:text-red-600 hover:bg-red-50 transition-colors group"
         >
           <svg
             className="w-4 h-4 shrink-0 group-hover:translate-x-0.5 transition-transform"
@@ -431,17 +449,21 @@ function Sidebar() {
           Sign Out
         </button>
         <div className="px-5 py-4 border-t border-stone-200 shrink-0">
-          <p className="text-[0.65rem] tracking-widest uppercase text-amber-500/80">
+          <p className="text-xs tracking-widest uppercase text-amber-700">
             Powered by Mavuno Church
           </p>
         </div>
       </aside>
-      <div className="fixed flex md:hidden bottom-3 left-0 right-0 px-3 z-50">
+      <div
+        className="fixed flex md:hidden bottom-3 left-0 right-0 px-3 z-50"
+        role="region"
+        aria-label="Mobile navigation"
+      >
         {activeTray && (
           <div className="absolute bottom-18 left-3 right-3 bg-porcelain backdrop-blur-md border border-stone-200 rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.15)] overflow-hidden">
             {activeTray === "dashboard" && (
               <ul className="flex flex-col py-2">
-                <li className="px-4 pt-2 pb-1 text-[0.5rem] uppercase tracking-[0.25em] text-stone-500">
+                <li className="px-4 pt-2 pb-1 text-[0.65rem] uppercase tracking-[0.22em] text-stone-700 font-semibold">
                   Dashboard
                 </li>
                 {[
@@ -470,10 +492,10 @@ function Sidebar() {
                       end={end}
                       onClick={() => setActiveTray(null)}
                       className={({ isActive }) =>
-                        `flex items-center gap-3 px-5 py-2.5 text-[0.65rem] uppercase tracking-widest transition-colors ${
+                        `flex items-center gap-3 px-5 py-3 text-xs uppercase tracking-widest transition-colors ${
                           isActive
-                            ? "text-amber-600 bg-amber-50"
-                            : "text-stone-700 hover:text-black hover:bg-amber-50"
+                            ? "text-amber-700 bg-amber-50"
+                            : "text-stone-800 hover:text-black hover:bg-amber-50"
                         }`
                       }
                     >
@@ -483,10 +505,9 @@ function Sidebar() {
                 ))}
               </ul>
             )}
-
             {activeTray === "scripture" && (
               <ul className="flex flex-col py-2">
-                <li className="px-4 pt-2 pb-1 text-[0.5rem] uppercase tracking-[0.25em] text-stone-500">
+                <li className="px-4 pt-2 pb-1 text-[0.65rem] uppercase tracking-[0.22em] text-stone-700 font-semibold">
                   Scripture
                 </li>
                 {[
@@ -566,7 +587,10 @@ function Sidebar() {
           </div>
         )}
 
-        <nav className="w-full h-16 rounded-2xl bg-porcelain backdrop-blur-md border border-stone-200 shadow-[0_8px_32px_rgba(0,0,0,0.1)]">
+        <nav
+          aria-label="Mobile primary"
+          className="w-full h-16 rounded-2xl bg-porcelain backdrop-blur-md border border-stone-200 shadow-[0_8px_32px_rgba(0,0,0,0.1)]"
+        >
           <ul className="flex items-center justify-around h-full px-2">
             <li>
               <NavLink
@@ -575,8 +599,8 @@ function Sidebar() {
                 className={({ isActive }) =>
                   `flex flex-col items-center gap-1 px-3 py-1.5 rounded-xl transition-all duration-200 ${
                     isActive
-                      ? "text-amber-500"
-                      : "text-stone-600 hover:text-black"
+                      ? "text-amber-600"
+                      : "text-stone-700 hover:text-black"
                   }`
                 }
               >
@@ -599,7 +623,7 @@ function Sidebar() {
                         d="M12 7.5h1.5m-1.5 3h1.5m-4.5 5.25h4.5m-4.5-2.25h4.5M4.5 3h15a1.5 1.5 0 0 1 1.5 1.5v15a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 19.5v-15A1.5 1.5 0 0 1 4.5 3Z"
                       />
                     </svg>
-                    <span className="text-[0.5rem] uppercase tracking-widest">
+                    <span className="text-[0.65rem] uppercase tracking-widest font-medium">
                       Feed
                     </span>
                   </>
@@ -609,14 +633,17 @@ function Sidebar() {
 
             <li>
               <button
+                type="button"
+                aria-expanded={activeTray === "scripture"}
+                aria-label="Scripture menu"
                 // passing a function to setActiveTray gives you the previous value (v) so you dont read stale state
                 onClick={() =>
                   setActiveTray((v) => (v === "scripture" ? null : "scripture"))
                 }
                 className={`flex flex-col items-center gap-1 px-3 py-1.5 rounded-xl transition-all duration-200 ${
                   activeTray === "scripture"
-                    ? "text-amber-500"
-                    : "text-stone-600 hover:text-black"
+                    ? "text-amber-600"
+                    : "text-stone-700 hover:text-black"
                 }`}
               >
                 <span
@@ -645,7 +672,7 @@ function Sidebar() {
                     d="M12 10.5h3m-3 3h3"
                   />
                 </svg>
-                <span className="text-[0.5rem] uppercase tracking-widest">
+                <span className="text-[0.65rem] uppercase tracking-widest font-medium">
                   Scripture
                 </span>
               </button>
@@ -658,8 +685,8 @@ function Sidebar() {
                 className={({ isActive }) =>
                   `flex flex-col items-center gap-1 px-3 py-1.5 rounded-xl transition-all duration-200 ${
                     isActive
-                      ? "text-amber-500"
-                      : "text-stone-600 hover:text-black"
+                      ? "text-amber-600"
+                      : "text-stone-700 hover:text-black"
                   }`
                 }
               >
@@ -681,7 +708,7 @@ function Sidebar() {
                         d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 0 1 .865-.501 48.172 48.172 0 0 0 3.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z"
                       />
                     </svg>
-                    <span className="text-[0.5rem] uppercase tracking-widest">
+                    <span className="text-[0.65rem] uppercase tracking-widest font-medium">
                       Messages
                     </span>
                   </>
@@ -696,8 +723,8 @@ function Sidebar() {
                 className={({ isActive }) =>
                   `flex flex-col items-center gap-1 px-3 py-1.5 rounded-xl transition-all duration-200 ${
                     isActive
-                      ? "text-amber-500"
-                      : "text-stone-600 hover:text-black"
+                      ? "text-amber-600"
+                      : "text-stone-700 hover:text-black"
                   }`
                 }
               >
@@ -724,7 +751,7 @@ function Sidebar() {
                         d="M9.75 8.25l4.5 2.75-4.5 2.75V8.25Z"
                       />
                     </svg>
-                    <span className="text-[0.5rem] uppercase tracking-widest">
+                    <span className="text-[0.65rem] uppercase tracking-widest font-medium">
                       Stream
                     </span>
                   </>
@@ -735,6 +762,9 @@ function Sidebar() {
             {isLeader && (
               <li>
                 <button
+                  type="button"
+                  aria-expanded={activeTray === "dashboard"}
+                  aria-label="Dashboard menu"
                   onClick={() =>
                     setActiveTray((v) =>
                       v === "dashboard" ? null : "dashboard",
@@ -742,8 +772,8 @@ function Sidebar() {
                   }
                   className={`flex flex-col items-center gap-1 px-3 py-1.5 rounded-xl transition-all duration-200 ${
                     activeTray === "dashboard"
-                      ? "text-amber-500"
-                      : "text-stone-600 hover:text-black"
+                      ? "text-amber-600"
+                      : "text-stone-700 hover:text-black"
                   }`}
                 >
                   <span
@@ -762,7 +792,7 @@ function Sidebar() {
                       d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21"
                     />
                   </svg>
-                  <span className="text-[0.5rem] uppercase tracking-widest">
+                  <span className="text-[0.65rem] uppercase tracking-widest font-medium">
                     Dashboard
                   </span>
                 </button>
@@ -776,8 +806,8 @@ function Sidebar() {
                 className={({ isActive }) =>
                   `flex flex-col items-center gap-1 px-3 py-1.5 rounded-xl transition-all duration-200 ${
                     isActive
-                      ? "text-amber-500"
-                      : "text-stone-600 hover:text-black"
+                      ? "text-amber-600"
+                      : "text-stone-700 hover:text-black"
                   }`
                 }
               >
@@ -799,7 +829,7 @@ function Sidebar() {
                         d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
                       />
                     </svg>
-                    <span className="text-[0.5rem] uppercase tracking-widest">
+                    <span className="text-[0.65rem] uppercase tracking-widest font-medium">
                       Profile
                     </span>
                   </>

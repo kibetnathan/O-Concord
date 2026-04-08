@@ -44,14 +44,19 @@ function App() {
 
   if (loading) {
     return (
-      <div className="flex flex-col items-center justify-center h-screen bg-ivory gap-6">
+      <div
+        className="flex flex-col items-center justify-center h-screen bg-ivory gap-6"
+        role="status"
+        aria-live="polite"
+        aria-busy="true"
+      >
         {/* Logo */}
-        <div className="font-cormorant text-3xl font-semibold tracking-[0.15em] text-stone-900">
+        <div className="font-cormorant text-3xl font-semibold tracking-[0.15em] text-stone-900" aria-hidden="true">
           O<span className="text-amber-500">C</span>M
         </div>
 
         {/* Animated bar */}
-        <div className="w-32 h-px bg-stone-200 relative overflow-hidden">
+        <div className="w-32 h-px bg-stone-200 relative overflow-hidden" aria-hidden="true">
           <div
             className="absolute top-0 left-0 h-full bg-amber-500"
             style={{
@@ -62,9 +67,10 @@ function App() {
         </div>
 
         {/* Label */}
-        <p className="font-coptic text-[0.55rem] uppercase tracking-[0.3em] text-stone-600">
-          Loading, Please wait...
+        <p className="font-coptic text-sm uppercase tracking-[0.25em] text-stone-700">
+          Loading, please wait…
         </p>
+        <span className="sr-only">Loading the application, please wait.</span>
 
         <style>{`
         @keyframes slide {
@@ -78,6 +84,9 @@ function App() {
   }
   return (
     <Router>
+      <a href="#main-content" className="skip-link">
+        Skip to main content
+      </a>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/threads" element={<ThreadsPage />} />
