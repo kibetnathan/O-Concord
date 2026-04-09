@@ -237,7 +237,7 @@ function PlanDetail({
               <>
                 <button
                   onClick={() => onEdit(plan)}
-                  className="p-1.5 text-stone-500 hover:text-amber-700 border border-transparent hover:border-amber-200 transition-colors"
+                  className="p-1.5 text-stone-500 hover:text-amber-700 border border-transparent hover:border-amber-200 transition-colors rounded-sm"
                 >
                   <IconEdit />
                 </button>
@@ -248,13 +248,13 @@ function PlanDetail({
                         onDelete(plan.id);
                         onClose();
                       }}
-                      className="font-coptic text-xs uppercase tracking-widest text-red-600 border border-red-200 px-2 py-1 hover:bg-red-50 transition-colors"
+                      className="font-coptic text-xs uppercase tracking-widest text-red-600 border border-red-200 px-2 py-1 hover:bg-red-50 transition-colors rounded-sm"
                     >
                       Delete
                     </button>
                     <button
                       onClick={() => setConfirming(false)}
-                      className="font-coptic text-xs uppercase tracking-widest text-stone-500 border border-stone-200 px-2 py-1 transition-colors"
+                      className="font-coptic text-xs uppercase tracking-widest text-stone-500 border border-stone-200 px-2 py-1 transition-colors rounded-sm"
                     >
                       Cancel
                     </button>
@@ -262,7 +262,7 @@ function PlanDetail({
                 ) : (
                   <button
                     onClick={() => setConfirming(true)}
-                    className="p-1.5 text-stone-500 hover:text-red-600 border border-transparent hover:border-red-200 transition-colors"
+                    className="p-1.5 text-stone-500 hover:text-red-600 border border-transparent hover:border-red-200 transition-colors rounded-sm""
                   >
                     <IconTrash />
                   </button>
@@ -271,7 +271,7 @@ function PlanDetail({
             )}
             <button
               onClick={onClose}
-              className="p-1.5 text-stone-500 hover:text-stone-800 border border-stone-200 hover:border-stone-400 transition-colors"
+              className="p-1.5 text-stone-500 hover:text-stone-800 border border-stone-200 hover:border-stone-400 transition-colors rounded-sm""
             >
               <IconX />
             </button>
@@ -322,7 +322,7 @@ function PlanDetail({
             href={plan.youversion_url}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 w-full font-coptic text-xs uppercase tracking-widest text-stone-900 hover:text-amber-800 border border-stone-300 hover:border-stone-500 py-3 transition-colors"
+            className="flex items-center justify-center gap-2 w-full font-coptic text-xs uppercase tracking-widest text-stone-900 hover:text-amber-800 border border-stone-300 hover:border-stone-500 py-3 transition-colors rounded-sm"
           >
             <IconExternal /> Open on YouVersion
           </a>
@@ -332,7 +332,7 @@ function PlanDetail({
             <button
               onClick={handleLeave}
               disabled={joining}
-              className="flex items-center justify-center gap-2 w-full font-coptic text-xs uppercase tracking-widest text-green-800 border border-green-300 bg-green-50 hover:bg-white py-3 transition-colors disabled:opacity-50"
+              className="flex items-center justify-center gap-2 w-full font-coptic text-xs uppercase tracking-widest text-green-800 border border-green-300 bg-green-50 hover:bg-white py-3 transition-colors disabled:opacity-50 rounded-sm"
             >
               {joining ? (
                 <div className="w-4 h-4 border border-green-400/40 border-t-green-600 rounded-full animate-spin" />
@@ -346,7 +346,7 @@ function PlanDetail({
             <button
               onClick={handleJoin}
               disabled={joining}
-              className="flex items-center justify-center gap-2 w-full font-coptic text-xs uppercase tracking-widest text-amber-800 border border-amber-400 bg-amber-50 hover:bg-amber-100 py-3 transition-colors disabled:opacity-50"
+              className="flex items-center justify-center gap-2 w-full font-coptic text-xs uppercase tracking-widest text-amber-800 border border-amber-400 bg-amber-50 hover:bg-amber-100 py-3 transition-colors disabled:opacity-50 rounded-sm"
             >
               {joining ? (
                 <div className="w-4 h-4 border border-amber-500/40 border-t-amber-600 rounded-full animate-spin" />
@@ -446,7 +446,7 @@ function PlanForm({ initial, onSubmit, onClose, saving }) {
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 text-stone-500 hover:text-stone-800 border border-stone-200 transition-colors"
+            className="p-1.5 text-stone-500 hover:text-stone-800 border border-stone-200 transition-colors rounded-sm""
           >
             <IconX />
           </button>
@@ -527,14 +527,14 @@ function PlanForm({ initial, onSubmit, onClose, saving }) {
         <div className="px-5 py-4 border-t border-stone-200 shrink-0 flex items-center justify-end gap-3">
           <button
             onClick={onClose}
-            className="font-coptic text-xs uppercase tracking-widest text-stone-500 border border-stone-300 hover:border-stone-500 px-4 py-2 transition-colors"
+            className="font-coptic text-xs uppercase tracking-widest text-stone-500 border border-stone-300 hover:border-stone-500 px-4 py-2 transition-colors rounded-sm"
           >
             Cancel
           </button>
           <button
             onClick={handleSubmit}
             disabled={saving}
-            className="font-coptic text-xs uppercase tracking-widest text-amber-800 border border-amber-400 bg-amber-50 hover:bg-amber-100 px-5 py-2 transition-colors disabled:opacity-50 flex items-center gap-2"
+            className="font-coptic text-xs uppercase tracking-widest text-amber-800 border border-amber-400 bg-amber-50 hover:bg-amber-100 px-5 py-2 transition-colors disabled:opacity-50 flex items-center gap-2 rounded-sm"
           >
             {saving && (
               <div className="w-4 h-4 border border-amber-500/40 border-t-amber-600 rounded-full animate-spin" />
@@ -553,7 +553,7 @@ function PlanCard({ plan, onClick }) {
   return (
     <button
       onClick={onClick}
-      className="w-full text-left border border-stone-200 bg-ivory hover:border-amber-300 hover:shadow-sm transition-all group flex flex-col"
+      className="w-full text-left border border-stone-200 bg-ivory hover:border-amber-300 hover:shadow-sm transition-all group flex flex-col rounded-sm"
     >
       {/* Cover / widget preview strip */}
       <div className="h-1.5 w-full bg-stone-100 group-hover:bg-amber-100 transition-colors" />
@@ -691,7 +691,7 @@ function ReadingPlansPage() {
                 setEditingPlan(null);
                 setShowForm(true);
               }}
-              className="flex items-center gap-1.5 font-coptic text-xs uppercase tracking-widest text-amber-800 border border-amber-300 bg-amber-50 hover:bg-amber-100 px-3 py-2 transition-colors shrink-0"
+              className="flex items-center gap-1.5 font-coptic text-xs uppercase tracking-widest text-amber-800 border border-amber-300 bg-amber-50 hover:bg-amber-100 px-3 py-2 transition-colors shrink-0 rounded-sm"
             >
               <IconPlus /> Add plan
             </button>
@@ -750,7 +750,7 @@ function ReadingPlansPage() {
               {tab === "mine" && (
                 <button
                   onClick={() => setTab("all")}
-                  className="mt-2 font-coptic text-xs uppercase tracking-widest text-amber-700 border border-amber-300 hover:bg-amber-50 px-5 py-2.5 transition-colors"
+                  className="mt-2 font-coptic text-xs uppercase tracking-widest text-amber-700 border border-amber-300 hover:bg-amber-50 px-5 py-2.5 transition-colors rounded-sm"
                 >
                   Browse all plans →
                 </button>

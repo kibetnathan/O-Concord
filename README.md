@@ -234,6 +234,14 @@ python manage.py createsuperuser  # create admin user
 pip install -r requirements.txt   # install dependencies
 ```
 
+## Contributing
+
+Contributions are welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on branching, commit messages, and code standards.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
 ## Contact
 
 Bugs, feedback, or feature requests: [bg1b9xany@mozmail.com](mailto:bg1b9xany@mozmail.com)

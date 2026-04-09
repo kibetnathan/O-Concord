@@ -38,7 +38,7 @@ function OrgListCard({ org, isSelected, onSelect }) {
   return (
     <button
       onClick={() => onSelect(org)}
-      className={`w-full text-left transition-all duration-150 border-l-2 ${
+      className={`w-full text-left transition-all duration-150 border-l-2 rounded-sm ${
         isSelected
           ? "border-amber-500 bg-amber-600/10"
           : "border-transparent hover:border-amber-500/40 hover:bg-amber-50"
@@ -151,7 +151,7 @@ function OrgDetailCard({ org }) {
               href={org.donation_link}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-2.5 border border-amber-400 text-amber-700 hover:bg-amber-50 text-[0.75rem] uppercase tracking-[0.12em] font-coptic transition-colors"
+              className="inline-flex items-center gap-2 px-5 py-2.5 border border-amber-400 text-amber-700 hover:bg-amber-50 text-[0.75rem] uppercase tracking-[0.12em] font-coptic transition-colors rounded-sm"
             >
               <IconLink />
               Donate Online
@@ -167,7 +167,7 @@ function OrgDetailCard({ org }) {
           <button
             onClick={() => setJoinSent(true)}
             disabled={joinSent}
-            className={`flex items-center gap-2 px-7 py-3 text-[0.75rem] uppercase tracking-[0.15em] font-coptic transition-all duration-200 ${
+            className={`flex items-center gap-2 px-7 py-3 text-[0.75rem] uppercase tracking-[0.15em] font-coptic transition-all duration-200 rounded-sm ${
               joinSent
                 ? "bg-stone-100 text-stone-600 border border-stone-200 cursor-default"
                 : "bg-amber-500 hover:bg-amber-600 text-white"
@@ -194,7 +194,7 @@ function OrgDetailCard({ org }) {
             amount={donationAmount}
             email={user?.email ?? ""}
             orderId={`donation-${org.id}-${Date.now()}`}
-            className="flex items-center gap-2 px-7 py-3 text-[0.75rem] uppercase tracking-[0.15em] font-coptic transition-all duration-200 bg-amber-500 hover:bg-amber-600 text-white"
+            className="flex items-center gap-2 px-7 py-3 text-[0.75rem] uppercase tracking-[0.15em] font-coptic transition-all duration-200 bg-amber-500 hover:bg-amber-600 text-white rounded-sm"
             label={<><IconBanknotes className="w-4 h-4" /> Donate</>}
           />
         </div>
