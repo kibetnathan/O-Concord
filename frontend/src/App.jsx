@@ -21,7 +21,7 @@ import useAuthStore from "./zustand/authStore";
 import { useEffect } from "react";
 import BiblePage from "./pages/BiblePage";
 import StreamingPage from "./pages/StreamingPage";
-import MobileProfile from "./pages/MobileProfile";
+import ProfilePage from "./pages/ProfilePage";
 import PageNotFound from "./pages/PageNotFound";
 import ComingSoon from "./pages/ComingSoon";
 import AdminStreamPanel from "./components/AdminStreamPanel";
@@ -115,7 +115,7 @@ function App() {
           <Route path="outreach/charity" element={<CharityOrganisationDashboard />} />
         </Route>
         <Route path="/outreach/charity" element={<CharityOrganisationsPage />} />
-        <Route path="/profile" element={<MobileProfile />} />
+        <Route path="/profile" element={<ProfilePage />} />
         <Route path="*" element={<PageNotFound />} />
         {/* {wipUrls.map((path) =>
           (<Route key={path} path={path} element={<ComingSoon/>}/>))} */}

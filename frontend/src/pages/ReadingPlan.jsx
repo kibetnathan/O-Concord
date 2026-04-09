@@ -262,7 +262,7 @@ function PlanDetail({
                 ) : (
                   <button
                     onClick={() => setConfirming(true)}
-                    className="p-1.5 text-stone-500 hover:text-red-600 border border-transparent hover:border-red-200 transition-colors rounded-sm""
+                    className="p-1.5 text-stone-500 hover:text-red-600 border border-transparent hover:border-red-200 transition-colors rounded-sm"
                   >
                     <IconTrash />
                   </button>
@@ -271,7 +271,7 @@ function PlanDetail({
             )}
             <button
               onClick={onClose}
-              className="p-1.5 text-stone-500 hover:text-stone-800 border border-stone-200 hover:border-stone-400 transition-colors rounded-sm""
+              className="p-1.5 text-stone-500 hover:text-stone-800 border border-stone-200 hover:border-stone-400 transition-colors rounded-sm"
             >
               <IconX />
             </button>
@@ -446,7 +446,7 @@ function PlanForm({ initial, onSubmit, onClose, saving }) {
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 text-stone-500 hover:text-stone-800 border border-stone-200 transition-colors rounded-sm""
+            className="p-1.5 text-stone-500 hover:text-stone-800 border border-stone-200 transition-colors rounded-sm"
           >
             <IconX />
           </button>
@@ -804,4 +804,3 @@ function ReadingPlansPage() {
 }
 
 export default ReadingPlansPage;
-
