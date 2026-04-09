@@ -48,10 +48,17 @@ import "../styles/global.css";
           </li>
           <li class="h-full flex items-center">
             <a
-              href="#quickstart"
+              href="/getting-started"
               class="nav-link text-xs uppercase tracking-[0.18em] px-4 py-2 transition-all"
               style="font-family: 'Inter', sans-serif; color: var(--color-text-strong);"
-            >Quick Start</a>
+            >Getting Started</a>
+          </li>
+          <li class="h-full flex items-center">
+            <a
+              href="/tutorial"
+              class="nav-link text-xs uppercase tracking-[0.18em] px-4 py-2 transition-all"
+              style="font-family: 'Inter', sans-serif; color: var(--color-text-strong);"
+            >Tutorial</a>
           </li>
           <li class="h-full flex items-center">
             <a
@@ -693,8 +700,9 @@ python manage.py runserver</code>
         <nav aria-label="Footer links">
           <ul class="flex flex-wrap gap-6" role="list">
             {[
+              { label: "Getting Started", href: "/getting-started" },
+              { label: "Tutorial", href: "/tutorial" },
               { label: "GitHub", href: "https://github.com/kibetnathan/O-Concord" },
-              { label: "Contributing", href: "/contributing" },
               { label: "MIT License", href: "https://opensource.org/licenses/MIT" },
             ].map(({ label, href }) => (
               <li>
