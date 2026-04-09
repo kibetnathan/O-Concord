@@ -13,3 +13,4 @@ CLAUDE.md
 .venv
 venv
 TESTING_PLAN.md
+staticfiles/
