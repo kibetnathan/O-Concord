@@ -54,6 +54,8 @@ class ProfileSerializer(serializers.ModelSerializer):
         return value
 
     def validate_DoB(self, value):
+        if value is None:
+            return value
         if value > date.today():
             raise serializers.ValidationError("Date of birth cannot be in the future")
         return value

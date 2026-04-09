@@ -26,11 +26,18 @@ class ServicesSerializer(serializers.ModelSerializer):
         many=True
     )
     pastor = serializers.PrimaryKeyRelatedField(
-        queryset=CustomUser.objects.all(),       allow_null=True
+        queryset=CustomUser.objects.all(),
+        allow_null=True
     )
+    crew = serializers.PrimaryKeyRelatedField(
+        queryset=Department.objects.all(),
+        many=True,
+        required=False
+    )
+
     class Meta:
         model = Services
-        fields = ['id', 'name', 'description', 'members', 'pastor']
+        fields = ['id', 'name', 'description', 'members', 'pastor', 'crew']
 
 
 class CourseSerializer(serializers.ModelSerializer):

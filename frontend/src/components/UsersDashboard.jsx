@@ -231,7 +231,6 @@ function EditUserForm({ user, allProfiles, onSuccess, onCancel }) {
   // User fields
   const [firstName,     setFirstName]     = useState(user.first_name || "");
   const [lastName,      setLastName]      = useState(user.last_name  || "");
-  const [email,         setEmail]         = useState(user.email      || "");
   const [username,      setUsername]      = useState(user.username   || "");
   const [selectedGroups, setSelectedGroups] = useState(user.groups   || []);
 
@@ -263,7 +262,6 @@ function EditUserForm({ user, allProfiles, onSuccess, onCancel }) {
     const userResult = await updateUser(user.id, {
       first_name: firstName,
       last_name:  lastName,
-      email,
       username,
       groups: selectedGroups,
     });
@@ -314,12 +312,6 @@ function EditUserForm({ user, allProfiles, onSuccess, onCancel }) {
       <div className="flex flex-col gap-1.5">
         <InputLabel>Username *</InputLabel>
         <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="username" required
-          className="bg-ivory border border-divider focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-primary placeholder:text-primary transition-colors w-full" />
-      </div>
-
-      <div className="flex flex-col gap-1.5">
-        <InputLabel>Email</InputLabel>
-        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="email@example.com"
           className="bg-ivory border border-divider focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-primary placeholder:text-primary transition-colors w-full" />
       </div>
 

@@ -26,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING keep the secret key used in production secret
 SECRET_KEY = config('SECRET_KEY', default='django-insecure-=d=4)ew!ym&076!3+0_to5=)tvlkz)wv2m-h9_jy0=uvkzsh35')
 
-DEBUG = False
+DEBUG = config('DEBUG', default=False, cast=bool)
 
 # 1 Get the value from environment but provide local defaults for your Mac
 raw_hosts = config('ALLOWED_HOSTS', default='localhost,127.0.0.1')
@@ -154,11 +154,8 @@ USE_TZ = True
 
 
 STATIC_URL = '/static/'
-
-if not DEBUG:
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 STATICFILES_DIRS = [
     BASE_DIR / "static",

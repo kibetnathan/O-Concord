@@ -136,6 +136,15 @@ class UserViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
     queryset = CustomUser.objects.all().order_by('id')
     serializer_class = UserSerializer
+
+    def update(self, request, *args, **kwargs):
+        instance = self.get_object()
+        if request.user != instance and 'email' in request.data:
+            data = request.data.copy()
+            data.pop('email')
+            request._full_data = data
+        return super().update(request, *args, **kwargs)
+
     def perform_destroy(self, instance):
         """
         Custom destroy logic to sync with Firebase.
