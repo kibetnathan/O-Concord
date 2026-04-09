@@ -34,14 +34,14 @@ function FeedChannel() {
   return (
     <div className="w-full min-h-screen bg-ivory">
       {/* ── Tab Bar ── */}
-      <ul className="flex flex-row border-b border-stone-200 px-6">
+      <ul className="flex flex-row border-b border-divider px-6">
         <NavLink
           to="/feed"
           className={({ isActive }) =>
             `font-cormorant text-xl px-5 py-4 border-b-2 transition-colors hover:cursor-pointer ${
               isActive
-                ? "text-stone-800 border-amber-500"
-                : "text-stone-400 border-transparent hover:text-stone-700"
+                ? "text-strong border-amber-500"
+                : "text-secondary border-transparent hover:text-primary"
             }`
           }
         >
@@ -52,8 +52,8 @@ function FeedChannel() {
           className={({ isActive }) =>
             `font-cormorant text-xl px-5 py-4 border-b-2 transition-colors hover:cursor-pointer ${
               isActive
-                ? "text-stone-800 border-amber-500"
-                : "text-stone-400 border-transparent hover:text-stone-700"
+                ? "text-strong border-amber-500"
+                : "text-secondary border-transparent hover:text-primary"
             }`
           }
         >
@@ -62,17 +62,17 @@ function FeedChannel() {
       </ul>
 
       {/* ── Compose Row ── */}
-      <div className="flex items-center gap-4 px-6 py-4 border-b border-stone-200 bg-porcelain">
+      <div className="flex items-center gap-4 px-6 py-4 border-b border-divider bg-porcelain">
         <img
           src={profile?.profile_pic || "/images/defaultavatar.jpg"}
           alt="Profile"
           className="w-9 h-9 rounded-full object-cover ring-2 ring-amber-500/30 shrink-0"
         />
         <div className="flex-1">
-          <p className="font-coptic text-xs text-stone-400 tracking-widest">
+          <p className="font-coptic text-xs text-black tracking-widest">
             @{user?.username}
           </p>
-          <p className="font-cormorant text-lg text-stone-500 leading-tight">
+          <p className="font-cormorant text-lg text-primary leading-tight">
             What's new? Let everyone know with a post!
           </p>
         </div>
@@ -90,7 +90,7 @@ function FeedChannel() {
           posts.map((post) => (
             <article
               key={post.id}
-              className="flex flex-col gap-4 px-6 py-8 border-b border-stone-200 hover:bg-stone-50/60 transition-colors"
+              className="flex flex-col gap-4 px-6 py-8 border-b border-divider hover:bg-ivory/60 transition-colors"
             >
               {/* Author row */}
               <div className="flex items-center gap-3">
@@ -103,7 +103,7 @@ function FeedChannel() {
                   className="w-9 h-9 rounded-full object-cover ring-1 ring-amber-500/20"
                 />
                 <div>
-                  <p className="font-coptic text-xs text-stone-500 tracking-wider">
+                  <p className="font-coptic text-xs text-black tracking-wider">
                     @{post.author.username}
                   </p>
                 </div>
@@ -111,7 +111,7 @@ function FeedChannel() {
 
               {/* Title — click to open post */}
               <Link to={`/feed/post/${post.id}`} className="block group">
-                <h3 className="font-cormorant text-2xl font-semibold text-stone-800 leading-snug group-hover:text-amber-700 transition-colors">
+                <h3 className="font-cormorant text-2xl font-semibold text-strong leading-snug group-hover:text-amber-700 transition-colors">
                   {post.title}
                 </h3>
               </Link>
@@ -126,7 +126,7 @@ function FeedChannel() {
               )}
 
               {/* Content — truncated in feed */}
-              <p className="text-sm text-stone-500 font-light leading-relaxed line-clamp-3">
+              <p className="text-sm text-secondary font-light leading-relaxed line-clamp-3">
                 {post.content}
               </p>
               <Link
@@ -140,7 +140,7 @@ function FeedChannel() {
               <div className="flex items-center gap-6 pt-1">
                 <button
                   onClick={() => onLikeClick(post.id)}
-                  className="flex items-center gap-1.5 text-stone-400 hover:text-amber-500 transition-colors group"
+                  className="flex items-center gap-1.5 text-primary hover:text-amber-500 transition-colors group"
                 >
                   <FavoriteBorderIcon
                     fontSize="small"
@@ -150,7 +150,7 @@ function FeedChannel() {
                     {post.like_count}
                   </span>
                 </button>
-                <button className="flex items-center gap-1.5 text-stone-400 hover:text-stone-700 transition-colors">
+                <button className="flex items-center gap-1.5 text-primary hover:text-amber-500 transition-colors">
                   <CommentIcon fontSize="small" />
                   <span className="text-xs tabular-nums">
                     {post.comment_count}
@@ -162,7 +162,7 @@ function FeedChannel() {
         ) : (
           <div className="flex flex-col items-center justify-center py-24 gap-3">
             <div className="w-8 h-px bg-amber-500/40" />
-            <p className="text-xs uppercase tracking-[0.25em] text-stone-400">
+            <p className="text-xs uppercase tracking-[0.25em] text-secondary">
               No posts yet
             </p>
             <div className="w-8 h-px bg-amber-500/40" />

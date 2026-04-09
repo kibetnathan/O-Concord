@@ -31,7 +31,7 @@ export default function AdminStreamPanel() {
     <div className="p-6 md:p-10 max-w-2xl">
       {/* Section header */}
       <div className="mb-8">
-        <p className="font-coptic text-[0.5rem] uppercase tracking-[0.3em] text-stone-700 mb-1">
+        <p className="font-coptic text-[0.5rem] uppercase tracking-[0.3em] text-primary mb-1">
           Dashboard / Streaming
         </p>
         <h1 className="font-cormorant text-3xl font-semibold text-black leading-tight">
@@ -41,11 +41,11 @@ export default function AdminStreamPanel() {
       </div>
 
       {/* Info card */}
-      <div className="border border-stone-200 bg-ivory p-5 mb-6">
-        <p className="font-coptic text-xs uppercase tracking-[0.2em] text-stone-700 mb-2">
+      <div className="border border-divider bg-ivory p-5 mb-6">
+        <p className="font-coptic text-xs uppercase tracking-[0.2em] text-primary mb-2">
           How it works
         </p>
-        <p className="text-sm text-stone-700 leading-relaxed">
+        <p className="text-sm text-primary leading-relaxed">
           Sunday services at 9:00 AM and 11:00 AM EAT are detected
           automatically. Use the toggle below to enable live stream detection
           during a midweek service. Remember to turn it off once the service
@@ -54,10 +54,10 @@ export default function AdminStreamPanel() {
       </div>
 
       {/* Toggle row */}
-      <div className="border border-stone-200 bg-ivory">
+      <div className="border border-divider bg-ivory">
         <div className="flex items-center justify-between px-5 py-5">
           <div className="flex flex-col gap-1">
-            <p className="font-cormorant text-xl font-semibold text-stone-800 leading-tight">
+            <p className="font-cormorant text-xl font-semibold text-strong leading-tight">
               Midweek Stream
             </p>
             <div className="flex items-center gap-2">
@@ -73,8 +73,8 @@ export default function AdminStreamPanel() {
                 </>
               ) : (
                 <>
-                  <span className="w-1.5 h-1.5 rounded-full bg-stone-300" />
-                  <p className="font-coptic text-[0.7rem] uppercase tracking-widest text-stone-700">
+                  <span className="w-1.5 h-1.5 rounded-full bg-divider" />
+                  <p className="font-coptic text-[0.7rem] uppercase tracking-widest text-primary">
                     Not checking
                   </p>
                 </>
@@ -92,7 +92,7 @@ export default function AdminStreamPanel() {
                 : "Enable midweek stream"
             }
             className={`relative w-12 h-6 shrink-0 transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 disabled:opacity-50 ${
-              midweekOverride ? "bg-amber-500" : "bg-stone-200"
+              midweekOverride ? "bg-amber-500" : "bg-divider"
             }`}
           >
             <span
@@ -128,7 +128,7 @@ export default function AdminStreamPanel() {
 
       {/* Saving indicator */}
       {saving && (
-        <p className="font-coptic text-[0.48rem] uppercase tracking-widest text-stone-700 mt-3 animate-pulse">
+        <p className="font-coptic text-[0.48rem] uppercase tracking-widest text-primary mt-3 animate-pulse">
           Saving...
         </p>
       )}

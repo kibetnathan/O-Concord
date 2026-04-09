@@ -11,21 +11,21 @@ const navLinkClass = ({ isActive }) =>
   `flex items-center gap-3 px-4 py-2.5 text-sm tracking-widest uppercase transition-all duration-200 border-l-2 ${
     isActive
       ? "bg-amber-50 text-amber-700 border-amber-500"
-      : "text-stone-800 hover:bg-amber-50 hover:text-black border-transparent"
+      : "text-strong hover:bg-amber-50 hover:text-black border-transparent"
   }`;
 
 const subLinkClass = ({ isActive }) =>
   `flex items-center gap-2.5 pl-9 pr-4 py-2 text-sm tracking-widest uppercase transition-all duration-150 border-l-2 ${
     isActive
       ? "text-amber-700 border-amber-500 bg-amber-50"
-      : "text-stone-700 hover:text-black border-transparent hover:bg-amber-50"
+      : "text-primary hover:text-black border-transparent hover:bg-amber-50"
   }`;
 
 const SectionLabel = ({ children, id }) => (
   <li
     id={id}
     role="presentation"
-    className="px-4 pt-6 pb-1 text-xs uppercase tracking-[0.22em] text-stone-700 font-semibold"
+    className="px-4 pt-6 pb-1 text-xs uppercase tracking-[0.22em] text-primary font-semibold"
   >
     {children}
   </li>
@@ -58,8 +58,8 @@ function ExpandableSection({ icon, label, children, defaultOpen = false }) {
         aria-controls={panelId}
         className={`w-full flex items-center gap-3 px-4 py-2.5 text-sm tracking-widest uppercase transition-all duration-200 border-l-2 border-transparent ${
           open
-            ? "text-stone-900 bg-amber-50"
-            : "text-stone-800 hover:bg-amber-50 hover:text-black"
+            ? "text-strong bg-amber-50"
+            : "text-strong hover:bg-amber-50 hover:text-black"
         }`}
       >
         {icon}
@@ -69,7 +69,7 @@ function ExpandableSection({ icon, label, children, defaultOpen = false }) {
       {open && (
         <ul
           id={panelId}
-          className="flex flex-col mt-0.5 border-l border-stone-200 ml-4"
+          className="flex flex-col mt-0.5 border-l border-divider ml-4"
         >
           {children}
         </ul>
@@ -103,13 +103,13 @@ function Sidebar() {
     <>
       <aside
         aria-label="Primary"
-        className="sticky top-0 hidden md:flex flex-col w-95 h-screen bg-porcelain border-r border-stone-200"
+        className="sticky top-0 hidden md:flex flex-col w-95 h-screen bg-porcelain border-r border-divider"
       >
-        <div className="flex items-center justify-between px-6 h-16 border-b border-stone-200 shrink-0">
+        <div className="flex items-center justify-between px-6 h-16 border-b border-divider shrink-0">
           <NavLink
             to="/"
             aria-label="Open Church Management — home"
-            className="font-cormorant text-2xl font-semibold tracking-[0.15em] text-stone-900 hover:text-amber-700 transition-colors"
+            className="font-cormorant text-2xl font-semibold tracking-[0.15em] text-strong hover:text-amber-700 transition-colors"
           >
             O<span className="text-amber-600">C</span>M
           </NavLink>
@@ -451,7 +451,7 @@ function Sidebar() {
         <button
           type="button"
           onClick={handleLogout}
-          className="flex items-center gap-3 w-full px-4 py-2.5 text-left font-coptic text-sm uppercase tracking-widest text-stone-700 hover:text-red-600 hover:bg-red-50 transition-colors group"
+          className="flex items-center gap-3 w-full px-4 py-2.5 text-left font-coptic text-sm uppercase tracking-widest text-primary hover:text-red-600 hover:bg-red-50 transition-colors group"
         >
           <svg
             className="w-4 h-4 shrink-0 group-hover:translate-x-0.5 transition-transform"
@@ -468,7 +468,7 @@ function Sidebar() {
           </svg>
           Sign Out
         </button>
-        <div className="px-5 py-4 border-t border-stone-200 shrink-0">
+        <div className="px-5 py-4 border-t border-divider shrink-0">
           <p className="text-xs tracking-widest uppercase text-amber-700">
             Powered by Mavuno Church
           </p>
@@ -480,10 +480,10 @@ function Sidebar() {
         aria-label="Mobile navigation"
       >
         {activeTray && (
-          <div className="absolute bottom-18 left-3 right-3 bg-porcelain backdrop-blur-md border border-stone-200 rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.15)] overflow-hidden">
+          <div className="absolute bottom-18 left-3 right-3 bg-porcelain backdrop-blur-md border border-divider rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.15)] overflow-hidden">
             {activeTray === "dashboard" && (
               <ul className="flex flex-col py-2">
-                <li className="px-4 pt-2 pb-1 text-[0.65rem] uppercase tracking-[0.22em] text-stone-700 font-semibold">
+                <li className="px-4 pt-2 pb-1 text-[0.65rem] uppercase tracking-[0.22em] text-primary font-semibold">
                   Dashboard
                 </li>
                 {[
@@ -515,7 +515,7 @@ function Sidebar() {
                         `flex items-center gap-3 px-5 py-3 text-xs uppercase tracking-widest transition-colors ${
                           isActive
                             ? "text-amber-700 bg-amber-50"
-                            : "text-stone-800 hover:text-black hover:bg-amber-50"
+                            : "text-strong hover:text-black hover:bg-amber-50"
                         }`
                       }
                     >
@@ -527,7 +527,7 @@ function Sidebar() {
             )}
             {activeTray === "scripture" && (
               <ul className="flex flex-col py-2">
-                <li className="px-4 pt-2 pb-1 text-[0.65rem] uppercase tracking-[0.22em] text-stone-700 font-semibold">
+                <li className="px-4 pt-2 pb-1 text-[0.65rem] uppercase tracking-[0.22em] text-primary font-semibold">
                   Scripture
                 </li>
                 {[
@@ -593,7 +593,7 @@ function Sidebar() {
                         `flex items-center gap-3 px-5 py-3 text-[0.65rem] uppercase tracking-widest transition-colors ${
                           isActive
                             ? "text-amber-600 bg-amber-50"
-                            : "text-stone-700 hover:text-black hover:bg-amber-50"
+                            : "text-primary hover:text-black hover:bg-amber-50"
                         }`
                       }
                     >
@@ -609,7 +609,7 @@ function Sidebar() {
 
         <nav
           aria-label="Mobile primary"
-          className="w-full h-16 rounded-2xl bg-porcelain backdrop-blur-md border border-stone-200 shadow-[0_8px_32px_rgba(0,0,0,0.1)]"
+          className="w-full h-16 rounded-2xl bg-porcelain backdrop-blur-md border border-divider shadow-[0_8px_32px_rgba(0,0,0,0.1)]"
         >
           <ul className="flex items-center justify-around h-full px-2">
             <li>
@@ -620,7 +620,7 @@ function Sidebar() {
                   `flex flex-col items-center gap-1 px-3 py-1.5 rounded-xl transition-all duration-200 ${
                     isActive
                       ? "text-amber-600"
-                      : "text-stone-700 hover:text-black"
+                      : "text-primary hover:text-black"
                   }`
                 }
               >
@@ -663,7 +663,7 @@ function Sidebar() {
                 className={`flex flex-col items-center gap-1 px-3 py-1.5 rounded-xl transition-all duration-200 ${
                   activeTray === "scripture"
                     ? "text-amber-600"
-                    : "text-stone-700 hover:text-black"
+                    : "text-primary hover:text-black"
                 }`}
               >
                 <span
@@ -706,7 +706,7 @@ function Sidebar() {
                   `flex flex-col items-center gap-1 px-3 py-1.5 rounded-xl transition-all duration-200 ${
                     isActive
                       ? "text-amber-600"
-                      : "text-stone-700 hover:text-black"
+                      : "text-primary hover:text-black"
                   }`
                 }
               >
@@ -744,7 +744,7 @@ function Sidebar() {
                   `flex flex-col items-center gap-1 px-3 py-1.5 rounded-xl transition-all duration-200 ${
                     isActive
                       ? "text-amber-600"
-                      : "text-stone-700 hover:text-black"
+                      : "text-primary hover:text-black"
                   }`
                 }
               >
@@ -793,7 +793,7 @@ function Sidebar() {
                   className={`flex flex-col items-center gap-1 px-3 py-1.5 rounded-xl transition-all duration-200 ${
                     activeTray === "dashboard"
                       ? "text-amber-600"
-                      : "text-stone-700 hover:text-black"
+                      : "text-primary hover:text-black"
                   }`}
                 >
                   <span
@@ -827,7 +827,7 @@ function Sidebar() {
                   `flex flex-col items-center gap-1 px-3 py-1.5 rounded-xl transition-all duration-200 ${
                     isActive
                       ? "text-amber-600"
-                      : "text-stone-700 hover:text-black"
+                      : "text-primary hover:text-black"
                   }`
                 }
               >

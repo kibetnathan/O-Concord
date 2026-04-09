@@ -32,10 +32,10 @@ function StatCard({ label, count, icon }) {
 function SectionHeading({ children }) {
   return (
     <div className="flex items-center gap-3 mb-5">
-      <h2 className="font-cormorant text-2xl font-semibold text-stone-900 shrink-0">
+      <h2 className="font-cormorant text-2xl font-semibold text-strong shrink-0">
         {children}
       </h2>
-      <div className="flex-1 h-px bg-stone-300" aria-hidden="true" />
+      <div className="flex-1 h-px bg-divider" aria-hidden="true" />
     </div>
   );
 }
@@ -255,10 +255,10 @@ function DashboardOverview() {
     <div className="min-h-screen w-full bg-ivory p-8">
       {/* ── Page header ── */}
       <header className="mb-10">
-        <p className="text-sm uppercase tracking-[0.22em] text-stone-700 mb-1 font-coptic">
+        <p className="text-sm uppercase tracking-[0.22em] text-primary mb-1 font-coptic">
           {greeting()},
         </p>
-        <h1 className="font-cormorant text-4xl font-semibold text-stone-900 leading-tight">
+        <h1 className="font-cormorant text-4xl font-semibold text-strong leading-tight">
           {displayName}
         </h1>
         <div className="w-8 h-0.5 bg-amber-500 mt-3" aria-hidden="true" />
@@ -294,7 +294,7 @@ function DashboardOverview() {
                   return (
                     <div
                       key={leader.id}
-                      className="relative overflow-hidden flex items-center gap-4 bg-ivory border border-stone-200 px-4 py-3 rounded-sm shadow-sm hover:border-amber-300 transition-colors"
+                      className="relative overflow-hidden flex items-center gap-4 bg-ivory border border-divider px-4 py-3 rounded-sm shadow-sm hover:border-amber-300 transition-colors"
                     >
                       <div className="absolute -bottom-4 -left-4 w-16 h-16 bg-amber-500/8 rounded-full blur-xl pointer-events-none" />
                       <img
@@ -306,12 +306,12 @@ function DashboardOverview() {
                         className="w-10 h-10 rounded-full object-cover ring-2 ring-amber-500/20 shrink-0 relative z-10"
                       />
                       <div className="min-w-0 relative z-10">
-                        <p className="font-cormorant text-lg font-semibold text-stone-900 leading-tight truncate">
+                        <p className="font-cormorant text-lg font-semibold text-strong leading-tight truncate">
                           {leader.first_name && leader.last_name
                             ? `${leader.first_name} ${leader.last_name}`
                             : leader.username}
                         </p>
-                        <p className="font-coptic text-xs uppercase tracking-widest text-stone-700 truncate mt-0.5">
+                        <p className="font-coptic text-xs uppercase tracking-widest text-primary truncate mt-0.5">
                           {leader.groups
                             ?.filter((g) => LEADER_GROUPS.includes(g))
                             .join(", ")}
@@ -322,7 +322,7 @@ function DashboardOverview() {
                 })}
               </div>
             ) : (
-              <p className="text-sm uppercase tracking-widest text-stone-700">
+              <p className="text-sm uppercase tracking-widest text-primary">
                 No leaders found
               </p>
             )}
@@ -332,15 +332,15 @@ function DashboardOverview() {
           <section>
             <SectionHeading>Top Posts</SectionHeading>
             {topPosts.length > 0 ? (
-              <div className="flex flex-col divide-y divide-stone-100 border border-stone-100 bg-ivory">
+              <div className="flex flex-col divide-y divide-divider border border-divider bg-ivory">
                 {topPosts.map((post, i) => (
                   <div
                     key={post.id}
-                    className="flex items-start gap-4 px-5 py-4 hover:bg-stone-50 transition-colors"
+                    className="flex items-start gap-4 px-5 py-4 hover:bg-ivory transition-colors"
                   >
                     <span
                       aria-hidden="true"
-                      className="font-cormorant text-3xl font-light text-stone-500 leading-none w-7 shrink-0 pt-0.5"
+                      className="font-cormorant text-3xl font-light text-secondary leading-none w-7 shrink-0 pt-0.5"
                     >
                       {i + 1}
                     </span>
@@ -352,13 +352,13 @@ function DashboardOverview() {
                       />
                     )}
                     <div className="flex-1 min-w-0">
-                      <p className="font-cormorant text-xl font-semibold text-stone-900 leading-tight truncate">
+                      <p className="font-cormorant text-xl font-semibold text-strong leading-tight truncate">
                         {post.title}
                       </p>
-                      <p className="font-coptic text-xs uppercase tracking-widest text-stone-700 mt-0.5">
+                      <p className="font-coptic text-xs uppercase tracking-widest text-primary mt-0.5">
                         @{post.author?.username}
                       </p>
-                      <p className="text-sm text-stone-700 mt-1 line-clamp-1">
+                      <p className="text-sm text-primary mt-1 line-clamp-1">
                         {post.content}
                       </p>
                     </div>
@@ -372,7 +372,7 @@ function DashboardOverview() {
                 ))}
               </div>
             ) : (
-              <p className="text-xs uppercase tracking-widest text-stone-300">
+              <p className="text-xs uppercase tracking-widest text-primary font-medium">
                 No posts yet
               </p>
             )}
@@ -402,10 +402,10 @@ function DashboardOverview() {
                 className="w-8 h-8 rounded-full object-cover ring-2 ring-amber-500/30"
               />
               <div>
-                <p className="font-cormorant text-lg font-semibold text-stone-900 leading-none">
+                <p className="font-cormorant text-lg font-semibold text-strong leading-none">
                   {user?.first_name || user?.username}
                 </p>
-                <p className="font-coptic text-xs uppercase tracking-widest text-stone-700 mt-1">
+                <p className="font-coptic text-xs uppercase tracking-widest text-primary mt-1">
                   @{user?.username}
                 </p>
               </div>
@@ -413,7 +413,7 @@ function DashboardOverview() {
 
             {/* Title */}
             <div className="flex flex-col gap-1 relative z-10">
-              <label className="font-coptic text-xs uppercase tracking-widest text-stone-800 font-semibold">
+              <label className="font-coptic text-xs uppercase tracking-widest text-strong font-semibold">
                 Title
               </label>
               <input
@@ -422,13 +422,13 @@ function DashboardOverview() {
                 onChange={(e) => setTitle(e.target.value)}
                 required
                 placeholder="Post title…"
-                className="bg-ivory border border-stone-300 focus:border-amber-500 focus:outline-none px-3 py-2.5 text-base text-stone-900 placeholder:text-stone-500 transition-colors rounded-sm"
+                className="bg-ivory border border-divider focus:border-amber-500 focus:outline-none px-3 py-2.5 text-base text-strong placeholder:text-secondary transition-colors rounded-sm"
               />
             </div>
 
             {/* Content */}
             <div className="flex flex-col gap-1 relative z-10">
-              <label className="font-coptic text-xs uppercase tracking-widest text-stone-800 font-semibold">
+              <label className="font-coptic text-xs uppercase tracking-widest text-strong font-semibold">
                 Content
               </label>
               <textarea
@@ -436,13 +436,13 @@ function DashboardOverview() {
                 onChange={(e) => setText(e.target.value)}
                 required
                 placeholder="What's on your heart?"
-                className="bg-ivory border border-stone-300 focus:border-amber-500 focus:outline-none px-3 py-2.5 text-base text-stone-900 placeholder:text-stone-500 transition-colors resize-none min-h-28 rounded-sm leading-relaxed"
+                className="bg-ivory border border-divider focus:border-amber-500 focus:outline-none px-3 py-2.5 text-base text-strong placeholder:text-secondary transition-colors resize-none min-h-28 rounded-sm leading-relaxed"
               />
             </div>
 
             {/* Tags */}
             <div className="flex flex-col gap-1 relative z-10">
-              <label className="font-coptic text-xs uppercase tracking-widest text-stone-800 font-semibold">
+              <label className="font-coptic text-xs uppercase tracking-widest text-strong font-semibold">
                 Tags
               </label>
               <input
@@ -451,15 +451,15 @@ function DashboardOverview() {
                 onChange={(e) => setTags(e.target.value)}
                 required
                 placeholder="worship, prayer…"
-                className="bg-ivory border border-stone-300 focus:border-amber-500 focus:outline-none px-3 py-2.5 text-base text-stone-900 placeholder:text-stone-500 transition-colors rounded-sm"
+                className="bg-ivory border border-divider focus:border-amber-500 focus:outline-none px-3 py-2.5 text-base text-strong placeholder:text-secondary transition-colors rounded-sm"
               />
             </div>
 
             {/* Image */}
             <div className="flex flex-col gap-1 relative z-10">
-              <label className="font-coptic text-xs uppercase tracking-widest text-stone-800 font-semibold">
+              <label className="font-coptic text-xs uppercase tracking-widest text-strong font-semibold">
                 Image{" "}
-                <span className="text-stone-700 normal-case tracking-normal">
+                <span className="text-primary normal-case tracking-normal">
                   (optional)
                 </span>
               </label>
@@ -467,7 +467,7 @@ function DashboardOverview() {
                 type="file"
                 accept="image/*"
                 onChange={(e) => setImage(e.target.files[0])}
-                className="text-sm text-stone-700 file:mr-3 file:py-2 file:px-3 file:border-0 file:text-xs file:font-coptic file:uppercase file:tracking-widest file:bg-amber-500 file:text-black file:font-semibold hover:file:bg-amber-600 file:transition-colors file:cursor-pointer file:rounded-sm"
+                className="text-sm text-primary file:mr-3 file:py-2 file:px-3 file:border-0 file:text-xs file:font-coptic file:uppercase file:tracking-widest file:bg-amber-500 file:text-black file:font-semibold hover:file:bg-amber-600 file:transition-colors file:cursor-pointer file:rounded-sm"
               />
             </div>
 
@@ -510,7 +510,7 @@ function DashboardOverview() {
 
             <Link
               to="/feed/upload"
-              className="text-sm uppercase tracking-widest text-stone-800 hover:text-amber-700 text-center transition-colors relative z-10 font-semibold"
+              className="text-sm uppercase tracking-widest text-strong hover:text-amber-700 text-center transition-colors relative z-10 font-semibold"
             >
               Full post editor →
             </Link>

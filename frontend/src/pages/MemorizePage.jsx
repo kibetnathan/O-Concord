@@ -168,19 +168,19 @@ function PracticeCard({ verse, onResult, onSkip }) {
       {/* Reference + level badge */}
       <div className="flex items-start justify-between gap-3">
         <div>
-          <p className="font-coptic text-xs uppercase tracking-[0.2em] text-stone-500 mb-0.5">{verse.translation}</p>
-          <h2 className="font-cormorant text-3xl font-semibold text-stone-900">{verse.reference}</h2>
+          <p className="font-coptic text-xs uppercase tracking-[0.2em] text-primary mb-0.5">{verse.translation}</p>
+          <h2 className="font-cormorant text-3xl font-semibold text-strong">{verse.reference}</h2>
         </div>
         <div className="flex flex-col items-end gap-1.5 shrink-0">
           <span className="font-coptic text-xs uppercase tracking-widest text-amber-800 border border-amber-300 px-2 py-0.5 bg-amber-50">
             Level {level}
           </span>
-          <span className="font-coptic text-xs uppercase tracking-widest text-stone-600">{levelLabel(level)}</span>
+          <span className="font-coptic text-xs uppercase tracking-widest text-primary">{levelLabel(level)}</span>
         </div>
       </div>
 
       {/* Verse display with inline inputs */}
-      <div className="border border-stone-200 bg-ivory p-4 sm:p-6 leading-loose font-serif text-lg sm:text-xl text-stone-800 min-h-[120px]">
+      <div className="border border-divider bg-ivory p-4 sm:p-6 leading-loose font-serif text-lg sm:text-xl text-strong min-h-[120px]">
         {blanked.map(({ word, blanked: isBlank }, i) => {
           if (!isBlank) return <span key={i}>{word} </span>;
 
@@ -209,7 +209,7 @@ function PracticeCard({ verse, onResult, onSkip }) {
                   onChange={e => setInput(idx, e.target.value)}
                   onKeyDown={e => handleKeyDown(e, idx, totalBlanks)}
                   style={{ width: inputWidth }}
-                  className="border-b-2 border-stone-400 focus:border-amber-600 outline-none bg-transparent text-center text-stone-900 font-serif text-lg transition-colors"
+                  className="border-b-2 border-gray-300 focus:border-amber-600 outline-none bg-transparent text-center text-strong font-serif text-lg transition-colors"
                 />
               </span>
             );
@@ -237,7 +237,7 @@ function PracticeCard({ verse, onResult, onSkip }) {
                     ? isCorrect
                       ? 'border-green-500 text-green-800'
                       : 'border-red-400 text-red-600 line-through'
-                    : 'border-stone-400 focus:border-amber-600 text-stone-900'
+                    : 'border-gray-300 focus:border-amber-600 text-strong'
                   }`}
               />
             </span>
@@ -250,12 +250,12 @@ function PracticeCard({ verse, onResult, onSkip }) {
         <div className="flex items-center gap-3">
           <button
             onClick={handleReveal}
-            className="flex items-center gap-2 font-coptic text-xs uppercase tracking-widest text-stone-700 hover:text-stone-900 border border-stone-300 hover:border-stone-500 px-4 py-2.5 transition-colors"
+            className="flex items-center gap-2 font-coptic text-xs uppercase tracking-widest text-primary hover:text-strong border border-divider hover:border-gray-400 px-4 py-2.5 transition-colors"
           >
             <IconEye /> Check answers
           </button>
           <button onClick={onSkip}
-            className="font-coptic text-xs uppercase tracking-widest text-stone-500 hover:text-stone-800 transition-colors px-2 py-2.5"
+            className="font-coptic text-xs uppercase tracking-widest text-primary hover:text-amber-600 transition-colors px-2 py-2.5"
           >
             Skip
           </button>
@@ -278,7 +278,7 @@ function PracticeCard({ verse, onResult, onSkip }) {
               >
                 {typedResult.correct}/{typedResult.total}
               </span>
-              <span className="font-coptic text-xs uppercase tracking-widest text-stone-700">
+              <span className="font-coptic text-xs uppercase tracking-widest text-primary">
                 {typedResult.pct === 1
                   ? 'Perfect — all words correct'
                   : typedResult.pct >= 0.75
@@ -291,13 +291,13 @@ function PracticeCard({ verse, onResult, onSkip }) {
           )}
 
           {/* Full verse for reference */}
-          <div className="border-l-2 border-amber-500 pl-4 font-serif text-stone-800 text-base leading-relaxed bg-amber-50/50 py-3 pr-3">
+          <div className="border-l-2 border-amber-500 pl-4 font-serif text-strong text-base leading-relaxed bg-amber-50/50 py-3 pr-3">
             {verse.verse_text}
           </div>
 
           {/* Score buttons — auto-selected score shown, user can override */}
           <div>
-            <p className="font-coptic text-xs uppercase tracking-[0.2em] text-stone-600 mb-2">
+            <p className="font-coptic text-xs uppercase tracking-[0.2em] text-primary mb-2">
               Confirm your score
               {typedResult && (
                 <span className="ml-1 text-amber-700">
@@ -328,7 +328,7 @@ function PracticeCard({ verse, onResult, onSkip }) {
           {/* Quick submit with auto score */}
           {typedResult && (
             <button onClick={handleAutoScore}
-              className="self-start font-coptic text-xs uppercase tracking-widest text-stone-700 hover:text-stone-900 border border-stone-300 hover:border-stone-500 px-3 py-1.5 transition-colors"
+              className="self-start font-coptic text-xs uppercase tracking-widest text-primary hover:text-strong border border-divider hover:border-gray-400 px-3 py-1.5 transition-colors"
             >
               Submit auto score →
             </button>
@@ -355,11 +355,11 @@ function VerseRow({ verse, onDelete }) {
   const due      = verse.is_due;
 
   return (
-    <div className={`flex items-start gap-3 px-4 py-3 border-b border-stone-100 last:border-0 hover:bg-stone-50 transition-colors group ${due ? 'bg-amber-50/40' : ''}`}>
+    <div className={`flex items-start gap-3 px-4 py-3 border-b border-divider last:border-0 hover:bg-ivory transition-colors group ${due ? 'bg-amber-50/40' : ''}`}>
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-2 flex-wrap">
-          <span className="font-cormorant text-lg font-semibold text-stone-900">{verse.reference}</span>
-          <span className="font-coptic text-xs uppercase tracking-widest text-stone-500">{verse.translation}</span>
+          <span className="font-cormorant text-lg font-semibold text-strong">{verse.reference}</span>
+          <span className="font-coptic text-xs uppercase tracking-widest text-black font-semibold">{verse.translation}</span>
           {due && !mastered && (
             <span className="font-coptic text-xs uppercase tracking-widest text-amber-800 border border-amber-300 bg-amber-50 px-2 py-0.5">Due</span>
           )}
@@ -367,10 +367,10 @@ function VerseRow({ verse, onDelete }) {
             <span className="font-coptic text-xs uppercase tracking-widest text-green-800 border border-green-300 bg-green-50 px-2 py-0.5">Mastered</span>
           )}
         </div>
-        <p className="font-coptic text-xs uppercase tracking-widest text-stone-500 mt-0.5">
+        <p className="font-coptic text-xs uppercase tracking-widest text-primary mt-0.5">
           Interval: {intervalLabel(verse.interval_days)} · {verse.rep_count} rep{verse.rep_count !== 1 ? 's' : ''}
         </p>
-        <p className="text-sm text-stone-600 mt-1 font-serif italic truncate">{verse.verse_text}</p>
+        <p className="text-sm text-primary mt-1 font-serif italic truncate">{verse.verse_text}</p>
       </div>
 
       {confirming ? (
@@ -379,12 +379,12 @@ function VerseRow({ verse, onDelete }) {
             className="font-coptic text-xs uppercase tracking-widest text-red-600 hover:text-red-800 border border-red-200 hover:border-red-400 px-2 py-1 transition-colors"
           >Delete</button>
           <button onClick={() => setConfirming(false)}
-            className="font-coptic text-xs uppercase tracking-widest text-stone-600 border border-stone-300 px-2 py-1 transition-colors"
+            className="font-coptic text-xs uppercase tracking-widest text-primary border border-divider px-2 py-1 transition-colors hover:text-amber-600"
           >Cancel</button>
         </div>
       ) : (
         <button onClick={() => setConfirming(true)}
-          className="p-1.5 text-stone-400 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-all border border-transparent hover:border-red-200 shrink-0"
+          className="p-1.5 text-primary hover:text-red-500 opacity-0 group-hover:opacity-100 transition-all border border-transparent hover:border-red-200 shrink-0"
         >
           <IconTrash />
         </button>
@@ -446,9 +446,9 @@ function MemorizePage() {
       <div className="flex flex-1 min-w-0 overflow-hidden flex-col">
 
         {/* Top bar */}
-        <div className="flex items-center gap-3 px-4 sm:px-6 py-3 border-b border-stone-200 bg-porcelain shrink-0">
+        <div className="flex items-center gap-3 px-4 sm:px-6 py-3 border-b border-divider bg-porcelain shrink-0">
           <button onClick={() => navigate('/bible')}
-            className="p-1.5 text-stone-500 hover:text-amber-600 border border-stone-200 hover:border-amber-400 transition-colors shrink-0"
+            className="p-1.5 text-primary hover:text-amber-600 border border-divider hover:border-amber-400 transition-colors shrink-0"
           >
             <IconChevron dir="left" />
           </button>
@@ -456,8 +456,8 @@ function MemorizePage() {
           <div className="flex items-center gap-2.5 flex-1 min-w-0">
             <span className="text-amber-600"><IconBrain /></span>
             <div>
-              <p className="font-coptic text-xs uppercase tracking-[0.2em] text-stone-500">Scripture</p>
-              <h1 className="font-cormorant text-xl sm:text-2xl font-semibold text-stone-900 leading-none">Memorize</h1>
+              <p className="font-coptic text-xs uppercase tracking-[0.2em] text-primary">Scripture</p>
+              <h1 className="font-cormorant text-xl sm:text-2xl font-semibold text-strong leading-none">Memorize</h1>
             </div>
           </div>
 
@@ -470,8 +470,8 @@ function MemorizePage() {
                 { label: 'Mastered', value: stats.mastered },
               ].map(({ label, value }) => (
                 <div key={label} className="text-center">
-                  <p className="font-cormorant text-xl font-semibold text-stone-900 leading-none">{value}</p>
-                  <p className="font-coptic text-xs uppercase tracking-widest text-stone-500 mt-0.5">{label}</p>
+                  <p className="font-cormorant text-xl font-semibold text-strong leading-none">{value}</p>
+                  <p className="font-coptic text-xs uppercase tracking-widest text-primary mt-0.5">{label}</p>
                 </div>
               ))}
               {stats.streak > 0 && (
@@ -486,7 +486,7 @@ function MemorizePage() {
         </div>
 
         {/* Tab switcher */}
-        <div className="flex border-b border-stone-200 bg-porcelain shrink-0">
+        <div className="flex border-b border-divider bg-porcelain shrink-0">
           {[
             { key: 'review', label: `Review${stats?.due_today ? ` (${stats.due_today})` : ''}` },
             { key: 'saved',  label: `All verses${stats?.total ? ` (${stats.total})` : ''}` },
@@ -495,7 +495,7 @@ function MemorizePage() {
               className={`px-5 py-3 font-coptic text-xs uppercase tracking-widest transition-colors border-b-2 -mb-px ${
                 tab === key
                   ? 'text-amber-700 border-amber-600'
-                  : 'text-stone-500 border-transparent hover:text-stone-800'
+                  : 'text-primary border-transparent hover:text-amber-600'
               }`}
             >
               {label}
@@ -508,7 +508,7 @@ function MemorizePage() {
           {loading ? (
             <div className="flex items-center justify-center h-full gap-3">
               <div className="w-6 h-6 border border-amber-500/40 border-t-amber-600 rounded-full animate-spin" />
-              <p className="font-coptic text-xs uppercase tracking-widest text-stone-500">Loading…</p>
+              <p className="font-coptic text-xs uppercase tracking-widest text-primary">Loading…</p>
             </div>
           ) : tab === 'review' ? (
 
@@ -519,12 +519,12 @@ function MemorizePage() {
               {sessionTotal > 0 && (
                 <div className="mb-6">
                   <div className="flex items-center justify-between mb-1.5">
-                    <span className="font-coptic text-xs uppercase tracking-widest text-stone-500">Session progress</span>
-                    <span className="font-coptic text-xs uppercase tracking-widest text-stone-500">
+                    <span className="font-coptic text-xs uppercase tracking-widest text-primary">Session progress</span>
+                    <span className="font-coptic text-xs uppercase tracking-widest text-primary">
                       {sessionTotal - sessionRemain} / {sessionTotal}
                     </span>
                   </div>
-                  <div className="h-1.5 bg-stone-200 rounded-full overflow-hidden">
+                  <div className="h-1.5 bg-divider rounded-full overflow-hidden">
                     <div
                       className="h-full bg-amber-500 transition-all duration-500"
                       style={{ width: `${((sessionTotal - sessionRemain) / sessionTotal) * 100}%` }}
@@ -536,11 +536,11 @@ function MemorizePage() {
               {/* No due verses */}
               {dueVerses.length === 0 && (
                 <div className="flex flex-col items-center justify-center py-20 gap-4 text-center">
-                  <div className="w-16 h-16 border border-stone-200 flex items-center justify-center text-stone-400">
+                  <div className="w-16 h-16 border border-divider flex items-center justify-center text-primary">
                     <IconCheck />
                   </div>
-                  <p className="font-cormorant text-3xl text-stone-500">All caught up</p>
-                  <p className="font-coptic text-xs uppercase tracking-widest text-stone-500">No verses due for review</p>
+                  <p className="font-cormorant text-3xl text-primary">All caught up</p>
+                  <p className="font-coptic text-xs uppercase tracking-widest text-primary">No verses due for review</p>
                   <button onClick={() => navigate('/bible')}
                     className="mt-2 font-coptic text-xs uppercase tracking-widest text-amber-700 border border-amber-300 hover:bg-amber-50 px-5 py-2.5 transition-colors"
                   >Save more verses →</button>
@@ -553,8 +553,8 @@ function MemorizePage() {
                   <div className="w-16 h-16 border border-amber-300 bg-amber-50 flex items-center justify-center text-amber-600">
                     <IconCheck />
                   </div>
-                  <p className="font-cormorant text-3xl text-stone-800">Session complete</p>
-                  <p className="font-coptic text-xs uppercase tracking-widest text-stone-600">
+                  <p className="font-cormorant text-3xl text-strong">Session complete</p>
+                  <p className="font-coptic text-xs uppercase tracking-widest text-primary">
                     {sessionTotal} verse{sessionTotal !== 1 ? 's' : ''} reviewed
                   </p>
                   <button onClick={resetSession}
@@ -581,15 +581,15 @@ function MemorizePage() {
 
               {/* Mobile stats */}
               {stats && (
-                <div className="sm:hidden flex items-center gap-4 mb-5 pb-5 border-b border-stone-100">
+                <div className="sm:hidden flex items-center gap-4 mb-5 pb-5 border-b border-divider">
                   {[
                     { label: 'Total',    value: stats.total },
                     { label: 'Due',      value: stats.due_today },
                     { label: 'Mastered', value: stats.mastered },
                   ].map(({ label, value }) => (
                     <div key={label} className="text-center">
-                      <p className="font-cormorant text-2xl font-semibold text-stone-900">{value}</p>
-                      <p className="font-coptic text-xs uppercase tracking-widest text-stone-500">{label}</p>
+                      <p className="font-cormorant text-2xl font-semibold text-strong">{value}</p>
+                      <p className="font-coptic text-xs uppercase tracking-widest text-primary">{label}</p>
                     </div>
                   ))}
                 </div>
@@ -597,8 +597,8 @@ function MemorizePage() {
 
               {verses.length === 0 ? (
                 <div className="flex flex-col items-center justify-center py-20 gap-4 text-center">
-                  <p className="font-cormorant text-3xl text-stone-500">No saved verses yet</p>
-                  <p className="font-coptic text-xs uppercase tracking-widest text-stone-500">
+                  <p className="font-cormorant text-3xl text-primary">No saved verses yet</p>
+                  <p className="font-coptic text-xs uppercase tracking-widest text-primary">
                     Tap the bookmark on any verse in the Bible reader
                   </p>
                   <button onClick={() => navigate('/bible')}
@@ -606,7 +606,7 @@ function MemorizePage() {
                   >Open Bible reader →</button>
                 </div>
               ) : (
-                <div className="border border-stone-200 bg-ivory">
+                <div className="border border-divider bg-ivory">
                   {verses.map(verse => (
                     <VerseRow key={verse.id} verse={verse} onDelete={handleDelete} />
                   ))}

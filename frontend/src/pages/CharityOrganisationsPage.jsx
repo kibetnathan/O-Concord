@@ -50,15 +50,15 @@ function OrgListCard({ org, isSelected, onSelect }) {
         </div>
       )}
       <div className="px-4 py-3">
-        <h3 className="font-cormorant text-base font-semibold text-stone-900 leading-tight truncate">
+        <h3 className="font-cormorant text-base font-semibold text-strong leading-tight truncate">
           {org.name}
         </h3>
         {org.description && (
-          <p className="text-[0.75rem] text-stone-600 mt-0.5 line-clamp-2 leading-relaxed">
+          <p className="text-[0.75rem] text-primary mt-0.5 line-clamp-2 leading-relaxed">
             {org.description}
           </p>
         )}
-        <p className="text-[0.6rem] uppercase tracking-widest text-stone-500 mt-2 font-coptic">
+        <p className="text-[0.6rem] uppercase tracking-widest text-primary mt-2 font-coptic">
           {org.members?.length ?? 0} member{(org.members?.length ?? 0) !== 1 ? "s" : ""}
         </p>
       </div>
@@ -81,14 +81,14 @@ function OrgDetailCard({ org }) {
     : null;
 
   return (
-    <div className="flex flex-col bg-ivory border border-stone-200 shadow-sm">
+    <div className="flex flex-col bg-glass border border-divider shadow-sm">
       {/* Banner */}
       {org.banner ? (
-        <div className="w-full h-56 overflow-hidden shrink-0 border-b border-stone-200">
+        <div className="w-full h-56 overflow-hidden shrink-0 border-b border-divider">
           <img src={org.banner} alt={org.name} className="w-full h-full object-cover" />
         </div>
       ) : (
-        <div className="w-full h-36 shrink-0 bg-gradient-to-br from-amber-50 to-stone-100 border-b border-stone-200 flex items-center justify-center">
+        <div className="w-full h-36 shrink-0 bg-gradient-to-br from-amber-50 to-stone-100 border-b border-divider flex items-center justify-center">
           <IconHeart className="w-8 h-8 text-amber-300" />
         </div>
       )}
@@ -99,22 +99,22 @@ function OrgDetailCard({ org }) {
           <p className="font-coptic text-[0.6rem] uppercase tracking-[0.25em] text-amber-600 mb-2">
             Charity Organisation
           </p>
-          <h2 className="font-cormorant text-4xl font-semibold text-stone-800 leading-tight">
+          <h2 className="font-cormorant text-4xl font-semibold text-strong leading-tight">
             {org.name}
           </h2>
         </div>
 
         {/* Meta row */}
-        <div className="flex flex-wrap items-center gap-5 mt-4 mb-6 pb-6 border-b border-stone-100">
-          <span className="flex items-center gap-1.5 text-stone-500 text-sm">
+        <div className="flex flex-wrap items-center gap-5 mt-4 mb-6 pb-6 border-b border-divider">
+          <span className="flex items-center gap-1.5 text-primary text-sm">
             <IconUsers />
             <span>
-              <span className="font-medium text-stone-700">{memberCount}</span>{" "}
+              <span className="font-medium text-primary">{memberCount}</span>{" "}
               {memberCount !== 1 ? "members" : "member"}
             </span>
           </span>
           {joinedDate && (
-            <span className="flex items-center gap-1.5 text-stone-600 text-sm">
+            <span className="flex items-center gap-1.5 text-primary text-sm">
               <IconCalendar />
               Established {joinedDate}
             </span>
@@ -124,10 +124,10 @@ function OrgDetailCard({ org }) {
         {/* Description */}
         {org.description && (
           <div className="mb-6">
-            <p className="font-coptic text-[0.6rem] uppercase tracking-widest text-stone-600 mb-2">
+            <p className="font-coptic text-[0.6rem] uppercase tracking-widest text-primary mb-2">
               About
             </p>
-            <p className="text-sm text-stone-600 leading-relaxed">{org.description}</p>
+            <p className="text-sm text-primary leading-relaxed">{org.description}</p>
           </div>
         )}
 
@@ -138,7 +138,7 @@ function OrgDetailCard({ org }) {
               <IconBanknotes />
               How to Donate
             </p>
-            <p className="text-sm text-stone-700 leading-relaxed whitespace-pre-line">
+            <p className="text-sm text-primary leading-relaxed whitespace-pre-line">
               {org.payment_method}
             </p>
           </div>
@@ -160,7 +160,7 @@ function OrgDetailCard({ org }) {
         )}
 
         {/* Divider */}
-        <div className="h-px bg-stone-100 mb-6" />
+        <div className="h-px bg-ivory mb-6" />
 
         {/* Join button */}
         <div className="flex items-center gap-4">
@@ -169,7 +169,7 @@ function OrgDetailCard({ org }) {
             disabled={joinSent}
             className={`flex items-center gap-2 px-7 py-3 text-[0.75rem] uppercase tracking-[0.15em] font-coptic transition-all duration-200 rounded-sm ${
               joinSent
-                ? "bg-stone-100 text-stone-600 border border-stone-200 cursor-default"
+                ? "bg-ivory text-primary border border-divider cursor-default"
                 : "bg-amber-500 hover:bg-amber-600 text-white"
             }`}
           >
@@ -177,7 +177,7 @@ function OrgDetailCard({ org }) {
             {joinSent ? "Request Sent" : "Request to Join"}
           </button>
           {joinSent && (
-            <p className="text-[0.75rem] text-stone-600 font-coptic">
+            <p className="text-[0.75rem] text-primary font-coptic">
               Your request has been submitted.
             </p>
           )}
@@ -187,7 +187,7 @@ function OrgDetailCard({ org }) {
             min="1"
             value={donationAmount}
             onChange={(e) => setDonationAmount(Number(e.target.value))}
-            className="w-28 px-3 py-3 border border-stone-200 text-sm text-stone-700 focus:outline-none focus:border-amber-400"
+            className="w-28 px-3 py-3 border border-divider text-sm text-primary focus:outline-none focus:border-amber-400"
             placeholder="Amount (KES)"
           />
           <PaymentComponent
@@ -224,29 +224,29 @@ function CharityOrganisationsPage() {
 
       <div className="flex-1 flex flex-col w-full min-h-screen overflow-hidden">
         {/* Page header */}
-        <div className="px-8 py-6 border-b border-stone-200 shrink-0">
-          <p className="font-coptic text-[0.7rem] uppercase tracking-[0.25em] text-stone-500 mb-1">
+        <div className="px-8 py-6 border-b border-divider shrink-0">
+          <p className="font-coptic text-[0.7rem] uppercase tracking-[0.25em] text-primary mb-1">
             Outreach
           </p>
-          <h1 className="font-cormorant text-2xl font-semibold text-stone-900">
+          <h1 className="font-cormorant text-2xl font-semibold text-strong">
             Charity Organisations
           </h1>
         </div>
 
         {loading && orgs.length === 0 ? (
           <div className="flex-1 flex items-center justify-center">
-            <p className="font-coptic text-[0.65rem] uppercase tracking-[0.25em] text-stone-600">
+            <p className="font-coptic text-[0.65rem] uppercase tracking-[0.25em] text-primary">
               Loading...
             </p>
           </div>
         ) : orgs.length === 0 ? (
           <div className="flex-1 flex items-center justify-center">
-            <p className="text-sm text-stone-500 italic">No charity organisations found.</p>
+            <p className="text-sm text-primary italic">No charity organisations found.</p>
           </div>
         ) : (
           <div className="flex flex-row flex-1 overflow-hidden">
             {/* Left list — ~1/3 */}
-            <div className="w-80 shrink-0 border-r border-stone-200 overflow-y-auto divide-y divide-stone-100">
+            <div className="w-80 shrink-0 border-r border-divider overflow-y-auto divide-y divide-divider">
               {orgs.map((org) => (
                 <OrgListCard
                   key={org.id}
@@ -258,12 +258,12 @@ function CharityOrganisationsPage() {
             </div>
 
             {/* Right detail — ~2/3 */}
-            <div className="flex-1 overflow-y-auto p-8 bg-stone-50">
+            <div className="flex-1 overflow-y-auto p-8 bg-ivory">
               {effectiveSelected ? (
                 <OrgDetailCard key={effectiveSelected.id} org={effectiveSelected} />
               ) : (
                 <div className="flex items-center justify-center h-full">
-                  <p className="text-sm text-stone-500 italic">
+                  <p className="text-sm text-primary italic">
                     Select an organisation to view details.
                   </p>
                 </div>

@@ -13,7 +13,7 @@ function PageNotFound() {
     <>
       <Navbar />
       <div className="flex flex-col w-full min-h-screen justify-center items-center bg-amber-50">
-        <div className="relative bg-porcelain border border-stone-200 rounded-sm p-12 w-96 text-center shadow-md overflow-hidden">
+        <div className="relative bg-porcelain border border-divider rounded-sm p-12 w-96 text-center shadow-md overflow-hidden">
           <div className='absolute -top-8 -right-6 w-32 h-32 bg-amber-500/10 rounded-full blur-3xl pointer-events-none' ></div>
           <div className="w-12 h-px bg-amber-500 mx-auto mb-8" />
 
@@ -21,12 +21,12 @@ function PageNotFound() {
             404
           </h1>
 
-          <p className="font-cormorant text-xs tracking-widest uppercase text-stone-600 mb-8">
+          <p className="font-cormorant text-xs tracking-widest uppercase text-secondary mb-8">
             Page Not Found
           </p>
 
 
-          <p className="font-coptic text-stone-500 leading-relaxed mb-10">
+          <p className="font-coptic text-secondary leading-relaxed mb-10">
             The page you are looking for does not exist or has been moved.
           </p>
 

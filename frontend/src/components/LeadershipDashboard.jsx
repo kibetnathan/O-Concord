@@ -114,17 +114,17 @@ const IconCheck = () => (
 function SectionHeading({ children }) {
   return (
     <div className="flex items-center gap-3 mb-5">
-      <h2 className="font-cormorant text-2xl font-semibold text-stone-800 shrink-0">
+      <h2 className="font-cormorant text-2xl font-semibold text-strong shrink-0">
         {children}
       </h2>
-      <div className="flex-1 h-px bg-stone-200" />
+      <div className="flex-1 h-px bg-divider" />
     </div>
   );
 }
 
 function InputLabel({ children }) {
   return (
-    <label className="font-coptic text-[0.6rem] uppercase tracking-widest text-gray-700">
+    <label className="font-coptic text-[0.6rem] uppercase tracking-widest text-primary">
       {children}
     </label>
   );
@@ -134,7 +134,7 @@ function FormInput({ ...props }) {
   return (
     <input
       {...props}
-      className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-gray-500 transition-colors w-full"
+      className="bg-ivory border border-divider focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-primary placeholder:text-primary transition-colors w-full"
     />
   );
 }
@@ -187,7 +187,7 @@ function MemberPicker({ allUsers, allProfiles, selected, onChange }) {
         </div>
       )}
       <div className="relative">
-        <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">
+        <span className="absolute left-3 top-1/2 -translate-y-1/2 text-primary">
           <IconSearch />
         </span>
         <input
@@ -195,10 +195,10 @@ function MemberPicker({ allUsers, allProfiles, selected, onChange }) {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Search members…"
-          className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none pl-9 pr-3 py-2.5 text-sm text-stone-700 placeholder:text-gray-500 transition-colors w-full"
+          className="bg-ivory border border-divider focus:border-amber-400 focus:outline-none pl-9 pr-3 py-2.5 text-sm text-primary placeholder:text-primary transition-colors w-full"
         />
       </div>
-      <div className="border border-stone-200 divide-y divide-stone-100 max-h-48 overflow-y-auto">
+      <div className="border border-divider divide-y divide-divider max-h-48 overflow-y-auto">
         {filtered.length > 0 ? (
           filtered.map((u) => {
             const mp = allProfiles.find((p) => p.user?.id === u.id);
@@ -207,7 +207,7 @@ function MemberPicker({ allUsers, allProfiles, selected, onChange }) {
               <div
                 key={u.id}
                 onClick={() => toggle(u.id)}
-                className={`flex items-center gap-3 px-3 py-2.5 cursor-pointer transition-colors ${checked ? "bg-amber-50" : "hover:bg-stone-50"}`}
+                className={`flex items-center gap-3 px-3 py-2.5 cursor-pointer transition-colors ${checked ? "bg-amber-50" : "hover:bg-ivory"}`}
               >
                 <img
                   src={mp?.profile_pic_url || "/images/defaultavatar.jpg"}
@@ -215,10 +215,10 @@ function MemberPicker({ allUsers, allProfiles, selected, onChange }) {
                   className="w-7 h-7 rounded-full object-cover shrink-0"
                 />
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm text-stone-700 truncate">
+                  <p className="text-sm text-primary truncate">
                     {userName(u)}
                   </p>
-                  <p className="font-coptic text-[0.55rem] text-gray-600 truncate">
+                  <p className="font-coptic text-[0.55rem] text-primary truncate">
                     @{u.username}
                     {u.groups?.length > 0 && (
                       <span className="ml-2 text-amber-600">{u.groups[0]}</span>
@@ -226,7 +226,7 @@ function MemberPicker({ allUsers, allProfiles, selected, onChange }) {
                   </p>
                 </div>
                 <div
-                  className={`w-4 h-4 border flex items-center justify-center shrink-0 transition-colors ${checked ? "bg-amber-500 border-amber-500" : "border-stone-300"}`}
+                  className={`w-4 h-4 border flex items-center justify-center shrink-0 transition-colors ${checked ? "bg-amber-500 border-amber-500" : "border-divider"}`}
                 >
                   {checked && (
                     <svg
@@ -248,13 +248,13 @@ function MemberPicker({ allUsers, allProfiles, selected, onChange }) {
             );
           })
         ) : (
-          <p className="text-xs text-gray-500 px-3 py-4 text-center italic">
+          <p className="text-xs text-primary px-3 py-4 text-center italic">
             No users found
           </p>
         )}
       </div>
       {selected.length > 0 && (
-        <p className="text-[0.6rem] text-stone-400 uppercase tracking-widest">
+        <p className="text-[0.6rem] text-secondary uppercase tracking-widest">
           {selected.length} member{selected.length !== 1 ? "s" : ""} selected
         </p>
       )}
@@ -269,15 +269,15 @@ function TeamCard({ team, allUsers, allProfiles, onSelect, isSelected }) {
   return (
     <div
       onClick={() => onSelect(team)}
-      className={`flex flex-col bg-ivory border transition-all duration-200 cursor-pointer hover:border-amber-300 hover:shadow-md ${isSelected ? "border-amber-400 shadow-md" : "border-stone-300"}`}
+      className={`flex flex-col bg-ivory border transition-all duration-200 cursor-pointer hover:border-amber-300 hover:shadow-md ${isSelected ? "border-amber-400 shadow-md" : "border-divider"}`}
     >
-      <div className="flex items-start justify-between p-5 border-b border-stone-300">
+      <div className="flex items-start justify-between p-5 border-b border-divider">
         <div className="flex-1 min-w-0">
-          <h3 className="font-cormorant text-2xl font-semibold text-stone-900 leading-tight truncate">
+          <h3 className="font-cormorant text-2xl font-semibold text-strong leading-tight truncate">
             {team.name}
           </h3>
           {team.description && (
-            <p className="text-sm text-stone-600 mt-1 line-clamp-2">
+            <p className="text-sm text-secondary mt-1 line-clamp-2">
               {team.description}
             </p>
           )}
@@ -300,12 +300,12 @@ function TeamCard({ team, allUsers, allProfiles, onSelect, isSelected }) {
           );
         })}
         {memberList.length > 7 && (
-          <span className="w-7 h-7 rounded-full bg-stone-100 border border-stone-200 flex items-center justify-center text-[0.55rem] text-stone-500 -ml-1.5">
+          <span className="w-7 h-7 rounded-full bg-ivory border border-divider flex items-center justify-center text-[0.55rem] text-secondary -ml-1.5">
             +{memberList.length - 7}
           </span>
         )}
         {memberList.length === 0 && (
-          <p className="text-xs text-gray-600 italic">No members yet</p>
+          <p className="text-xs text-primary italic">No members yet</p>
         )}
       </div>
     </div>
@@ -330,7 +330,7 @@ function TeamDetail({
       <div className="absolute -top-8 -right-8 w-32 h-32 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
       <div className="flex items-start justify-between relative z-10">
         <div>
-          <p className="text-sm uppercase tracking-[0.25em] text-stone-500 mb-1">
+          <p className="text-sm uppercase tracking-[0.25em] text-secondary mb-1">
             Leadership Team
           </p>
           <h3 className="font-cormorant text-3xl font-semibold text-black leading-tight">
@@ -340,7 +340,7 @@ function TeamDetail({
         <div className="flex items-center gap-0.5 shrink-0 ml-2">
           <button
             onClick={onEdit}
-            className="p-1.5 text-gray-600 hover:text-amber-600 transition-colors"
+            className="p-1.5 text-primary hover:text-amber-600 transition-colors"
             title="Edit"
           >
             <IconEdit />
@@ -348,7 +348,7 @@ function TeamDetail({
           {!confirmDelete ? (
             <button
               onClick={() => setConfirmDelete(true)}
-              className="p-1.5 text-gray-600 hover:text-red-400 transition-colors"
+              className="p-1.5 text-primary hover:text-red-400 transition-colors"
               title="Delete"
             >
               <IconTrash />
@@ -366,7 +366,7 @@ function TeamDetail({
               </button>
               <button
                 onClick={() => setConfirmDelete(false)}
-                className="p-0.5 text-stone-400 hover:text-stone-600"
+                className="p-0.5 text-secondary hover:text-secondary"
               >
                 <IconX />
               </button>
@@ -374,7 +374,7 @@ function TeamDetail({
           )}
           <button
             onClick={onClose}
-            className="p-1.5 text-gray-600 hover:text-stone-900 transition-colors ml-0.5"
+            className="p-1.5 text-primary hover:text-strong transition-colors ml-0.5"
           >
             <IconX />
           </button>
@@ -382,13 +382,13 @@ function TeamDetail({
       </div>
 
       {team.description && (
-        <p className="text-sm text-stone-700 leading-relaxed relative z-10 border-l-2 border-amber-500/55 pl-3">
+        <p className="text-sm text-primary leading-relaxed relative z-10 border-l-2 border-amber-500/55 pl-3">
           {team.description}
         </p>
       )}
 
       <div className="relative z-10">
-        <p className="text-sm uppercase tracking-widest text-stone-600 font-coptic mb-3">
+        <p className="text-sm uppercase tracking-widest text-secondary font-coptic mb-3">
           Members ({memberList.length})
         </p>
         <div className="flex flex-col gap-2.5 max-h-72 overflow-y-auto pr-1">
@@ -406,7 +406,7 @@ function TeamDetail({
                     <p className="text-sm text-black truncate font-cormorant font-medium">
                       {userName(m)}
                     </p>
-                    <p className="font-coptic text-sm text-gray-800 truncate">
+                    <p className="font-coptic text-sm text-primary truncate">
                       @{m.username}
                       {m.groups?.length > 0 && (
                         <span className="ml-2 text-amber-600">
@@ -419,7 +419,7 @@ function TeamDetail({
               );
             })
           ) : (
-            <p className="text-xs text-stone-600 italic">No members yet</p>
+            <p className="text-xs text-secondary italic">No members yet</p>
           )}
         </div>
       </div>
@@ -479,7 +479,7 @@ function CreateTeamForm({ allUsers, allProfiles, onSuccess }) {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           placeholder="What does this team oversee?"
-          className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-300 transition-colors resize-none min-h-16 w-full"
+          className="bg-ivory border border-divider focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-primary placeholder:text-placeholder-primary transition-colors resize-none min-h-16 w-full"
         />
       </div>
       <div className="flex flex-col gap-1.5">
@@ -558,7 +558,7 @@ function EditTeamForm({ team, allUsers, allProfiles, onSuccess, onCancel }) {
         <textarea
           value={description}
           onChange={(e) => setDescription(e.target.value)}
-          className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 transition-colors resize-none min-h-16 w-full"
+          className="bg-ivory border border-divider focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-primary transition-colors resize-none min-h-16 w-full"
         />
       </div>
       <div className="flex flex-col gap-1.5">
@@ -593,7 +593,7 @@ function EditTeamForm({ team, allUsers, allProfiles, onSuccess, onCancel }) {
         <button
           type="button"
           onClick={onCancel}
-          className="border border-stone-200 text-stone-500 hover:border-stone-400 font-coptic text-[0.65rem] uppercase tracking-widest px-4 py-3 transition-colors"
+          className="border border-divider text-secondary hover:border-gray-300 font-coptic text-[0.65rem] uppercase tracking-widest px-4 py-3 transition-colors"
         >
           Cancel
         </button>
@@ -672,7 +672,7 @@ function LeadershipDashboard() {
     <div className="min-h-screen w-full bg-ivory p-8">
       <div className="flex items-end justify-between mb-10">
         <div>
-          <p className="text-[0.6rem] uppercase tracking-[0.25em] text-stone-400 mb-1">
+          <p className="text-[0.6rem] uppercase tracking-[0.25em] text-secondary mb-1">
             Teams
           </p>
           <h1 className="font-cormorant text-4xl font-semibold text-black leading-tight">
@@ -700,28 +700,28 @@ function LeadershipDashboard() {
 
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
         <div className="xl:col-span-2 flex flex-col gap-5">
-          <div className="flex items-center gap-6 pb-5 border-b border-stone-200">
+          <div className="flex items-center gap-6 pb-5 border-b border-divider">
             <div>
-              <p className="font-cormorant text-4xl font-light text-stone-800">
+              <p className="font-cormorant text-4xl font-light text-strong">
                 {leadershipTeams?.count ?? teamList.length}
               </p>
-              <p className="text-[0.8rem] uppercase tracking-widest text-stone-800 font-coptic">
+              <p className="text-[0.8rem] uppercase tracking-widest text-strong font-coptic">
                 Teams
               </p>
             </div>
-            <div className="w-px h-8 bg-stone-200" />
+            <div className="w-px h-8 bg-divider" />
             <div>
-              <p className="font-cormorant text-4xl font-light text-stone-800">
+              <p className="font-cormorant text-4xl font-light text-strong">
                 {totalMembers}
               </p>
-              <p className="text-[0.8rem] uppercase tracking-widest text-stone-800 font-coptic">
+              <p className="text-[0.8rem] uppercase tracking-widest text-strong font-coptic">
                 Total Members
               </p>
             </div>
           </div>
 
           <div className="relative">
-            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-stone-300">
+            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-placeholder-primary">
               <IconSearch />
             </span>
             <input
@@ -729,7 +729,7 @@ function LeadershipDashboard() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search teams…"
-              className="bg-ivory border border-stone-500 focus:border-amber-400 focus:outline-none pl-9 pr-3 py-2.5 text-sm text-stone-800 placeholder:text-stone-500 transition-colors w-full"
+              className="bg-ivory border border-gray-400 focus:border-amber-400 focus:outline-none pl-9 pr-3 py-2.5 text-sm text-strong placeholder:text-secondary transition-colors w-full"
             />
           </div>
 
@@ -752,7 +752,7 @@ function LeadershipDashboard() {
           ) : (
             <div className="flex flex-col items-center py-20 gap-3">
               <div className="w-8 h-px bg-amber-500/40" />
-              <p className="text-xs uppercase tracking-[0.25em] text-stone-300">
+              <p className="text-xs uppercase tracking-[0.25em] text-primary font-medium">
                 {search
                   ? "No teams match your search"
                   : "No leadership teams yet"}
@@ -797,9 +797,9 @@ function LeadershipDashboard() {
               )}
             </>
           ) : (
-            <div className="flex flex-col items-center justify-center h-48 border border-dashed border-stone-400 gap-3">
+            <div className="flex flex-col items-center justify-center h-48 border border-dashed border-gray-300 gap-3">
               <IconUsers />
-              <p className="text-xs uppercase tracking-widest text-stone-600 font-coptic text-center">
+              <p className="text-xs uppercase tracking-widest text-secondary font-coptic text-center">
                 Select a team to view details
                 <br />
                 or create a new one

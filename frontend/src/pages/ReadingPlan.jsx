@@ -165,7 +165,7 @@ function formatDate(dateStr) {
 function YouVersionWidget({ widgetUrl, title }) {
   if (!widgetUrl) return null;
   return (
-    <div className="w-full overflow-hidden border border-stone-200 bg-ivory">
+    <div className="w-full overflow-hidden border border-divider bg-ivory">
       <iframe
         src={widgetUrl}
         title={`YouVersion plan: ${title}`}
@@ -216,19 +216,19 @@ function PlanDetail({
       />
 
       {/* Panel */}
-      <div className="relative z-10 w-full sm:max-w-lg bg-porcelain border border-stone-200 shadow-2xl flex flex-col max-h-[90vh] rounded-t-2xl sm:rounded-none overflow-hidden">
+      <div className="relative z-10 w-full sm:max-w-lg bg-porcelain border border-divider shadow-2xl flex flex-col max-h-[90vh] rounded-t-2xl sm:rounded-none overflow-hidden">
         {/* Drag handle — mobile */}
         <div className="sm:hidden flex justify-center pt-3 pb-1 shrink-0">
-          <div className="w-10 h-1 bg-stone-200 rounded-full" />
+          <div className="w-10 h-1 bg-divider rounded-full" />
         </div>
 
         {/* Header */}
-        <div className="flex items-start justify-between gap-3 px-5 pt-4 pb-3 border-b border-stone-200 shrink-0">
+        <div className="flex items-start justify-between gap-3 px-5 pt-4 pb-3 border-b border-divider shrink-0">
           <div className="min-w-0">
-            <p className="font-coptic text-xs uppercase tracking-[0.2em] text-stone-500 mb-0.5">
+            <p className="font-coptic text-xs uppercase tracking-[0.2em] text-secondary mb-0.5">
               Reading Plan
             </p>
-            <h2 className="font-cormorant text-2xl font-semibold text-stone-900 leading-snug">
+            <h2 className="font-cormorant text-2xl font-semibold text-strong leading-snug">
               {plan.title}
             </h2>
           </div>
@@ -237,7 +237,7 @@ function PlanDetail({
               <>
                 <button
                   onClick={() => onEdit(plan)}
-                  className="p-1.5 text-stone-500 hover:text-amber-700 border border-transparent hover:border-amber-200 transition-colors rounded-sm"
+                  className="p-1.5 text-secondary hover:text-amber-700 border border-transparent hover:border-amber-200 transition-colors rounded-sm"
                 >
                   <IconEdit />
                 </button>
@@ -254,7 +254,7 @@ function PlanDetail({
                     </button>
                     <button
                       onClick={() => setConfirming(false)}
-                      className="font-coptic text-xs uppercase tracking-widest text-stone-500 border border-stone-200 px-2 py-1 transition-colors rounded-sm"
+                      className="font-coptic text-xs uppercase tracking-widest text-secondary border border-divider px-2 py-1 transition-colors rounded-sm"
                     >
                       Cancel
                     </button>
@@ -262,7 +262,7 @@ function PlanDetail({
                 ) : (
                   <button
                     onClick={() => setConfirming(true)}
-                    className="p-1.5 text-stone-500 hover:text-red-600 border border-transparent hover:border-red-200 transition-colors rounded-sm"
+                    className="p-1.5 text-secondary hover:text-red-600 border border-transparent hover:border-red-200 transition-colors rounded-sm"
                   >
                     <IconTrash />
                   </button>
@@ -271,7 +271,7 @@ function PlanDetail({
             )}
             <button
               onClick={onClose}
-              className="p-1.5 text-stone-500 hover:text-stone-800 border border-stone-200 hover:border-stone-400 transition-colors rounded-sm"
+              className="p-1.5 text-secondary hover:text-strong border border-divider hover:border-gray-300 transition-colors rounded-sm"
             >
               <IconX />
             </button>
@@ -283,25 +283,25 @@ function PlanDetail({
           {/* Meta strip */}
           <div className="flex items-center gap-3 flex-wrap">
             {plan.is_church_wide && (
-              <span className="font-coptic text-xs uppercase tracking-widest text-stone-900 border border-stone-300 px-2 py-0.5">
+              <span className="font-coptic text-xs uppercase tracking-widest text-strong border border-divider px-2 py-0.5">
                 Church-wide
               </span>
             )}
             {plan.duration_days && (
-              <span className="flex items-center gap-1 font-coptic text-xs uppercase tracking-widest text-stone-900">
+              <span className="flex items-center gap-1 font-coptic text-xs uppercase tracking-widest text-strong">
                 <IconCalendar /> {plan.duration_days} days
               </span>
             )}
             {plan.start_date && (
-              <span className="flex items-center gap-1 font-coptic text-xs uppercase tracking-widest text-stone-900">
+              <span className="flex items-center gap-1 font-coptic text-xs uppercase tracking-widest text-strong">
                 Starts {formatDate(plan.start_date)}
               </span>
             )}
-            <span className="flex items-center gap-1 font-coptic text-xs uppercase tracking-widest text-stone-900">
+            <span className="flex items-center gap-1 font-coptic text-xs uppercase tracking-widest text-strong">
               <IconUsers /> {plan.member_count ?? 0} joined
             </span>
             {plan.created_by_name && (
-              <span className="font-coptic text-xs uppercase tracking-widest text-stone-900">
+              <span className="font-coptic text-xs uppercase tracking-widest text-strong">
                 Added by {plan.created_by_name}
               </span>
             )}
@@ -309,7 +309,7 @@ function PlanDetail({
 
           {/* Description */}
           {plan.description && (
-            <p className="font-serif text-base text-stone-700 leading-relaxed">
+            <p className="font-serif text-base text-primary leading-relaxed">
               {plan.description}
             </p>
           )}
@@ -322,7 +322,7 @@ function PlanDetail({
             href={plan.youversion_url}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 w-full font-coptic text-xs uppercase tracking-widest text-stone-900 hover:text-amber-800 border border-stone-300 hover:border-stone-500 py-3 transition-colors rounded-sm"
+            className="flex items-center justify-center gap-2 w-full font-coptic text-xs uppercase tracking-widest text-strong hover:text-amber-800 border border-divider hover:border-gray-400 py-3 transition-colors rounded-sm"
           >
             <IconExternal /> Open on YouVersion
           </a>
@@ -376,7 +376,7 @@ const EMPTY_FORM = {
 function Field({ label, error, children }) {
   return (
     <div>
-      <label className="block font-coptic text-xs uppercase tracking-widest text-stone-600 mb-1">
+      <label className="block font-coptic text-xs uppercase tracking-widest text-strong font-semibold mb-1">
         {label}
       </label>
       {children}
@@ -390,7 +390,7 @@ function Field({ label, error, children }) {
 }
 
 function inputCls(err) {
-  return `w-full border ${err ? "border-red-300 focus:border-red-400" : "border-stone-300 focus:border-amber-500"} focus:outline-none px-3 py-2 text-base text-stone-800 font-serif bg-ivory`;
+  return `w-full border ${err ? "border-red-300 focus:border-red-400" : "border-divider focus:border-amber-500"} focus:outline-none px-3 py-2 text-base text-strong font-serif bg-ivory`;
 }
 
 function PlanForm({ initial, onSubmit, onClose, saving }) {
@@ -430,23 +430,23 @@ function PlanForm({ initial, onSubmit, onClose, saving }) {
         className="absolute inset-0 bg-black/50 backdrop-blur-sm"
         onClick={onClose}
       />
-      <div className="relative z-10 w-full sm:max-w-md bg-porcelain border border-stone-200 shadow-2xl flex flex-col max-h-[90vh] rounded-t-2xl sm:rounded-none overflow-hidden">
+      <div className="relative z-10 w-full sm:max-w-md bg-porcelain border border-divider shadow-2xl flex flex-col max-h-[90vh] rounded-t-2xl sm:rounded-none overflow-hidden">
         <div className="sm:hidden flex justify-center pt-3 pb-1 shrink-0">
-          <div className="w-10 h-1 bg-stone-200 rounded-full" />
+          <div className="w-10 h-1 bg-divider rounded-full" />
         </div>
 
-        <div className="flex items-center justify-between px-5 pt-4 pb-3 border-b border-stone-200 shrink-0">
+        <div className="flex items-center justify-between px-5 pt-4 pb-3 border-b border-divider shrink-0">
           <div>
-            <p className="font-coptic text-xs uppercase tracking-[0.2em] text-stone-500 mb-0.5">
+            <p className="font-coptic text-xs uppercase tracking-[0.2em] text-secondary mb-0.5">
               Reading Plans
             </p>
-            <h2 className="font-cormorant text-2xl font-semibold text-stone-900">
+            <h2 className="font-cormorant text-2xl font-semibold text-strong">
               {initial ? "Edit plan" : "Add a plan"}
             </h2>
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 text-stone-500 hover:text-stone-800 border border-stone-200 transition-colors rounded-sm"
+            className="p-1.5 text-secondary hover:text-strong border border-divider transition-colors rounded-sm"
           >
             <IconX />
           </button>
@@ -471,7 +471,7 @@ function PlanForm({ initial, onSubmit, onClose, saving }) {
               className={inputCls(errors.youversion_url)}
               placeholder="https://www.bible.com/reading-plans/1234"
             />
-            <p className="font-coptic text-xs uppercase tracking-widest text-stone-500 mt-1">
+            <p className="font-coptic text-xs uppercase tracking-widest text-secondary mt-1">
               Copy the URL from the plan page on Bible.com
             </p>
           </Field>
@@ -517,17 +517,17 @@ function PlanForm({ initial, onSubmit, onClose, saving }) {
             />
             <label
               htmlFor="is_active"
-              className="font-coptic text-xs uppercase tracking-widest text-stone-600 cursor-pointer"
+              className="font-coptic text-xs uppercase tracking-widest text-secondary cursor-pointer"
             >
               Active (visible to congregation)
             </label>
           </div>
         </div>
 
-        <div className="px-5 py-4 border-t border-stone-200 shrink-0 flex items-center justify-end gap-3">
+        <div className="px-5 py-4 border-t border-divider shrink-0 flex items-center justify-end gap-3">
           <button
             onClick={onClose}
-            className="font-coptic text-xs uppercase tracking-widest text-stone-500 border border-stone-300 hover:border-stone-500 px-4 py-2 transition-colors rounded-sm"
+            className="font-coptic text-xs uppercase tracking-widest text-secondary border border-divider hover:border-gray-400 px-4 py-2 transition-colors rounded-sm"
           >
             Cancel
           </button>
@@ -553,16 +553,16 @@ function PlanCard({ plan, onClick }) {
   return (
     <button
       onClick={onClick}
-      className="w-full text-left border border-stone-200 bg-ivory hover:border-amber-300 hover:shadow-sm transition-all group flex flex-col rounded-sm"
+      className="w-full text-left border border-divider bg-ivory hover:border-amber-300 hover:shadow-sm transition-all group flex flex-col rounded-sm"
     >
       {/* Cover / widget preview strip */}
-      <div className="h-1.5 w-full bg-stone-100 group-hover:bg-amber-100 transition-colors" />
+      <div className="h-1.5 w-full bg-ivory group-hover:bg-amber-100 transition-colors" />
 
       <div className="p-4 flex flex-col gap-2.5 flex-1">
         {/* Scope badge */}
         <div className="flex items-center gap-1.5 flex-wrap">
           {plan.is_church_wide ? (
-            <span className="font-coptic text-xs uppercase tracking-widest text-stone-700 border border-stone-300 px-2 py-0.5">
+            <span className="font-coptic text-xs uppercase tracking-widest text-primary border border-divider px-2 py-0.5">
               Church-wide
             </span>
           ) : (
@@ -578,29 +578,29 @@ function PlanCard({ plan, onClick }) {
         </div>
 
         <div>
-          <h3 className="font-cormorant text-xl font-semibold text-stone-900 leading-snug group-hover:text-amber-800 transition-colors">
+          <h3 className="font-cormorant text-xl font-semibold text-strong leading-snug group-hover:text-amber-800 transition-colors">
             {plan.title}
           </h3>
           {plan.description && (
-            <p className="font-serif text-base text-stone-700 mt-1 line-clamp-2">
+            <p className="font-serif text-base text-primary mt-1 line-clamp-2">
               {plan.description}
             </p>
           )}
         </div>
 
         {/* Footer meta */}
-        <div className="flex items-center gap-3 mt-auto pt-2 border-t border-stone-100">
+        <div className="flex items-center gap-3 mt-auto pt-2 border-t border-divider">
           {plan.duration_days && (
-            <span className="flex items-center gap-1 font-coptic text-xs uppercase tracking-widest text-stone-600">
+            <span className="flex items-center gap-1 font-coptic text-xs uppercase tracking-widest text-secondary">
               <IconCalendar /> {plan.duration_days}d
             </span>
           )}
           {plan.start_date && (
-            <span className="font-coptic text-xs uppercase tracking-widest text-stone-600">
+            <span className="font-coptic text-xs uppercase tracking-widest text-secondary">
               {formatDate(plan.start_date)}
             </span>
           )}
-          <span className="flex items-center gap-1 font-coptic text-xs uppercase tracking-widest text-stone-600 ml-auto">
+          <span className="flex items-center gap-1 font-coptic text-xs uppercase tracking-widest text-secondary ml-auto">
             <IconUsers /> {plan.member_count ?? 0}
           </span>
         </div>
@@ -675,12 +675,12 @@ function ReadingPlansPage() {
 
       <div className="flex flex-1 min-w-0 overflow-hidden flex-col">
         {/* Top bar */}
-        <div className="flex items-center gap-3 px-4 sm:px-6 py-3 sm:py-3.5 border-b border-stone-200 bg-porcelain shrink-0">
+        <div className="flex items-center gap-3 px-4 sm:px-6 py-3 sm:py-3.5 border-b border-divider bg-porcelain shrink-0">
           <div className="flex-1 min-w-0">
-            <p className="font-coptic text-xs uppercase tracking-[0.25em] text-stone-500 mb-0.5">
+            <p className="font-coptic text-xs uppercase tracking-[0.25em] text-secondary mb-0.5">
               Mavuno
             </p>
-            <h1 className="font-cormorant text-2xl font-semibold text-stone-900 leading-none">
+            <h1 className="font-cormorant text-2xl font-semibold text-strong leading-none">
               Reading Plans
             </h1>
           </div>
@@ -699,7 +699,7 @@ function ReadingPlansPage() {
         </div>
 
         {/* Tabs */}
-        <div className="flex border-b border-stone-200 bg-porcelain shrink-0">
+        <div className="flex border-b border-divider bg-porcelain shrink-0">
           {[
             {
               key: "all",
@@ -716,7 +716,7 @@ function ReadingPlansPage() {
               className={`px-5 py-3 font-coptic text-xs uppercase tracking-widest transition-colors border-b-2 -mb-px ${
                 tab === key
                   ? "text-amber-700 border-amber-600"
-                  : "text-stone-500 border-transparent hover:text-stone-800"
+                  : "text-primary border-transparent hover:text-amber-600"
               }`}
             >
               {label}
@@ -729,18 +729,18 @@ function ReadingPlansPage() {
           {loading ? (
             <div className="flex items-center justify-center h-full gap-3">
               <div className="w-6 h-6 border border-amber-500/40 border-t-amber-600 rounded-full animate-spin" />
-              <p className="font-coptic text-xs uppercase tracking-widest text-stone-500">
+              <p className="font-coptic text-xs uppercase tracking-widest text-primary">
                 Loading…
               </p>
             </div>
           ) : displayedPlans.length === 0 ? (
             <div className="flex flex-col items-center justify-center h-full gap-4 text-center px-4">
-              <p className="font-cormorant text-3xl text-stone-500">
+              <p className="font-cormorant text-3xl text-primary">
                 {tab === "mine"
                   ? "No plans followed yet"
                   : "No reading plans yet"}
               </p>
-              <p className="font-coptic text-xs uppercase tracking-widest text-stone-500">
+              <p className="font-coptic text-xs uppercase tracking-widest text-primary">
                 {tab === "mine"
                   ? "Browse all plans and tap Follow to track one here"
                   : userIsLeader

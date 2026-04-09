@@ -28,13 +28,13 @@ function Home() {
               <span className="text-xs text-amber-500 font-coptic tracking-[0.25em] uppercase">
                 — Powered by Mavuno Church
               </span>
-              <h1 className="mt-4 mb-6 text-4xl sm:text-5xl lg:text-[3.5rem] font-cormorant font-light text-white leading-tight">
+              <h1 className="mt-4 mb-6 text-4xl sm:text-5xl lg:text-[3.5rem] font-cormorant font-light text-light leading-tight">
                 This is{" "}
                 <span className="text-amber-500 italic font-bold">
                   Open Church Management
                 </span>
               </h1>
-              <p className="mb-8 text-base sm:text-lg text-stone-300 font-coptic leading-relaxed">
+              <p className="mb-8 text-base sm:text-lg text-light font-coptic leading-relaxed">
                 A free, open-source platform built for Mavuno Church —
                 connecting members, leadership, and fellowship groups in one
                 place.
@@ -53,16 +53,16 @@ function Home() {
         <section
           id="about"
           aria-labelledby="about-heading"
-          className="bg-ivory border-b border-stone-200 px-6 sm:px-10 lg:px-16 py-16 sm:py-20"
+          className="bg-ivory border-b border-divider px-6 sm:px-10 lg:px-16 py-16 sm:py-20"
         >
           <div className="max-w-6xl mx-auto flex flex-col lg:flex-row gap-10 lg:gap-20 items-start">
             <div className="lg:w-1/2">
-              <p className="text-sm uppercase tracking-[0.22em] text-stone-600 mb-3 font-coptic">
+              <p className="text-sm uppercase tracking-[0.22em] text-secondary mb-3 font-coptic">
                 About the Platform
               </p>
               <h2
                 id="about-heading"
-                className="font-cormorant text-4xl sm:text-5xl font-light text-stone-900 leading-tight"
+                className="font-cormorant text-4xl sm:text-5xl font-light text-strong leading-tight"
               >
                 Built for Mavuno.
                 <br />
@@ -72,7 +72,7 @@ function Home() {
               </h2>
               <div className="w-8 h-0.5 bg-amber-500 mt-5" aria-hidden="true" />
             </div>
-            <p className="lg:w-1/2 text-stone-700 font-coptic text-base sm:text-lg leading-relaxed pt-2">
+            <p className="lg:w-1/2 text-primary font-coptic text-base sm:text-lg leading-relaxed pt-2">
               OCM was designed around how Mavuno Church actually operates — with
               fellowship groups, serving departments, discipleship courses, and
               a leadership structure that values both accountability and
@@ -120,12 +120,12 @@ function Home() {
         >
           <div className="max-w-6xl mx-auto">
             <div className="mb-12">
-              <p className="text-sm uppercase tracking-[0.22em] text-stone-600 mb-2 font-coptic">
+              <p className="text-sm uppercase tracking-[0.22em] text-secondary mb-2 font-coptic">
                 What's Inside
               </p>
               <h2
                 id="features-heading"
-                className="font-cormorant text-4xl sm:text-5xl font-light text-stone-900"
+                className="font-cormorant text-4xl sm:text-5xl font-light text-strong"
               >
                 Platform Features
               </h2>
@@ -169,17 +169,17 @@ function Home() {
                 },
               ].map(({ number, title, body }) => (
                 <li key={number}>
-                  <article className="h-full bg-ivory border border-stone-200 p-6 hover:border-amber-400 hover:shadow-md transition-all group">
+                  <article className="h-full bg-ivory border border-divider p-6 hover:border-amber-400 hover:shadow-md transition-all group">
                     <p
                       className="font-cormorant text-3xl font-light text-amber-600/70 mb-4 group-hover:text-amber-600 transition-colors"
                       aria-hidden="true"
                     >
                       {number}
                     </p>
-                    <h3 className="font-cormorant text-2xl font-semibold text-stone-900 mb-2">
+                    <h3 className="font-cormorant text-2xl font-semibold text-strong mb-2">
                       {title}
                     </h3>
-                    <p className="font-coptic text-base text-stone-700 leading-relaxed">
+                    <p className="font-coptic text-base text-primary leading-relaxed">
                       {body}
                     </p>
                   </article>
@@ -192,16 +192,16 @@ function Home() {
         {/* ── How it works ── */}
         <section
           aria-labelledby="roles-heading"
-          className="bg-stone-100 px-6 sm:px-10 lg:px-16 py-20 sm:py-28 border-y border-stone-200"
+          className="bg-panel px-6 sm:px-10 lg:px-16 py-20 sm:py-28 border-y border-divider"
         >
           <div className="max-w-6xl mx-auto">
             <div className="mb-12">
-              <p className="text-sm uppercase tracking-[0.22em] text-stone-600 mb-2 font-coptic">
+              <p className="text-sm uppercase tracking-[0.22em] text-secondary mb-2 font-coptic">
                 How It Works
               </p>
               <h2
                 id="roles-heading"
-                className="font-cormorant text-4xl sm:text-5xl font-light text-stone-900"
+                className="font-cormorant text-4xl sm:text-5xl font-light text-strong"
               >
                 For Every Role
               </h2>
@@ -212,8 +212,8 @@ function Home() {
               {[
                 {
                   role: "Member",
-                  color: "border-stone-400",
-                  accent: "text-stone-800",
+                  color: "border-gray-300",
+                  accent: "text-strong",
                   points: [
                     "View and react to the community feed",
                     "See your fellowship group and courses",
@@ -234,8 +234,8 @@ function Home() {
                 },
                 {
                   role: "Pastor / Staff",
-                  color: "border-stone-900",
-                  accent: "text-stone-900",
+                  color: "border-black",
+                  accent: "text-strong",
                   points: [
                     "Full dashboard access",
                     "Manage all users and leadership roles",
@@ -262,7 +262,7 @@ function Home() {
                             className="w-1.5 h-1.5 bg-amber-500 rounded-full mt-2 shrink-0"
                             aria-hidden="true"
                           />
-                          <span className="font-coptic text-base text-stone-700 leading-relaxed">
+                          <span className="font-coptic text-base text-primary leading-relaxed">
                             {p}
                           </span>
                         </li>

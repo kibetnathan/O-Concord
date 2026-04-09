@@ -19,7 +19,7 @@ function InputLabel({ children, htmlFor }) {
   return (
     <label
       htmlFor={htmlFor}
-      className="font-coptic text-xs uppercase tracking-widest text-stone-800 font-semibold"
+      className="font-coptic text-xs uppercase tracking-widest text-strong font-semibold"
     >
       {children}
     </label>
@@ -88,18 +88,18 @@ function ProfileFormInner({ profile, user, updateProfile, onClose }) {
       role="dialog"
       aria-modal="true"
       aria-labelledby="edit-profile-heading"
-      className="fixed right-0 top-0 h-screen w-80 bg-porcelain border-l border-stone-200 z-50 flex flex-col overflow-y-auto shadow-2xl"
+      className="fixed right-0 top-0 h-screen w-80 bg-porcelain border-l border-divider z-50 flex flex-col overflow-y-auto shadow-2xl"
     >
 
       {/* Header */}
-      <div className="flex items-center justify-between px-6 py-5 border-b border-stone-200 shrink-0">
+      <div className="flex items-center justify-between px-6 py-5 border-b border-divider shrink-0">
         <div>
-          <p className="text-xs uppercase tracking-[0.22em] text-stone-700 font-coptic font-semibold">
+          <p className="text-xs uppercase tracking-[0.22em] text-primary font-coptic font-semibold">
             Account
           </p>
           <h2
             id="edit-profile-heading"
-            className="font-cormorant text-2xl font-semibold text-stone-900 leading-tight"
+            className="font-cormorant text-2xl font-semibold text-primary leading-tight"
           >
             Edit Profile
           </h2>
@@ -108,14 +108,14 @@ function ProfileFormInner({ profile, user, updateProfile, onClose }) {
           type="button"
           onClick={onClose}
           aria-label="Close edit profile"
-          className="text-stone-700 hover:text-stone-900 transition-colors p-1"
+          className="text-primary hover:text-primary transition-colors p-1"
         >
           <IconX />
         </button>
       </div>
 
       {/* Avatar picker */}
-      <div className="flex flex-col items-center px-6 py-6 border-b border-stone-200 shrink-0">
+      <div className="flex flex-col items-center px-6 py-6 border-b border-divider shrink-0">
         <div className="relative group">
           <img
             src={avatarSrc}
@@ -142,7 +142,7 @@ function ProfileFormInner({ profile, user, updateProfile, onClose }) {
         <button
           type="button"
           onClick={() => fileInputRef.current?.click()}
-          className="mt-3 font-coptic text-xs uppercase tracking-widest text-stone-800 hover:text-amber-700 transition-colors font-semibold"
+          className="mt-3 font-coptic text-xs uppercase tracking-widest text-strong hover:text-amber-700 transition-colors font-semibold"
         >
           Change Photo
         </button>
@@ -161,7 +161,7 @@ function ProfileFormInner({ profile, user, updateProfile, onClose }) {
           <InputLabel htmlFor="profile-username">Username</InputLabel>
           <p
             id="profile-username"
-            className="px-3 py-2.5 text-base text-stone-800 bg-stone-50 border border-stone-300"
+            className="px-3 py-2.5 text-base text-strong bg-ivory border border-divider"
           >
             @{user?.username}
           </p>
@@ -170,13 +170,13 @@ function ProfileFormInner({ profile, user, updateProfile, onClose }) {
           <InputLabel htmlFor="profile-email">Email</InputLabel>
           <p
             id="profile-email"
-            className="px-3 py-2.5 text-base text-stone-800 bg-stone-50 border border-stone-300"
+            className="px-3 py-2.5 text-base text-strong bg-ivory border border-divider"
           >
             {user?.email || "—"}
           </p>
         </div>
 
-        <div className="h-px bg-stone-200" aria-hidden="true" />
+        <div className="h-px bg-divider" aria-hidden="true" />
 
         {/* Editable */}
         {[
@@ -196,7 +196,7 @@ function ProfileFormInner({ profile, user, updateProfile, onClose }) {
                 value={fields[key]}
                 onChange={(e) => setFields((f) => ({ ...f, [key]: e.target.value }))}
                 placeholder={placeholder}
-                className="bg-ivory border border-stone-300 focus:border-amber-500 focus:outline-none px-3 py-2.5 text-base text-stone-900 placeholder:text-stone-500 transition-colors"
+                className="bg-ivory border border-divider focus:border-amber-500 focus:outline-none px-3 py-2.5 text-base text-primary placeholder:text-secondary transition-colors"
               />
             </div>
           );

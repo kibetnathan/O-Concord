@@ -14,7 +14,7 @@ function getInitials(name = '') {
   return name.split(' ').slice(0, 2).map((n) => n[0]).join('').toUpperCase();
 }
 const AVATAR_COLORS = [
-  'bg-amber-600', 'bg-stone-500', 'bg-amber-700',
+  'bg-amber-600', 'bg-ivory0', 'bg-amber-700',
   'bg-yellow-600', 'bg-stone-600', 'bg-amber-500',
 ];
 function avatarBg(id) {
@@ -134,20 +134,20 @@ function GroupOption({ group, typeKey, selectedKey, onSelect, alreadyHasRoom }) 
       disabled={alreadyHasRoom}
       className={`w-full text-left px-4 py-3 border transition-colors ${
         alreadyHasRoom
-          ? 'border-stone-100 bg-stone-50 opacity-60 cursor-not-allowed'
+          ? 'border-divider bg-ivory opacity-60 cursor-not-allowed'
           : isSelected
             ? 'border-amber-500 bg-amber-100'
-            : 'border-stone-200 hover:border-stone-300 bg-ivory'
+            : 'border-divider hover:border-divider bg-ivory'
       }`}
     >
       <div className="flex items-center justify-between gap-2">
-        <p className="font-cormorant text-base font-semibold text-stone-900 leading-tight truncate">{group.name}</p>
+        <p className="font-cormorant text-base font-semibold text-strong leading-tight truncate">{group.name}</p>
         {alreadyHasRoom && (
-          <span className="font-coptic text-xs uppercase tracking-widest text-stone-600 shrink-0">Room exists</span>
+          <span className="font-coptic text-xs uppercase tracking-widest text-secondary shrink-0">Room exists</span>
         )}
       </div>
       {group.description && (
-        <p className="text-sm text-stone-700 mt-0.5 truncate">{group.description}</p>
+        <p className="text-sm text-primary mt-0.5 truncate">{group.description}</p>
       )}
     </button>
   );
@@ -180,20 +180,20 @@ function CreateRoomModal({ user, existingRoomIds, onClose, onConfirm, loading, e
   return (
     // Bottom sheet on mobile, centred modal on desktop
     <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/60 backdrop-blur-sm">
-      <div className="relative bg-porcelain border border-stone-200 shadow-2xl w-full sm:max-w-md sm:mx-4 flex flex-col max-h-[88vh] sm:max-h-[85vh] rounded-t-2xl sm:rounded-none">
+      <div className="relative bg-porcelain border border-divider shadow-2xl w-full sm:max-w-md sm:mx-4 flex flex-col max-h-[88vh] sm:max-h-[85vh] rounded-t-2xl sm:rounded-none">
 
         {/* Drag handle -- mobile only */}
-        <div className="absolute top-2.5 left-1/2 -translate-x-1/2 w-8 h-1 bg-stone-300 rounded-full sm:hidden" />
+        <div className="absolute top-2.5 left-1/2 -translate-x-1/2 w-8 h-1 bg-divider rounded-full sm:hidden" />
 
-        <div className="flex items-center justify-between px-6 pt-7 pb-5 sm:pt-5 border-b border-stone-200 shrink-0">
+        <div className="flex items-center justify-between px-6 pt-7 pb-5 sm:pt-5 border-b border-divider shrink-0">
           <div>
-            <p className="text-xs uppercase tracking-[0.2em] text-stone-500 mb-0.5">New Chat Room</p>
-            <h2 className="font-cormorant text-2xl font-semibold text-stone-900">Link a Group</h2>
+            <p className="text-xs uppercase tracking-[0.2em] text-secondary mb-0.5">New Chat Room</p>
+            <h2 className="font-cormorant text-2xl font-semibold text-strong">Link a Group</h2>
             {!unrestricted && (
-              <p className="text-sm text-stone-600 mt-1">Showing groups you are a member of.</p>
+              <p className="text-sm text-secondary mt-1">Showing groups you are a member of.</p>
             )}
           </div>
-          <button onClick={onClose} className="text-stone-500 hover:text-stone-700 transition-colors">
+          <button onClick={onClose} className="text-secondary hover:text-primary transition-colors">
             <IconX />
           </button>
         </div>
@@ -210,8 +210,8 @@ function CreateRoomModal({ user, existingRoomIds, onClose, onConfirm, loading, e
 
           {totalVisible === 0 && (
             <div className="py-8 text-center space-y-1">
-              <p className="font-cormorant text-lg text-stone-600">No groups available</p>
-              <p className="font-coptic text-xs uppercase tracking-widest text-stone-600">
+              <p className="font-cormorant text-lg text-primary">No groups available</p>
+              <p className="font-coptic text-xs uppercase tracking-widest text-primary">
                 {unrestricted ? 'No groups have been created yet.' : 'You are not a member of any group yet.'}
               </p>
             </div>
@@ -222,7 +222,7 @@ function CreateRoomModal({ user, existingRoomIds, onClose, onConfirm, loading, e
             if (list.length === 0) return null;
             return (
               <div key={type}>
-                <p className="font-coptic text-xs uppercase tracking-[0.18em] text-stone-600 mb-2">{label}</p>
+                <p className="font-coptic text-xs uppercase tracking-[0.18em] text-strong font-semibold mb-2">{label}</p>
                 <div className="space-y-1.5">
                   {list.map((group) => (
                     <GroupOption
@@ -240,17 +240,17 @@ function CreateRoomModal({ user, existingRoomIds, onClose, onConfirm, loading, e
           })}
         </div>
 
-        <div className="px-6 py-4 border-t border-stone-200 flex items-center justify-end gap-3 shrink-0">
+        <div className="px-6 py-4 border-t border-divider flex items-center justify-end gap-3 shrink-0">
           <button
             onClick={onClose}
-            className="font-coptic text-xs uppercase tracking-widest text-stone-600 hover:text-stone-800 px-4 py-2.5 transition-colors"
+            className="font-coptic text-xs uppercase tracking-widest text-secondary hover:text-strong px-4 py-2.5 transition-colors"
           >
             Cancel
           </button>
           <button
             onClick={() => { if (selectedGroup && selectedType) onConfirm(selectedGroup, selectedType); }}
             disabled={!selectedKey || loading}
-            className="flex items-center gap-2 bg-amber-600 hover:bg-amber-700 disabled:bg-stone-100 disabled:text-stone-400 text-white font-coptic text-xs uppercase tracking-widest px-5 py-2.5 transition-colors"
+            className="flex items-center gap-2 bg-amber-600 hover:bg-amber-700 disabled:bg-ivory disabled:text-secondary text-white font-coptic text-xs uppercase tracking-widest px-5 py-2.5 transition-colors"
           >
             {loading ? 'Creating...' : 'Create Room'}
           </button>
@@ -265,14 +265,14 @@ function CreateRoomModal({ user, existingRoomIds, onClose, onConfirm, loading, e
 function RoomListPanel({ filtered, roomsLoading, activeRoomId, messages, search, setSearch, isPrivileged, onSelectRoom, onOpenCreate }) {
   return (
     <div className="flex flex-col h-full bg-ivory">
-      <div className="px-5 py-5 border-b border-stone-200 shrink-0">
-        <p className="text-sm uppercase tracking-[0.25em] text-stone-600 mb-1">Messaging</p>
+      <div className="px-5 py-5 border-b border-divider shrink-0">
+        <p className="text-sm uppercase tracking-[0.25em] text-secondary mb-1">Messaging</p>
         <div className="flex items-center justify-between">
-          <h2 className="font-cormorant text-2xl font-semibold text-stone-900 leading-tight">Group Chats</h2>
+          <h2 className="font-cormorant text-2xl font-semibold text-strong leading-tight">Group Chats</h2>
           {isPrivileged && (
             <button
               onClick={onOpenCreate}
-              className="flex items-center gap-1 text-stone-700 hover:text-amber-600 transition-colors"
+              className="flex items-center gap-1 text-primary hover:text-amber-600 transition-colors"
             >
               <IconPlus />
               <span className="font-coptic text-xs uppercase tracking-widest">New</span>
@@ -282,32 +282,32 @@ function RoomListPanel({ filtered, roomsLoading, activeRoomId, messages, search,
         <div className="w-6 h-0.5 bg-amber-600 mt-2" />
       </div>
 
-      <div className="px-3 py-3 border-b border-stone-200 shrink-0">
+      <div className="px-3 py-3 border-b border-divider shrink-0">
         <div className="relative">
-          <span className="absolute left-3 top-1/2 -translate-y-1/2 text-stone-700"><IconSearch /></span>
+          <span className="absolute left-3 top-1/2 -translate-y-1/2 text-primary"><IconSearch /></span>
           <input
             type="text"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search rooms..."
-            className="w-full bg-stone-50 border border-stone-300 focus:border-amber-500 focus:outline-none pl-9 pr-3 py-2.5 text-base text-stone-800 placeholder:text-stone-500 transition-colors"
+            className="w-full bg-ivory border border-divider focus:border-amber-500 focus:outline-none pl-9 pr-3 py-2.5 text-base text-strong placeholder:text-secondary transition-colors"
           />
         </div>
       </div>
 
-      <div className="px-5 py-3 border-b border-stone-200 shrink-0">
-        <p className="font-cormorant text-xl font-light text-stone-900">{filtered.length}</p>
-        <p className="font-coptic text-xs uppercase tracking-widest text-stone-700">Rooms</p>
+      <div className="px-5 py-3 border-b border-divider shrink-0">
+        <p className="font-cormorant text-xl font-light text-strong">{filtered.length}</p>
+        <p className="font-coptic text-xs uppercase tracking-widest text-primary">Rooms</p>
       </div>
 
       <div className="px-4 pt-4 pb-2 shrink-0">
-        <p className="font-coptic text-xs uppercase tracking-[0.2em] text-stone-700">Chats</p>
+        <p className="font-coptic text-xs uppercase tracking-[0.2em] text-primary">Chats</p>
       </div>
 
       <div className="flex-1 overflow-y-auto">
         {roomsLoading && (
           <div className="flex justify-center py-10">
-            <span className="font-coptic text-xs uppercase tracking-widest text-stone-700 animate-pulse">Loading...</span>
+            <span className="font-coptic text-xs uppercase tracking-widest text-primary animate-pulse">Loading...</span>
           </div>
         )}
         {!roomsLoading && filtered.map((room) => {
@@ -317,33 +317,33 @@ function RoomListPanel({ filtered, roomsLoading, activeRoomId, messages, search,
             <button
               key={room.id}
               onClick={() => onSelectRoom(room.id)}
-              className={`w-full text-left px-4 py-3.5 border-b border-stone-100 transition-all group ${
+              className={`w-full text-left px-4 py-3.5 border-b border-divider transition-all group ${
                 isSelected
                   ? 'bg-amber-100 border-r-4 border-r-amber-600'
                   : 'border-r-4 border-r-transparent hover:bg-amber-50'
               }`}
             >
               <div className="flex items-center gap-2 mb-0.5">
-                <span className={`shrink-0 ${isSelected ? 'text-amber-600' : 'text-stone-700 group-hover:text-stone-500'}`}>
+                <span className={`shrink-0 ${isSelected ? 'text-amber-600' : 'text-primary group-hover:text-secondary'}`}>
                   <IconHash />
                 </span>
-                <span className={`font-cormorant text-lg font-semibold truncate flex-1 leading-tight ${isSelected ? 'text-stone-900' : 'text-stone-700 group-hover:text-stone-900'}`}>
+                <span className={`font-cormorant text-lg font-semibold truncate flex-1 leading-tight ${isSelected ? 'text-strong' : 'text-primary group-hover:text-strong'}`}>
                   {room.name}
                 </span>
                 {room.sourceType && (
-                  <span className="font-coptic text-xs uppercase tracking-widest text-stone-700 shrink-0">
+                  <span className="font-coptic text-xs uppercase tracking-widest text-primary shrink-0">
                     {ROOM_TYPES[room.sourceType]?.label ?? room.sourceType}
                   </span>
                 )}
               </div>
               {room.description && (
-                <p className={`text-sm truncate pl-4 leading-relaxed ${isSelected ? 'text-stone-600' : 'text-stone-700'}`}>
+                <p className={`text-sm truncate pl-4 leading-relaxed ${isSelected ? 'text-primary' : 'text-primary'}`}>
                   {room.description}
                 </p>
               )}
               {lastMsg && (
-                <p className="text-sm truncate pl-4 mt-0.5 leading-relaxed text-stone-500">
-                  <span className="text-stone-600">{lastMsg.displayName?.split(' ')[0]}: </span>
+                <p className="text-sm truncate pl-4 mt-0.5 leading-relaxed text-primary">
+                  <span className="text-primary font-semibold">{lastMsg.displayName?.split(' ')[0]}: </span>
                   {lastMsg.text}
                 </p>
               )}
@@ -352,7 +352,7 @@ function RoomListPanel({ filtered, roomsLoading, activeRoomId, messages, search,
         })}
         {!roomsLoading && filtered.length === 0 && (
           <div className="flex flex-col items-center py-10 gap-2">
-            <p className="font-coptic text-sm uppercase tracking-widest text-stone-700">
+            <p className="font-coptic text-sm uppercase tracking-widest text-primary">
               {search ? 'No rooms found' : 'No rooms available'}
             </p>
           </div>
@@ -384,10 +384,10 @@ function MessageRow({ message, prevSameUser, onReact, currentUserId }) {
       <div className={`flex flex-col ${isOwn ? 'items-end' : 'items-start'} max-w-[80%] sm:max-w-[72%]`}>
         {!prevSameUser && (
           <div className={`flex items-baseline gap-2 mb-1 ${isOwn ? 'flex-row-reverse' : ''}`}>
-            <span className="font-cormorant text-base font-semibold text-stone-900 leading-none">
+            <span className="font-cormorant text-base font-semibold text-strong leading-none">
               {isOwn ? 'You' : (message.displayName ?? 'Member')}
             </span>
-            <span className="font-coptic text-xs uppercase tracking-widest text-stone-500">
+            <span className="font-coptic text-xs uppercase tracking-widest text-secondary">
               {formatTime(message.timestamp)}
             </span>
           </div>
@@ -396,7 +396,7 @@ function MessageRow({ message, prevSameUser, onReact, currentUserId }) {
         <div className={`px-4 py-3 text-base leading-relaxed ${
           isOwn
             ? 'bg-amber-500 text-white shadow-sm shadow-amber-200'
-            : 'bg-ivory border border-stone-200 text-stone-800 shadow-sm'
+            : 'bg-ivory border border-divider text-strong shadow-sm'
         }`}>
           {message.text}
         </div>
@@ -411,11 +411,11 @@ function MessageRow({ message, prevSameUser, onReact, currentUserId }) {
                   key={r.emoji}
                   onClick={() => onReact(message.id, r.emoji)}
                   className={`flex items-center gap-1.5 border px-2.5 py-1 transition-colors shadow-sm ${
-                    hasReacted ? 'bg-amber-100 border-amber-400' : 'bg-ivory border-stone-200 hover:border-amber-400 hover:bg-amber-50'
+                    hasReacted ? 'bg-amber-100 border-amber-400' : 'bg-ivory border-divider hover:border-amber-400 hover:bg-amber-50'
                   }`}
                 >
                   <span className="text-sm">{display}</span>
-                  <span className="font-coptic text-xs text-stone-600">{r.users?.length ?? 0}</span>
+                  <span className="font-coptic text-xs text-primary">{r.users?.length ?? 0}</span>
                 </button>
               );
             })}
@@ -428,12 +428,12 @@ function MessageRow({ message, prevSameUser, onReact, currentUserId }) {
         <div className="relative">
           <button
             onClick={() => setShowPicker((v) => !v)}
-            className="p-2 bg-ivory border border-stone-200 text-stone-500 hover:text-amber-600 hover:border-amber-400 transition-colors shadow-sm"
+            className="p-2 bg-ivory border border-divider text-primary hover:text-amber-600 hover:border-amber-400 transition-colors shadow-sm"
           >
             <IconSmile />
           </button>
           {showPicker && (
-            <div className={`absolute top-0 ${isOwn ? 'right-full mr-1' : 'left-full ml-1'} flex gap-1.5 bg-ivory border border-stone-200 px-2.5 py-2 z-20 shadow-md`}>
+            <div className={`absolute top-0 ${isOwn ? 'right-full mr-1' : 'left-full ml-1'} flex gap-1.5 bg-ivory border border-divider px-2.5 py-2 z-20 shadow-md`}>
               {QUICK_REACTIONS.map((key) => (
                 <button
                   key={key}
@@ -454,7 +454,7 @@ function MessageRow({ message, prevSameUser, onReact, currentUserId }) {
           <button
             key={key}
             onClick={() => { onReact(message.id, key); setShowPicker(false); }}
-            className="text-base p-1.5 bg-ivory border border-stone-100 rounded-full shadow-sm"
+            className="text-base p-1.5 bg-ivory border border-divider rounded-full shadow-sm"
           >
             {REACTION_DISPLAY[key]}
           </button>
@@ -662,37 +662,37 @@ function ThreadsPage() {
         `}>
 
           {/* Tab bar -- desktop only */}
-          <ul className="hidden md:flex flex-row border-b border-stone-200 px-6">
+          <ul className="hidden md:flex flex-row border-b border-divider px-6">
             {[{ to: '/feed', label: 'Top Posts' }, { to: '/threads', label: 'My Groups' }].map(({ to, label }) => (
               <NavLink key={to} to={to} className={({ isActive }) =>
-                `font-cormorant text-xl px-5 py-4 border-b-2 transition-colors hover:cursor-pointer ${isActive ? 'text-stone-800 border-amber-500' : 'text-stone-400 border-transparent hover:text-stone-700'}`
+                `font-cormorant text-xl px-5 py-4 border-b-2 transition-colors hover:cursor-pointer ${isActive ? 'text-strong border-amber-500' : 'text-primary border-transparent hover:text-amber-600'}`
               }>{label}</NavLink>
             ))}
           </ul>
 
           {/* Chat header */}
-          <div className="flex items-center gap-3 px-4 md:px-6 py-4 md:py-5 border-b border-stone-200 bg-porcelain shrink-0">
+          <div className="flex items-center gap-3 px-4 md:px-6 py-4 md:py-5 border-b border-divider bg-porcelain shrink-0">
             {/* Back to rooms -- mobile only */}
             <button
               onClick={() => setMobileView('rooms')}
-              className="md:hidden text-stone-500 active:text-stone-700 transition-colors p-1 -ml-1 shrink-0"
+              className="md:hidden text-primary hover:text-amber-600 transition-colors p-1 -ml-1 shrink-0"
             >
               <IconChevronLeft />
             </button>
             <div className="flex-1 min-w-0">
-              <p className="text-xs uppercase tracking-[0.2em] text-stone-500 mb-0.5">Fellowship Chat</p>
-              <h3 className="font-cormorant text-2xl md:text-3xl font-semibold text-stone-900 leading-tight flex items-center gap-2 truncate">
+              <p className="text-xs uppercase tracking-[0.2em] text-secondary mb-0.5">Fellowship Chat</p>
+              <h3 className="font-cormorant text-2xl md:text-3xl font-semibold text-strong leading-tight flex items-center gap-2 truncate">
                 <span className="text-amber-600 shrink-0"><IconHash /></span>
                 <span className="truncate">{roomsLoading ? '...' : (activeRoom?.name ?? 'Select a room')}</span>
               </h3>
               {activeRoom?.description && (
-                <p className="text-sm text-stone-700 mt-0.5 md:mt-1 border-l-2 border-amber-500/50 pl-2.5 truncate leading-relaxed">
+                <p className="text-sm text-primary mt-0.5 md:mt-1 border-l-2 border-amber-500/50 pl-2.5 truncate leading-relaxed">
                   {activeRoom.description}
                 </p>
               )}
             </div>
             {activeRoom?.createdBy && (
-              <p className="hidden sm:block text-xs font-coptic uppercase tracking-widest text-stone-500 shrink-0">
+              <p className="hidden sm:block text-xs font-coptic uppercase tracking-widest text-secondary shrink-0">
                 Created by {activeRoom.createdBy.displayName}
               </p>
             )}
@@ -703,26 +703,26 @@ function ThreadsPage() {
           <div className="flex-1 overflow-y-auto px-4 md:px-6 py-5 bg-ivory pb-6 md:pb-5">
             {messagesLoading && (
               <div className="flex justify-center py-10">
-                <span className="font-coptic text-sm uppercase tracking-widest text-stone-500 animate-pulse">Loading messages...</span>
+                <span className="font-coptic text-sm uppercase tracking-widest text-primary animate-pulse">Loading messages...</span>
               </div>
             )}
             {!messagesLoading && activeRoomId === null && (
               <div className="flex flex-col items-center py-20 gap-3 text-center">
-                <p className="font-cormorant text-xl text-stone-500">Select a room to begin</p>
+                <p className="font-cormorant text-xl text-primary">Select a room to begin</p>
               </div>
             )}
             {!messagesLoading && activeRoomId !== null && messages.length === 0 && (
               <div className="flex flex-col items-center py-16 gap-2 text-center">
-                <p className="font-cormorant text-xl text-stone-500">Be the first to speak in this room</p>
-                <p className="text-sm text-stone-600 font-coptic uppercase tracking-widest">No messages yet</p>
+                <p className="font-cormorant text-xl text-primary">Be the first to speak in this room</p>
+                <p className="text-sm text-primary font-coptic uppercase tracking-widest">No messages yet</p>
               </div>
             )}
             {!messagesLoading && messages.length > 0 && (
               <>
                 <div className="flex items-center gap-3 mb-5">
-                  <div className="flex-1 h-px bg-stone-300" />
-                  <span className="font-coptic text-xs uppercase tracking-widest text-stone-500 shrink-0">Today</span>
-                  <div className="flex-1 h-px bg-stone-300" />
+                  <div className="flex-1 h-px bg-divider" />
+                  <span className="font-coptic text-xs uppercase tracking-widest text-secondary shrink-0">Today</span>
+                  <div className="flex-1 h-px bg-divider" />
                 </div>
                 {messages.map((msg, i) => (
                   <MessageRow
@@ -739,8 +739,8 @@ function ThreadsPage() {
           </div>
 
           {/* Input -- sits above the Sidebar floating nav on mobile */}
-          <div className="border-t border-stone-200 px-4 md:px-6 py-3 md:py-4 shrink-0 bg-porcelain mb-[4.5rem] md:mb-0">
-            <div className="flex items-end gap-2 md:gap-3 bg-ivory border border-stone-300 focus-within:border-amber-500 transition-colors px-3 md:px-4 py-3 md:py-3.5">
+          <div className="border-t border-divider px-4 md:px-6 py-3 md:py-4 shrink-0 bg-porcelain mb-[4.5rem] md:mb-0">
+            <div className="flex items-end gap-2 md:gap-3 bg-ivory border border-divider focus-within:border-amber-500 transition-colors px-3 md:px-4 py-3 md:py-3.5">
               <textarea
                 ref={inputRef}
                 value={input}
@@ -749,25 +749,25 @@ function ThreadsPage() {
                 placeholder={activeRoom ? `Message #${activeRoom.name}...` : 'Select a room...'}
                 disabled={activeRoomId === null}
                 rows={1}
-                className="flex-1 resize-none text-base text-stone-800 placeholder:text-stone-500 bg-transparent focus:outline-none leading-relaxed max-h-28 disabled:opacity-40"
+                className="flex-1 resize-none text-base text-strong placeholder:text-secondary bg-transparent focus:outline-none leading-relaxed max-h-28 disabled:opacity-40"
               />
               <button
                 onClick={handleSend}
                 disabled={!input.trim() || activeRoomId === null}
-                className="shrink-0 flex items-center gap-1.5 bg-amber-600 hover:bg-amber-700 active:bg-amber-800 disabled:bg-stone-100 disabled:text-stone-400 text-white font-coptic text-xs uppercase tracking-widest px-3 md:px-4 py-2.5 transition-colors"
+                className="shrink-0 flex items-center gap-1.5 bg-amber-600 hover:bg-amber-700 active:bg-amber-800 disabled:bg-ivory disabled:text-secondary text-white font-coptic text-xs uppercase tracking-widest px-3 md:px-4 py-2.5 transition-colors"
               >
                 <IconSend />
                 <span className="hidden sm:inline">Send</span>
               </button>
             </div>
-            <p className="hidden md:block font-coptic text-xs uppercase tracking-widest text-stone-500 mt-2">
+            <p className="hidden md:block font-coptic text-xs uppercase tracking-widest text-secondary mt-2">
               Enter to send · Shift + Enter for new line
             </p>
           </div>
         </div>
 
         {/* ── DESKTOP room list panel (right aside, hidden on mobile) ── */}
-        <aside className="hidden md:flex flex-col w-64 shrink-0 border-l border-stone-200 h-full overflow-hidden">
+        <aside className="hidden md:flex flex-col w-64 shrink-0 border-l border-divider h-full overflow-hidden">
           <RoomListPanel
             filtered={filtered}
             roomsLoading={roomsLoading}

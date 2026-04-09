@@ -63,15 +63,15 @@ const IconCheck = () => (
 function SectionHeading({ children }) {
   return (
     <div className="flex items-center gap-3 mb-5">
-      <h2 className="font-cormorant text-2xl font-semibold text-stone-800 shrink-0">{children}</h2>
-      <div className="flex-1 h-px bg-stone-200" />
+      <h2 className="font-cormorant text-2xl font-semibold text-strong shrink-0">{children}</h2>
+      <div className="flex-1 h-px bg-divider" />
     </div>
   );
 }
 
 function InputLabel({ children }) {
   return (
-    <label className="font-coptic text-xs uppercase tracking-widest text-stone-700">{children}</label>
+    <label className="font-coptic text-xs uppercase tracking-widest text-primary">{children}</label>
   );
 }
 
@@ -79,10 +79,10 @@ function DetailRow({ icon, label, value }) {
   if (!value) return null;
   return (
     <div className="flex items-start gap-3">
-      <span className="text-stone-700 mt-0.5">{icon}</span>
+      <span className="text-primary mt-0.5">{icon}</span>
       <div className="min-w-0">
-        <p className="font-coptic text-xs uppercase tracking-widest text-stone-700 leading-none mb-0.5">{label}</p>
-        <p className="text-sm text-stone-700 truncate">{value}</p>
+        <p className="font-coptic text-xs uppercase tracking-widest text-primary leading-none mb-0.5">{label}</p>
+        <p className="text-sm text-primary truncate">{value}</p>
       </div>
     </div>
   );
@@ -106,7 +106,7 @@ function UserCard({ isSelected, onSelect, user, allProfiles }) {
         isSelected ? "border-amber-400 shadow-sm" : "border-transparent"
       }`}
     >
-      <span className="font-cormorant text-2xl font-light text-stone-600 leading-none w-6 shrink-0 text-right">
+      <span className="font-cormorant text-2xl font-light text-secondary leading-none w-6 shrink-0 text-right">
         {user.id}
       </span>
       <img
@@ -115,12 +115,12 @@ function UserCard({ isSelected, onSelect, user, allProfiles }) {
         className="w-12 h-12 rounded-full object-cover ring-2 ring-amber-500/30 shrink-0"
       />
       <div className="flex-1 min-w-0">
-        <p className="font-cormorant text-lg font-semibold text-stone-800 leading-tight truncate">
+        <p className="font-cormorant text-lg font-semibold text-strong leading-tight truncate">
           {user.first_name && user.last_name
             ? `${user.first_name} ${user.last_name}`
             : user.username}
         </p>
-        <p className="font-coptic text-xs uppercase tracking-widest text-stone-700 truncate">
+        <p className="font-coptic text-xs uppercase tracking-widest text-primary truncate">
           @{user.username}
         </p>
       </div>
@@ -146,21 +146,21 @@ function UserDetail({ user, allProfiles, onClose, onEdit, onDelete }) {
 
       {/* Action buttons */}
       <div className="relative z-10 flex items-center justify-end gap-0.5">
-        <button onClick={onEdit} title="Edit" className="p-1.5 text-stone-700 hover:text-amber-600 transition-colors">
+        <button onClick={onEdit} title="Edit" className="p-1.5 text-primary hover:text-amber-600 transition-colors">
           <IconEdit />
         </button>
         {!confirmDelete ? (
-          <button onClick={() => setConfirmDelete(true)} title="Delete" className="p-1.5 text-stone-700 hover:text-red-700 transition-colors">
+          <button onClick={() => setConfirmDelete(true)} title="Delete" className="p-1.5 text-primary hover:text-red-700 transition-colors">
             <IconTrash />
           </button>
         ) : (
           <div className="flex items-center gap-1 bg-red-50 border border-red-200 px-2 py-1 ml-1">
             <span className="font-coptic text-xs text-red-700 uppercase tracking-widest">Delete?</span>
             <button onClick={() => onDelete(user.id)} className="p-0.5 text-red-700 hover:text-red-700"><IconCheck /></button>
-            <button onClick={() => setConfirmDelete(false)} className="p-0.5 text-stone-700 hover:text-stone-600"><IconX /></button>
+            <button onClick={() => setConfirmDelete(false)} className="p-0.5 text-primary hover:text-secondary"><IconX /></button>
           </div>
         )}
-        <button onClick={onClose} className="p-1.5 text-stone-700 hover:text-stone-900 transition-colors ml-0.5">
+        <button onClick={onClose} className="p-1.5 text-primary hover:text-strong transition-colors ml-0.5">
           <IconX />
         </button>
       </div>
@@ -173,12 +173,12 @@ function UserDetail({ user, allProfiles, onClose, onEdit, onDelete }) {
           className="w-20 h-20 rounded-full object-cover ring-2 ring-amber-500/30"
         />
         <div className="text-center">
-          <h3 className="font-cormorant text-2xl font-semibold text-stone-900 leading-tight">
+          <h3 className="font-cormorant text-2xl font-semibold text-strong leading-tight">
             {user.first_name && user.last_name
               ? `${user.first_name} ${user.last_name}`
               : user.username}
           </h3>
-          <p className="font-coptic text-xs uppercase tracking-widest text-stone-700 mt-0.5">
+          <p className="font-coptic text-xs uppercase tracking-widest text-primary mt-0.5">
             @{user.username}
           </p>
         </div>
@@ -200,7 +200,7 @@ function UserDetail({ user, allProfiles, onClose, onEdit, onDelete }) {
       <div className="h-px bg-white/[0.07] relative z-10" />
 
       <div className="flex flex-col gap-3 relative z-10">
-        <p className="font-coptic text-xs uppercase tracking-widest text-stone-700">Contact</p>
+        <p className="font-coptic text-xs uppercase tracking-widest text-primary">Contact</p>
         <DetailRow icon={<IconMail />}  label="Email" value={user.email} />
         <DetailRow icon={<IconPhone />} label="Phone" value={userProfile?.phone_number} />
       </div>
@@ -208,7 +208,7 @@ function UserDetail({ user, allProfiles, onClose, onEdit, onDelete }) {
       <div className="h-px bg-white/[0.07] relative z-10" />
 
       <div className="flex flex-col gap-3 relative z-10">
-        <p className="font-coptic text-xs uppercase tracking-widest text-stone-700">Personal</p>
+        <p className="font-coptic text-xs uppercase tracking-widest text-primary">Personal</p>
         <DetailRow icon={<IconCalendar />} label="Date of Birth" value={formatDate(userProfile?.DoB)} />
         <DetailRow icon={<IconBuilding />} label="Campus"        value={userProfile?.campus} />
         <DetailRow icon={<IconBuilding />} label="School"        value={userProfile?.school} />
@@ -302,25 +302,25 @@ function EditUserForm({ user, allProfiles, onSuccess, onCancel }) {
         <div className="flex flex-col gap-1.5">
           <InputLabel>First Name</InputLabel>
           <input type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} placeholder="First name"
-            className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-700 transition-colors w-full" />
+            className="bg-ivory border border-divider focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-primary placeholder:text-primary transition-colors w-full" />
         </div>
         <div className="flex flex-col gap-1.5">
           <InputLabel>Last Name</InputLabel>
           <input type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} placeholder="Last name"
-            className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-700 transition-colors w-full" />
+            className="bg-ivory border border-divider focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-primary placeholder:text-primary transition-colors w-full" />
         </div>
       </div>
 
       <div className="flex flex-col gap-1.5">
         <InputLabel>Username *</InputLabel>
         <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="username" required
-          className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-700 transition-colors w-full" />
+          className="bg-ivory border border-divider focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-primary placeholder:text-primary transition-colors w-full" />
       </div>
 
       <div className="flex flex-col gap-1.5">
         <InputLabel>Email</InputLabel>
         <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="email@example.com"
-          className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-700 transition-colors w-full" />
+          className="bg-ivory border border-divider focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-primary placeholder:text-primary transition-colors w-full" />
       </div>
 
       <div className="flex flex-col gap-1.5">
@@ -337,60 +337,60 @@ function EditUserForm({ user, allProfiles, onSuccess, onCancel }) {
           </div>
         )}
         {/* Available groups list */}
-        <div className="border border-stone-200 divide-y divide-stone-100 max-h-36 overflow-y-auto">
+        <div className="border border-divider divide-y divide-divider max-h-36 overflow-y-auto">
           {allGroups.length > 0 ? allGroups.map((g) => {
             const name    = g.name ?? g; // handle {id, name} objects or plain strings
             const checked = selectedGroups.includes(name);
             return (
               <div key={name} onClick={() => toggleGroup(name)}
-                className={`flex items-center justify-between px-3 py-2 cursor-pointer transition-colors text-sm ${checked ? "bg-amber-50 text-amber-800" : "text-stone-700 hover:bg-stone-50"}`}>
+                className={`flex items-center justify-between px-3 py-2 cursor-pointer transition-colors text-sm ${checked ? "bg-amber-50 text-amber-800" : "text-primary hover:bg-ivory"}`}>
                 <span>{name}</span>
-                <div className={`w-4 h-4 border flex items-center justify-center shrink-0 transition-colors ${checked ? "bg-amber-500 border-amber-500" : "border-stone-300"}`}>
+                <div className={`w-4 h-4 border flex items-center justify-center shrink-0 transition-colors ${checked ? "bg-amber-500 border-amber-500" : "border-divider"}`}>
                   {checked && <svg className="w-2.5 h-2.5 text-white" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>}
                 </div>
               </div>
             );
           }) : (
-            <p className="text-xs text-stone-600 px-3 py-4 text-center italic">No groups available</p>
+            <p className="text-xs text-secondary px-3 py-4 text-center italic">No groups available</p>
           )}
         </div>
         {selectedGroups.length === 0 && (
-          <p className="text-xs text-stone-700 uppercase tracking-widest">No roles assigned</p>
+          <p className="text-xs text-primary uppercase tracking-widest">No roles assigned</p>
         )}
       </div>
 
       {/* Divider */}
-      <div className="h-px bg-stone-100" />
+      <div className="h-px bg-ivory" />
 
       {/* Profile fields */}
       <div className="flex flex-col gap-1.5">
         <InputLabel>Phone Number</InputLabel>
         <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="+254 700 000 000"
-          className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-700 transition-colors w-full" />
+          className="bg-ivory border border-divider focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-primary placeholder:text-primary transition-colors w-full" />
       </div>
 
       <div className="flex flex-col gap-1.5">
         <InputLabel>Date of Birth</InputLabel>
         <input type="date" value={dob} onChange={(e) => setDob(e.target.value)}
-          className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 transition-colors w-full" />
+          className="bg-ivory border border-divider focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-primary transition-colors w-full" />
       </div>
 
       <div className="flex flex-col gap-1.5">
         <InputLabel>Campus</InputLabel>
         <input type="text" value={campus} onChange={(e) => setCampus(e.target.value)} placeholder="Campus name"
-          className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-700 transition-colors w-full" />
+          className="bg-ivory border border-divider focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-primary placeholder:text-primary transition-colors w-full" />
       </div>
 
       <div className="flex flex-col gap-1.5">
         <InputLabel>School</InputLabel>
         <input type="text" value={school} onChange={(e) => setSchool(e.target.value)} placeholder="School / University"
-          className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-700 transition-colors w-full" />
+          className="bg-ivory border border-divider focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-primary placeholder:text-primary transition-colors w-full" />
       </div>
 
       <div className="flex flex-col gap-1.5">
         <InputLabel>Workplace</InputLabel>
         <input type="text" value={workplace} onChange={(e) => setWorkplace(e.target.value)} placeholder="Company / Organisation"
-          className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-700 transition-colors w-full" />
+          className="bg-ivory border border-divider focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-primary placeholder:text-primary transition-colors w-full" />
       </div>
 
       {error && <p className="text-xs uppercase tracking-widest text-red-700">{error}</p>}
@@ -401,7 +401,7 @@ function EditUserForm({ user, allProfiles, onSuccess, onCancel }) {
           {submitting ? <span className="animate-pulse">Saving…</span> : <><IconCheck /><span>Save Changes</span></>}
         </button>
         <button type="button" onClick={onCancel}
-          className="border border-stone-200 text-stone-700 hover:border-stone-400 font-coptic text-sm uppercase tracking-widest px-4 py-3 transition-colors">
+          className="border border-divider text-primary hover:border-gray-300 font-coptic text-sm uppercase tracking-widest px-4 py-3 transition-colors">
           Cancel
         </button>
       </div>
@@ -471,7 +471,7 @@ function UsersDashboard() {
 
       {/* ── Header ── */}
       <div className="mb-10">
-        <p className="text-xs uppercase tracking-[0.25em] text-stone-700 mb-1">Members</p>
+        <p className="text-xs uppercase tracking-[0.25em] text-primary mb-1">Members</p>
         <h1 className="font-cormorant text-4xl font-semibold text-black leading-tight">Congregants</h1>
         <div className="w-8 h-0.5 bg-amber-500 mt-3" />
       </div>
@@ -488,27 +488,27 @@ function UsersDashboard() {
         <div className="xl:col-span-2 flex flex-col gap-5">
 
           {/* Stats */}
-          <div className="flex items-center gap-6 pb-5 border-b border-stone-200 flex-wrap">
+          <div className="flex items-center gap-6 pb-5 border-b border-divider flex-wrap">
             <div>
-              <p className="font-cormorant text-3xl font-light text-stone-800">{allUsers.length}</p>
-              <p className="text-xs uppercase tracking-widest text-stone-700 font-coptic">Total Members</p>
+              <p className="font-cormorant text-3xl font-light text-strong">{allUsers.length}</p>
+              <p className="text-xs uppercase tracking-widest text-primary font-coptic">Total Members</p>
             </div>
-            <div className="w-px h-8 bg-stone-200" />
+            <div className="w-px h-8 bg-divider" />
             <div>
-              <p className="font-cormorant text-3xl font-light text-stone-800">{filtered.length}</p>
-              <p className="text-xs uppercase tracking-widest text-stone-700 font-coptic">Showing</p>
+              <p className="font-cormorant text-3xl font-light text-strong">{filtered.length}</p>
+              <p className="text-xs uppercase tracking-widest text-primary font-coptic">Showing</p>
             </div>
-            <div className="w-px h-8 bg-stone-200" />
+            <div className="w-px h-8 bg-divider" />
             <div>
-              <p className="font-cormorant text-3xl font-light text-stone-800">{allGroups.length}</p>
-              <p className="text-xs uppercase tracking-widest text-stone-700 font-coptic">Roles</p>
+              <p className="font-cormorant text-3xl font-light text-strong">{allGroups.length}</p>
+              <p className="text-xs uppercase tracking-widest text-primary font-coptic">Roles</p>
             </div>
           </div>
 
           {/* Search + group filter */}
           <div className="flex gap-3">
             <div className="relative flex-1">
-              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-stone-600">
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-secondary">
                 <IconSearch />
               </span>
               <input
@@ -516,13 +516,13 @@ function UsersDashboard() {
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="Search by name or username…"
-                className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none pl-9 pr-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-700 transition-colors w-full"
+                className="bg-ivory border border-divider focus:border-amber-400 focus:outline-none pl-9 pr-3 py-2.5 text-sm text-primary placeholder:text-primary transition-colors w-full"
               />
             </div>
             <select
               value={groupFilter}
               onChange={(e) => setGroupFilter(e.target.value)}
-              className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 transition-colors shrink-0"
+              className="bg-ivory border border-divider focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-primary transition-colors shrink-0"
             >
               <option value="all">All Roles</option>
               {allGroups.map((g) => (
@@ -533,7 +533,7 @@ function UsersDashboard() {
 
           {/* User list */}
           {filtered.length > 0 ? (
-            <div className="flex flex-col divide-y divide-stone-100 border border-stone-100 bg-ivory">
+            <div className="flex flex-col divide-y divide-divider border border-divider bg-ivory">
               {filtered.map((user) => (
                 <UserCard
                   key={user.id}
@@ -547,7 +547,7 @@ function UsersDashboard() {
           ) : (
             <div className="flex flex-col items-center py-20 gap-3">
               <div className="w-8 h-px bg-amber-500/40" />
-              <p className="text-xs uppercase tracking-[0.25em] text-stone-600">
+              <p className="text-xs uppercase tracking-[0.25em] text-secondary">
                 {search || groupFilter !== "all" ? "No members match your filters" : "No members yet"}
               </p>
               <div className="w-8 h-px bg-amber-500/40" />
@@ -578,8 +578,8 @@ function UsersDashboard() {
               )}
             </>
           ) : (
-            <div className="flex flex-col items-center justify-center h-48 border border-dashed border-stone-200 gap-3">
-              <p className="text-xs uppercase tracking-widest text-stone-600 font-coptic text-center">
+            <div className="flex flex-col items-center justify-center h-48 border border-dashed border-divider gap-3">
+              <p className="text-xs uppercase tracking-widest text-secondary font-coptic text-center">
                 Select a member<br />to view their details
               </p>
             </div>

@@ -95,7 +95,7 @@ function ComingSoon() {
           )`,
         }}
       >
-        <div className="relative bg-porcelain border border-stone-200 rounded-sm w-full max-w-xl shadow-2xl overflow-hidden">
+        <div className="relative bg-porcelain border border-divider rounded-sm w-full max-w-xl shadow-2xl overflow-hidden">
 
           {/* Top warning stripe */}
           <div
@@ -124,7 +124,7 @@ function ComingSoon() {
               Coming Soon
             </h1>
 
-            <p className="font-cormorant text-xs tracking-widest uppercase text-stone-500 text-center mb-5">
+            <p className="font-cormorant text-xs tracking-widest uppercase text-secondary text-center mb-5">
               Work In Progress
             </p>
 
@@ -134,14 +134,14 @@ function ComingSoon() {
               <div className="flex-1 h-px bg-amber-700/25" />
             </div>
 
-            <p className="font-coptic text-stone-400 leading-relaxed text-center text-sm mb-8">
+            <p className="font-coptic text-secondary leading-relaxed text-center text-sm mb-8">
               Our team is still building this feature. Check back soon — great things take time.
             </p>
 
             <div className="flex justify-center">
               <a
                 href="/feed"
-                className="inline-block font-coptic text-xs tracking-[0.4em] uppercase bg-amber-600 hover:bg-amber-500 text-stone-900 font-semibold px-8 py-3 transition-colors duration-200"
+                className="inline-block font-coptic text-xs tracking-[0.4em] uppercase bg-amber-600 hover:bg-amber-500 text-strong font-semibold px-8 py-3 transition-colors duration-200"
               >
                 Return to Feed
               </a>
@@ -157,7 +157,7 @@ function ComingSoon() {
           />
         </div>
 
-        <p className="font-coptic text-[10px] tracking-widest uppercase text-stone-400 mt-5 opacity-60">
+        <p className="font-coptic text-[10px] tracking-widest uppercase text-secondary mt-5 opacity-60">
           Mavuno Church — Open Church Management
         </p>
       </div>

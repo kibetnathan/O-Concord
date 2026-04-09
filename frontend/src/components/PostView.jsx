@@ -85,15 +85,15 @@ function CommentItem({ comment, currentUser, postAuthorId, onEdit, onDelete }) {
       />
       <div className="flex-1 min-w-0">
         <div className="flex items-baseline gap-2 flex-wrap">
-          <span className="font-coptic text-[0.6rem] uppercase tracking-widest text-stone-500">
+          <span className="font-coptic text-[0.6rem] uppercase tracking-widest text-black font-semibold">
             @{comment.author?.username}
           </span>
-          <span className="text-[0.6rem] text-stone-300">{timeAgo(comment.created_at)}</span>
+          <span className="text-[0.6rem] text-primary font-medium">{timeAgo(comment.created_at)}</span>
           {isAuthor && (
             <span className="text-[0.55rem] uppercase tracking-widest text-amber-500/70">you</span>
           )}
         </div>
-        <p className="text-sm text-stone-600 mt-1 leading-relaxed">{comment.text}</p>
+        <p className="text-sm text-primary mt-1 leading-relaxed">{comment.text}</p>
       </div>
 
       {/* Actions — visible on hover if user can modify */}
@@ -104,7 +104,7 @@ function CommentItem({ comment, currentUser, postAuthorId, onEdit, onDelete }) {
               {isAuthor && (
                 <button
                   onClick={() => onEdit(comment)}
-                  className="p-1 text-stone-400 hover:text-amber-500 transition-colors"
+                  className="p-1 text-secondary hover:text-amber-500 transition-colors"
                   title="Edit"
                 >
                   <IconEdit />
@@ -112,7 +112,7 @@ function CommentItem({ comment, currentUser, postAuthorId, onEdit, onDelete }) {
               )}
               <button
                 onClick={() => setConfirmDelete(true)}
-                className="p-1 text-stone-400 hover:text-red-400 transition-colors"
+                className="p-1 text-secondary hover:text-red-400 transition-colors"
                 title="Delete"
               >
                 <IconTrash />
@@ -129,7 +129,7 @@ function CommentItem({ comment, currentUser, postAuthorId, onEdit, onDelete }) {
               </button>
               <button
                 onClick={() => setConfirmDelete(false)}
-                className="p-0.5 text-stone-400 hover:text-stone-600"
+                className="p-0.5 text-secondary hover:text-secondary"
               >
                 <IconX />
               </button>
@@ -241,13 +241,13 @@ function PostView() {
 
   if (postLoading) return (
     <div className="min-h-screen bg-ivory flex items-center justify-center">
-      <p className="text-xs uppercase tracking-[0.25em] text-stone-400 animate-pulse">Loading…</p>
+      <p className="text-xs uppercase tracking-[0.25em] text-primary animate-pulse">Loading…</p>
     </div>
   );
 
   if (!post) return (
     <div className="min-h-screen bg-ivory flex flex-col items-center justify-center gap-4">
-      <p className="text-xs uppercase tracking-[0.25em] text-stone-400">Post not found</p>
+      <p className="text-xs uppercase tracking-[0.25em] text-primary">Post not found</p>
       <button onClick={() => navigate(-1)} className="font-coptic text-[0.6rem] uppercase tracking-widest text-amber-500 hover:text-amber-600">
         Go back
       </button>
@@ -261,7 +261,7 @@ function PostView() {
         {/* ── Back nav ── */}
         <button
           onClick={() => navigate(-1)}
-          className="flex items-center gap-2 font-coptic text-[0.6rem] uppercase tracking-widest text-stone-400 hover:text-stone-700 transition-colors mb-8"
+          className="flex items-center gap-2 font-coptic text-[0.6rem] uppercase tracking-widest text-primary hover:text-amber-600 transition-colors mb-8"
         >
           <IconBack /> Back
         </button>
@@ -278,12 +278,12 @@ function PostView() {
                 className="w-10 h-10 rounded-full object-cover ring-2 ring-amber-500/20"
               />
               <div>
-                <p className="font-cormorant text-base font-semibold text-stone-700 leading-tight">
+                <p className="font-cormorant text-base font-semibold text-primary leading-tight">
                   {post.author?.first_name && post.author?.last_name
                     ? `${post.author.first_name} ${post.author.last_name}`
                     : post.author?.username}
                 </p>
-                <p className="font-coptic text-[0.55rem] uppercase tracking-widest text-stone-400">
+                <p className="font-coptic text-[0.55rem] uppercase tracking-widest text-black">
                   @{post.author?.username} · {timeAgo(post.published_date)}
                 </p>
               </div>
@@ -295,7 +295,7 @@ function PostView() {
                 {isPostAuthor && (
                   <Link
                     to={`/feed/edit/${post.id}`}
-                    className="p-2 text-stone-400 hover:text-amber-500 transition-colors"
+                    className="p-2 text-secondary hover:text-amber-500 transition-colors"
                     title="Edit post"
                   >
                     <IconEdit />
@@ -304,7 +304,7 @@ function PostView() {
                 {!confirmDeletePost ? (
                   <button
                     onClick={() => setConfirmDeletePost(true)}
-                    className="p-2 text-stone-400 hover:text-red-400 transition-colors"
+                    className="p-2 text-secondary hover:text-red-400 transition-colors"
                     title="Delete post"
                   >
                     <IconTrash />
@@ -313,7 +313,7 @@ function PostView() {
                   <div className="flex items-center gap-1 bg-red-50 border border-red-200 px-2 py-1">
                     <span className="font-coptic text-[0.55rem] text-red-500 uppercase tracking-widest">Delete post?</span>
                     <button onClick={handleDeletePost} className="p-0.5 text-red-500 hover:text-red-700"><IconCheck /></button>
-                    <button onClick={() => setConfirmDeletePost(false)} className="p-0.5 text-stone-400 hover:text-stone-600"><IconX /></button>
+                    <button onClick={() => setConfirmDeletePost(false)} className="p-0.5 text-secondary hover:text-secondary"><IconX /></button>
                   </div>
                 )}
               </div>
@@ -335,13 +335,13 @@ function PostView() {
           )}
 
           {/* Content */}
-          <p className="text-sm text-stone-500 leading-relaxed mb-6">{post.text}</p>
+          <p className="text-sm text-primary leading-relaxed mb-6">{post.text}</p>
 
           {/* Tags */}
           {post.tags?.length > 0 && (
             <div className="flex flex-wrap gap-2 mb-6">
               {post.tags.map((tag, i) => (
-                <span key={`${tag}-${i}`} className="font-coptic text-[0.55rem] uppercase tracking-widest text-stone-400 bg-stone-100 px-2 py-1">
+                <span key={`${tag}-${i}`} className="font-coptic text-[0.55rem] uppercase tracking-widest text-primary bg-ivory px-2 py-1">
                   {tag}
                 </span>
               ))}
@@ -349,17 +349,17 @@ function PostView() {
           )}
 
           {/* Like + comment counts */}
-          <div className="flex items-center gap-5 pt-4 border-t border-stone-200">
+          <div className="flex items-center gap-5 pt-4 border-t border-divider">
             <button
               onClick={handleLike}
               className={`flex items-center gap-1.5 transition-colors ${
-                post.is_liked ? "text-amber-500" : "text-stone-400 hover:text-amber-500"
+                post.is_liked ? "text-amber-500" : "text-primary hover:text-amber-500"
               }`}
             >
               <IconHeart filled={post.is_liked} />
               <span className="text-xs tabular-nums">{post.like_count}</span>
             </button>
-            <div className="flex items-center gap-1.5 text-stone-400">
+            <div className="flex items-center gap-1.5 text-primary">
               <IconComment />
               <span className="text-xs tabular-nums">{comments.length}</span>
             </div>
@@ -369,8 +369,8 @@ function PostView() {
         {/* ── Comments ── */}
         <section>
           <div className="flex items-center gap-3 mb-6">
-            <h2 className="font-cormorant text-2xl font-semibold text-stone-800 shrink-0">Comments</h2>
-            <div className="flex-1 h-px bg-stone-200" />
+            <h2 className="font-cormorant text-2xl font-semibold text-strong shrink-0">Comments</h2>
+            <div className="flex-1 h-px bg-divider" />
           </div>
 
           {/* Add comment form */}
@@ -386,7 +386,7 @@ function PostView() {
                 onChange={(e) => setCommentText(e.target.value)}
                 placeholder="Write a comment…"
                 rows={2}
-                className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-300 transition-colors resize-none w-full"
+                className="bg-ivory border border-divider focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-primary placeholder:text-placeholder-primary transition-colors resize-none w-full"
               />
               <div className="flex justify-end">
                 <button
@@ -410,7 +410,7 @@ function PostView() {
                 value={editText}
                 onChange={(e) => setEditText(e.target.value)}
                 rows={3}
-                className="bg-ivory border border-amber-300 focus:border-amber-500 focus:outline-none px-3 py-2.5 text-sm text-stone-700 transition-colors resize-none w-full mb-2"
+                className="bg-ivory border border-amber-300 focus:border-amber-500 focus:outline-none px-3 py-2.5 text-sm text-primary transition-colors resize-none w-full mb-2"
               />
               <div className="flex gap-2">
                 <button
@@ -422,7 +422,7 @@ function PostView() {
                 </button>
                 <button
                   onClick={() => { setEditingComment(null); setEditText(""); }}
-                  className="border border-stone-200 text-stone-500 hover:border-stone-400 font-coptic text-[0.6rem] uppercase tracking-widest px-4 py-2 transition-colors flex items-center gap-1.5"
+                  className="border border-divider text-secondary hover:border-gray-300 font-coptic text-[0.6rem] uppercase tracking-widest px-4 py-2 transition-colors flex items-center gap-1.5"
                 >
                   <IconX /> Cancel
                 </button>
@@ -448,7 +448,7 @@ function PostView() {
             ) : (
               <div className="flex flex-col items-center py-12 gap-3">
                 <div className="w-8 h-px bg-amber-500/40" />
-                <p className="text-xs uppercase tracking-[0.25em] text-stone-300">
+                <p className="text-xs uppercase tracking-[0.25em] text-primary font-medium">
                   No comments yet — be the first
                 </p>
                 <div className="w-8 h-px bg-amber-500/40" />

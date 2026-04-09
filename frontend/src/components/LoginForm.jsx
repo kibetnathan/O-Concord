@@ -13,11 +13,11 @@ function LoginForm() {
   };
 
   if (user) return (
-    <div className="min-h-screen w-full bg-[#faf8f3] flex items-center justify-center">
+    <div className="min-h-screen w-full bg-ivory flex items-center justify-center">
       <div className="flex flex-col items-center gap-6 text-center">
         <div className="w-8 h-0.5 bg-amber-500" />
-        <p className="text-[0.6rem] uppercase tracking-[0.25em] text-stone-400 font-coptic">Welcome back</p>
-        <h2 className="font-cormorant text-4xl font-semibold text-stone-800">
+        <p className="text-[0.6rem] uppercase tracking-[0.25em] text-secondary font-coptic">Welcome back</p>
+        <h2 className="font-cormorant text-4xl font-semibold text-strong">
           {user?.username}
         </h2>
         <div className="w-8 h-0.5 bg-amber-500" />
@@ -32,7 +32,7 @@ function LoginForm() {
   );
 
   return (
-    <div className="min-h-screen w-full bg-[#faf8f3] flex items-stretch">
+    <div className="min-h-screen w-full bg-ivory flex items-stretch">
 
       {/* ── Left panel — stock image with overlay ── */}
       <div className="hidden lg:block relative w-[45%] shrink-0 overflow-hidden">
@@ -48,7 +48,7 @@ function LoginForm() {
           <p className="text-[0.6rem] uppercase tracking-[0.25em] text-amber-400 font-coptic mb-3">
             Open Church Management
           </p>
-          <h1 className="font-cormorant text-5xl font-semibold text-stone-100 leading-tight mb-4">
+          <h1 className="font-cormorant text-5xl font-semibold text-white leading-tight mb-4">
             Serving the<br />
             <span className="italic text-amber-400">community</span><br />
             together
@@ -63,10 +63,10 @@ function LoginForm() {
 
           {/* Header */}
           <div className="mb-8">
-            <p className="text-[0.6rem] uppercase tracking-[0.25em] text-stone-400 font-coptic mb-2">
+            <p className="text-[0.6rem] uppercase tracking-[0.25em] text-secondary font-coptic mb-2">
               Member Portal
             </p>
-            <h2 className="font-cormorant text-4xl font-semibold text-stone-800 leading-tight">
+            <h2 className="font-cormorant text-4xl font-semibold text-strong leading-tight">
               Welcome Back
             </h2>
             <div className="w-6 h-0.5 bg-amber-500 mt-3" />
@@ -76,7 +76,7 @@ function LoginForm() {
           <form onSubmit={handleSubmit} className="flex flex-col gap-4">
 
             <div className="flex flex-col gap-1.5">
-              <label className="font-coptic text-[0.6rem] uppercase tracking-widest text-stone-500">
+              <label className="font-coptic text-[0.6rem] uppercase tracking-widest text-secondary">
                 Email
               </label>
               <input
@@ -85,12 +85,12 @@ function LoginForm() {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your username"
                 required
-                className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-4 py-3 text-sm text-stone-700 placeholder:text-stone-300 transition-colors"
+                className="bg-ivory border border-divider focus:border-amber-400 focus:outline-none px-4 py-3 text-sm text-primary placeholder:text-placeholder-primary transition-colors"
               />
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <label className="font-coptic text-[0.6rem] uppercase tracking-widest text-stone-500">
+              <label className="font-coptic text-[0.6rem] uppercase tracking-widest text-secondary">
                 Password
               </label>
               <input
@@ -99,7 +99,7 @@ function LoginForm() {
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Enter your password"
                 required
-                className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-4 py-3 text-sm text-stone-700 placeholder:text-stone-300 transition-colors"
+                className="bg-ivory border border-divider focus:border-amber-400 focus:outline-none px-4 py-3 text-sm text-primary placeholder:text-placeholder-primary transition-colors"
               />
             </div>
 
@@ -124,14 +124,14 @@ function LoginForm() {
 
           {/* Footer link */}
           <div className="mt-6 flex items-center gap-3">
-            <div className="flex-1 h-px bg-stone-200" />
+            <div className="flex-1 h-px border-divider" />
             <Link
               to="/auth/signup"
-              className="font-coptic text-[0.6rem] uppercase tracking-widest text-stone-400 hover:text-amber-500 transition-colors shrink-0"
+              className="font-coptic text-[0.6rem] uppercase tracking-widest text-secondary hover:text-amber-500 transition-colors shrink-0"
             >
               Create an account
             </Link>
-            <div className="flex-1 h-px bg-stone-200" />
+            <div className="flex-1 h-px border-divider" />
           </div>
         </div>
       </div>

@@ -133,17 +133,17 @@ const IconCheck = () => (
 function SectionHeading({ children }) {
   return (
     <div className="flex items-center gap-3 mb-5">
-      <h2 className="font-cormorant text-2xl font-semibold text-stone-800 shrink-0">
+      <h2 className="font-cormorant text-2xl font-semibold text-strong shrink-0">
         {children}
       </h2>
-      <div className="flex-1 h-px bg-stone-200" />
+      <div className="flex-1 h-px bg-divider" />
     </div>
   );
 }
 
 function InputLabel({ children }) {
   return (
-    <label className="font-coptic text-xs uppercase tracking-widest text-stone-700">
+    <label className="font-coptic text-xs uppercase tracking-widest text-primary">
       {children}
     </label>
   );
@@ -153,7 +153,7 @@ function FormInput({ ...props }) {
   return (
     <input
       {...props}
-      className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-700 transition-colors w-full"
+      className="bg-ivory border border-divider focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-primary placeholder:text-primary transition-colors w-full"
     />
   );
 }
@@ -175,17 +175,17 @@ function FellowshipCard({
     <div
       onClick={() => onSelect(group)}
       className={`flex flex-col bg-ivory border transition-all duration-200 cursor-pointer hover:border-amber-300 hover:shadow-md ${
-        isSelected ? "border-amber-400 shadow-md" : "border-stone-100"
+        isSelected ? "border-amber-400 shadow-md" : "border-divider"
       }`}
     >
       {/* Card header */}
-      <div className="flex items-start justify-between p-5 border-b border-stone-100">
+      <div className="flex items-start justify-between p-5 border-b border-divider">
         <div>
-          <h3 className="font-cormorant text-xl font-semibold text-stone-800 leading-tight">
+          <h3 className="font-cormorant text-xl font-semibold text-strong leading-tight">
             {group.name}
           </h3>
           {group.description && (
-            <p className="text-xs text-stone-700 mt-1 line-clamp-1">
+            <p className="text-xs text-primary mt-1 line-clamp-1">
               {group.description}
             </p>
           )}
@@ -196,17 +196,17 @@ function FellowshipCard({
       </div>
 
       {/* Leader */}
-      <div className="px-5 py-3 flex items-center gap-3 border-b border-stone-100">
+      <div className="px-5 py-3 flex items-center gap-3 border-b border-divider">
         <img
           src={leaderProfile?.profile_pic_url || "/images/defaultavatar.jpg"}
           alt={leader?.username || "Leader"}
           className="w-7 h-7 rounded-full object-cover ring-1 ring-amber-400/30"
         />
         <div>
-          <p className="text-xs uppercase tracking-widest text-stone-700 font-coptic">
+          <p className="text-xs uppercase tracking-widest text-primary font-coptic">
             Leader
           </p>
-          <p className="text-xs text-stone-600 font-medium">
+          <p className="text-xs text-secondary font-medium">
             {leader
               ? leader.first_name && leader.last_name
                 ? `${leader.first_name} ${leader.last_name}`
@@ -233,12 +233,12 @@ function FellowshipCard({
           );
         })}
         {memberList.length > 6 && (
-          <span className="w-7 h-7 rounded-full bg-stone-100 border border-stone-200 flex items-center justify-center text-xs text-stone-700 font-medium -ml-1.5">
+          <span className="w-7 h-7 rounded-full bg-ivory border border-divider flex items-center justify-center text-xs text-primary font-medium -ml-1.5">
             +{memberList.length - 6}
           </span>
         )}
         {memberList.length === 0 && (
-          <p className="text-xs text-stone-600 italic">No members yet</p>
+          <p className="text-xs text-secondary italic">No members yet</p>
         )}
       </div>
     </div>
@@ -265,17 +265,17 @@ function FellowshipDetail({
       <div className="absolute -top-8 -right-8 w-32 h-32 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
       <div className="flex items-start justify-between relative z-10">
         <div>
-          <p className="text-sm uppercase tracking-[0.25em] text-stone-700 mb-1">
+          <p className="text-sm uppercase tracking-[0.25em] text-primary mb-1">
             Fellowship Group
           </p>
-          <h3 className="font-cormorant text-2xl font-semibold text-stone-900 leading-tight">
+          <h3 className="font-cormorant text-2xl font-semibold text-strong leading-tight">
             {group.name}
           </h3>
         </div>
         <div className="flex items-center gap-0.5 shrink-0 ml-2">
           <button
             onClick={onEdit}
-            className="p-1.5 text-stone-700 hover:text-amber-400 transition-colors"
+            className="p-1.5 text-primary hover:text-amber-400 transition-colors"
             title="Edit"
           >
             <IconEdit />
@@ -283,7 +283,7 @@ function FellowshipDetail({
           {!confirmDelete ? (
             <button
               onClick={() => setConfirmDelete(true)}
-              className="p-1.5 text-stone-700 hover:text-red-700 transition-colors"
+              className="p-1.5 text-primary hover:text-red-700 transition-colors"
               title="Delete"
             >
               <IconTrash />
@@ -301,7 +301,7 @@ function FellowshipDetail({
               </button>
               <button
                 onClick={() => setConfirmDelete(false)}
-                className="p-0.5 text-stone-700 hover:text-stone-600"
+                className="p-0.5 text-primary hover:text-secondary"
               >
                 <IconX />
               </button>
@@ -309,19 +309,19 @@ function FellowshipDetail({
           )}
           <button
             onClick={onClose}
-            className="p-1.5 text-stone-700 hover:text-stone-900 transition-colors ml-0.5"
+            className="p-1.5 text-primary hover:text-strong transition-colors ml-0.5"
           >
             <IconX />
           </button>
         </div>
       </div>
       {group.description && (
-        <p className="text-xs text-stone-600 leading-relaxed relative z-10 border-l-2 border-amber-500/40 pl-3">
+        <p className="text-xs text-secondary leading-relaxed relative z-10 border-l-2 border-amber-500/40 pl-3">
           {group.description}
         </p>
       )}
       <div className="relative z-10">
-        <p className="text-xs uppercase tracking-widest text-stone-700 font-coptic mb-2">
+        <p className="text-xs uppercase tracking-widest text-primary font-coptic mb-2">
           Leader
         </p>
         <div className="flex items-center gap-3">
@@ -331,7 +331,7 @@ function FellowshipDetail({
             className="w-9 h-9 rounded-full object-cover ring-2 ring-amber-500/30"
           />
           <div>
-            <p className="text-sm font-cormorant font-semibold text-stone-900">
+            <p className="text-sm font-cormorant font-semibold text-strong">
               {leader
                 ? leader.first_name && leader.last_name
                   ? `${leader.first_name} ${leader.last_name}`
@@ -339,7 +339,7 @@ function FellowshipDetail({
                 : "No leader assigned"}
             </p>
             {leader && (
-              <p className="font-coptic text-xs uppercase tracking-widest text-stone-700">
+              <p className="font-coptic text-xs uppercase tracking-widest text-primary">
                 @{leader.username}
               </p>
             )}
@@ -347,7 +347,7 @@ function FellowshipDetail({
         </div>
       </div>
       <div className="relative z-10">
-        <p className="text-xs uppercase tracking-widest text-stone-700 font-coptic mb-2">
+        <p className="text-xs uppercase tracking-widest text-primary font-coptic mb-2">
           Members ({memberList.length})
         </p>
         <div className="flex flex-col gap-2 max-h-64 overflow-y-auto pr-1">
@@ -362,12 +362,12 @@ function FellowshipDetail({
                     className="w-7 h-7 rounded-full object-cover shrink-0"
                   />
                   <div className="min-w-0">
-                    <p className="text-xs text-stone-700 truncate">
+                    <p className="text-xs text-primary truncate">
                       {m.first_name && m.last_name
                         ? `${m.first_name} ${m.last_name}`
                         : m.username}
                     </p>
-                    <p className="font-coptic text-xs text-stone-600 truncate">
+                    <p className="font-coptic text-xs text-secondary truncate">
                       @{m.username}
                     </p>
                   </div>
@@ -375,7 +375,7 @@ function FellowshipDetail({
               );
             })
           ) : (
-            <p className="text-xs text-stone-600 italic">No members yet</p>
+            <p className="text-xs text-secondary italic">No members yet</p>
           )}
         </div>
       </div>
@@ -455,7 +455,7 @@ function CreateFellowshipForm({ allUsers, allProfiles, onSuccess }) {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           placeholder="Brief description of this fellowship group…"
-          className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-700 transition-colors resize-none min-h-16 w-full"
+          className="bg-ivory border border-divider focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-primary placeholder:text-primary transition-colors resize-none min-h-16 w-full"
         />
       </div>
 
@@ -463,14 +463,14 @@ function CreateFellowshipForm({ allUsers, allProfiles, onSuccess }) {
       <div className="flex flex-col gap-1.5">
         <InputLabel>
           Leader{" "}
-          <span className="text-stone-600 normal-case tracking-normal">
+          <span className="text-secondary normal-case tracking-normal">
             (optional)
           </span>
         </InputLabel>
         <select
           value={leaderId}
           onChange={(e) => setLeaderId(e.target.value)}
-          className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 transition-colors w-full"
+          className="bg-ivory border border-divider focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-primary transition-colors w-full"
         >
           <option value="">Select a leader…</option>
           {allUsers.map((u) => (
@@ -487,7 +487,7 @@ function CreateFellowshipForm({ allUsers, allProfiles, onSuccess }) {
       <div className="flex flex-col gap-1.5">
         <InputLabel>
           Members{" "}
-          <span className="text-stone-600 normal-case tracking-normal">
+          <span className="text-secondary normal-case tracking-normal">
             (optional)
           </span>
         </InputLabel>
@@ -518,7 +518,7 @@ function CreateFellowshipForm({ allUsers, allProfiles, onSuccess }) {
 
         {/* Search */}
         <div className="relative">
-          <span className="absolute left-3 top-1/2 -translate-y-1/2 text-stone-600">
+          <span className="absolute left-3 top-1/2 -translate-y-1/2 text-secondary">
             <IconSearch />
           </span>
           <input
@@ -526,12 +526,12 @@ function CreateFellowshipForm({ allUsers, allProfiles, onSuccess }) {
             value={memberSearch}
             onChange={(e) => setMemberSearch(e.target.value)}
             placeholder="Search members…"
-            className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none pl-9 pr-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-700 transition-colors w-full"
+            className="bg-ivory border border-divider focus:border-amber-400 focus:outline-none pl-9 pr-3 py-2.5 text-sm text-primary placeholder:text-primary transition-colors w-full"
           />
         </div>
 
         {/* User list */}
-        <div className="border border-stone-200 divide-y divide-stone-100 max-h-48 overflow-y-auto">
+        <div className="border border-divider divide-y divide-divider max-h-48 overflow-y-auto">
           {filteredUsers.length > 0 ? (
             filteredUsers.map((u) => {
               const mp = allProfiles.find((p) => p.user?.id === u.id);
@@ -541,7 +541,7 @@ function CreateFellowshipForm({ allUsers, allProfiles, onSuccess }) {
                   key={u.id}
                   onClick={() => toggleMember(u.id)}
                   className={`flex items-center gap-3 px-3 py-2.5 cursor-pointer transition-colors ${
-                    checked ? "bg-amber-50" : "hover:bg-stone-50"
+                    checked ? "bg-amber-50" : "hover:bg-ivory"
                   }`}
                 >
                   <img
@@ -550,12 +550,12 @@ function CreateFellowshipForm({ allUsers, allProfiles, onSuccess }) {
                     className="w-7 h-7 rounded-full object-cover shrink-0"
                   />
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm text-stone-700 truncate">
+                    <p className="text-sm text-primary truncate">
                       {u.first_name && u.last_name
                         ? `${u.first_name} ${u.last_name}`
                         : u.username}
                     </p>
-                    <p className="font-coptic text-xs text-stone-700 truncate">
+                    <p className="font-coptic text-xs text-primary truncate">
                       @{u.username}
                     </p>
                   </div>
@@ -563,7 +563,7 @@ function CreateFellowshipForm({ allUsers, allProfiles, onSuccess }) {
                     className={`w-4 h-4 border flex items-center justify-center shrink-0 transition-colors ${
                       checked
                         ? "bg-amber-500 border-amber-500"
-                        : "border-stone-300"
+                        : "border-divider"
                     }`}
                   >
                     {checked && (
@@ -586,13 +586,13 @@ function CreateFellowshipForm({ allUsers, allProfiles, onSuccess }) {
               );
             })
           ) : (
-            <p className="text-xs text-stone-600 px-3 py-4 text-center italic">
+            <p className="text-xs text-secondary px-3 py-4 text-center italic">
               No users found
             </p>
           )}
         </div>
         {selectedMembers.length > 0 && (
-          <p className="text-xs text-stone-700 uppercase tracking-widest">
+          <p className="text-xs text-primary uppercase tracking-widest">
             {selectedMembers.length} member
             {selectedMembers.length !== 1 ? "s" : ""} selected
           </p>
@@ -686,7 +686,7 @@ function EditFellowshipForm({
         <textarea
           value={description}
           onChange={(e) => setDescription(e.target.value)}
-          className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 transition-colors resize-none min-h-16 w-full"
+          className="bg-ivory border border-divider focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-primary transition-colors resize-none min-h-16 w-full"
         />
       </div>
       <div className="flex flex-col gap-1.5">
@@ -694,7 +694,7 @@ function EditFellowshipForm({
         <select
           value={leaderId}
           onChange={(e) => setLeaderId(e.target.value)}
-          className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-stone-700 transition-colors w-full"
+          className="bg-ivory border border-divider focus:border-amber-400 focus:outline-none px-3 py-2.5 text-sm text-primary transition-colors w-full"
         >
           <option value="">No leader</option>
           {allUsers.map((u) => (
@@ -727,7 +727,7 @@ function EditFellowshipForm({
           </div>
         )}
         <div className="relative">
-          <span className="absolute left-3 top-1/2 -translate-y-1/2 text-stone-600">
+          <span className="absolute left-3 top-1/2 -translate-y-1/2 text-secondary">
             <IconSearch />
           </span>
           <input
@@ -735,10 +735,10 @@ function EditFellowshipForm({
             value={memberSearch}
             onChange={(e) => setMemberSearch(e.target.value)}
             placeholder="Search members…"
-            className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none pl-9 pr-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-700 transition-colors w-full"
+            className="bg-ivory border border-divider focus:border-amber-400 focus:outline-none pl-9 pr-3 py-2.5 text-sm text-primary placeholder:text-primary transition-colors w-full"
           />
         </div>
-        <div className="border border-stone-200 divide-y divide-stone-100 max-h-48 overflow-y-auto">
+        <div className="border border-divider divide-y divide-divider max-h-48 overflow-y-auto">
           {filteredUsers.map((u) => {
             const mp = allProfiles.find((p) => p.user?.id === u.id);
             const checked = selectedMembers.includes(u.id);
@@ -746,7 +746,7 @@ function EditFellowshipForm({
               <div
                 key={u.id}
                 onClick={() => toggleMember(u.id)}
-                className={`flex items-center gap-3 px-3 py-2.5 cursor-pointer transition-colors ${checked ? "bg-amber-50" : "hover:bg-stone-50"}`}
+                className={`flex items-center gap-3 px-3 py-2.5 cursor-pointer transition-colors ${checked ? "bg-amber-50" : "hover:bg-ivory"}`}
               >
                 <img
                   src={mp?.profile_pic_url || "/images/defaultavatar.jpg"}
@@ -754,17 +754,17 @@ function EditFellowshipForm({
                   className="w-7 h-7 rounded-full object-cover shrink-0"
                 />
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm text-stone-700 truncate">
+                  <p className="text-sm text-primary truncate">
                     {u.first_name && u.last_name
                       ? `${u.first_name} ${u.last_name}`
                       : u.username}
                   </p>
-                  <p className="font-coptic text-xs text-stone-700 truncate">
+                  <p className="font-coptic text-xs text-primary truncate">
                     @{u.username}
                   </p>
                 </div>
                 <div
-                  className={`w-4 h-4 border flex items-center justify-center shrink-0 ${checked ? "bg-amber-500 border-amber-500" : "border-stone-300"}`}
+                  className={`w-4 h-4 border flex items-center justify-center shrink-0 ${checked ? "bg-amber-500 border-amber-500" : "border-divider"}`}
                 >
                   {checked && (
                     <svg
@@ -810,7 +810,7 @@ function EditFellowshipForm({
         <button
           type="button"
           onClick={onCancel}
-          className="border border-stone-200 text-stone-700 hover:border-stone-400 font-coptic text-sm uppercase tracking-widest px-4 py-3 transition-colors"
+          className="border border-divider text-primary hover:border-gray-300 font-coptic text-sm uppercase tracking-widest px-4 py-3 transition-colors"
         >
           Cancel
         </button>
@@ -875,7 +875,7 @@ function Fellowships() {
       {/* ── Header ── */}
       <div className="flex items-end justify-between mb-10">
         <div>
-          <p className="text-xs uppercase tracking-[0.25em] text-stone-700 mb-1">
+          <p className="text-xs uppercase tracking-[0.25em] text-primary mb-1">
             Groups
           </p>
           <h1 className="font-cormorant text-4xl font-semibold text-black leading-tight">
@@ -905,33 +905,33 @@ function Fellowships() {
         {/* ── Left: list + search ── */}
         <div className="xl:col-span-2 flex flex-col gap-5">
           {/* Stats bar */}
-          <div className="flex items-center gap-6 pb-5 border-b border-stone-200">
+          <div className="flex items-center gap-6 pb-5 border-b border-divider">
             <div>
-              <p className="font-cormorant text-3xl font-light text-stone-800">
+              <p className="font-cormorant text-3xl font-light text-strong">
                 {fellowships?.count ?? fellowshipList.length}
               </p>
-              <p className="text-xs uppercase tracking-widest text-stone-700 font-coptic">
+              <p className="text-xs uppercase tracking-widest text-primary font-coptic">
                 Total Groups
               </p>
             </div>
-            <div className="w-px h-8 bg-stone-200" />
+            <div className="w-px h-8 bg-divider" />
             <div>
-              <p className="font-cormorant text-3xl font-light text-stone-800">
+              <p className="font-cormorant text-3xl font-light text-strong">
                 {fellowshipList.reduce(
                   (acc, g) => acc + (g.members?.length ?? 0),
                   0,
                 )}
               </p>
-              <p className="text-xs uppercase tracking-widest text-stone-700 font-coptic">
+              <p className="text-xs uppercase tracking-widest text-primary font-coptic">
                 Total Members
               </p>
             </div>
-            <div className="w-px h-8 bg-stone-200" />
+            <div className="w-px h-8 bg-divider" />
             <div>
-              <p className="font-cormorant text-3xl font-light text-stone-800">
+              <p className="font-cormorant text-3xl font-light text-strong">
                 {fellowshipList.filter((g) => g.leader).length}
               </p>
-              <p className="text-xs uppercase tracking-widest text-stone-700 font-coptic">
+              <p className="text-xs uppercase tracking-widest text-primary font-coptic">
                 With Leaders
               </p>
             </div>
@@ -939,7 +939,7 @@ function Fellowships() {
 
           {/* Search */}
           <div className="relative">
-            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-stone-600">
+            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-secondary">
               <IconSearch />
             </span>
             <input
@@ -947,7 +947,7 @@ function Fellowships() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search groups…"
-              className="bg-ivory border border-stone-200 focus:border-amber-400 focus:outline-none pl-9 pr-3 py-2.5 text-sm text-stone-700 placeholder:text-stone-700 transition-colors w-full"
+              className="bg-ivory border border-divider focus:border-amber-400 focus:outline-none pl-9 pr-3 py-2.5 text-sm text-primary placeholder:text-primary transition-colors w-full"
             />
           </div>
 
@@ -971,7 +971,7 @@ function Fellowships() {
           ) : (
             <div className="flex flex-col items-center py-20 gap-3">
               <div className="w-8 h-px bg-amber-500/40" />
-              <p className="text-xs uppercase tracking-[0.25em] text-stone-600">
+              <p className="text-xs uppercase tracking-[0.25em] text-secondary">
                 {search
                   ? "No groups match your search"
                   : "No fellowship groups yet"}
@@ -1023,9 +1023,9 @@ function Fellowships() {
               )}
             </>
           ) : (
-            <div className="flex flex-col items-center justify-center h-48 border border-dashed border-stone-200 gap-3">
+            <div className="flex flex-col items-center justify-center h-48 border border-dashed border-divider gap-3">
               <IconUsers />
-              <p className="text-xs uppercase tracking-widest text-stone-600 font-coptic text-center">
+              <p className="text-xs uppercase tracking-widest text-secondary font-coptic text-center">
                 Select a group to view details
                 <br />
                 or create a new one
