@@ -67,7 +67,6 @@ function OrgListCard({ org, isSelected, onSelect }) {
 }
 
 function OrgDetailCard({ org }) {
-  const [joinSent, setJoinSent] = useState(false);
   const [donationAmount, setDonationAmount] = useState(500);
   const user = useAuthStore((s) => s.user);
 
@@ -162,25 +161,7 @@ function OrgDetailCard({ org }) {
         {/* Divider */}
         <div className="h-px bg-ivory mb-6" />
 
-        {/* Join button */}
-        <div className="flex items-center gap-4">
-          <button
-            onClick={() => setJoinSent(true)}
-            disabled={joinSent}
-            className={`flex items-center gap-2 px-7 py-3 text-[0.75rem] uppercase tracking-[0.15em] font-coptic transition-all duration-200 rounded-sm ${
-              joinSent
-                ? "bg-ivory text-primary border border-divider cursor-default"
-                : "bg-amber-500 hover:bg-amber-600 text-white"
-            }`}
-          >
-            <IconHeart className="w-4 h-4" />
-            {joinSent ? "Request Sent" : "Request to Join"}
-          </button>
-          {joinSent && (
-            <p className="text-[0.75rem] text-primary font-coptic">
-              Your request has been submitted.
-            </p>
-          )}
+        {/* Donation Section */}
         <div className="flex items-center gap-3">
           <input
             type="number"
@@ -197,7 +178,6 @@ function OrgDetailCard({ org }) {
             className="flex items-center gap-2 px-7 py-3 text-[0.75rem] uppercase tracking-[0.15em] font-coptic transition-all duration-200 bg-amber-500 hover:bg-amber-600 text-white rounded-sm"
             label={<><IconBanknotes className="w-4 h-4" /> Donate</>}
           />
-        </div>
         </div>
       </div>
     </div>
