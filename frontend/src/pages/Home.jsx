@@ -28,20 +28,20 @@ function Home() {
               <span className="text-xs text-amber-500 font-coptic tracking-[0.25em] uppercase">
                 — Powered by Mavuno Church
               </span>
-              <h1 className="mt-4 mb-6 text-4xl sm:text-5xl lg:text-[3.5rem] font-cormorant font-light text-light leading-tight">
+              <h1 className="mt-4 mb-6 text-4xl sm:text-5xl lg:text-[3.5rem] font-cormorant font-light text-[#fffffc] leading-tight">
                 This is{" "}
                 <span className="text-amber-500 italic font-bold">
                   Open Church Management
                 </span>
               </h1>
-              <p className="mb-8 text-base sm:text-lg text-light font-coptic leading-relaxed">
+              <p className="mb-8 text-base sm:text-lg text-[#fffffc] font-coptic leading-relaxed">
                 A free, open-source platform built for Mavuno Church —
                 connecting members, leadership, and fellowship groups in one
                 place.
               </p>
               <Link
                 to={user ? "/feed" : "/auth/login"}
-                className="inline-block bg-amber-500 hover:bg-amber-600 text-black font-coptic text-xs uppercase tracking-[0.2em] px-8 py-4 transition-colors rounded-md"
+                className="inline-block bg-amber-500 hover:bg-amber-600 text-[#000000] font-coptic text-xs uppercase tracking-[0.2em] px-8 py-4 transition-colors rounded-md"
               >
                 Get Started
               </Link>
