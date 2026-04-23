@@ -14,6 +14,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
 from django.contrib import admin
 from django.conf.urls.static import static
 from django.urls import path, include
@@ -24,26 +25,41 @@ from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
 )
+from drf_spectacular.views import (
+    SpectacularAPIView,
+    SpectacularSwaggerView,
+    SpectacularRedocView,
+)
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('api/', include("userapp.urls")),
-    path('api/', include("communication.urls")),
-    path('api/', include("mainapp.urls")),
-    path('', include("userapp.urls")),
-    path('', include("mainapp.urls")),
-    path('', include("communication.urls")),
+    path("admin/", admin.site.urls),
+    path("api/", include("userapp.urls")),
+    path("api/", include("communication.urls")),
+    path("api/", include("mainapp.urls")),
+    path("", include("userapp.urls")),
+    path("", include("mainapp.urls")),
+    path("", include("communication.urls")),
     path(
-        'accounts/register/',
+        "accounts/register/",
         RegistrationView.as_view(
             form_class=CustomRegistrationForm,  # important
-            success_url='/'
+            success_url="/",
         ),
-        name='django_registration_register'
+        name="django_registration_register",
     ),
-    path('accounts/', include('django_registration.backends.one_step.urls')),
-    path('accounts/', include('django.contrib.auth.urls')),
-    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
+    path("accounts/", include("django_registration.backends.one_step.urls")),
+    path("accounts/", include("django.contrib.auth.urls")),
+    path("api/token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
+    path("api/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
+    # --- Documentation Endpoints ---
+    # 1. OpenAPI Schema (YAML/JSON)
+    path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
+    # 2. Swagger UI: Interactive testing interface
+    path(
+        "api/docs/",
+        SpectacularSwaggerView.as_view(url_name="schema"),
+        name="swagger-ui",
+    ),
+    # 3. Redoc UI: Clean, readable reference interface
+    path("api/redoc/", SpectacularRedocView.as_view(url_name="schema"), name="redoc"),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

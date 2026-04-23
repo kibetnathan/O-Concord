@@ -22,7 +22,6 @@ import firebase_admin
 from firebase_admin import credentials
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # SECURITY WARNING keep the secret key used in production secret
 SECRET_KEY = config('SECRET_KEY', default='django-insecure-=d=4)ew!ym&076!3+0_to5=)tvlkz)wv2m-h9_jy0=uvkzsh35')
 
@@ -59,6 +58,8 @@ INSTALLED_APPS = [
     'communication',
     'taggit',
     'corsheaders',
+    'drf_spectacular',
+    'django_filters',
 ]
 
 
@@ -171,6 +172,7 @@ AUTH_USER_MODEL = 'userapp.CustomUser'
 REST_FRAMEWORK = {
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
     "PAGE_SIZE": 10,
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
     "DEFAULT_AUTHENTICATION_CLASSES": (
         'userapp.authentication.FirebaseAuthentication',
         # "rest_framework_simplejwt.authentication.JWTAuthentication",
