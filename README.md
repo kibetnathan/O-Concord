@@ -164,6 +164,14 @@ Base URL: `/api/`
 | Payments | `POST /verify-payment/` |
 | JWT | `POST /token/`, `POST /token/refresh/` |
 
+### API Documentation
+
+The backend includes interactive API documentation powered by OpenAPI (drf-spectacular).
+
+- **Swagger UI**: [http://localhost:8000/api/docs/](http://localhost:8000/api/docs/) — Interactive testing interface.
+- **Redoc**: [http://localhost:8000/api/redoc/](http://localhost:8000/api/redoc/) — Clean, readable reference interface.
+- **OpenAPI Schema**: [http://localhost:8000/api/schema/](http://localhost:8000/api/schema/) — Raw JSON/YAML schema.
+
 ### Roles & Permissions
 
 | Role | Access |
