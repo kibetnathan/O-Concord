@@ -13,14 +13,29 @@ from firebase_admin import auth, exceptions
 
 
 class ProfileView(APIView):
-    permission_classes = [IsAuthenticated] 
+    """
+    Function-style CRUD endpoint for Profile objects.
+
+    A thin wrapper around the Profile model that exposes list/create on the collection
+    and update/delete on a specific profile via `<id>` in the URL. All responses are
+    wrapped in a `{status, data|profile}` envelope for consistency with the frontend.
+
+    Methods:
+        GET    — list all profiles
+        POST   — create a new profile
+        PUT    — partial-update the profile with the given `id`
+        DELETE — delete the profile with the given `id`
+    """
+    permission_classes = [IsAuthenticated]
 
     def get(self, request, *args, **kwargs):
+        """Return every Profile in the system wrapped in a success envelope."""
         result = Profile.objects.all()
         serializers = ProfileSerializer(result, many=True)
         return Response({'status': 'success', "profile": serializers.data}, status=200)
 
     def post(self, request):
+        """Create a new Profile from the request payload; returns 400 on validation error."""
         serializer = ProfileSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
@@ -29,6 +44,7 @@ class ProfileView(APIView):
             return Response({"status": "error", "data": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
 
     def put(self, request, *args, **kwargs):
+        """Partially update the Profile identified by `kwargs['id']`; 404 if missing."""
         try:
             profile = Profile.objects.get(id=kwargs['id'])
         except Profile.DoesNotExist:
@@ -42,6 +58,7 @@ class ProfileView(APIView):
             return Response({"status": "error", "data": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, *args, **kwargs):
+        """Delete the Profile identified by `kwargs['id']`; 404 if it does not exist."""
         try:
             profile = Profile.objects.get(id=kwargs['id'])
         except Profile.DoesNotExist:
@@ -52,6 +69,19 @@ class ProfileView(APIView):
 
 
 class ProfileViewSet(viewsets.ModelViewSet):
+    """
+    Router-backed CRUD for Profile, keyed by the related user's id rather than the
+    Profile's own pk. This lets the frontend address profiles as `/profiles/{user_id}/`,
+    which matches how user records are referenced elsewhere in the app.
+
+    Routes (router prefix 'profiles/'):
+        GET    /profiles/              — list all profiles
+        POST   /profiles/              — create a profile
+        GET    /profiles/{user_id}/    — retrieve the profile for the given user
+        PUT    /profiles/{user_id}/    — replace that profile
+        PATCH  /profiles/{user_id}/    — partial update
+        DELETE /profiles/{user_id}/    — delete that profile
+    """
     permission_classes = [IsAuthenticated]
     queryset = Profile.objects.all().order_by('id')
     serializer_class = ProfileSerializer
@@ -70,9 +100,18 @@ class ProfileViewSet(viewsets.ModelViewSet):
 
 
 class RegistrationAPIView(APIView):
+    """
+    Finalise registration for an already-authenticated user.
+
+    The user is created by the Firebase sign-up flow; this endpoint runs the
+    CustomRegistrationForm against the current user to fill in the remaining profile
+    fields inside a single transaction. On success returns the serialised user (201);
+    on form errors returns 400; on unexpected failure rolls back and returns 500.
+    """
     permission_classes = [IsAuthenticated]
 
     def post(self, request):
+        """Validate and persist registration data for `request.user`."""
         form = CustomRegistrationForm(request.data, instance=request.user)
         if not form.is_valid():
             return Response(form.errors, status=400)
@@ -90,9 +129,19 @@ class RegistrationAPIView(APIView):
 
 
 class UsernameCheckAPIView(APIView):
+    """
+    Public availability check used by the sign-up form.
+
+    Enforces length rules (3–30 chars) and performs a case-insensitive uniqueness
+    check against CustomUser. Returns `{available: bool, reason?: str}` so the
+    frontend can show inline feedback before the user submits.
+
+    Route: GET /username-check/?username=<value>
+    """
     permission_classes = [AllowAny]
 
     def get(self, request):
+        """Return whether the supplied `?username=` is free to register."""
         username = request.query_params.get("username", "").strip()
 
         if not username:
@@ -109,9 +158,19 @@ class UsernameCheckAPIView(APIView):
 
 
 class CurrentUserAPIView(APIView):
+    """
+    Return a compact representation of the authenticated user.
+
+    Used by the frontend on load to hydrate the session: id, username, names, email,
+    and the names of the groups the user belongs to (so the UI can gate role-specific
+    features without extra round-trips).
+
+    Route: GET /me/
+    """
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
+        """Return the identity and group memberships of `request.user`."""
         user = request.user
         return Response({
             "id": user.id,
@@ -124,20 +183,45 @@ class CurrentUserAPIView(APIView):
 
 
 class GroupListView(APIView):
+    """
+    List every Django auth Group.
+
+    Intended for admin screens that assign members to roles (Pastors, Leaders, etc.);
+    returns all groups, not just those the current user belongs to.
+
+    Route: GET /groups/
+    """
     permission_classes = [IsAuthenticated]
-    
+
     def get(self, request):
+        """Return every Group defined in the system."""
         groups = Group.objects.all()  # Get ALL groups instead of user.groups.all()
         serializer = GroupSerializer(groups, many=True)
         return Response(serializer.data)
 
 
 class UserViewSet(viewsets.ModelViewSet):
+    """
+    CRUD for CustomUser, with Firebase-aware delete and guarded email updates.
+
+    Non-owners cannot change another user's email even if they have write access, and
+    deleting a user also removes the corresponding Firebase Auth account so the two
+    systems stay in sync.
+
+    Routes (router prefix 'users/'):
+        GET    /users/         — list users
+        POST   /users/         — create a user
+        GET    /users/{id}/    — retrieve a user
+        PUT    /users/{id}/    — replace a user (email stripped for non-owners)
+        PATCH  /users/{id}/    — partial update (same email guard)
+        DELETE /users/{id}/    — delete from Django + Firebase Auth
+    """
     permission_classes = [IsAuthenticated]
     queryset = CustomUser.objects.all().order_by('id')
     serializer_class = UserSerializer
 
     def update(self, request, *args, **kwargs):
+        """Update a user, stripping `email` from the payload if the requester isn't the owner."""
         instance = self.get_object()
         if request.user != instance and 'email' in request.data:
             data = request.data.copy()

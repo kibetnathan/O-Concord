@@ -17,26 +17,65 @@ def is_pastor(user):
 
 
 class LeadershipTeamViewSet(viewsets.ModelViewSet):
+    """
+    CRUD for LeadershipTeam members (pastors, elders, and other named leaders shown
+    on the public "Leadership" page).
+
+    Routes (router prefix 'leadership/'):
+        GET /leadership/, POST /leadership/, GET|PUT|PATCH|DELETE /leadership/{id}/
+    """
     queryset = LeadershipTeam.objects.all().order_by('id')
     serializer_class = LeadershipTeamSerializer
 
 class ServicesViewSet(viewsets.ModelViewSet):
+    """
+    CRUD for weekly Services (name, time, description) shown on the public service
+    schedule.
+
+    Routes (router prefix 'services/'):
+        GET /services/, POST /services/, GET|PUT|PATCH|DELETE /services/{id}/
+    """
     queryset = Services.objects.all().order_by('id')
     serializer_class = ServicesSerializer
 
 class FellowshipGroupViewSet(viewsets.ModelViewSet):
+    """
+    CRUD for FellowshipGroups (small / discipleship groups members can join).
+
+    Routes (router prefix 'fellowship-groups/'):
+        GET /fellowship-groups/, POST /fellowship-groups/,
+        GET|PUT|PATCH|DELETE /fellowship-groups/{id}/
+    """
     queryset = FellowshipGroup.objects.all().order_by('id')
     serializer_class = FellowshipGroupSerializer
 
 class CourseViewSet(viewsets.ModelViewSet):
+    """
+    CRUD for Courses offered by the church (classes, training, ROPES).
+
+    Routes (router prefix 'courses/'):
+        GET /courses/, POST /courses/, GET|PUT|PATCH|DELETE /courses/{id}/
+    """
     queryset = Course.objects.all().order_by('id')
     serializer_class = CourseSerializer
 
 class DepartmentViewSet(viewsets.ModelViewSet):
+    """
+    CRUD for Departments (serving teams such as Media, Ushering, Worship).
+
+    Routes (router prefix 'departments/'):
+        GET /departments/, POST /departments/, GET|PUT|PATCH|DELETE /departments/{id}/
+    """
     queryset = Department.objects.all().order_by('id')
     serializer_class = DepartmentSerializer
 
 class EquipmentViewSet(viewsets.ModelViewSet):
+    """
+    CRUD for Equipment tracked by the church (inventory of items owned or borrowed).
+
+    Routes (router prefix 'equipment/'):
+        GET /equipment/, POST /equipment/, GET|PUT|PATCH|DELETE /equipment/{id}/
+    """
     queryset = Equipment.objects.all().order_by('id')
     serializer_class = EquipmentSerializer
 
@@ -202,6 +241,16 @@ class IsLeaderOrReadOnly(BasePermission):
 # viewset
 
 class CharityOrganisationViewSet(viewsets.ModelViewSet):
+    """
+    CRUD for CharityOrganisations the church partners with or supports.
+
+    Reads are open to any authenticated user; writes require a recognised leadership
+    group (see IsLeaderOrReadOnly) so regular members cannot alter the partner list.
+
+    Routes (router prefix 'charities/'):
+        GET /charities/, POST /charities/ (leaders only),
+        GET /charities/{id}/, PUT|PATCH|DELETE /charities/{id}/ (leaders only)
+    """
     queryset = CharityOrganisation.objects.all().order_by('id')
     serializer_class = CharityOrganisationSerializer
     permission_classes = [IsLeaderOrReadOnly]
@@ -262,6 +311,12 @@ class ReadingPlanViewSet(viewsets.ModelViewSet):
 
     @action(detail=True, methods=['post'], url_path='join')
     def join(self, request, pk=None):
+        """
+        Enrol the current user in the reading plan.
+
+        Idempotent: calling it again for an already-joined user returns `created: False`
+        and leaves the membership untouched. Response includes the updated member count.
+        """
         plan = self.get_object()
         _, created = ReadingPlanMember.objects.get_or_create(
             user=request.user, plan=plan
@@ -277,6 +332,12 @@ class ReadingPlanViewSet(viewsets.ModelViewSet):
 
     @action(detail=True, methods=['post'], url_path='leave')
     def leave(self, request, pk=None):
+        """
+        Remove the current user's membership from the reading plan.
+
+        Idempotent: calling it for a non-member is a no-op that still returns the
+        plan's current member count.
+        """
         plan = self.get_object()
         ReadingPlanMember.objects.filter(
             user=request.user, plan=plan
@@ -300,7 +361,20 @@ class ReadingPlanViewSet(viewsets.ModelViewSet):
         return Response(serializer.data)
 
 class VerifyPaymentView(APIView):
+    """
+    Server-side verification of a Paystack transaction.
+
+    The frontend initiates payment with Paystack directly; after Paystack returns a
+    `reference`, the client POSTs it here so the backend can independently call
+    Paystack's verify API using the secret key. This prevents a malicious client from
+    faking a successful payment. The place to update Order / donation records is inside
+    the `status == 'success'` branch.
+
+    Request:  { "reference": "<paystack_reference>" }
+    Response: { "status": "verified"|"failed", "detail": "..." }
+    """
     def post(self, request):
+        """Verify a Paystack reference and return whether the transaction succeeded."""
         reference = request.data.get('reference')
         
         if not reference:

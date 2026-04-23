@@ -1,11 +1,7 @@
-from django.shortcuts import render
 from rest_framework.response import Response
-from rest_framework import status, viewsets, permissions
+from rest_framework import viewsets, permissions
 from .models import Post, Comment
 from .serializers import PostSerializer, CommentSerializer
-from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
-from taggit.utils import parse_tags
 from django.utils import timezone
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
@@ -13,6 +9,21 @@ from django.shortcuts import get_object_or_404
 from rest_framework.parsers import MultiPartParser, FormParser
 
 class PostViewSet(viewsets.ModelViewSet):
+    """
+    CRUD endpoints for community Posts.
+
+    Posts are newest-first and accept multipart uploads so authors can attach an image.
+    The authenticated user is stamped as `author` and the server sets `published_date`
+    on create.
+
+    Routes (router prefix 'posts/'):
+        GET    /posts/         — list posts newest-first
+        POST   /posts/         — create a post (multipart: title, text, tags, image)
+        GET    /posts/{id}/    — retrieve a single post
+        PUT    /posts/{id}/    — replace a post
+        PATCH  /posts/{id}/    — partial update
+        DELETE /posts/{id}/    — delete a post
+    """
     queryset = Post.objects.all().order_by('-published_date')
     serializer_class = PostSerializer
     parser_classes = (MultiPartParser, FormParser)
@@ -22,6 +33,21 @@ class PostViewSet(viewsets.ModelViewSet):
         serializer.save(author=self.request.user, published_date=timezone.now())
 
 class CommentViewSet(viewsets.ModelViewSet):
+    """
+    CRUD endpoints for Comments on Posts.
+
+    Supports filtering by post via the `?post=<id>` query parameter so clients can
+    fetch the comment thread for a given post. The authenticated user is stamped as
+    `author` on create.
+
+    Routes (router prefix 'comments/'):
+        GET    /comments/?post={id} — list comments, optionally filtered by post
+        POST   /comments/           — create a comment
+        GET    /comments/{id}/      — retrieve a single comment
+        PUT    /comments/{id}/      — replace a comment
+        PATCH  /comments/{id}/      — partial update
+        DELETE /comments/{id}/      — delete a comment
+    """
     queryset = Comment.objects.all().order_by('created_at')  # ← add this back
     serializer_class = CommentSerializer
     permission_classes = [IsAuthenticated]
@@ -36,39 +62,17 @@ class CommentViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
 
-def posts(request):
-    return render(request, 'posts.html')
-
-def posts_form(request):
-    return render(request, 'postform.html')
-
-@login_required
-def create_post(request):
-    if request.method == "POST":
-        title = request.POST.get("title")
-        text = request.POST.get("text")
-        tags = request.POST.get("tags", "")
-        image = request.FILES.get("image")  # handle uploaded image
-
-        post = Post.objects.create(
-            title=title,
-            text=text,
-            author=request.user,
-            published_date=timezone.now(),
-            image=image if image else None
-        )
-
-        if tags:
-            tag_list = [t.strip() for t in tags.split(",")]
-            post.tags.add(*tag_list)
-
-        return redirect("posts")  # redirect somewhere
-
-    return render(request, "postform.html")
-
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def toggle_like(request, post_id):
+    """
+    Toggle the authenticated user's like on a Post.
+
+    If the user has already liked the post, the like is removed; otherwise it is added.
+    Returns the new liked-state for the current user and the total like count.
+
+    Response: { "liked": bool, "like_count": int }
+    """
     post = get_object_or_404(Post, id=post_id)
     user = request.user
 

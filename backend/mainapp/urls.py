@@ -16,6 +16,6 @@ router.register(r'charity-organisations', CharityOrganisationViewSet, basename='
 
 
 urlpatterns= [
-    path('api/', include(router.urls)),
-    path('api/verify-payment/', VerifyPaymentView.as_view(), name='verify-payment')
+    path('', include(router.urls)),
+    path('verify-payment/', VerifyPaymentView.as_view(), name='verify-payment')
 ]
